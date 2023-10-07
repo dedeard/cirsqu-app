@@ -17,7 +17,7 @@ export const AuthTab: React.FC = () => {
       >
         Sign up
       </Link>
-      <i className="block w-px bg-gray-300" />
+      <i className="block w-px bg-gray-200" />
       <Link
         href={`/sign-in${next ? '?next=' + next : ''}`}
         className="flex h-14 flex-1 items-center justify-center border-b bg-gray-100 text-sm font-bold uppercase tracking-widest text-gray-700 no-underline data-[active=true]:border-transparent data-[active=true]:bg-white"

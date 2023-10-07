@@ -1,12 +1,14 @@
 import { db } from '@/libs/firebase'
 import { IProfile } from '@/types'
-import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
+import { Timestamp, collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
+import moment from 'moment'
 
 export const getProfile = async (uid: string) => {
   const docRef = doc(db, 'profiles', uid)
   const docSnap = await getDoc(docRef)
   if (docSnap.exists()) {
-    return docSnap.data() as IProfile
+    const profile = docSnap.data()
+    return { ...profile, createdAt: profile.createdAt.toJSON() } as IProfile
   }
   return null
 }
@@ -20,4 +22,8 @@ export const usernameExist = async (username: string) => {
 
 export const usernameNotExist = async (username: string) => {
   return !(await usernameExist(username))
+}
+
+export const timestampToDate = (time: { seconds: number; nanoseconds: number }) => {
+  return moment(new Timestamp(time.seconds, time.nanoseconds).toDate())
 }

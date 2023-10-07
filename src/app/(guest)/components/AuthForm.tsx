@@ -42,16 +42,23 @@ export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }
       const user = await authAction()
       const token = await user.user.getIdToken()
 
-      const res = await clientFetch('auth/login', 'POST', { token })
+      const loginResp = await clientFetch('auth/login', 'POST', { token })
 
-      if (!res.ok) {
-        const data = await res.json()
+      if (!loginResp.ok) {
+        const data = await loginResp.json()
         throw new Error(data.message)
       }
 
+      const profileResp = await clientFetch('profiles', 'GET')
       const next = searchParams.get('next')
 
-      return router.push(next || '/account')
+      if (profileResp.ok) {
+        const profile = await profileResp.json()
+        if (profile) {
+          return router.push(next || '/account', { scroll: false })
+        }
+      }
+      return router.push(next ? `/complete-profile?next=${next}` : '/complete-profile', { scroll: false })
     } catch (error: any) {
       setAuthError(FIREBASE_ERRORS[error.code] || error.message)
       setIsLoading(false)

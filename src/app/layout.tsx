@@ -1,5 +1,6 @@
 import { Roboto } from 'next/font/google'
 import '@/globals.css'
+import AppProviders from './AppProviders'
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -11,7 +12,9 @@ const roboto = Roboto({
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={roboto.variable}>
-      <body>{children}</body>
+      <AppProviders>
+        <body>{children}</body>
+      </AppProviders>
     </html>
   )
 }

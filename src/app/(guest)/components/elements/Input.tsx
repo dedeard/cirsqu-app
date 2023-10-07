@@ -1,12 +1,15 @@
+import InputError from '@/app/components/elements/InputError'
+import Loading from '@/app/components/svg/Loading'
 import React from 'react'
 import { Eye, EyeOff, AlertCircle } from 'react-feather'
 
 type PropTypes = {
   label: string
+  loading?: boolean
   error?: string
 } & React.InputHTMLAttributes<HTMLInputElement>
 
-const Input: React.FC<PropTypes> = ({ label, error, type, placeholder, ...props }) => {
+const Input: React.FC<PropTypes> = ({ label, loading, error, type, placeholder, ...props }) => {
   const [show, setShow] = React.useState(false)
 
   return (
@@ -27,6 +30,12 @@ const Input: React.FC<PropTypes> = ({ label, error, type, placeholder, ...props 
           }`}
         />
 
+        {loading && (
+          <div className="pointer-events-none absolute right-0 top-0 flex h-full rounded-r p-0 px-3">
+            <Loading className="m-auto h-5 w-5 text-primary-600" />
+          </div>
+        )}
+
         {type === 'password' && (
           <button
             aria-hidden="true"
@@ -39,12 +48,7 @@ const Input: React.FC<PropTypes> = ({ label, error, type, placeholder, ...props 
         )}
       </div>
 
-      {error && (
-        <div className="flex items-center rounded bg-red-100 p-2 text-sm">
-          <AlertCircle className="block h-6 w-6 text-red-950" />
-          <span className="ml-2 block">{error}</span>
-        </div>
-      )}
+      <InputError error={error} />
     </div>
   )
 }

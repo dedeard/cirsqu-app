@@ -1,3 +1,5 @@
+import { Timestamp } from 'firebase/firestore'
+
 export interface IUser {
   uid: string
   displayName: string | null
@@ -11,4 +13,8 @@ export interface IProfile {
   avatar?: string
   bio?: string
   website?: string
+  createdAt: {
+    seconds: number
+    nanoseconds: number
+  }
 }

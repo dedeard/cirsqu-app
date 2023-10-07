@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.dropdown-drop {
+  transition:
+    opacity 250ms ease-out,
+    visibility 250ms ease-out;
+  @apply invisible opacity-0;
+}
+
+.dropdown-wrapper:hover .dropdown-drop {
+  @apply visible opacity-100;
+}
