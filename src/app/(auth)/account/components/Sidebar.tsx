@@ -1,6 +1,6 @@
 import React from 'react'
 import Avatar from '@/app/components/elements/Avatar'
-import { useAuth } from './AuthContext'
+import { useAuth } from '../../components/AuthContext'
 import storageUrl from '@/utils/storage-url'
 import SidebarLinks from './SidebarLinks'
 import { timestampToDate } from '@/utils/firestore'

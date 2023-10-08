@@ -1,7 +1,6 @@
 import { redirect } from 'next/navigation'
 import { getAuthData } from '@/utils/server-fetch'
 import { AuthProvider } from './components/AuthContext'
-import AccountLayout from './components/AccountLayout'
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const { user, profile } = await getAuthData()
@@ -16,7 +15,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
 
   return (
     <AuthProvider user={user} profile={profile}>
-      <AccountLayout>{children}</AccountLayout>
+      {children}
     </AuthProvider>
   )
 }

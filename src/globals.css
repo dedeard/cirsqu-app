@@ -12,3 +12,18 @@
 .dropdown-wrapper:hover .dropdown-drop {
   @apply visible opacity-100;
 }
+
+.background-animate {
+  background-size: 400%;
+  animation: AnimatedBgColor 20s ease infinite;
+}
+
+@keyframes AnimatedBgColor {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}

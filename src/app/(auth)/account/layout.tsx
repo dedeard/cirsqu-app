@@ -1,11 +1,11 @@
 'use client'
+import { Toaster } from 'react-hot-toast'
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
-import Sidebar from './Sidebar'
-import { useAuth } from './AuthContext'
-import { Toaster } from 'react-hot-toast'
+import { useAuth } from '../components/AuthContext'
+import Sidebar from './components/Sidebar'
 
-const AccountLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export default function AccountLayout({ children }: { children: React.ReactNode }) {
   const { profile } = useAuth()
   return (
     <>
@@ -23,5 +23,3 @@ const AccountLayout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     </>
   )
 }
-
-export default AccountLayout

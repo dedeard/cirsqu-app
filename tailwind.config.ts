@@ -17,6 +17,7 @@ const config: Config = {
       primary: colors.indigo,
       red: colors.red,
       gray: colors.gray,
+      slate: colors.slate,
     },
     extend: {
       transitionProperty: {

@@ -18,3 +18,21 @@ export interface IProfile {
     nanoseconds: number
   }
 }
+
+export interface IPlan {
+  id: string
+  slug: string
+  currency: string
+  livemode: boolean
+  nickname: string
+  recurring: {
+    interval: string
+    interval_count: number
+  } | null
+  amount: {
+    formatted: string
+    decimal: string
+  }
+  description: string
+  features: string[]
+}

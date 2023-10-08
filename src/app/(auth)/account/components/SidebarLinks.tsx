@@ -9,7 +9,7 @@ const SidebarLinks: React.FC = () => {
     { href: '/account/password', text: 'Password' },
     { href: '/account/notifications', text: 'Notifications' },
     { href: '/account/linked-accounts', text: 'Linked Accounts' },
-    { href: '/account/subscription', text: 'Subscription' },
+    { href: '/account/subscription', text: 'Membership' },
   ]
   return (
     <div className="border bg-white">

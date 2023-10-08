@@ -13,7 +13,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={roboto.variable}>
       <AppProviders>
-        <body>{children}</body>
+        <body className="antialiased">{children}</body>
       </AppProviders>
     </html>
   )
