@@ -5,7 +5,7 @@ import FAQItem from './components/FAQItem'
 import serverFetch from '@/utils/server-fetch'
 
 export default async function PlansPage() {
-  const response = await serverFetch('plans')
+  const response = await serverFetch('plans', { next: { revalidate: 60 } })
   if (!response.ok) {
     const data = await response.json()
     throw new Error(data.message)
