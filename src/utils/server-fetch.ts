@@ -18,6 +18,7 @@ export default function serverFetch(endpoint: string | URL, init?: RequestInit) 
   if (session) {
     options.headers = {
       Cookie: `session=${session}`,
+      'Content-Type': 'application/json',
       ...options.headers,
     }
   }
