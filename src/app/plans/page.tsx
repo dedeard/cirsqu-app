@@ -1,16 +1,16 @@
-import { IPlan } from '@/types'
+import { IProduct } from '@/types'
 import BackToggle from './components/BackToggle'
 import PlanItem from './components/PlanItem'
 import FAQItem from './components/FAQItem'
 import serverFetch from '@/utils/server-fetch'
 
 export default async function PlansPage() {
-  const response = await serverFetch('plans', { next: { revalidate: 60 } })
+  const response = await serverFetch('products', { cache: 'no-cache' })
   if (!response.ok) {
     const data = await response.json()
     throw new Error(data.message)
   }
-  const plans: IPlan[] = await response.json()
+  const products: IProduct[] = await response.json()
   return (
     <div className="background-animate min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-gray-200">
       <BackToggle />
@@ -25,9 +25,9 @@ export default async function PlansPage() {
         </section>
 
         <section className="grid grid-cols-1 gap-8 py-12 md:py-16 lg:grid-cols-3">
-          {plans.map((plan) => (
-            <div key={plan.id} className="flex items-center justify-center">
-              <PlanItem plan={plan} />
+          {products.map((product) => (
+            <div key={product.id} className="flex items-center justify-center">
+              <PlanItem product={product} />
             </div>
           ))}
         </section>
