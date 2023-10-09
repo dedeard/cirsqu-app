@@ -12,9 +12,9 @@ const roboto = Roboto({
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={roboto.variable}>
-      <AppProviders>
-        <body className="antialiased">{children}</body>
-      </AppProviders>
+      <body className="antialiased">
+        <AppProviders>{children}</AppProviders>
+      </body>
     </html>
   )
 }

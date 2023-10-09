@@ -1,5 +1,4 @@
 'use client'
-import { Toaster } from 'react-hot-toast'
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import { useAuth } from '../components/AuthContext'
@@ -9,7 +8,6 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
   const { profile } = useAuth()
   return (
     <>
-      <Toaster position="top-right" toastOptions={{ className: '!rounded !shadow-xl !p-4 border border-gray-50' }} />
       <Header noSidebar container profile={profile} />
       <div className="flex min-h-screen flex-col bg-gray-100 pt-16 font-sans text-gray-700">
         <div className="container flex flex-col p-3 md:flex-row md:items-start">
