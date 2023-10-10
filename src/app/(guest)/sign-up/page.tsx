@@ -1,8 +1,11 @@
 import AuthForm from '../components/AuthForm'
 import AuthTab from '../components/AuthTab'
 import Heading from '../components/elements/Heading'
+import { authPageRedirect } from '../utils'
 
-export default function Home() {
+export default async function Page(params: any) {
+  await authPageRedirect(params)
+
   return (
     <>
       <AuthTab />

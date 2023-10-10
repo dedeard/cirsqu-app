@@ -13,6 +13,18 @@
   @apply visible opacity-100;
 }
 
+.StripeElement {
+  @apply cursor-text border p-3 transition-all;
+}
+
+.StripeElement.StripeElement--focus {
+  @apply rounded ring-2 ring-primary-600;
+}
+
+.StripeElement.StripeElement--invalid {
+  @apply rounded ring-2 ring-red-600;
+}
+
 .background-animate {
   background-size: 400%;
   animation: AnimatedBgColor 20s ease infinite;

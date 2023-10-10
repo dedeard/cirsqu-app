@@ -9,9 +9,10 @@ import { auth } from '@/libs/firebase'
 import { useRouter, useSearchParams } from 'next/navigation'
 import FIREBASE_ERRORS from '@/constants/firebase-errors'
 import clientFetch from '@/utils/client-fetch'
-import LoadingScreen from './LoadingScreen'
+import LoadingScreen from '../../components/elements/LoadingScreen'
 import Alert from './elements/Alert'
 import Button from './elements/Button'
+import { decodeFromBase64 } from '@/utils/base64'
 
 const schemas = {
   'sign-in': {
@@ -55,7 +56,7 @@ export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }
       if (profileResp.ok) {
         const profile = await profileResp.json()
         if (profile) {
-          return router.push(next || '/account', { scroll: false })
+          return router.push(next ? decodeFromBase64(next, '/account') : '/account', { scroll: false })
         }
       }
       return router.push(next ? `/complete-profile?next=${next}` : '/complete-profile', { scroll: false })

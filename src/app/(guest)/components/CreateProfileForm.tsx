@@ -3,13 +3,14 @@ import React from 'react'
 import * as yup from 'yup'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useFormik } from 'formik'
-import LoadingScreen from './LoadingScreen'
+import LoadingScreen from '../../components/elements/LoadingScreen'
 import Alert from './elements/Alert'
 import UsernamePicker from './UsernamePicker'
 import Input from './elements/Input'
 import Button from './elements/Button'
 import { IUser } from '@/types'
 import clientFetch from '@/utils/client-fetch'
+import { decodeFromBase64 } from '@/utils/base64'
 
 const schema = {
   name: yup.string().min(3).max(20).required().label('Name'),
@@ -37,7 +38,8 @@ export const CreateProfileForm: React.FC<PropTypes> = ({ user }) => {
         throw new Error(resData.message || 'Error creating profile')
       }
 
-      return router.push(searchParams.get('next') || '/account', { scroll: false })
+      const next = searchParams.get('next')
+      return router.push(next ? decodeFromBase64(next, '/account') : '/account', { scroll: false })
     } catch (error: any) {
       setError(error.message)
       setIsLoading(false)

@@ -1,14 +1,9 @@
-import { getUserData } from '@/utils/server-fetch'
 import Heading from '../components/elements/Heading'
-import { redirect } from 'next/navigation'
 import CreateProfileForm from '../components/CreateProfileForm'
+import { completeProfilePageRedirect } from '../utils'
 
-export default async function Home() {
-  const user = await getUserData()
-  if (!user) {
-    return redirect('/account')
-  }
-
+export default async function Page(params: any) {
+  const user = await completeProfilePageRedirect(params)
   return (
     <div className="p-10 pt-14">
       <Heading>Complete Your Profile</Heading>

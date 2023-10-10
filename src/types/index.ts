@@ -19,20 +19,25 @@ export interface IProfile {
   }
 }
 
-export interface IPlan {
+export interface IProduct {
   id: string
-  slug: string
-  currency: string
-  livemode: boolean
-  nickname: string
-  recurring: {
-    interval: string
-    interval_count: number
-  } | null
-  amount: {
-    formatted: string
-    decimal: string
-  }
+  active: boolean
   description: string
-  features: string[]
+  features: { name: string }[]
+  livemode: boolean
+  name: string
+  price: {
+    id: string
+    active: boolean
+    currency: string
+    livemode: boolean
+    lookup_key: string
+    product: string
+    recurring?: {
+      interval: string
+      interval_count: number
+    }
+    unit_amount: number
+    unit_amount_decimal: string
+  }
 }

@@ -1,14 +1,6 @@
-import { redirect } from 'next/navigation'
-import { getAuthData } from '@/utils/server-fetch'
 import Header from '../components/layout/Header'
 
-export default async function AuthLayout({ children }: { children: React.ReactNode }) {
-  const { user, profile } = await getAuthData()
-
-  if (user && profile) {
-    return redirect('/account')
-  }
-
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header container onlyBrand />

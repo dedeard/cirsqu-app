@@ -6,7 +6,7 @@ import { sendPasswordResetEmail } from 'firebase/auth'
 import Input from './elements/Input'
 import FIREBASE_ERRORS from '@/constants/firebase-errors'
 import { useFormik } from 'formik'
-import LoadingScreen from './LoadingScreen'
+import LoadingScreen from '../../components/elements/LoadingScreen'
 import Alert from './elements/Alert'
 import Button from './elements/Button'
 
