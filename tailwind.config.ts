@@ -1,41 +1,21 @@
 import type { Config } from 'tailwindcss'
+import { nextui } from '@nextui-org/react'
 import colors from 'tailwindcss/colors'
-import { fontFamily } from 'tailwindcss/defaultTheme'
 
 const config: Config = {
-  content: ['./src/components/**/*.{js,ts,jsx,tsx,mdx}', './src/app/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}', './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    container: {
-      center: true,
-    },
-    colors: {
-      inherit: colors.inherit,
-      current: colors.current,
-      transparent: colors.transparent,
-      black: colors.black,
-      white: colors.white,
-      primary: colors.indigo,
-      red: colors.red,
-      gray: colors.gray,
-      slate: colors.slate,
-    },
     extend: {
-      transitionProperty: {
-        spacing: 'margin, padding',
+      container: {
+        center: true,
       },
-      fontFamily: {
-        sans: ['var(--font-roboto)', ...fontFamily.sans],
+      colors: {
+        primary: colors.indigo,
       },
     },
   },
-  variants: {
-    extend: {
-      opacity: ['disabled'],
-      cursor: ['disabled'],
-      borderWidth: ['first'],
-    },
-  },
-  plugins: [require('@tailwindcss/forms')],
+  darkMode: 'class',
+  plugins: [nextui()],
 }
 
 export default config
