@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import NotificationToggle from './NotificationToggle'
 import ProfileDropdown from './ProfileDropdown'
-import { IProfile } from '@/types'
 
 const MainMenu: React.FC<{ profile?: IProfile | null }> = ({ profile }) => {
   if (profile) {

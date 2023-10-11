@@ -4,7 +4,6 @@ import { User, inMemoryPersistence, signInWithCustomToken } from 'firebase/auth'
 import { doc, DocumentReference } from 'firebase/firestore'
 import { useDocumentData } from 'react-firebase-hooks/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { IProfile, IUser } from '@/types'
 import { auth, db } from '@/libs/firebase'
 import clientFetch from '@/utils/client-fetch'
 

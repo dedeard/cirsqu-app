@@ -5,7 +5,6 @@ import Logo from '../../svg/Logo'
 import SearchToggle from './SearchToggle'
 import MenuToggle from './MenuToggle'
 import MainMenu from './MainMenu'
-import { IProfile } from '@/types'
 
 type HeaderPropTypes = {
   profile?: IProfile | null

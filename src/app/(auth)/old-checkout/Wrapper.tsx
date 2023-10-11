@@ -2,7 +2,6 @@
 import React from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { ArrowLeftCircle } from 'react-feather'
-import { IProduct } from '@/types'
 import ChosenPlan from './ChosenPlan'
 import Checkout from './Checkout'
 

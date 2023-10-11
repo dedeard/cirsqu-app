@@ -1,11 +1,10 @@
-import { IProduct } from '@/types'
 import BackToggle from './components/BackToggle'
 import PlanItem from './components/PlanItem'
 import FAQItem from './components/FAQItem'
-import serverFetch from '@/utils/server-fetch'
+import appFetch from '@/utils/app-fetch'
 
 export default async function PlansPage() {
-  const response = await serverFetch('products', { cache: 'no-cache' })
+  const response = await appFetch('products', { cache: 'no-cache' })
   if (!response.ok) {
     const data = await response.json()
     throw new Error(data.message)

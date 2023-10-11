@@ -1,5 +1,4 @@
-import { db } from '@/libs/firebase'
-import { IProfile } from '@/types'
+import { db } from './firebase'
 import { Timestamp, collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
 import moment from 'moment'
 

@@ -1,35 +1,33 @@
 import { BASE_API_URL } from '@/constants/config'
-import { IProfile, IUser } from '@/types'
+import { getProfile } from './firestore'
 import { cookies } from 'next/headers'
 import 'server-only'
-import { getProfile } from './firestore'
 
-export default function serverFetch(endpoint: string | URL, init?: RequestInit) {
-  const session = cookies().get('session')?.value
+interface IRequestInit extends RequestInit {
+  data?: Record<string, unknown>
+}
 
-  let url: URL | string
-  if (endpoint instanceof URL) {
-    url = endpoint
-  } else {
-    url = `${BASE_API_URL}/${endpoint}`
+export default function appFetch(path: string, { data, ...init }: IRequestInit = {}) {
+  let headers: HeadersInit = {}
+  if (data) {
+    headers['Content-Type'] = 'application/json'
+    init.body = JSON.stringify(data)
   }
 
-  const options: RequestInit = init || {}
+  const session = cookies().get('session')?.value
+
   if (session) {
-    options.headers = {
+    headers = {
+      ...headers,
       Cookie: `session=${session}`,
-      'Content-Type': 'application/json',
-      ...options.headers,
     }
   }
 
-  return fetch(url, options)
+  return fetch(`${BASE_API_URL}/${path}`, { ...init, headers })
 }
 
 export async function getUserData(): Promise<IUser | null> {
-  const response = await serverFetch(`auth/user-data`, {
-    cache: 'no-store',
-  })
+  const response = await appFetch(`auth/user-data`, { cache: 'no-store' })
 
   if (response.ok) {
     return response.json()
@@ -40,6 +38,7 @@ export async function getUserData(): Promise<IUser | null> {
 
 export async function getAuthData() {
   const user = await getUserData()
+
   let profile: IProfile | null = null
 
   if (user) {

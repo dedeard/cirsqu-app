@@ -1,31 +1,15 @@
 import { BASE_API_URL } from '@/constants/config'
 
-type BodyType = Record<string, unknown> | FormData | undefined
+interface IRequestInit extends RequestInit {
+  data?: Record<string, unknown>
+}
 
-export default function clientFetch(endpoint: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE', body?: BodyType) {
-  const url = `${BASE_API_URL}/${endpoint}`
-
-  // Default headers
-  const headers: HeadersInit = {}
-
-  let requestBody: BodyInit | undefined
-
-  // Add JSON content type header if not FormData
-  if (!(body instanceof FormData)) {
+export default function appFetch(path: string, { data, ...init }: IRequestInit = {}) {
+  let headers: HeadersInit = {}
+  if (data) {
     headers['Content-Type'] = 'application/json'
-    if (body) {
-      requestBody = JSON.stringify(body)
-    }
-  } else {
-    requestBody = body
+    init.body = JSON.stringify(data)
   }
 
-  const options: RequestInit = {
-    method,
-    headers,
-    credentials: 'include',
-    body: requestBody,
-  }
-
-  return fetch(url, options)
+  return fetch(`${BASE_API_URL}/${path}`, { credentials: 'include', ...init, headers })
 }

@@ -1,4 +1,3 @@
-import { IProduct } from '@/types'
 import Link from 'next/link'
 import cn from 'classnames'
 import { Check } from 'react-feather'

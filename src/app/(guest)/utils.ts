@@ -1,4 +1,4 @@
-import { getAuthData } from '@/utils/server-fetch'
+import { getAuthData } from '@/utils/app-fetch'
 import { decodeFromBase64 } from '@/utils/base64'
 import { redirect } from 'next/navigation'
 import 'server-only'

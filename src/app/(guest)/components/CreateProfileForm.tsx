@@ -8,8 +8,7 @@ import Alert from './elements/Alert'
 import UsernamePicker from './UsernamePicker'
 import Input from './elements/Input'
 import Button from './elements/Button'
-import { IUser } from '@/types'
-import clientFetch from '@/utils/client-fetch'
+import appFetch from '@/utils/app-fetch'
 import { decodeFromBase64 } from '@/utils/base64'
 
 const schema = {
@@ -31,7 +30,7 @@ export const CreateProfileForm: React.FC<PropTypes> = ({ user }) => {
   const handleFormSubmit = async ({ name }: { name: string }) => {
     try {
       setIsLoading(true)
-      const res = await clientFetch('profiles', 'POST', { name, username })
+      const res = await appFetch('profiles', { data: { name, username } })
 
       if (!res.ok) {
         const resData = await res.json()

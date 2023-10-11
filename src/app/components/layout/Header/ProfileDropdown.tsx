@@ -1,7 +1,6 @@
 import React from 'react'
 import Avatar from '../../elements/Avatar'
-import { IProfile } from '@/types'
-import storageUrl from '@/utils/storage-url'
+import { storageUrl } from '@/libs/firebase'
 
 const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
   return (

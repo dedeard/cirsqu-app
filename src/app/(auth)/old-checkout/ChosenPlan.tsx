@@ -1,6 +1,5 @@
 import React from 'react'
 import { Lock } from 'react-feather'
-import { IProduct } from '@/types'
 import PlanItem from './PlanItem'
 
 type PropTypes = {
