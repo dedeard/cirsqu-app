@@ -2,8 +2,8 @@
 import { NextUIProvider } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar'
-import { LayoutProvider } from './components/contexts/LayoutContext'
-import { MountProvider } from './components/contexts/MountContext'
+import { LayoutProvider } from '@/components/contexts/LayoutContext'
+import { MountProvider } from '@/components/contexts/MountContext'
 import { Toaster } from 'react-hot-toast'
 import colors from 'tailwindcss/colors'
 

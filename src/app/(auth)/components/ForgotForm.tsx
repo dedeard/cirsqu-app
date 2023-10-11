@@ -5,7 +5,7 @@ import { auth } from '@/utils/firebase'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import FIREBASE_ERRORS from '@/constants/firebase-errors'
 import { useFormik } from 'formik'
-import LoadingScreen from '../../components/elements/LoadingScreen'
+import LoadingScreen from '@/components/elements/LoadingScreen'
 import Alert from './elements/Alert'
 import { Input, Button } from '@nextui-org/react'
 

@@ -2,7 +2,6 @@
 import { Tab, Tabs } from '@nextui-org/react'
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { useRouter } from 'next/navigation'
 
 export const AuthTab: React.FC = () => {
   const pathname = usePathname()

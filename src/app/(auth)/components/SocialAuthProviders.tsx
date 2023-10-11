@@ -1,9 +1,9 @@
 import React from 'react'
 import { AuthProvider } from 'firebase/auth'
 import { Button } from '@nextui-org/react'
-import Google from '@/app/components/svg/Google'
-import Github from '@/app/components/svg/Github'
-import Facebook from '@/app/components/svg/Facebook'
+import Google from '@/components/svg/Google'
+import Github from '@/components/svg/Github'
+import Facebook from '@/components/svg/Facebook'
 import { getProviderById } from '@/utils/firebase'
 import Divider from './elements/Divider'
 
