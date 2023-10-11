@@ -1,15 +1,23 @@
+'use client'
 import Header from '../components/layout/Header'
+import { Card, CardBody } from '@nextui-org/react'
+import AuthTab from './components/AuthTab'
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header container onlyBrand />
-      <div className="flex min-h-screen flex-col bg-gray-100 pt-16 font-sans text-gray-950">
+      <div className="flex min-h-screen flex-col pt-16">
         <main className="mx-auto w-full max-w-[540px] flex-1 px-3 py-10 md:px-0">
-          <div className="relative w-full overflow-hidden border bg-white">{children}</div>
+          <Card>
+            <CardBody className="relative overflow-hidden">
+              <AuthTab />
+              <div className="p-10 first:pt-14">{children}</div>
+            </CardBody>
+          </Card>
         </main>
         <footer className="pb-10">
-          <p className="text-center text-xs text-gray-800">
+          <p className="text-center text-xs opacity-50">
             © {new Date().getFullYear()} All Right Reserved AjarBelajar - By{' '}
             <a href="https://dedeard.my.id" className="text-primary-600" target="_blank" rel="noreferrer">
               Dede ariansya

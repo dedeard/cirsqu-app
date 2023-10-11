@@ -1,21 +1,21 @@
 const Alert: React.FC<{
-  color?: 'primary' | 'red' | 'gray'
+  color?: 'primary' | 'danger' | 'default'
   children?: React.ReactNode
 }> = ({ color, children }) => {
   let bgColorClass
 
   switch (color) {
-    case 'red':
-      bgColorClass = 'bg-red-200'
+    case 'danger':
+      bgColorClass = 'bg-danger-100'
       break
-    case 'gray':
-      bgColorClass = 'bg-gray-200'
+    case 'default':
+      bgColorClass = 'bg-default-100'
       break
     default:
-      bgColorClass = 'bg-primary-200'
+      bgColorClass = 'bg-primary-100'
   }
 
-  return <div className={`my-4 rounded px-6 py-5 text-center font-normal text-gray-900 ${bgColorClass}`}>{children}</div>
+  return <div className={`rounded-medium my-4 px-6 py-5 text-center  ${bgColorClass}`}>{children}</div>
 }
 
 export default Alert

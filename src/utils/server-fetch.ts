@@ -7,7 +7,7 @@ interface IRequestInit extends RequestInit {
   data?: Record<string, unknown>
 }
 
-export default function appFetch(path: string, { data, ...init }: IRequestInit = {}) {
+export default function serverFetch(path: string, { data, ...init }: IRequestInit = {}) {
   let headers: HeadersInit = {}
   if (data) {
     headers['Content-Type'] = 'application/json'
@@ -27,7 +27,7 @@ export default function appFetch(path: string, { data, ...init }: IRequestInit =
 }
 
 export async function getUserData(): Promise<IUser | null> {
-  const response = await appFetch(`auth/user-data`, { cache: 'no-store' })
+  const response = await serverFetch(`auth/user-data`, { cache: 'no-store' })
 
   if (response.ok) {
     return response.json()

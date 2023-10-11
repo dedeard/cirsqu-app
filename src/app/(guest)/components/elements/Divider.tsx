@@ -1,8 +1,11 @@
+'use client'
+import { Divider as Line } from '@nextui-org/react'
+
 const Divider: React.FC<{ text?: string }> = ({ text }) => (
   <div className="my-6 flex items-center">
-    <div className="h-px flex-1 bg-gray-200"></div>
-    <span className="px-4 text-gray-700">{text}</span>
-    <div className="h-px flex-1 bg-gray-200"></div>
+    <Line className="flex-1" />
+    <span className="block px-4 opacity-80">{text}</span>
+    <Line className="flex-1" />
   </div>
 )
 

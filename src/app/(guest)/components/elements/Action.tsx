@@ -1,18 +1,16 @@
-import Link from 'next/link'
+'use client'
+import { Link } from '@nextui-org/react'
+import NextLink from 'next/link'
 
 const Action: React.FC<{
-  disabled?: boolean
   href: string
   children?: React.ReactNode
-}> = ({ disabled = false, href, children }) => (
-  <Link
-    href={href}
-    className={`inline-block font-semibold text-primary-600 no-underline transition-all ease-in-out ${
-      disabled ? 'opacity-80' : 'hover:text-primary-700'
-    }`}
-  >
-    {children}
-  </Link>
+}> = ({ href, children }) => (
+  <div className="text-center">
+    <Link href={href} color="primary" size="lg" as={NextLink}>
+      {children}
+    </Link>
+  </div>
 )
 
 export default Action

@@ -1,5 +1,4 @@
-import { getAuthData } from '@/utils/app-fetch'
-import { decodeFromBase64 } from '@/utils/base64'
+import { getAuthData } from '@/utils/server-fetch'
 import { redirect } from 'next/navigation'
 import 'server-only'
 
@@ -9,8 +8,7 @@ type Params = {
 
 const base = async ({ searchParams }: Params) => {
   const { user, profile } = await getAuthData()
-  let next = '/account'
-  if (searchParams?.next) next = decodeFromBase64(next, next)
+  let next = searchParams?.next || '/account'
   if (profile) {
     return redirect(next)
   }

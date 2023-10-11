@@ -8,13 +8,11 @@ export default async function Page(params: any) {
   await authPageRedirect(params)
 
   return (
-    <div className="p-10 pt-14">
+    <>
       <Heading>Reset Your Password</Heading>
       <ForgotForm />
       <Divider text="or" />
-      <div style={{ textAlign: 'center' }}>
-        <Action href="/sign-in">Back to sign in page</Action>
-      </div>
-    </div>
+      <Action href="/sign-in">Back to sign in page</Action>
+    </>
   )
 }

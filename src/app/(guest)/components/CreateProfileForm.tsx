@@ -6,10 +6,9 @@ import { useFormik } from 'formik'
 import LoadingScreen from '../../components/elements/LoadingScreen'
 import Alert from './elements/Alert'
 import UsernamePicker from './UsernamePicker'
-import Input from './elements/Input'
 import Button from './elements/Button'
-import appFetch from '@/utils/app-fetch'
-import { decodeFromBase64 } from '@/utils/base64'
+import clientFetch from '@/utils/client-fetch'
+import { Input } from '@nextui-org/react'
 
 const schema = {
   name: yup.string().min(3).max(20).required().label('Name'),
@@ -30,7 +29,7 @@ export const CreateProfileForm: React.FC<PropTypes> = ({ user }) => {
   const handleFormSubmit = async ({ name }: { name: string }) => {
     try {
       setIsLoading(true)
-      const res = await appFetch('profiles', { data: { name, username } })
+      const res = await clientFetch('profiles', { method: 'POST', data: { name, username } })
 
       if (!res.ok) {
         const resData = await res.json()
@@ -38,7 +37,7 @@ export const CreateProfileForm: React.FC<PropTypes> = ({ user }) => {
       }
 
       const next = searchParams.get('next')
-      return router.push(next ? decodeFromBase64(next, '/account') : '/account', { scroll: false })
+      return router.push(next || '/account', { scroll: false })
     } catch (error: any) {
       setError(error.message)
       setIsLoading(false)
@@ -55,7 +54,7 @@ export const CreateProfileForm: React.FC<PropTypes> = ({ user }) => {
     <>
       <LoadingScreen show={isLoading} />
 
-      {error && <Alert color="red">{error}</Alert>}
+      {error && <Alert color="danger">{error}</Alert>}
 
       {!username ? (
         <UsernamePicker onPicked={setUsername} />
@@ -69,13 +68,13 @@ export const CreateProfileForm: React.FC<PropTypes> = ({ user }) => {
               type="text"
               label="Name"
               name="name"
-              error={formik.errors.name}
+              errorMessage={formik.errors.name}
               value={formik.values.name}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
             <div className="my-6">
-              <Button>Complete profile</Button>
+              <Button type="submit">Complete profile</Button>
             </div>
           </form>
         </>

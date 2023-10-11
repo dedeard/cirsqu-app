@@ -1,18 +1,18 @@
+import { ButtonProps, Button as NButton } from '@nextui-org/react'
 import { ArrowRight } from 'react-feather'
 
-const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, disabled, ...props }) => (
-  <button
-    disabled={disabled}
+const Button: React.FC<ButtonProps> = ({ children, disabled, ...props }) => (
+  <NButton
     {...props}
-    className={`mx-auto flex h-14 w-full max-w-xs cursor-pointer items-center justify-center rounded border-none bg-primary-600 px-6 text-lg font-semibold leading-none text-white transition-all ease-in-out ${
-      disabled ? 'cursor-wait opacity-80' : 'hover:bg-primary-700'
-    }`}
+    disabled={disabled}
+    color="primary"
+    className="mx-auto flex h-14 w-full max-w-xs items-center justify-center px-6 text-lg font-semibold leading-none"
   >
     {children}
     <span className="ml-auto text-2xl">
       <ArrowRight />
     </span>
-  </button>
+  </NButton>
 )
 
 export default Button

@@ -1,9 +1,10 @@
 import React from 'react'
 import { AuthProvider } from 'firebase/auth'
+import { Button } from '@nextui-org/react'
 import Google from '@/app/components/svg/Google'
 import Github from '@/app/components/svg/Github'
 import Facebook from '@/app/components/svg/Facebook'
-import getProviderById from '@/utils/get-provider-by-id'
+import { getProviderById } from '@/utils/firebase'
 import Divider from './elements/Divider'
 
 type PropTypes = {
@@ -34,18 +35,11 @@ export const SocialAuthProviders: React.FC<PropTypes> = ({ onClick }) => {
 
   return (
     <>
-      <div className="mb-4 text-center text-lg font-semibold uppercase text-gray-700">or continue with</div>
-
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4 pt-6">
         {providers.map((item, index) => (
-          <button
-            key={index}
-            aria-label={item.provider.providerId}
-            className="flex cursor-pointer items-center justify-center border border-gray-300 bg-white p-3 transition-shadow hover:shadow"
-            onClick={() => handleOnClick(item.provider)}
-          >
+          <Button key={index} aria-label={item.provider.providerId} variant="flat" size="lg" onClick={() => handleOnClick(item.provider)}>
             {item.icon}
-          </button>
+          </Button>
         ))}
       </div>
 

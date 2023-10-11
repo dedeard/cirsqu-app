@@ -4,15 +4,15 @@ import * as yup from 'yup'
 import { useFormik } from 'formik'
 import { AuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, UserCredential } from 'firebase/auth'
 import SocialAuthProviders from './SocialAuthProviders'
-import Input from './elements/Input'
-import { auth } from '@/libs/firebase'
+import { auth } from '@/utils/firebase'
 import { useRouter, useSearchParams } from 'next/navigation'
 import FIREBASE_ERRORS from '@/constants/firebase-errors'
 import clientFetch from '@/utils/client-fetch'
 import LoadingScreen from '../../components/elements/LoadingScreen'
 import Alert from './elements/Alert'
 import Button from './elements/Button'
-import { decodeFromBase64 } from '@/utils/base64'
+import { Input } from '@nextui-org/react'
+import { Eye, EyeOff } from 'react-feather'
 
 const schemas = {
   'sign-in': {
@@ -36,6 +36,9 @@ export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }
 
   const [isLoading, setIsLoading] = React.useState(false)
   const [authError, setAuthError] = React.useState('')
+  const [isVisible, setIsVisible] = React.useState(false)
+
+  const toggleVisibility = () => setIsVisible(!isVisible)
 
   const executeAuthAction = async (authAction: () => Promise<UserCredential>) => {
     try {
@@ -43,20 +46,20 @@ export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }
       const user = await authAction()
       const token = await user.user.getIdToken()
 
-      const loginResp = await clientFetch('auth/login', 'POST', { token })
+      const loginResp = await clientFetch('auth/login', { method: 'POST', data: { token } })
 
       if (!loginResp.ok) {
         const data = await loginResp.json()
         throw new Error(data.message)
       }
 
-      const profileResp = await clientFetch('profiles', 'GET')
+      const profileResp = await clientFetch('profiles')
       const next = searchParams.get('next')
 
       if (profileResp.ok) {
         const profile = await profileResp.json()
         if (profile) {
-          return router.push(next ? decodeFromBase64(next, '/account') : '/account', { scroll: false })
+          return router.push(next || '/account', { scroll: false })
         }
       }
       return router.push(next ? `/complete-profile?next=${next}` : '/complete-profile', { scroll: false })
@@ -82,38 +85,47 @@ export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }
     <>
       <LoadingScreen show={isLoading} />
 
-      {authError && <Alert color="red">{authError}</Alert>}
+      {authError && <Alert color="danger">{authError}</Alert>}
 
       <SocialAuthProviders onClick={handlePopupSignIn} />
 
-      <form onSubmit={formik.handleSubmit}>
+      <form className="grid grid-cols-1 gap-4" onSubmit={formik.handleSubmit}>
         <Input
           type="text"
           label="Email address"
           name="email"
-          error={formik.errors.email}
+          errorMessage={formik.errors.email}
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
         <Input
-          type="password"
+          type={isVisible ? 'text' : 'password'}
           label="Password"
           name="password"
-          error={formik.errors.password}
+          errorMessage={formik.errors.password}
           value={formik.values.password}
+          endContent={
+            <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+              {isVisible ? (
+                <EyeOff className="text-default-400 pointer-events-none h-5" />
+              ) : (
+                <Eye className="text-default-400 pointer-events-none h-5" />
+              )}
+            </button>
+          }
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
 
-        <div className="my-6 text-center text-xs leading-5 text-gray-700">
+        <div className="my-6 text-center text-xs leading-5 opacity-75">
           <span>
             By clicking '{actionText}', you agree to our{' '}
-            <a href="#" className="text-primary-700">
+            <a href="#" className="text-primary-600">
               Terms of Use
             </a>{' '}
             and our{' '}
-            <a href="#" className="text-primary-700">
+            <a href="#" className="text-primary-600">
               Privacy Policy
             </a>
             .
