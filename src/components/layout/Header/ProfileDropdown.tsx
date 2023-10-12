@@ -1,20 +1,20 @@
 import React from 'react'
-import { storageUrl } from '@/utils/firebase'
-import { Avatar, Button } from '@nextui-org/react'
+import { Button } from '@nextui-org/react'
 import Link from 'next/link'
+import Avatar from '@/components/elements/Avatar'
 
 const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
   return (
     <div className="dropdown-wrapper relative ml-3 h-10 w-10">
       <button className="block h-10 w-10 rounded-full p-0">
-        <Avatar name={profile.name} alt={profile.name} src={storageUrl(profile.avatar)} />
+        <Avatar name={profile.name} file={profile.avatar} />
       </button>
       <div className="dropdown-drop absolute right-0 top-full mt-3 w-60">
         <span className="absolute -top-1 right-1 h-6 w-6 rotate-45 transform rounded bg-primary-600" />
-        <div className="bg-content1 shadow-large relative z-10 p-3">
+        <div className="relative z-10 bg-content1 p-3 shadow-large">
           <div className="flex p-3">
             <div className="m-auto block h-24 w-24 rounded-full">
-              <Avatar name={profile.name} alt={profile.name} src={storageUrl(profile.avatar)} className="block h-full w-full" />
+              <Avatar name={profile.name} file={profile.avatar} className="block h-full w-full" />
             </div>
           </div>
           <h3 className="text-md capitalized w-full truncate text-center font-semibold">{profile.name}</h3>
