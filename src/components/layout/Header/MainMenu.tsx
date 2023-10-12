@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import NotificationToggle from './NotificationToggle'
 import ProfileDropdown from './ProfileDropdown'
+import { Button } from '@nextui-org/react'
 
 const MainMenu: React.FC<{ profile?: IProfile | null }> = ({ profile }) => {
   if (profile) {
@@ -14,18 +15,12 @@ const MainMenu: React.FC<{ profile?: IProfile | null }> = ({ profile }) => {
 
   return (
     <>
-      <Link
-        href="/sign-in"
-        className="flex h-9 items-center justify-center rounded-full bg-gray-100 px-4 text-sm text-gray-700 hover:bg-gray-200"
-      >
+      <Button as={Link} href="/sign-in" variant="flat" className="mr-3 hidden md:flex">
         Masuk
-      </Link>
-      <Link
-        href="/sign-up"
-        className="ml-3 flex h-9 items-center justify-center rounded-full bg-primary-600 px-4 text-sm text-white hover:bg-primary-600"
-      >
+      </Button>
+      <Button as={Link} href="/sign-up" color="primary">
         Buat Akun
-      </Link>
+      </Button>
     </>
   )
 }
