@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@nextui-org/react'
+import { Button, Card, CardBody, CardFooter, CardHeader, Listbox, ListboxItem } from '@nextui-org/react'
 import Link from 'next/link'
 import Avatar from '@/components/elements/Avatar'
 
@@ -10,27 +10,43 @@ const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
         <Avatar name={profile.name} file={profile.avatar} />
       </button>
       <div className="dropdown-drop absolute right-0 top-full mt-3 w-60">
-        <span className="absolute -top-1 right-1 h-6 w-6 rotate-45 transform rounded bg-primary-600" />
-        <div className="relative z-10 bg-content1 p-3 shadow-large">
-          <div className="flex p-3">
-            <div className="m-auto block h-24 w-24 rounded-full">
-              <Avatar name={profile.name} file={profile.avatar} className="block h-full w-full" />
+        <span className="absolute -top-1 right-2 h-6 w-6 rotate-45 transform rounded bg-primary" />
+        <Card>
+          <CardHeader className="pb-0 pt-6">
+            <div className="flex flex-1 flex-col items-center justify-center">
+              <div className="m-auto mb-3 block h-24 w-24 rounded-full">
+                <Avatar name={profile.name} file={profile.avatar} className="block h-full w-full" />
+              </div>
+              <h3 className="text-md capitalized w-full truncate text-center font-semibold">{profile.name}</h3>
+              <p className="w-full truncate text-center text-sm">@{profile.username}</p>
             </div>
-          </div>
-          <h3 className="text-md capitalized w-full truncate text-center font-semibold">{profile.name}</h3>
-          <p className="w-full truncate text-center text-sm">@{profile.username}</p>
-          <div className="grid grid-cols-1 gap-3 py-3">
-            <Button href="/account" className="font-semibold uppercase tracking-wider" as={Link}>
-              Dasbor Saya
+          </CardHeader>
+          <CardBody className="p-3">
+            <Listbox className="gap-3">
+              <ListboxItem
+                key="Dasbor-Saya"
+                href="/account"
+                as={Link}
+                className="rounded-medium bg-content2 p-2 text-center data-[hover=true]:bg-primary-100/50"
+              >
+                Dasbor Saya
+              </ListboxItem>
+              <ListboxItem
+                key="Edit-Profil"
+                href="/account"
+                as={Link}
+                className="rounded-medium bg-content2 p-2 text-center data-[hover=true]:bg-primary-100/50"
+              >
+                Edit Profil
+              </ListboxItem>
+            </Listbox>
+          </CardBody>
+          <CardFooter className="bg-content2/50">
+            <Button color="danger" className="font-semibold uppercase tracking-wider">
+              Keluar
             </Button>
-            <Button href="/account" className="font-semibold uppercase tracking-wider" as={Link}>
-              Edit Profil
-            </Button>
-          </div>
-          <Button color="danger" className="font-semibold uppercase tracking-wider">
-            Keluar
-          </Button>
-        </div>
+          </CardFooter>
+        </Card>
       </div>
     </div>
   )
