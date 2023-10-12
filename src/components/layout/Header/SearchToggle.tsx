@@ -7,9 +7,9 @@ const SearchToggle: React.FC = () => {
       aria-label="Search toggle"
       variant="flat"
       isIconOnly
-      className=" md:rounded-medium rounded-full md:flex md:w-64 md:items-center md:justify-between md:px-4"
+      className="rounded-full md:flex md:w-64 md:items-center md:justify-between md:rounded-medium md:px-4"
     >
-      <div className="hidden font-semibold uppercase tracking-wider md:block">Search</div>
+      <div className="hidden uppercase tracking-widest md:block">Search...</div>
       <Search size="1em" />
     </Button>
   )

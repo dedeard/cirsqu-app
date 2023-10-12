@@ -1,23 +1,23 @@
 import React from 'react'
 import cn from 'classnames'
 import Label from './Label'
-import InputError from '@/components/elements/InputError'
 import Avatar from '@/components/elements/Avatar'
 import fileValidation from '@/utils/file-validator'
+import { Button } from '@nextui-org/react'
 
 type InputAvatarProps = React.InputHTMLAttributes<HTMLInputElement> & {
   file?: File | null
   label: string
-  error?: string
+  errorMessage?: string
   avatar?: string
   nickname: string
   onFileChange?: (file: File | null) => void
-  onValidationError?: (error: string) => void
+  onValidationError?: (errorMessage: string) => void
 }
 
 export const InputAvatar: React.FC<InputAvatarProps> = ({
   file,
-  error,
+  errorMessage,
   label,
   avatar,
   type,
@@ -56,30 +56,27 @@ export const InputAvatar: React.FC<InputAvatarProps> = ({
 
   return (
     <Label htmlFor={props.name} text={label}>
-      <div className={cn(error && 'mb-2', 'mt-2 flex items-center transition-spacing lg:mt-0')}>
-        <Avatar name={props.nickname} photoUrl={previewImage || avatar} className="mr-3 block h-14 w-14 rounded-full" />
-        <label className="flex h-10 cursor-pointer items-center justify-center border border-gray-200 bg-gray-50 px-4">
+      <div className={cn(errorMessage && 'mb-2', 'transition-spacing mt-2 flex items-center lg:mt-0')}>
+        <Avatar name={props.nickname} src={previewImage || avatar} className="mr-3 block h-12 w-12" />
+        <Button as="label" variant="flat">
           Change
           <input
             id={props.name}
             type="file"
+            aria-hidden="true"
             className="hidden"
             accept={allowedMimeTypes.join(', ')}
             onChange={handleFileChange}
             {...props}
           />
-        </label>
+        </Button>
         {!!file && (
-          <button
-            type="button"
-            className=" ml-2 flex h-10 cursor-pointer items-center justify-center border border-gray-200 bg-gray-50 px-4"
-            onClick={handleReset}
-          >
+          <Button variant="flat" type="button" color="danger" className="ml-2" onClick={handleReset}>
             Reset
-          </button>
+          </Button>
         )}
       </div>
-      <InputError error={error} />
+      <div className="text-tiny text-danger">{errorMessage}</div>
     </Label>
   )
 }

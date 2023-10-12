@@ -11,7 +11,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
       <Header profile={profile} />
       <div className="flex min-h-screen flex-col">
         <div className="container flex flex-col p-3 md:flex-row md:items-start">
-          <div className="md:sticky md:top-[4.75rem]">
+          <div className="md:sticky md:top-0">
             <Sidebar />
           </div>
           <main className="flex-1">{children}</main>
