@@ -23,6 +23,7 @@ export const usernameNotExist = async (username: string) => {
   return !(await usernameExist(username))
 }
 
-export const timestampToDate = (time: { seconds: number; nanoseconds: number }) => {
+export const timestampToDate = (time?: { seconds: number; nanoseconds: number }) => {
+  if (!time) return null
   return moment(new Timestamp(time.seconds, time.nanoseconds).toDate())
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import cn from 'classnames'
 import Label from './Label'
-import InputError from '@/app/components/elements/InputError'
-import Avatar from '@/app/components/elements/Avatar'
+import InputError from '@/components/elements/InputError'
+import Avatar from '@/components/elements/Avatar'
 import fileValidation from '@/utils/file-validator'
 
 type InputAvatarProps = React.InputHTMLAttributes<HTMLInputElement> & {

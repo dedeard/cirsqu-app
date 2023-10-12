@@ -1,7 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 import Label from './Label'
-import InputError from '@/app/components/elements/InputError'
+import InputError from '@/components/elements/InputError'
 
 type FormElementProps = {
   label: string

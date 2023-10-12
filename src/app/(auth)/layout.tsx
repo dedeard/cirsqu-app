@@ -7,7 +7,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   return (
     <>
       <Header container onlyBrand />
-      <div className="flex min-h-screen flex-col pt-16">
+      <div className="flex min-h-screen flex-col bg-gray-50 dark:bg-transparent">
         <main className="mx-auto w-full max-w-[540px] flex-1 px-3 py-10 md:px-0">
           <Card>
             <CardBody className="relative overflow-hidden">

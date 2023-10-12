@@ -1,6 +1,6 @@
 import React from 'react'
 import cn from 'classnames'
-import Loading from '@/app/components/svg/Loading'
+import Loading from '@/components/svg/Loading'
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   loading?: boolean

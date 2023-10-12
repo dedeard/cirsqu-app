@@ -5,51 +5,47 @@ import Logo from '../../svg/Logo'
 import SearchToggle from './SearchToggle'
 import MenuToggle from './MenuToggle'
 import MainMenu from './MainMenu'
+import { Navbar, NavbarBrand } from '@nextui-org/react'
+import ThemeToggle from './ThemeToggle'
 
 type HeaderPropTypes = {
   profile?: IProfile | null
-  container?: boolean
-  noSidebar?: boolean
   sidebarOpen?: boolean
+  noSidebar?: boolean
   hideSearch?: boolean
   onlyBrand?: boolean
   toggleSidebar?: (sidebarOpen?: boolean) => void
 }
 
-const Header: React.FC<HeaderPropTypes> = ({ profile, container, noSidebar, sidebarOpen, hideSearch, onlyBrand, toggleSidebar }) => {
+const Header: React.FC<HeaderPropTypes> = ({ profile, noSidebar, hideSearch, onlyBrand, toggleSidebar }) => {
   return (
-    <div
-      className={classNames(
-        !noSidebar && sidebarOpen && 'shadow-lg',
-        'fixed left-0 right-0 top-0 z-40 flex h-16 w-full items-center border-b border-gray-200 bg-white transition-shadow lg:shadow-none',
-      )}
-    >
-      <div className={classNames(container && 'container', 'flex flex-1')}>
+    <Navbar maxWidth="full" isBlurred={false} shouldHideOnScroll className="bg-content1 shadow-medium">
+      <div className="container flex h-full w-full items-center">
         {onlyBrand ? (
-          <Link aria-label="CirSqu" href="/" className="flex items-center justify-center p-3 text-primary-600 focus:outline-none">
-            <Logo className="block h-9 w-9" />
-            <span className="ml-4 block text-xl uppercase leading-none tracking-widest text-gray-950">CirSqu</span>
-          </Link>
+          <>
+            <Link aria-label="CirSqu" href="/" className="mr-auto flex items-center justify-center px-3 focus:outline-none">
+              <Logo className="text-primary block h-10 w-10" />
+              <span className="ml-4 block text-xl uppercase tracking-widest">CirSqu</span>
+            </Link>
+            <ThemeToggle />
+          </>
         ) : (
           <>
             <div className="hidden lg:flex lg:w-64">
-              <Link aria-label="CirSqu" href="/" className="flex items-center justify-center p-3 text-primary-600 focus:outline-none">
-                <Logo className="block h-9 w-9" />
-                <span className="ml-4 block text-xl uppercase leading-none tracking-widest text-gray-950">CirSqu</span>
+              <Link aria-label="CirSqu" href="/" className="flex items-center justify-center px-3 focus:outline-none">
+                <Logo className="text-primary block h-10 w-10" />
+                <span className="ml-4 block text-xl uppercase tracking-widest">CirSqu</span>
               </Link>
             </div>
-            <div className={classNames(!container && 'container', 'flex flex-1')}>
-              <Link
-                aria-label="CirSqu"
-                href="/"
-                className="flex items-center justify-center p-3 text-primary-600 focus:outline-none lg:hidden"
-              >
-                <Logo className="block h-9 w-9" />
+            <div className="flex flex-1">
+              <Link aria-label="CirSqu" href="/" className="flex items-center justify-center px-3 focus:outline-none lg:hidden">
+                <Logo className="text-primary block h-10 w-10" />
               </Link>
-              <div className="flex flex-1 justify-end md:justify-start">
-                <div className="flex py-3 lg:pl-3">
+              <div className="flex flex-1 items-center justify-end md:justify-start">
+                <div className="flex lg:pl-3">
                   {!hideSearch && <SearchToggle />}
                   {!noSidebar && <MenuToggle toggleSidebar={toggleSidebar} />}
+                  <ThemeToggle />
                 </div>
               </div>
               <div className="flex p-3 md:ml-auto">
@@ -59,7 +55,7 @@ const Header: React.FC<HeaderPropTypes> = ({ profile, container, noSidebar, side
           </>
         )}
       </div>
-    </div>
+    </Navbar>
   )
 }
 

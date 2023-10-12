@@ -99,15 +99,11 @@ export const useAuthRequired = (next?: string) => {
   const oldNext = searchParams.get('next')
 
   if (!user) {
-    const url = new URL('/sign-in')
-    url.searchParams.set('next', next || oldNext || pathname)
-    router.push(url.toString())
+    router.push('/sign-in?next=' + next || oldNext || pathname)
   }
 
   if (!profile) {
-    const url = new URL('/complete-profile')
-    url.searchParams.set('next', next || oldNext || pathname)
-    router.push(url.toString())
+    router.push('/complete-profile?next=' + next || oldNext || pathname)
   }
 
   return { user, profile }

@@ -4,12 +4,12 @@ import * as yup from 'yup'
 import { Input, Textarea } from '../components/elements/Input'
 import Button from '../components/elements/Button'
 import { usernameNotExist } from '@/utils/firestore'
-import { useAuth } from '../../components/AuthContext'
 import { useFormik } from 'formik'
-import storageUrl from '@/utils/storage-url'
 import { InputAvatar } from '../components/elements/InputAvatar'
 import clientFetch from '@/utils/client-fetch'
 import toast from 'react-hot-toast'
+import { useAuthRequired } from '@/components/contexts/AuthContext'
+import { storageUrl } from '@/utils/firebase'
 
 const getSchema = (username: string) => ({
   name: yup.string().min(3).max(20).required(),
@@ -28,7 +28,7 @@ const getSchema = (username: string) => ({
 })
 
 const BasicInfoForm: React.FC = () => {
-  const { profile } = useAuth()
+  const { profile } = useAuthRequired()
   const [isLoading, setIsLoading] = React.useState(false)
   const [avatar, setAvatar] = React.useState<File | null>(null)
   const [avatarError, setAvatarError] = React.useState('')
@@ -45,7 +45,7 @@ const BasicInfoForm: React.FC = () => {
         formData.append('avatar', avatar)
       }
 
-      const response = await clientFetch('profiles', 'PUT', formData)
+      const response = await clientFetch('profiles', { method: 'PUT', body: formData })
 
       if (!response.ok) {
         const data = await response.json()
@@ -63,13 +63,13 @@ const BasicInfoForm: React.FC = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: profile.name,
-      username: profile.username,
-      bio: profile.bio || '',
-      website: profile.website || '',
+      name: profile?.name,
+      username: profile?.username,
+      bio: profile?.bio || '',
+      website: profile?.website || '',
     },
     onSubmit: handleFormSubmit,
-    validationSchema: yup.object().shape(getSchema(profile.username)),
+    validationSchema: yup.object().shape(getSchema(profile?.username || '')),
   })
 
   return (
@@ -100,8 +100,8 @@ const BasicInfoForm: React.FC = () => {
           name="avatar"
           file={avatar}
           error={avatarError}
-          nickname={profile.name}
-          avatar={storageUrl(profile.avatar)}
+          nickname={profile?.name || ''}
+          avatar={storageUrl(profile?.avatar)}
           onFileChange={setAvatar}
           onValidationError={setAvatarError}
         />

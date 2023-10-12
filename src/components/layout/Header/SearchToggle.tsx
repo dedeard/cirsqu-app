@@ -1,14 +1,17 @@
 import { Search } from 'react-feather'
+import { Button } from '@nextui-org/react'
 
 const SearchToggle: React.FC = () => {
   return (
-    <button
+    <Button
       aria-label="Search toggle"
-      className="flex h-9 w-9 items-center justify-center rounded-full border bg-gray-100 p-0 text-sm text-gray-700 hover:bg-gray-200 md:w-64 md:justify-between md:px-4 lg:ml-0"
+      variant="flat"
+      isIconOnly
+      className=" md:rounded-medium rounded-full md:flex md:w-64 md:items-center md:justify-between md:px-4"
     >
       <div className="hidden font-semibold uppercase tracking-wider md:block">Search</div>
-      <Search size="0.875rem" />
-    </button>
+      <Search size="1em" />
+    </Button>
   )
 }
 

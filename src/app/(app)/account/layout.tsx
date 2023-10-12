@@ -1,15 +1,15 @@
 'use client'
-import Header from '@/app/components/layout/Header'
-import Footer from '@/app/components/layout/Footer'
-import { useAuth } from '../components/AuthContext'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 import Sidebar from './components/Sidebar'
+import { useAuth } from '@/components/contexts/AuthContext'
 
 export default function AccountLayout({ children }: { children: React.ReactNode }) {
   const { profile } = useAuth()
   return (
     <>
-      <Header noSidebar container profile={profile} />
-      <div className="flex min-h-screen flex-col bg-gray-100 pt-16 font-sans text-gray-700">
+      <Header profile={profile} />
+      <div className="flex min-h-screen flex-col">
         <div className="container flex flex-col p-3 md:flex-row md:items-start">
           <div className="md:sticky md:top-[4.75rem]">
             <Sidebar />

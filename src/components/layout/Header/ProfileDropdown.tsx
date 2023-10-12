@@ -1,34 +1,35 @@
 import React from 'react'
-import Avatar from '../../elements/Avatar'
 import { storageUrl } from '@/utils/firebase'
+import { Avatar, Button } from '@nextui-org/react'
+import Link from 'next/link'
 
 const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
   return (
-    <div className="dropdown-wrapper relative ml-3 h-9 w-9">
-      <button className="block h-9 w-9 rounded-full p-0">
-        <Avatar name={profile.name} photoUrl={storageUrl(profile.avatar)} className="block h-full w-full rounded-full" />
+    <div className="dropdown-wrapper relative ml-3 h-10 w-10">
+      <button className="block h-10 w-10 rounded-full p-0">
+        <Avatar name={profile.name} alt={profile.name} src={storageUrl(profile.avatar)} />
       </button>
       <div className="dropdown-drop absolute right-0 top-full mt-3 w-60">
         <span className="absolute -top-1 right-1 h-6 w-6 rotate-45 transform rounded bg-primary-600" />
-        <div className="relative z-10 border border-gray-100 bg-white p-3 shadow-lg">
+        <div className="bg-content1 shadow-large relative z-10 p-3">
           <div className="flex p-3">
-            <figure className="m-auto block h-24 w-24 rounded-full">
-              <Avatar name={profile.name} photoUrl={storageUrl(profile.avatar)} className="block h-full w-full rounded-full" />
-            </figure>
+            <div className="m-auto block h-24 w-24 rounded-full">
+              <Avatar name={profile.name} alt={profile.name} src={storageUrl(profile.avatar)} className="block h-full w-full" />
+            </div>
           </div>
           <h3 className="text-md capitalized w-full truncate text-center font-semibold">{profile.name}</h3>
           <p className="w-full truncate text-center text-sm">@{profile.username}</p>
-          <div className="pt-3">
-            <a className="mb-3 flex h-9 w-full items-center justify-center rounded-full border bg-gray-100 p-0 text-sm font-semibold uppercase tracking-wider hover:bg-gray-200">
+          <div className="grid grid-cols-1 gap-3 py-3">
+            <Button href="/account" className="font-semibold uppercase tracking-wider" as={Link}>
               Dasbor Saya
-            </a>
-            <a className="mb-3 flex h-9 w-full items-center justify-center rounded-full border bg-gray-100 p-0 text-sm font-semibold uppercase tracking-wider hover:bg-gray-200">
+            </Button>
+            <Button href="/account" className="font-semibold uppercase tracking-wider" as={Link}>
               Edit Profil
-            </a>
-            <a className="inline-block rounded-full bg-red-600 px-4 py-3 text-sm font-semibold uppercase leading-none tracking-wider text-white hover:bg-red-700">
-              Keluar
-            </a>
+            </Button>
           </div>
+          <Button color="danger" className="font-semibold uppercase tracking-wider">
+            Keluar
+          </Button>
         </div>
       </div>
     </div>
