@@ -8,7 +8,7 @@ import { useFormik } from 'formik'
 import { InputAvatar } from '../components/elements/InputAvatar'
 import clientFetch from '@/utils/client-fetch'
 import toast from 'react-hot-toast'
-import { useAuthRequired } from '@/components/contexts/AuthContext'
+import { useAuthRequired } from '@/components/contexts/AuthRequiredContext'
 import { storageUrl } from '@/utils/firebase'
 
 const getSchema = (username: string) => ({

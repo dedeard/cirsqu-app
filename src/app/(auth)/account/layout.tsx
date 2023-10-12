@@ -2,10 +2,10 @@
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Sidebar from './components/Sidebar'
-import { useAuth } from '@/components/contexts/AuthContext'
+import { useAuthRequired } from '@/components/contexts/AuthRequiredContext'
 
 export default function AccountLayout({ children }: { children: React.ReactNode }) {
-  const { profile } = useAuth()
+  const { profile } = useAuthRequired()
   return (
     <>
       <Header profile={profile} />

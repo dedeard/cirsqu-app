@@ -3,7 +3,6 @@ import React from 'react'
 import { onAuthStateChanged, signInWithCustomToken } from 'firebase/auth'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { auth, db } from '@/utils/firebase'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import clientFetch from '@/utils/client-fetch'
 
 interface AuthProviderProps {
@@ -19,7 +18,6 @@ interface AuthContextProps {
   profile: IProfile | null
 }
 
-// Create context with default values
 const AuthContext = React.createContext<AuthContextProps>({
   user: null,
   profile: null,
@@ -90,21 +88,3 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ init, children }) =>
 }
 
 export const useAuth = () => React.useContext(AuthContext)
-
-export const useAuthRequired = (next?: string) => {
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const { user, profile } = useAuth()
-  const oldNext = searchParams.get('next')
-
-  if (!user) {
-    router.push('/sign-in?next=' + next || oldNext || pathname)
-  }
-
-  if (!profile) {
-    router.push('/complete-profile?next=' + next || oldNext || pathname)
-  }
-
-  return { user, profile }
-}

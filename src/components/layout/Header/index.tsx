@@ -1,11 +1,10 @@
 'use client'
 import Link from 'next/link'
-import classNames from 'classnames'
 import Logo from '../../svg/Logo'
 import SearchToggle from './SearchToggle'
 import MenuToggle from './MenuToggle'
 import MainMenu from './MainMenu'
-import { Navbar, NavbarBrand } from '@nextui-org/react'
+import { Navbar } from '@nextui-org/react'
 import ThemeToggle from './ThemeToggle'
 
 type HeaderPropTypes = {
