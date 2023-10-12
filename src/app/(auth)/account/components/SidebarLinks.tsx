@@ -1,7 +1,8 @@
 import React from 'react'
 import cn from 'classnames'
-import { Card, Listbox, ListboxItem } from '@nextui-org/react'
+import { Listbox, ListboxItem } from '@nextui-org/react'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 const SidebarLinks: React.FC = () => {
   const pathname = usePathname()
@@ -13,27 +14,24 @@ const SidebarLinks: React.FC = () => {
     { href: '/account/subscription', text: 'Membership' },
   ]
   return (
-    <Card>
-      <>
-        <Listbox>
-          {links.map((link) => {
-            const active = pathname === link.href
-            return (
-              <ListboxItem
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  active && 'bg-content2 text-primary data-[hover=true]:text-primary',
-                  'rounded-medium p-3 data-[hover=true]:bg-content2',
-                )}
-              >
-                {link.text}
-              </ListboxItem>
-            )
-          })}
-        </Listbox>
-      </>
-    </Card>
+    <Listbox>
+      {links.map((link) => {
+        const active = pathname === link.href
+        return (
+          <ListboxItem
+            key={link.href}
+            href={link.href}
+            as={Link}
+            className={cn(
+              active && 'bg-content2 text-primary data-[hover=true]:text-primary',
+              'rounded-medium p-3 data-[hover=true]:bg-content2',
+            )}
+          >
+            {link.text}
+          </ListboxItem>
+        )
+      })}
+    </Listbox>
   )
 }
 

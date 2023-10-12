@@ -1,19 +1,20 @@
-import cn from 'classnames'
+'use client'
+import { Card as NCard, CardProps, CardHeader } from '@nextui-org/react'
 
 type CardPropTypes = {
   title: string
-} & React.ButtonHTMLAttributes<HTMLDivElement>
+} & CardProps
 
-const Card: React.FC<CardPropTypes> = ({ title, children, className, ...props }) => {
+const Card: React.FC<CardPropTypes> = ({ title, children, ...props }) => {
   return (
-    <div className={cn('border bg-white', className)} {...props}>
-      <div className="border-b p-3">
-        <h1 className="text-lg  md:text-xl">
-          <span className="uppercase leading-loose tracking-widest">{title}</span>
+    <NCard {...props}>
+      <CardHeader className="bg-content2/50 px-5">
+        <h1 className="text-lg md:text-xl">
+          <span className="uppercase leading-loose md:tracking-widest">{title}</span>
         </h1>
-      </div>
+      </CardHeader>
       {children}
-    </div>
+    </NCard>
   )
 }
 
