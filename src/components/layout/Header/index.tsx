@@ -18,7 +18,7 @@ type HeaderPropTypes = {
 
 const Header: React.FC<HeaderPropTypes> = ({ profile, noSidebar, hideSearch, onlyBrand, toggleSidebar }) => {
   return (
-    <Navbar maxWidth="full" shouldHideOnScroll isBordered>
+    <Navbar maxWidth="full" shouldHideOnScroll isBordered className="[&>header]:px-0">
       <div className="container flex h-full w-full items-center">
         {onlyBrand ? (
           <>
@@ -26,7 +26,9 @@ const Header: React.FC<HeaderPropTypes> = ({ profile, noSidebar, hideSearch, onl
               <Logo className="block h-10 w-10 text-primary" />
               <span className="ml-4 block text-xl uppercase tracking-widest">CirSqu</span>
             </Link>
-            <ThemeToggle />
+            <div className="px-3">
+              <ThemeToggle />
+            </div>
           </>
         ) : (
           <>

@@ -12,7 +12,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <Card>
             <CardBody className="relative overflow-hidden">
               <AuthTab />
-              <div className="p-10 first:pt-14">{children}</div>
+              <div className="pb-5 pt-10 md:px-10 md:pb-10 first:md:pt-14">{children}</div>
             </CardBody>
           </Card>
         </main>
