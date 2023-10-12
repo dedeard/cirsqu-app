@@ -15,7 +15,7 @@ const Alert: React.FC<{
       bgColorClass = 'bg-primary-100'
   }
 
-  return <div className={`rounded-medium my-4 px-6 py-5 text-center  ${bgColorClass}`}>{children}</div>
+  return <div className={`my-4 rounded-medium px-6 py-5 text-center  ${bgColorClass}`}>{children}</div>
 }
 
 export default Alert

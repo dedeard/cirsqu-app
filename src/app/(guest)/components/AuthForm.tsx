@@ -108,9 +108,9 @@ export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }
           endContent={
             <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
               {isVisible ? (
-                <EyeOff className="text-default-400 pointer-events-none h-5" />
+                <EyeOff className="pointer-events-none h-5 text-default-400" />
               ) : (
-                <Eye className="text-default-400 pointer-events-none h-5" />
+                <Eye className="pointer-events-none h-5 text-default-400" />
               )}
             </button>
           }
