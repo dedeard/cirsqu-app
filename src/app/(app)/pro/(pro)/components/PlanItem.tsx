@@ -1,21 +1,23 @@
+'use client'
 import Link from 'next/link'
 import cn from 'classnames'
 import { Check } from 'react-feather'
 import formatAmount from '@/utils/format-amount'
+import { Button } from '@nextui-org/react'
 
 const PlanItem: React.FC<{ product: IProduct }> = ({ product }) => {
-  const light = product.name === 'Monthly'
+  const light = product.price.lookup_key === 'monthly'
   return (
     <div
       className={cn(
         light && 'text-gray-200 backdrop-brightness-90',
         !light && 'bg-white text-gray-800',
-        'relative w-full max-w-md rounded-lg px-8 py-6 shadow-xl',
+        'relative w-full max-w-md rounded-medium px-8 py-6 shadow-xl dark',
       )}
     >
       <div className="flex justify-between">
         <div>
-          <div className="text-dark-blue mb-2 text-lg font-medium">{product.name}</div>
+          <div className="text-dark-blue mb-2 text-lg font-medium first-letter:uppercase">{product.price.lookup_key}</div>
           <div className="text-sm leading-tight text-gray-500">{product.description}</div>
         </div>
         <div className="text-4xl leading-none">
@@ -27,19 +29,16 @@ const PlanItem: React.FC<{ product: IProduct }> = ({ product }) => {
       <ul className="mb-10">
         {product.features.map((feature) => (
           <li key={feature.name} className="text-dark-blue mb-4 flex items-center text-sm font-medium">
-            <span className="mr-4 flex h-5 w-5 rounded-full bg-primary-600">
+            <span className="mr-4 flex h-5 w-5 rounded-full bg-primary">
               <Check strokeWidth="4" className=" m-auto block h-3 w-3 text-white" />
             </span>
             <span className="block flex-1">{feature.name}</span>
           </li>
         ))}
       </ul>
-      <Link
-        className="inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-lg bg-primary-600 px-5 text-sm font-medium leading-none text-white transition-all duration-200 hover:bg-primary-600 disabled:cursor-default disabled:opacity-50"
-        href={`/checkout?plan=${product.price.lookup_key}`}
-      >
-        <span>Get started</span>
-      </Link>
+      <Button as={Link} href={`/pro/checkout?plan=${product.price.lookup_key}`} fullWidth color="primary" className="font-medium">
+        Get started
+      </Button>
     </div>
   )
 }

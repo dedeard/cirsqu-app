@@ -11,15 +11,13 @@ export default async function PlansPage() {
   }
   const products: IProduct[] = await response.json()
   return (
-    <div className="background-animate min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-gray-200">
+    <div className="background-animate min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-foreground dark">
       <BackToggle />
       <div className="container max-w-6xl px-3">
         <section className="flex flex-col items-center justify-center pb-12 pt-28 md:pb-28 md:pt-36">
           <div className="container flex flex-col items-center justify-center">
             <h1 className="text-center text-4xl font-bold md:w-8/12 md:text-5xl">Unlimited access with a premium membership.</h1>
-            <p className="mt-4 text-center text-lg font-light text-gray-300 md:mt-8">
-              Join thousands of developers improving their skills every day
-            </p>
+            <p className="mt-4 text-center text-lg font-light md:mt-8">Join thousands of developers improving their skills every day</p>
           </div>
         </section>
 
