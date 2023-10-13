@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { onAuthStateChanged, signInWithCustomToken } from 'firebase/auth'
+import { onAuthStateChanged, signInWithCustomToken, signOut } from 'firebase/auth'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { auth, db } from '@/utils/firebase'
 import clientFetch from '@/utils/client-fetch'
@@ -16,14 +16,17 @@ interface AuthProviderProps {
 interface AuthContextProps {
   user: IUser | null
   profile: IProfile | null
+  loading: boolean
 }
 
 const AuthContext = React.createContext<AuthContextProps>({
   user: null,
   profile: null,
+  loading: true,
 })
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ init, children }) => {
+  const [loading, setLoading] = React.useState(true)
   const [user, setUser] = React.useState<IUser | null>(() => {
     if (!init.user) return null
     return {
@@ -55,6 +58,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ init, children }) =>
       if (response.ok) {
         const customTokenResult = await response.json()
         await signInWithCustomToken(auth, customTokenResult.token)
+      } else {
+        await signOut(auth)
       }
     }
     handleAuthentication()
@@ -63,28 +68,32 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ init, children }) =>
   React.useEffect(() => {
     return onAuthStateChanged(auth, (user) => {
       if (!user) {
-        return setUser(null)
+        setUser(null)
+      } else {
+        setUser({
+          uid: user.uid,
+          displayName: user.displayName,
+          email: user.email,
+          emailVerified: user.emailVerified,
+        })
       }
-      setUser({
-        uid: user.uid,
-        displayName: user.displayName,
-        email: user.email,
-        emailVerified: user.emailVerified,
-      })
+      setLoading(false)
     })
   }, [])
 
   React.useEffect(() => {
-    if (!user) return
+    if (!user) return setProfile(null)
     const ref = doc(db, 'profiles', user.uid)
     return onSnapshot(ref, (snapshot) => {
-      if (!snapshot.exists()) {
+      if (snapshot.exists()) {
         setProfile(snapshot.data() as IProfile)
+      } else {
+        setProfile(null)
       }
     })
   }, [user])
 
-  return <AuthContext.Provider value={{ user: user, profile: profile }}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{ user, profile, loading }}>{children}</AuthContext.Provider>
 }
 
 export const useAuth = () => React.useContext(AuthContext)
