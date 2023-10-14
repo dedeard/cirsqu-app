@@ -8,13 +8,25 @@ declare global {
     emailVerified: boolean
   }
 
+  interface ISubscription {
+    customerId: string
+    recurring?: {
+      subscriptionId: string
+      subscriptionStatus: string
+    }
+    lifetime?: {
+      paymentIntentId: string
+      paymentIntentStatus: string
+    }
+  }
+
   interface IProfile {
     name: string
     username: string
-    stripeCustomerId: string
     avatar?: string
     bio?: string
     website?: string
+    subscription: ISubscription
     createdAt: {
       seconds: number
       nanoseconds: number

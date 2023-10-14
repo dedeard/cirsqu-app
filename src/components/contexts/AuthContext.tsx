@@ -4,6 +4,7 @@ import { onAuthStateChanged, signInWithCustomToken, signOut } from 'firebase/aut
 import { doc, onSnapshot } from 'firebase/firestore'
 import { auth, db } from '@/utils/firebase'
 import clientFetch from '@/utils/client-fetch'
+import isPremium from '@/utils/is-premium'
 
 interface AuthProviderProps {
   children: React.ReactNode
@@ -17,40 +18,21 @@ interface AuthContextProps {
   user: IUser | null
   profile: IProfile | null
   loading: boolean
+  premium: boolean
 }
 
 const AuthContext = React.createContext<AuthContextProps>({
   user: null,
   profile: null,
   loading: true,
+  premium: false,
 })
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ init, children }) => {
   const [loading, setLoading] = React.useState(true)
-  const [user, setUser] = React.useState<IUser | null>(() => {
-    if (!init.user) return null
-    return {
-      uid: init.user.uid,
-      displayName: init.user.displayName,
-      email: init.user.email,
-      emailVerified: init.user.emailVerified,
-    }
-  })
-  const [profile, setProfile] = React.useState<IProfile | null>(() => {
-    if (!init.profile) return null
-    return {
-      name: init.profile.name,
-      username: init.profile.username,
-      stripeCustomerId: init.profile.stripeCustomerId,
-      avatar: init.profile.avatar,
-      bio: init.profile.bio,
-      website: init.profile.website,
-      createdAt: {
-        seconds: init.profile.createdAt.seconds,
-        nanoseconds: init.profile.createdAt.nanoseconds,
-      },
-    }
-  })
+  const [user, setUser] = React.useState<IUser | null>(init.user || null)
+  const [profile, setProfile] = React.useState<IProfile | null>(init.profile || null)
+  const [premium, setPremium] = React.useState(false)
 
   React.useEffect(() => {
     async function handleAuthentication() {
@@ -70,12 +52,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ init, children }) =>
       if (!user) {
         setUser(null)
       } else {
-        setUser({
-          uid: user.uid,
-          displayName: user.displayName,
-          email: user.email,
-          emailVerified: user.emailVerified,
-        })
+        setUser(user.toJSON() as IUser)
       }
       setLoading(false)
     })
@@ -93,7 +70,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ init, children }) =>
     })
   }, [user])
 
-  return <AuthContext.Provider value={{ user, profile, loading }}>{children}</AuthContext.Provider>
+  React.useEffect(() => {
+    setPremium(isPremium(profile?.subscription))
+  }, [profile?.subscription])
+
+  return <AuthContext.Provider value={{ user, profile, loading, premium }}>{children}</AuthContext.Provider>
 }
 
 export const useAuth = () => React.useContext(AuthContext)

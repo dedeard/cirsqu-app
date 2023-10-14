@@ -4,6 +4,7 @@ import { onAuthStateChanged, signInWithCustomToken } from 'firebase/auth'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { auth, db } from '@/utils/firebase'
 import clientFetch from '@/utils/client-fetch'
+import isPremium from '@/utils/is-premium'
 
 interface AuthRequiredProviderProps {
   children: React.ReactNode
@@ -16,6 +17,7 @@ interface AuthRequiredProviderProps {
 interface AuthRequiredContextProps {
   user: IUser
   profile: IProfile
+  premium: boolean
 }
 
 const AuthRequiredContext = React.createContext<AuthRequiredContextProps>({
@@ -28,33 +30,21 @@ const AuthRequiredContext = React.createContext<AuthRequiredContextProps>({
   profile: {
     name: '',
     username: '',
-    stripeCustomerId: '',
+    subscription: {
+      customerId: '',
+    },
     createdAt: {
       seconds: 0,
       nanoseconds: 0,
     },
   },
+  premium: false,
 })
 
 export const AuthRequiredProvider: React.FC<AuthRequiredProviderProps> = ({ init, children }) => {
-  const [user, setUser] = React.useState<IUser>({
-    uid: init.user.uid,
-    displayName: init.user.displayName,
-    email: init.user.email,
-    emailVerified: init.user.emailVerified,
-  })
-  const [profile, setProfile] = React.useState<IProfile>({
-    name: init.profile.name,
-    username: init.profile.username,
-    stripeCustomerId: init.profile.stripeCustomerId,
-    avatar: init.profile.avatar,
-    bio: init.profile.bio,
-    website: init.profile.website,
-    createdAt: {
-      seconds: init.profile.createdAt.seconds,
-      nanoseconds: init.profile.createdAt.nanoseconds,
-    },
-  })
+  const [user, setUser] = React.useState<IUser>(init.user)
+  const [profile, setProfile] = React.useState<IProfile>(init.profile)
+  const [premium, setPremium] = React.useState(false)
 
   React.useEffect(() => {
     async function handleAuthentication() {
@@ -72,13 +62,9 @@ export const AuthRequiredProvider: React.FC<AuthRequiredProviderProps> = ({ init
 
   React.useEffect(() => {
     return onAuthStateChanged(auth, (user) => {
-      if (!user) return
-      setUser({
-        uid: user.uid,
-        displayName: user.displayName,
-        email: user.email,
-        emailVerified: user.emailVerified,
-      })
+      if (user) {
+        setUser(user.toJSON() as IUser)
+      }
     })
   }, [])
 
@@ -92,7 +78,11 @@ export const AuthRequiredProvider: React.FC<AuthRequiredProviderProps> = ({ init
     })
   }, [user.uid])
 
-  return <AuthRequiredContext.Provider value={{ user: user, profile: profile }}>{children}</AuthRequiredContext.Provider>
+  React.useEffect(() => {
+    setPremium(isPremium(profile.subscription))
+  }, [profile.subscription])
+
+  return <AuthRequiredContext.Provider value={{ user, profile, premium }}>{children}</AuthRequiredContext.Provider>
 }
 
 export const useAuthRequired = () => React.useContext(AuthRequiredContext)
