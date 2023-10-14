@@ -18,7 +18,7 @@ const Success: React.FC<{ invoice?: Record<string, any> }> = ({ invoice }) => {
         </div>
 
         <div className="mb-6">
-          <h3 className="mb-3 text-center text-xl font-bold">Thank you for subscribing!</h3>
+          <h3 className="mb-3 text-center text-2xl font-bold">Thank you for subscribing!</h3>
           <p className="text-center text-sm ">
             Visit the subscriptions page to manage your subscriptions. This includes viewing current plans, making edits, and updating your
             subscription preferences.
