@@ -3,7 +3,7 @@ import { Button } from '@nextui-org/react'
 import { Moon, Sun } from 'react-feather'
 import { useMounted } from '@/components/contexts/MountContext'
 
-const ThemeToggle: React.FC<{ toggleSidebar?: (open?: boolean) => void }> = ({ toggleSidebar }) => {
+const ThemeToggle: React.FC = () => {
   const { theme, setTheme } = useTheme()
   const mounted = useMounted()
   if (!mounted) return null

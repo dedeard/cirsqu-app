@@ -2,11 +2,8 @@ import ForgotForm from '../components/ForgotForm'
 import Action from '../components/elements/Action'
 import Divider from '../components/elements/Divider'
 import Heading from '../components/elements/Heading'
-import { authPageRedirect } from '../utils'
 
-export default async function Page(params: any) {
-  await authPageRedirect(params)
-
+export default function Page() {
   return (
     <>
       <Heading>Reset Your Password</Heading>

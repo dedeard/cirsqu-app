@@ -1,9 +1,7 @@
 import Heading from '../components/elements/Heading'
 import CreateProfileForm from '../components/CreateProfileForm'
-import { completeProfilePageRedirect } from '../utils'
 
-export default async function Page(params: any) {
-  const user = await completeProfilePageRedirect(params)
+export default function Page() {
   return (
     <>
       <Heading>Complete Your Profile</Heading>
@@ -11,7 +9,8 @@ export default async function Page(params: any) {
         To ensure a secure and personalized experience, please complete your profile before proceeding to the app. This information will be
         used solely for identification purposes.
       </p>
-      <CreateProfileForm user={user} />
+
+      <CreateProfileForm />
     </>
   )
 }

@@ -1,15 +1,22 @@
 import { BASE_API_URL } from '@/constants/config'
+import { auth } from './firebase'
 
 interface IRequestInit extends RequestInit {
   data?: Record<string, unknown>
 }
 
-export default function appFetch(path: string, { data, ...init }: IRequestInit = {}) {
+export default async function clientFetch(path: string, { data, ...init }: IRequestInit = {}) {
   let headers: HeadersInit = {}
   if (data) {
     headers['Content-Type'] = 'application/json'
     init.body = JSON.stringify(data)
   }
 
-  return fetch(`${BASE_API_URL}/${path}`, { credentials: 'include', ...init, headers })
+  const user = auth.currentUser
+  if (user) {
+    const token = await user.getIdToken()
+    headers.Authorization = `Bearer ${token}`
+  }
+
+  return fetch(`${BASE_API_URL}/${path}`, { ...init, headers })
 }
