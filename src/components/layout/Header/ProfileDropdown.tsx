@@ -2,8 +2,13 @@ import React from 'react'
 import { Button, Card, CardBody, CardFooter, CardHeader, Listbox, ListboxItem } from '@nextui-org/react'
 import Link from 'next/link'
 import Avatar from '@/components/elements/Avatar'
+import { auth } from '@/utils/firebase'
 
 const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
+  const logout = () => {
+    auth.signOut()
+  }
+
   return (
     <div className="dropdown-wrapper relative ml-3 h-10 w-10">
       <button className="block h-10 w-10 rounded-full p-0">
@@ -42,7 +47,7 @@ const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
             </Listbox>
           </CardBody>
           <CardFooter className="bg-content2/50">
-            <Button color="danger" className="font-semibold uppercase tracking-wider">
+            <Button color="danger" className="font-semibold uppercase tracking-wider" onClick={logout}>
               Keluar
             </Button>
           </CardFooter>

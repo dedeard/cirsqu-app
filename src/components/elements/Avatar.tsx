@@ -1,3 +1,4 @@
+'use client'
 import { storageUrl } from '@/utils/firebase'
 import { Avatar as BaseAvatar, AvatarProps } from '@nextui-org/react'
 import React from 'react'

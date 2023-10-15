@@ -4,21 +4,22 @@ import Logo from '../../svg/Logo'
 import SearchToggle from './SearchToggle'
 import MenuToggle from './MenuToggle'
 import MainMenu from './MainMenu'
-import { Navbar } from '@nextui-org/react'
+import { Navbar, NavbarProps } from '@nextui-org/react'
 import ThemeToggle from './ThemeToggle'
+import { useAuth } from '@/components/contexts/AuthContext'
+import classNames from 'classnames'
 
 type HeaderPropTypes = {
-  profile?: IProfile | null
   sidebarOpen?: boolean
   noSidebar?: boolean
   hideSearch?: boolean
   onlyBrand?: boolean
   toggleSidebar?: (sidebarOpen?: boolean) => void
-}
+} & NavbarProps
 
-const Header: React.FC<HeaderPropTypes> = ({ profile, noSidebar, hideSearch, onlyBrand, toggleSidebar }) => {
+const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, toggleSidebar, className, ...props }) => {
   return (
-    <Navbar maxWidth="full" shouldHideOnScroll isBordered className="[&>header]:px-0">
+    <Navbar maxWidth="full" shouldHideOnScroll isBordered className={classNames(className, '[&>header]:px-0')} {...props}>
       <div className="container flex h-full w-full items-center">
         {onlyBrand ? (
           <>
@@ -50,7 +51,7 @@ const Header: React.FC<HeaderPropTypes> = ({ profile, noSidebar, hideSearch, onl
                 </div>
               </div>
               <div className="flex px-3 md:ml-auto">
-                <MainMenu profile={profile} />
+                <MainMenu />
               </div>
             </div>
           </>

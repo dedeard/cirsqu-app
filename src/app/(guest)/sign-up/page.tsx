@@ -1,10 +1,7 @@
 import AuthForm from '../components/AuthForm'
 import Heading from '../components/elements/Heading'
-import { authPageRedirect } from '../utils'
 
-export default async function Page(params: any) {
-  await authPageRedirect(params)
-
+export default function Page() {
   return (
     <>
       <Heading>Create a New Account</Heading>

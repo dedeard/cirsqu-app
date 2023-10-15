@@ -8,10 +8,10 @@ import { useFormik } from 'formik'
 import { InputAvatar } from '../components/InputAvatar'
 import clientFetch from '@/utils/client-fetch'
 import toast from 'react-hot-toast'
-import { useAuthRequired } from '@/components/contexts/AuthRequiredContext'
 import { storageUrl } from '@/utils/firebase'
 import { CardBody, CardFooter, Divider } from '@nextui-org/react'
 import Card from '../components/Card'
+import { useAuth } from '@/components/contexts/AuthContext'
 
 const getSchema = (username: string) => ({
   name: yup.string().min(3).max(20).required(),
@@ -30,7 +30,7 @@ const getSchema = (username: string) => ({
 })
 
 export default function BasicInfoPage() {
-  const { profile } = useAuthRequired()
+  const { profile } = useAuth()
   const [isLoading, setIsLoading] = React.useState(false)
   const [avatar, setAvatar] = React.useState<File | null>(null)
   const [avatarError, setAvatarError] = React.useState('')

@@ -1,9 +1,21 @@
 import Link from 'next/link'
 import NotificationToggle from './NotificationToggle'
 import ProfileDropdown from './ProfileDropdown'
-import { Button } from '@nextui-org/react'
+import { Button, Skeleton } from '@nextui-org/react'
+import { useAuth } from '@/components/contexts/AuthContext'
 
-const MainMenu: React.FC<{ profile?: IProfile | null }> = ({ profile }) => {
+const MainMenu: React.FC = () => {
+  const { profile, initLoading } = useAuth()
+
+  if (initLoading) {
+    return (
+      <>
+        <Skeleton className="flex h-10 w-10 rounded-full" />
+        <Skeleton className="ml-3 flex h-10 w-10 rounded-full" />
+      </>
+    )
+  }
+
   if (profile) {
     return (
       <>

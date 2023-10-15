@@ -3,57 +3,52 @@ import React from 'react'
 import * as yup from 'yup'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useFormik } from 'formik'
-import LoadingScreen from '@/components/elements/LoadingScreen'
 import Alert from './elements/Alert'
 import UsernamePicker from './UsernamePicker'
 import Button from './elements/Button'
 import clientFetch from '@/utils/client-fetch'
 import { Input } from '@nextui-org/react'
+import { useAuth } from '@/components/contexts/AuthContext'
 
 const schema = {
   name: yup.string().min(3).max(20).required().label('Name'),
 }
 
-type PropTypes = {
-  user: IUser
-}
-
-export const CreateProfileForm: React.FC<PropTypes> = ({ user }) => {
-  const router = useRouter()
+export const CreateProfileForm: React.FC = () => {
   const searchParams = useSearchParams()
+  const next = searchParams.get('next')
 
-  const [isLoading, setIsLoading] = React.useState(false)
+  const { setLoading, user } = useAuth({
+    whenNotAuthed: `/sign-in${next ? '?next=' + next : ''}`,
+    whenAuthedProfileExists: next || '/account',
+  })
+
   const [error, setError] = React.useState('')
   const [username, setUsername] = React.useState('')
 
   const handleFormSubmit = async ({ name }: { name: string }) => {
     try {
-      setIsLoading(true)
+      setLoading(true)
       const res = await clientFetch('profiles', { method: 'POST', data: { name, username } })
 
       if (!res.ok) {
         const resData = await res.json()
         throw new Error(resData.message || 'Error creating profile')
       }
-
-      const next = searchParams.get('next')
-      return router.push(next || '/account', { scroll: false })
     } catch (error: any) {
       setError(error.message)
-      setIsLoading(false)
+      setLoading(false)
     }
   }
 
   const formik = useFormik({
-    initialValues: { name: user.displayName || '' },
+    initialValues: { name: user?.displayName || '' },
     onSubmit: handleFormSubmit,
     validationSchema: yup.object().shape(schema),
   })
 
   return (
     <>
-      <LoadingScreen show={isLoading} />
-
       {error && <Alert color="danger">{error}</Alert>}
 
       {!username ? (

@@ -5,14 +5,13 @@ import { useFormik } from 'formik'
 import { AuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, UserCredential } from 'firebase/auth'
 import SocialAuthProviders from './SocialAuthProviders'
 import { auth } from '@/utils/firebase'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import FIREBASE_ERRORS from '@/constants/firebase-errors'
-import clientFetch from '@/utils/client-fetch'
-import LoadingScreen from '@/components/elements/LoadingScreen'
 import Alert from './elements/Alert'
 import Button from './elements/Button'
 import { Input } from '@nextui-org/react'
 import { Eye, EyeOff } from 'react-feather'
+import { useAuth } from '@/components/contexts/AuthContext'
 
 const schemas = {
   'sign-in': {
@@ -31,10 +30,14 @@ const authActions = {
 }
 
 export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }) => {
-  const router = useRouter()
   const searchParams = useSearchParams()
+  const next = searchParams.get('next')
 
-  const [isLoading, setIsLoading] = React.useState(false)
+  const { setLoading } = useAuth({
+    whenAuthedProfileNotExists: `/complete-profile${next ? '?next=' + next : ''}`,
+    whenAuthedProfileExists: next || '/account',
+  })
+
   const [authError, setAuthError] = React.useState('')
   const [isVisible, setIsVisible] = React.useState(false)
 
@@ -42,30 +45,11 @@ export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }
 
   const executeAuthAction = async (authAction: () => Promise<UserCredential>) => {
     try {
-      setIsLoading(true)
-      const user = await authAction()
-      const token = await user.user.getIdToken()
-
-      const loginResp = await clientFetch('auth/login', { method: 'POST', data: { token } })
-
-      if (!loginResp.ok) {
-        const data = await loginResp.json()
-        throw new Error(data.message)
-      }
-
-      const profileResp = await clientFetch('profiles')
-      const next = searchParams.get('next')
-
-      if (profileResp.ok) {
-        const profile = await profileResp.json()
-        if (profile) {
-          return router.push(next || '/account', { scroll: false })
-        }
-      }
-      return router.push(next ? `/complete-profile?next=${next}` : '/complete-profile', { scroll: false })
+      setLoading(true)
+      await authAction()
     } catch (error: any) {
       setAuthError(FIREBASE_ERRORS[error.code] || error.message)
-      setIsLoading(false)
+      setLoading(false)
     }
   }
 
@@ -83,8 +67,6 @@ export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }
 
   return (
     <>
-      <LoadingScreen show={isLoading} />
-
       {authError && <Alert color="danger">{authError}</Alert>}
 
       <SocialAuthProviders onClick={handlePopupSignIn} />

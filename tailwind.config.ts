@@ -7,6 +7,11 @@ const config: Config = {
     container: {
       center: true,
     },
+    extend: {
+      minHeight: {
+        layout: 'calc(100vh - 65px)',
+      },
+    },
   },
   darkMode: 'class',
   plugins: [nextui()],

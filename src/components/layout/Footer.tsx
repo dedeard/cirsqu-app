@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Logo from '../svg/Logo'
 import { Facebook, Instagram, Youtube } from 'react-feather'
