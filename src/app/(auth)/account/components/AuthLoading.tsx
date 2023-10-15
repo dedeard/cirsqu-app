@@ -3,7 +3,7 @@ import { Card, CardBody, Spinner } from '@nextui-org/react'
 
 const AuthLoading: React.FC = () => {
   return (
-    <div className="min-h-layout container flex items-center justify-center">
+    <div className="container flex min-h-layout items-center justify-center">
       <div className="w-full max-w-sm ">
         <Card>
           <CardBody className="overflow-hidden py-24">
