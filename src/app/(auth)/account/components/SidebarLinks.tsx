@@ -11,7 +11,7 @@ const SidebarLinks: React.FC = () => {
     { href: '/account/password', text: 'Password' },
     { href: '/account/notifications', text: 'Notifications' },
     { href: '/account/linked-accounts', text: 'Linked Accounts' },
-    { href: '/account/subscription', text: 'Membership' },
+    { href: '/account/subscription', text: 'Subscription' },
   ]
   return (
     <Listbox>
