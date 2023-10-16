@@ -4,7 +4,7 @@ import { Button } from '@nextui-org/react'
 import Link from 'next/link'
 import { Check, FileText } from 'react-feather'
 
-const Success: React.FC<{ invoice?: Record<string, any> }> = ({ invoice }) => {
+const Success: React.FC<{ invoice?: Record<string, any>; charge?: Record<string, any> }> = ({ invoice, charge }) => {
   return (
     <div className="background-animate flex min-h-screen items-center justify-start bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-foreground dark">
       <div className="container max-w-[500px] px-6 py-14">
@@ -36,6 +36,11 @@ const Success: React.FC<{ invoice?: Record<string, any> }> = ({ invoice }) => {
               className="font-bold uppercase"
             >
               View Invoice
+            </Button>
+          )}
+          {charge && (
+            <Button as={Link} href={charge.receipt_url} target="_blank" variant="bordered" fullWidth className="font-bold uppercase">
+              See Receipt
             </Button>
           )}
           <Button as={Link} href="/" color="primary" fullWidth className="font-bold uppercase">
