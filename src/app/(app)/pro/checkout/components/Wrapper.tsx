@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { ArrowLeftCircle } from 'react-feather'
 import ChosenPlan from './ChosenPlan'
 import Checkout from './Checkout'
+import Link from 'next/link'
 
 const Wrapper: React.FC<{ products: IProduct[] }> = ({ products }) => {
   const params = useSearchParams()
@@ -19,14 +20,9 @@ const Wrapper: React.FC<{ products: IProduct[] }> = ({ products }) => {
 
   return (
     <>
-      <button
-        type="button"
-        className="absolute block p-6 text-gray-200 focus:outline-none lg:text-slate-900"
-        aria-label="Back toggle"
-        onClick={router.back}
-      >
+      <Link className="absolute block p-6 text-gray-200 focus:outline-none lg:text-slate-900" aria-label="Back toggle" href="/pro">
         <ArrowLeftCircle />
-      </button>
+      </Link>
       <div className="grid min-h-screen grid-cols-1 bg-gray-100 dark lg:grid-cols-2">
         <ChosenPlan
           products={products}

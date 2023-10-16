@@ -1,7 +1,8 @@
-import BackToggle from './components/BackToggle'
 import PlanItem from './components/PlanItem'
 import FAQItem from './components/FAQItem'
 import serverFetch from '@/utils/server-fetch'
+import Link from 'next/link'
+import { ArrowLeftCircle } from 'react-feather'
 
 export default async function PlansPage() {
   const response = await serverFetch('products', { cache: 'no-cache' })
@@ -12,7 +13,9 @@ export default async function PlansPage() {
   const products: IProduct[] = await response.json()
   return (
     <div className="background-animate min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-foreground dark">
-      <BackToggle />
+      <Link className="absolute block p-6 focus:outline-none" aria-label="Back toggle" href="/">
+        <ArrowLeftCircle />
+      </Link>
       <div className="container max-w-6xl px-3">
         <section className="flex flex-col items-center justify-center pb-12 pt-28 md:pb-28 md:pt-36">
           <div className="container flex flex-col items-center justify-center">
