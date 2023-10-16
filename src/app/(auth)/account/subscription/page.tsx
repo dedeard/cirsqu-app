@@ -6,6 +6,7 @@ import Loading from './components/Loading'
 import NotYet from './components/NotYet'
 import Recurring from './components/Recurring'
 import Lifetime from './components/Lifetime'
+import Invoices from './components/Invoices'
 import clientFetch from '@/utils/client-fetch'
 
 export default function SubscriptionPage() {
@@ -28,13 +29,15 @@ export default function SubscriptionPage() {
   }, [])
 
   return (
-    <div className="grid grid-cols-1 gap-3 lg:max-w-[750px]">
+    <div className="grid grid-cols-1 gap-6 lg:max-w-[750px]">
       <Card title="Subscription">
         {loading && <Loading />}
         {!loading && !subscription && <NotYet />}
         {!loading && subscription?.object === 'subscription' && <Recurring subscription={subscription} />}
         {!loading && subscription?.object === 'payment_intent' && <Lifetime paymentIntent={subscription} />}
       </Card>
+
+      <Invoices />
     </div>
   )
 }
