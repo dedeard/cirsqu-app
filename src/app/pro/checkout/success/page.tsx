@@ -1,6 +1,6 @@
 import serverFetch from '@/utils/server-fetch'
 import { redirect } from 'next/navigation'
-import Success from './Success'
+import Success from './components/Success'
 
 export const dynamic = 'force-dynamic'
 

@@ -36,7 +36,7 @@ const PlanItem: React.FC<{ product: IProduct }> = ({ product }) => {
           </li>
         ))}
       </ul>
-      <Button as={Link} href={`/pro/checkout?plan=${product.price.lookup_key}`} fullWidth color="primary" className="font-medium">
+      <Button as={Link} href={`/pro/checkout/${product.price.lookup_key}`} fullWidth color="primary" className="font-medium">
         Get started
       </Button>
     </div>

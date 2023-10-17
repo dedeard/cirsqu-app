@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import clientFetch from '@/utils/client-fetch'
 import { useRouter } from 'next/navigation'
