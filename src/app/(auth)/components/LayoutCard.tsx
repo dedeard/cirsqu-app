@@ -2,7 +2,7 @@
 import { Card, CardBody } from '@nextui-org/react'
 import AuthTab from './AuthTab'
 import { useAuth } from '@/components/contexts/AuthContext'
-import LoadingScreen from '@/components/elements/LoadingScreen'
+import LoadingScreen from './LoadingScreen'
 
 const LayoutCard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { loading, initLoading, profile } = useAuth()
