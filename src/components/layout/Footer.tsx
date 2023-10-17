@@ -20,32 +20,32 @@ const Footer: React.FC = () => {
           <div className="grid grid-cols-2 gap-1 p-3 px-[20%] text-center md:px-0 md:text-left">
             <div>
               <a href="#" className="text-sm hover:text-primary">
-                Link
+                Lessons
               </a>
             </div>
             <div>
               <a href="#" className="text-sm hover:text-primary">
-                Link
+                F . A . Q
               </a>
             </div>
             <div>
               <a href="#" className="text-sm hover:text-primary">
-                Link
+                Subjects
               </a>
             </div>
             <div>
               <a href="#" className="text-sm hover:text-primary">
-                Link
+                Terms of Use
               </a>
             </div>
             <div>
               <a href="#" className="text-sm hover:text-primary">
-                Link
+                Premium
               </a>
             </div>
             <div>
               <a href="#" className="text-sm hover:text-primary">
-                Link
+                Privacy Policy
               </a>
             </div>
           </div>
