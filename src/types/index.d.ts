@@ -27,6 +27,7 @@ declare global {
     bio?: string
     website?: string
     subscription: ISubscription
+    premium?: boolean
     createdAt: {
       seconds: number
       nanoseconds: number

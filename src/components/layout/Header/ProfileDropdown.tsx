@@ -12,7 +12,7 @@ const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
   return (
     <div className="dropdown-wrapper relative ml-3 h-10 w-10">
       <button className="block h-10 w-10 rounded-full p-0">
-        <Avatar name={profile.name} file={profile.avatar} />
+        <Avatar name={profile.name} premium={profile.premium} file={profile.avatar} />
       </button>
       <div className="dropdown-drop absolute right-0 top-full mt-3 w-60">
         <span className="absolute -top-1 right-2 h-6 w-6 rotate-45 transform rounded bg-primary" />
