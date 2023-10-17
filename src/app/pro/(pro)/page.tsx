@@ -4,6 +4,8 @@ import serverFetch from '@/utils/server-fetch'
 import Link from 'next/link'
 import { ArrowLeftCircle } from 'react-feather'
 
+export const dynamic = 'force-dynamic'
+
 export default async function PlansPage() {
   const response = await serverFetch('products', { cache: 'no-cache' })
   if (!response.ok) {

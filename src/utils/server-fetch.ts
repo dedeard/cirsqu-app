@@ -1,5 +1,4 @@
 import { BASE_API_URL } from '@/constants/config'
-import { getProfile } from './firestore'
 import 'server-only'
 
 interface IRequestInit extends RequestInit {

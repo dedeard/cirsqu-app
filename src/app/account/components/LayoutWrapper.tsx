@@ -1,12 +1,12 @@
 'use client'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import Sidebar from './components/Sidebar'
+import Sidebar from './Sidebar'
 import { useAuth } from '@/components/contexts/AuthContext'
-import AuthLoading from './components/AuthLoading'
+import AuthLoading from './AuthLoading'
 import { usePathname } from 'next/navigation'
 
-export default function AccountLayout({ children }: { children: React.ReactNode }) {
+export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const { initLoading, profile } = useAuth({
     whenNotAuthed: '/sign-in?next=' + pathname,

@@ -2,6 +2,8 @@ import serverFetch from '@/utils/server-fetch'
 import { redirect } from 'next/navigation'
 import Success from './Success'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Page({ searchParams }: { searchParams: { session_id?: string } }) {
   const { session_id } = searchParams
   if (!session_id) return redirect('/pro')
