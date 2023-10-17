@@ -22,10 +22,7 @@ const SidebarLinks: React.FC = () => {
             key={link.href}
             href={link.href}
             as={Link}
-            className={cn(
-              active && 'bg-content2 text-primary data-[hover=true]:text-primary',
-              'rounded-medium p-3 data-[hover=true]:bg-content2',
-            )}
+            className={cn(active && 'bg-content2 dark:bg-content1', 'rounded-medium p-3 data-[hover=true]:bg-content2')}
           >
             {link.text}
           </ListboxItem>
