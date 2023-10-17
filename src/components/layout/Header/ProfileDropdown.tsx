@@ -30,25 +30,25 @@ const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
             <Listbox className="gap-3">
               <ListboxItem
                 key="Dasbor-Saya"
-                href="/account"
+                href="/account/edit-profile"
                 as={Link}
                 className="rounded-medium bg-content2 p-2 text-center data-[hover=true]:bg-primary-100/50"
               >
-                Dasbor Saya
+                Edit Profile
               </ListboxItem>
               <ListboxItem
                 key="Edit-Profil"
-                href="/account"
+                href="/account/subscription"
                 as={Link}
                 className="rounded-medium bg-content2 p-2 text-center data-[hover=true]:bg-primary-100/50"
               >
-                Edit Profil
+                Subscription
               </ListboxItem>
             </Listbox>
           </CardBody>
           <CardFooter className="bg-content2/50">
-            <Button color="danger" className="font-semibold uppercase tracking-wider" onClick={logout}>
-              Keluar
+            <Button color="danger" onClick={logout}>
+              Sign Out
             </Button>
           </CardFooter>
         </Card>
