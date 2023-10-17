@@ -85,9 +85,9 @@ const Checkout: React.FC<PropsType> = ({ products, currentProduct, className, ..
         </Card>
         <p className="font-light text-slate-900 light">
           For testing purposes, you may utilize the following card number:{' '}
-          <span className="text-primary-700">4242&nbsp;4242&nbsp;4242&nbsp;4242</span>. For additional details and other test card numbers,
+          <span className="font-normal">4242&nbsp;4242&nbsp;4242&nbsp;4242</span>. For additional details and other test card numbers,
           please{' '}
-          <a href="https://stripe.com/docs/testing#cards" target="_blank" className="text-primary-700">
+          <a href="https://stripe.com/docs/testing#cards" target="_blank" className="font-normal underline">
             click here
           </a>
           .

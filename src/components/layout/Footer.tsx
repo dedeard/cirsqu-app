@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
       <Divider />
       <p className="py-6 text-center text-xs">
         © {new Date().getFullYear()} All Right Reserved AjarBelajar - By{' '}
-        <a href="https://dedeard.my.id" className="text-primary" target="_blank" rel="noreferrer">
+        <a href="https://dedeard.my.id" className="underline" target="_blank" rel="noreferrer">
           Dede ariansya
         </a>
       </p>

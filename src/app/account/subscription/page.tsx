@@ -29,7 +29,7 @@ export default function SubscriptionPage() {
   }, [])
 
   return (
-    <div className="grid grid-cols-1 gap-6 lg:max-w-[750px]">
+    <div className="grid grid-cols-1 gap-3 lg:max-w-[750px]">
       <Card title="Subscription">
         {loading && <Loading />}
         {!loading && !subscription && <NotYet />}

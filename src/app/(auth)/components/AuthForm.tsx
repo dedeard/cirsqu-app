@@ -88,7 +88,7 @@ export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }
           errorMessage={formik.errors.password}
           value={formik.values.password}
           endContent={
-            <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+            <button aria-label="Visible password toggle" className="focus:outline-none" type="button" onClick={toggleVisibility}>
               {isVisible ? (
                 <EyeOff className="pointer-events-none h-5 text-default-400" />
               ) : (

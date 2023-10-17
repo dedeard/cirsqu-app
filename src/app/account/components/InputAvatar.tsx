@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import cn from 'classnames'
 import Label from './Label'
 import Avatar from '@/components/elements/Avatar'
@@ -27,6 +27,7 @@ export const InputAvatar: React.FC<InputAvatarProps> = ({
 }) => {
   const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
   const [previewImage, setPreviewImage] = React.useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let file = e.target.files?.[0]
@@ -58,18 +59,19 @@ export const InputAvatar: React.FC<InputAvatarProps> = ({
     <Label htmlFor={props.name} text={label}>
       <div className={cn(errorMessage && 'mb-2', 'transition-spacing mt-2 flex items-center lg:mt-0')}>
         <Avatar name={props.nickname} src={previewImage || avatar} className="mr-3 block h-12 w-12" />
-        <Button as="label" variant="flat">
+        <Button type="button" variant="flat" onClick={() => inputRef.current?.click()}>
           Change
-          <input
-            id={props.name}
-            type="file"
-            aria-hidden="true"
-            className="hidden"
-            accept={allowedMimeTypes.join(', ')}
-            onChange={handleFileChange}
-            {...props}
-          />
         </Button>
+        <input
+          id={props.name}
+          ref={inputRef}
+          type="file"
+          aria-hidden="true"
+          className="hidden"
+          accept={allowedMimeTypes.join(', ')}
+          onChange={handleFileChange}
+          {...props}
+        />
         {!!file && (
           <Button variant="flat" type="button" color="danger" className="ml-2" onClick={handleReset}>
             Reset

@@ -11,7 +11,7 @@ const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
 
   return (
     <div className="dropdown-wrapper relative ml-3 h-10 w-10">
-      <button className="block h-10 w-10 rounded-full p-0">
+      <button role="button" className="block h-10 w-10 rounded-full p-0">
         <Avatar name={profile.name} premium={profile.premium} file={profile.avatar} />
       </button>
       <div className="dropdown-drop absolute right-0 top-full mt-3 w-60">
@@ -27,7 +27,7 @@ const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
             </div>
           </CardHeader>
           <CardBody className="p-3">
-            <Listbox className="gap-3">
+            <Listbox className="gap-3" aria-label="Profile dropdown links">
               <ListboxItem
                 key="Dasbor-Saya"
                 href="/account/edit-profile"

@@ -60,6 +60,7 @@ export default function Password() {
           type={isVisible.new_password ? 'text' : 'password'}
           endContent={
             <button
+              aria-label="Visible password toggle"
               className="focus:outline-none"
               type="button"
               onClick={() => setIsVisible({ ...isVisible, new_password: !isVisible.new_password })}
@@ -84,6 +85,7 @@ export default function Password() {
           type={isVisible.password ? 'text' : 'password'}
           endContent={
             <button
+              aria-label="Visible password toggle"
               className="focus:outline-none"
               type="button"
               onClick={() => setIsVisible({ ...isVisible, password: !isVisible.password })}

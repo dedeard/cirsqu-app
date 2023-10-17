@@ -3,7 +3,7 @@ import { Menu } from 'react-feather'
 
 const MenuToggle: React.FC<{ toggleSidebar?: (open?: boolean) => void }> = ({ toggleSidebar }) => {
   return (
-    <Button isIconOnly className="ml-3" variant="flat" radius="full" onClick={() => toggleSidebar?.()}>
+    <Button aria-label="Menu toggle" isIconOnly className="ml-3" variant="flat" radius="full" onClick={() => toggleSidebar?.()}>
       <Menu size="1em" />
     </Button>
   )

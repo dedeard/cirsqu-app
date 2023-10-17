@@ -71,7 +71,12 @@ export default function EmailAddress() {
           value={formik.values.password}
           errorMessage={formik.errors.password}
           endContent={
-            <button className="focus:outline-none" type="button" onClick={() => setIsVisible(!isVisible)}>
+            <button
+              aria-label="Visible password toggle"
+              className="focus:outline-none"
+              type="button"
+              onClick={() => setIsVisible(!isVisible)}
+            >
               {isVisible ? (
                 <Eye className="pointer-events-none  h-4 text-default-400" />
               ) : (

@@ -14,7 +14,7 @@ const SidebarLinks: React.FC = () => {
     { href: '/account/subscription', text: 'Subscription' },
   ]
   return (
-    <Listbox>
+    <Listbox aria-label="Sidebar links" className="p-0">
       {links.map((link) => {
         const active = pathname === link.href
         return (

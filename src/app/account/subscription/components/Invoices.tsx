@@ -57,6 +57,7 @@ const Invoices: React.FC = () => {
     <Card title="Invoice History">
       <CardBody>
         <Table
+          aria-label="Invoice collection table"
           removeWrapper
           hideHeader
           isStriped
