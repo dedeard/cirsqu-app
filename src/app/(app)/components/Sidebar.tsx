@@ -3,23 +3,16 @@ import React from 'react'
 import Avatar from '@/components/elements/Avatar'
 import SidebarLinks from './SidebarLinks'
 import { useAuth } from '@/components/contexts/AuthContext'
-import { Card, CardHeader, Divider } from '@nextui-org/react'
+import { Card, CardBody, Divider, Skeleton } from '@nextui-org/react'
 import Link from 'next/link'
 import Logo from '@/components/svg/Logo'
 import MenuToggle from '@/components/layout/Header/MenuToggle'
 import classNames from 'classnames'
 import { useLayout } from '@/components/contexts/LayoutContext'
-import { useParams } from 'next/navigation'
 
 const Sidebar: React.FC = () => {
-  const { profile } = useAuth()
-  const pathname = useParams()
+  const { profile, initLoading } = useAuth()
   const layout = useLayout()
-
-  // React.useEffect(() => {
-  //   layout.toggleSidebar(false)
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [pathname])
 
   return (
     <aside
@@ -43,17 +36,33 @@ const Sidebar: React.FC = () => {
       <Divider className="lg:hidden" />
 
       <div className="w-full flex-1 overflow-y-auto p-3 lg:mb-0 lg:overflow-visible lg:pl-0 lg:pr-3">
-        <Card className="mb-3">
-          <CardHeader className="px-4">
-            <div className="flex w-full items-center">
-              <Avatar name={profile?.name || ''} className="h-12 w-12" file={profile?.avatar} />
-              <div className="flex-1 overflow-hidden pl-2">
-                <h3 className="mb-1 truncate font-semibold capitalize leading-none">{profile?.name}</h3>
-                <span className="block truncate text-tiny leading-none">@{profile?.username}</span>
+        {!initLoading && profile && (
+          <Card className="mb-3">
+            <CardBody className="px-4 py-3">
+              <div className="flex w-full items-center">
+                <Avatar name={profile.name} className="h-12 w-12" file={profile.avatar} />
+                <div className="flex-1 overflow-hidden pl-2">
+                  <h3 className="mb-1 truncate font-semibold capitalize leading-none">{profile.name}</h3>
+                  <span className="block truncate text-tiny leading-none">@{profile.username}</span>
+                </div>
               </div>
-            </div>
-          </CardHeader>
-        </Card>
+            </CardBody>
+          </Card>
+        )}
+
+        {initLoading && (
+          <Card className="mb-3">
+            <CardBody className="px-4 py-3">
+              <div className="flex w-full items-center">
+                <Skeleton className="block h-12 w-12 rounded-full" />
+                <div className="flex-1 pl-2">
+                  <Skeleton className="mb-1 block h-4 w-full rounded-full" />
+                  <Skeleton className="block h-3 w-3/4 rounded-full" />
+                </div>
+              </div>
+            </CardBody>
+          </Card>
+        )}
 
         <SidebarLinks />
       </div>
