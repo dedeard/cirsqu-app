@@ -15,7 +15,7 @@ import { Eye, EyeOff } from 'react-feather'
 
 const schema = {
   email: yup.string().email().required().label('Email address'),
-  password: yup.string().required().label('Password'),
+  password: yup.string().required().label('Current Password'),
 }
 
 export default function EmailAddress() {
