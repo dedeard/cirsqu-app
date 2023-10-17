@@ -42,7 +42,7 @@ const LinkedAccountToggle: React.FC<{ id: 'facebook.com' | 'github.com' | 'googl
       color={isLinked ? 'danger' : 'primary'}
       isLoading={loading}
       className="w-28"
-      onClick={isLinked ? connectAccount : disconnectAccount}
+      onClick={isLinked ? disconnectAccount : connectAccount}
     >
       {loading ? '' : text}
     </Button>
