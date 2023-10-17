@@ -14,7 +14,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   })
   return (
     <>
-      <Header />
+      <Header noSidebar />
       {(initLoading || !profile) && <AuthLoading />}
       {!initLoading && profile && (
         <>

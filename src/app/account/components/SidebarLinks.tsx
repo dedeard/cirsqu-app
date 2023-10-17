@@ -7,6 +7,7 @@ import Link from 'next/link'
 const SidebarLinks: React.FC = () => {
   const pathname = usePathname()
   const links = [
+    { href: '/', text: 'Back to Home' },
     { href: '/account/edit-profile', text: 'Edit Profile' },
     { href: '/account/password', text: 'Password' },
     // { href: '/account/notifications', text: 'Notifications' },

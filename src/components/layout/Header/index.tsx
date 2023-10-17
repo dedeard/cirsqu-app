@@ -6,7 +6,6 @@ import MenuToggle from './MenuToggle'
 import MainMenu from './MainMenu'
 import { Navbar, NavbarProps } from '@nextui-org/react'
 import ThemeToggle from './ThemeToggle'
-import { useAuth } from '@/components/contexts/AuthContext'
 import classNames from 'classnames'
 
 type HeaderPropTypes = {
@@ -14,10 +13,9 @@ type HeaderPropTypes = {
   noSidebar?: boolean
   hideSearch?: boolean
   onlyBrand?: boolean
-  toggleSidebar?: (sidebarOpen?: boolean) => void
 } & NavbarProps
 
-const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, toggleSidebar, className, ...props }) => {
+const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, className, ...props }) => {
   return (
     <Navbar maxWidth="full" shouldHideOnScroll isBordered className={classNames(className, '[&>header]:px-0')} {...props}>
       <div className="container flex h-full w-full items-center">
@@ -46,7 +44,7 @@ const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, t
               <div className="flex flex-1 items-center justify-end md:justify-start">
                 <div className="flex lg:pl-3">
                   {!hideSearch && <SearchToggle />}
-                  {!noSidebar && <MenuToggle toggleSidebar={toggleSidebar} />}
+                  {!noSidebar && <MenuToggle />}
                   <ThemeToggle />
                 </div>
               </div>
