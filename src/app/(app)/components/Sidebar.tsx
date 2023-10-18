@@ -25,7 +25,7 @@ const Sidebar: React.FC = () => {
     <aside
       className={classNames(
         layout.sidebarOpen ? '-translate-x-0' : '-translate-x-full',
-        'fixed bottom-0 top-0 z-50 flex w-64 flex-col border-r border-r-divider bg-background/50 backdrop-blur transition-transform lg:sticky lg:z-10 lg:block lg:-translate-x-0 lg:border-0 lg:bg-transparent lg:pt-0 lg:backdrop-blur-none lg:transition-none',
+        'fixed bottom-0 left-0 top-0 z-50 flex w-64 flex-col border-r border-r-divider bg-background/50 backdrop-blur transition-transform lg:sticky lg:z-10 lg:block lg:-translate-x-0 lg:border-0 lg:bg-transparent lg:pt-0 lg:backdrop-blur-none lg:transition-none',
       )}
       style={{ top: isSmall() ? 0 : layout.headerPosition }}
     >

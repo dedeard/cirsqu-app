@@ -1,24 +1,31 @@
+'use client'
 import React from 'react'
+import Link from 'next/link'
+import { Button } from '@nextui-org/react'
+import SubjectList from '../../components/SubjectList'
 
 const Subjects: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => {
   return (
     <div {...props}>
-      <h2>Pick a Subject</h2>
-      <p>Cirsqu is packed with lessons on all of these Subjects.</p>
+      <h2 className="relative mb-12 text-4xl font-bold">
+        <span className="relative before:absolute before:-bottom-4 before:block before:h-2 before:w-3/4 before:rounded-full before:bg-primary before:content-[''] after:absolute after:-bottom-7 after:block after:h-2 after:w-1/2 after:rounded-full after:bg-foreground/50 after:content-['']">
+          Pick a Subject
+        </span>
+      </h2>
 
-      <ul className="grid grid-cols-1 gap-3 md:grid-cols-2">
+      <ul className="my-8 grid grid-cols-1 gap-3 md:grid-cols-2">
         {Array.from(Array(6).keys()).map((i) => (
           <li key={i}>
-            <a href="#" className="block rounded-medium bg-content2 p-3 dark:bg-content1">
-              <span>19 lessons</span>
-              <h3>Livewire</h3>
-              <p>A full-stack framework for Laravel that makes building dynamic interfaces simple.</p>
-            </a>
+            <SubjectList />
           </li>
         ))}
       </ul>
 
-      <a href="#">Browse all subjects</a>
+      <div className="text-center">
+        <Button as={Link} href="/subjects" color="primary" size="lg" className="font-semibold">
+          Browse all subjects
+        </Button>
+      </div>
     </div>
   )
 }

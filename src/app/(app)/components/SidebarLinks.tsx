@@ -8,7 +8,7 @@ const SidebarLinks: React.FC = () => {
   const pathname = usePathname()
   const links = [
     { href: '/', text: 'Home' },
-    { href: '/lesssons', text: 'Lessons' },
+    { href: '/lessons', text: 'Lessons' },
     { href: '/subjects', text: 'Subjects' },
     { href: '/collections', text: 'Collections' },
     null,

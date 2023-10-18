@@ -7,9 +7,9 @@ export const dynamic = 'force-static'
 export default function Home() {
   return (
     <>
-      <Jumbotron className="mb-10" />
-      <Latest className="my-10" />
-      <Subjects className="my-10" />
+      <Jumbotron className="mb-20" />
+      <Latest className="my-20" />
+      <Subjects className="my-20" />
     </>
   )
 }
