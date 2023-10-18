@@ -9,7 +9,7 @@ type LinkType = {
   href: string
   text: string
   badge?: {
-    color: string
+    color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | undefined
     text: number
   }
 }
@@ -62,7 +62,7 @@ const SidebarLinks: React.FC = () => {
               )}
               endContent={
                 link.badge && (
-                  <Chip size="sm" color={link.badge.color as any} className="absolute right-3 h-5">
+                  <Chip size="sm" color={link.badge.color} className="absolute right-3 h-5">
                     <span className="text-xs font-bold">{link.badge.text}</span>
                   </Chip>
                 )
