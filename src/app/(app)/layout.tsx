@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className="flex min-h-layout flex-col">
         <div className="container flex flex-col px-3 lg:flex-row lg:items-start">
           <Sidebar />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 py-3">{children}</main>
         </div>
       </main>
       <Footer />
