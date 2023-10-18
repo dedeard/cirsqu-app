@@ -14,12 +14,20 @@ const Sidebar: React.FC = () => {
   const { profile, initLoading } = useAuth()
   const layout = useLayout()
 
+  const isSmall = () => {
+    if (typeof window === 'object') {
+      return window.innerWidth <= 1024
+    }
+    return false
+  }
+
   return (
     <aside
       className={classNames(
         layout.sidebarOpen ? '-translate-x-0' : '-translate-x-full',
-        'fixed bottom-0 left-0 top-0 z-50 flex w-64 flex-col border-r border-r-divider bg-background/50 backdrop-blur transition-transform lg:sticky lg:top-0 lg:z-10 lg:block lg:-translate-x-0 lg:border-0 lg:bg-transparent lg:pt-0 lg:backdrop-blur-none lg:transition-none',
+        'fixed bottom-0 top-0 z-50 flex w-64 flex-col border-r border-r-divider bg-background/50 backdrop-blur transition-transform lg:sticky lg:z-10 lg:block lg:-translate-x-0 lg:border-0 lg:bg-transparent lg:pt-0 lg:backdrop-blur-none lg:transition-none',
       )}
+      style={{ top: isSmall() ? 0 : layout.headerPosition }}
     >
       <div className="flex h-16 px-3 lg:hidden">
         <div className="flex flex-1">

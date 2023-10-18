@@ -7,6 +7,9 @@ import MainMenu from './MainMenu'
 import { Navbar, NavbarProps } from '@nextui-org/react'
 import ThemeToggle from './ThemeToggle'
 import classNames from 'classnames'
+import { useEffect, useRef, useState } from 'react'
+import { useLayout } from '@/components/contexts/LayoutContext'
+import { useMounted } from '@/components/contexts/MountContext'
 
 type HeaderPropTypes = {
   sidebarOpen?: boolean
@@ -16,8 +19,40 @@ type HeaderPropTypes = {
 } & NavbarProps
 
 const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, className, ...props }) => {
+  const navbarRef = useRef<HTMLDivElement>(null)
+  const { setHeaderPosition } = useLayout()
+  const mounted = useMounted()
+
+  const getTranslateY = (element: HTMLElement): number => {
+    const style = window.getComputedStyle(element)
+    const transform = style.transform
+
+    let mat = transform.match(/^matrix3d\((.+)\)$/)
+    if (mat) return parseFloat(mat[1].split(', ')[13])
+
+    mat = transform.match(/^matrix\((.+)\)$/)
+    return mat ? parseFloat(mat[1].split(', ')[5]) : 0
+  }
+
+  useEffect(() => {
+    const observer = new MutationObserver((mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+          if (navbarRef.current) setHeaderPosition(Math.floor(getTranslateY(navbarRef.current)) + 66)
+        }
+      }
+    })
+
+    if (navbarRef.current) {
+      observer.observe(navbarRef.current, { attributes: true })
+    }
+
+    // Clean up
+    return () => observer.disconnect()
+  }, [setHeaderPosition])
+
   return (
-    <Navbar maxWidth="full" shouldHideOnScroll isBordered className={classNames(className, '[&>header]:px-0')} {...props}>
+    <Navbar ref={navbarRef} maxWidth="full" shouldHideOnScroll isBordered className={classNames(className, '[&>header]:px-0')} {...props}>
       <div className="container flex h-full w-full items-center">
         {onlyBrand ? (
           <>
