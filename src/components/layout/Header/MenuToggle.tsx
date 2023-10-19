@@ -1,6 +1,6 @@
 import { useLayout } from '@/components/contexts/LayoutContext'
 import { Button } from '@nextui-org/react'
-import { Menu } from 'react-feather'
+import { Menu, X } from 'react-feather'
 
 const MenuToggle: React.FC = () => {
   const layout = useLayout()
@@ -13,7 +13,7 @@ const MenuToggle: React.FC = () => {
       radius="full"
       onClick={() => layout.toggleSidebar()}
     >
-      <Menu size="1em" />
+      {layout.sidebarOpen ? <X size="1em" /> : <Menu size="1em" />}
     </Button>
   )
 }

@@ -18,8 +18,12 @@ const LayoutContext = React.createContext<LayoutContextProps>({
 export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [headerPosition, setHeaderPosition] = useState(0)
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen)
+  const toggleSidebar = (isOpen?: boolean) => {
+    if (typeof isOpen === 'boolean') {
+      setSidebarOpen(isOpen)
+    } else {
+      setSidebarOpen(!sidebarOpen)
+    }
   }
   return (
     <LayoutContext.Provider value={{ sidebarOpen, headerPosition, setHeaderPosition, toggleSidebar }}>{children}</LayoutContext.Provider>
