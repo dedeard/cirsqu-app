@@ -32,7 +32,7 @@ const SidebarLinks: React.FC = () => {
         ...baseLinks,
         null,
         { href: '/histories', text: 'Histories' },
-        { href: '/collections', text: 'Collections' },
+        { href: '/watchlist', text: 'Watch List' },
         { href: '/notifications', text: 'Notifications', badge: { color: 'danger', text: 9 } },
         { href: '/account', text: 'My Account' },
       ])
