@@ -1,8 +1,9 @@
 'use client'
 import React from 'react'
 import Logo from '../svg/Logo'
-import { Facebook, Instagram, Youtube } from 'react-feather'
+import { Facebook, GitHub, Globe, Instagram, Linkedin, Youtube } from 'react-feather'
 import { Button, Card, Divider } from '@nextui-org/react'
+import Link from 'next/link'
 
 const Footer: React.FC = () => {
   return (
@@ -19,46 +20,85 @@ const Footer: React.FC = () => {
 
           <div className="grid grid-cols-2 gap-1 p-3 px-[20%] text-center md:px-0 md:text-left">
             <div>
-              <a href="#" className="text-sm hover:text-primary">
+              <Link href="/lessons" className="text-sm hover:text-primary">
                 Lessons
-              </a>
+              </Link>
             </div>
             <div>
-              <a href="#" className="text-sm hover:text-primary">
+              <Link href="/faq" className="text-sm hover:text-primary">
                 F . A . Q
-              </a>
+              </Link>
             </div>
             <div>
-              <a href="#" className="text-sm hover:text-primary">
+              <Link href="/subjects" className="text-sm hover:text-primary">
                 Subjects
-              </a>
+              </Link>
             </div>
             <div>
-              <a href="#" className="text-sm hover:text-primary">
-                Terms of Use
-              </a>
+              <Link href="/terms-of-service" className="text-sm hover:text-primary">
+                Terms of Service
+              </Link>
             </div>
             <div>
-              <a href="#" className="text-sm hover:text-primary">
+              <Link href="/pro" className="text-sm hover:text-primary">
                 Premium
-              </a>
+              </Link>
             </div>
             <div>
-              <a href="#" className="text-sm hover:text-primary">
+              <Link href="/privacy-policy" className="text-sm hover:text-primary">
                 Privacy Policy
-              </a>
+              </Link>
             </div>
           </div>
 
           <div className="flex justify-center gap-3 p-3 md:text-left">
-            <Button as="a" href="#" isIconOnly variant="flat" target="_blank" radius="full" rel="noreferrer" aria-label="Facebook">
-              <Facebook className="h-[1em]" />
+            <Button
+              as="a"
+              href="https://github.com/dedeard"
+              isIconOnly
+              variant="flat"
+              target="_blank"
+              radius="full"
+              rel="noreferrer"
+              aria-label="GitHub"
+            >
+              <GitHub className="h-[1em]" />
             </Button>
-            <Button as="a" href="#" isIconOnly variant="flat" target="_blank" radius="full" rel="noreferrer" aria-label="Instagram">
+            <Button
+              as="a"
+              href="https://www.instagram.com/dedeard.js"
+              isIconOnly
+              variant="flat"
+              target="_blank"
+              radius="full"
+              rel="noreferrer"
+              aria-label="Instagram"
+            >
               <Instagram className="h-[1em]" />
             </Button>
-            <Button as="a" href="#" isIconOnly variant="flat" target="_blank" radius="full" rel="noreferrer" aria-label="YouTube">
-              <Youtube className="h-[1em]" />
+            <Button
+              as="a"
+              href="https://www.linkedin.com/in/dedeard"
+              isIconOnly
+              variant="flat"
+              target="_blank"
+              radius="full"
+              rel="noreferrer"
+              aria-label="Linkedin"
+            >
+              <Linkedin className="h-[1em]" />
+            </Button>
+            <Button
+              as="a"
+              href="https://dedeard.my.id"
+              isIconOnly
+              variant="flat"
+              target="_blank"
+              radius="full"
+              rel="noreferrer"
+              aria-label="Website"
+            >
+              <Globe className="h-[1em]" />
             </Button>
           </div>
         </div>

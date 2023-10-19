@@ -68,7 +68,7 @@ const Lifetime: React.FC<{ paymentIntent: any }> = ({ paymentIntent }) => {
 
       <div className="mx-auto flex w-full max-w-xs flex-row justify-center gap-3">
         {paymentIntent?.latest_charge?.receipt_url && (
-          <Button as={Link} href={paymentIntent.latest_charge.receipt_url} target="__blank" color="primary" fullWidth>
+          <Button as="a" href={paymentIntent.latest_charge.receipt_url} target="_blank" color="primary" fullWidth>
             View Receipt
           </Button>
         )}

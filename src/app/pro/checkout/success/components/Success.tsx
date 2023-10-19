@@ -27,19 +27,12 @@ const Success: React.FC<{ invoice?: Record<string, any>; charge?: Record<string,
 
         <div className="mx-auto flex max-w-[300px] flex-col gap-3">
           {invoice && (
-            <Button
-              as={Link}
-              href={invoice.hosted_invoice_url}
-              target="_blank"
-              variant="bordered"
-              fullWidth
-              className="font-bold uppercase"
-            >
+            <Button as="a" href={invoice.hosted_invoice_url} target="_blank" variant="bordered" fullWidth className="font-bold uppercase">
               View Invoice
             </Button>
           )}
           {charge && (
-            <Button as={Link} href={charge.receipt_url} target="_blank" variant="bordered" fullWidth className="font-bold uppercase">
+            <Button as="a" href={charge.receipt_url} target="_blank" variant="bordered" fullWidth className="font-bold uppercase">
               See Receipt
             </Button>
           )}

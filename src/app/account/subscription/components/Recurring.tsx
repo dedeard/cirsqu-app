@@ -62,11 +62,11 @@ const Recurring: React.FC<{ subscription: any }> = ({ subscription }) => {
 
       <div className="mx-auto flex w-full max-w-xs flex-row justify-center gap-3">
         {subscription?.latest_invoice?.hosted_invoice_url && (
-          <Button as={Link} href={subscription.latest_invoice.hosted_invoice_url} target="__blank" variant="flat" fullWidth>
+          <Button as="a" href={subscription.latest_invoice.hosted_invoice_url} target="_blank" variant="flat" fullWidth>
             Latest Invoice
           </Button>
         )}
-        <Button href="/pro" color="primary" fullWidth isLoading={loading} onClick={openPortal}>
+        <Button as="a" href="/pro" color="primary" fullWidth isLoading={loading} onClick={openPortal}>
           {!loading && 'Billing Portal'}
         </Button>
       </div>
