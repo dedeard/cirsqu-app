@@ -56,9 +56,10 @@ const SidebarLinks: React.FC = () => {
               key={link.href}
               href={link.href}
               as={Link}
+              classNames={{ title: 'font-bold' }}
               className={cn(
-                active && '!bg-content1 shadow-medium',
-                'rounded-medium p-3 data-[hover=true]:bg-content2/80 dark:data-[hover=true]:bg-content1',
+                active && '!bg-content1/75 shadow-medium',
+                'rounded-medium p-3 data-[hover=true]:bg-content2/70 dark:data-[hover=true]:bg-content1/75',
               )}
               endContent={
                 link.badge && (

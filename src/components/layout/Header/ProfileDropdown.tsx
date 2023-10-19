@@ -32,6 +32,7 @@ const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
                 key="Dasbor-Saya"
                 href="/account/edit-profile"
                 as={Link}
+                classNames={{ title: 'font-bold' }}
                 className="rounded-medium bg-content2 p-2 text-center data-[hover=true]:bg-primary-100/50"
               >
                 Edit Profile
@@ -40,6 +41,7 @@ const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
                 key="Edit-Profil"
                 href="/account/subscription"
                 as={Link}
+                classNames={{ title: 'font-bold' }}
                 className="rounded-medium bg-content2 p-2 text-center data-[hover=true]:bg-primary-100/50"
               >
                 Subscription
@@ -47,7 +49,7 @@ const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
             </Listbox>
           </CardBody>
           <CardFooter className="bg-content2/50">
-            <Button color="danger" onClick={logout}>
+            <Button color="danger" className="font-bold" onClick={logout}>
               Sign Out
             </Button>
           </CardFooter>

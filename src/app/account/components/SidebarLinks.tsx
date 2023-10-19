@@ -23,6 +23,7 @@ const SidebarLinks: React.FC = () => {
             key={link.href}
             href={link.href}
             as={Link}
+            classNames={{ title: 'font-bold' }}
             className={cn(active && 'bg-content2 dark:bg-content1', 'rounded-medium p-3 data-[hover=true]:bg-content2')}
           >
             {link.text}
