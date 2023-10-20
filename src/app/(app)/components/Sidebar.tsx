@@ -61,7 +61,7 @@ const Sidebar: React.FC = () => {
 
         <Divider className="lg:hidden" />
 
-        <div className="w-full flex-1 overflow-y-auto p-3 lg:mb-0 lg:overflow-visible lg:pl-0 lg:pr-3">
+        <div className="chrome-scrollbar w-full flex-1 overflow-y-auto p-3 lg:mb-0 lg:overflow-visible lg:pl-0 lg:pr-3">
           {!initLoading && profile && (
             <Card className="mb-3 bg-opacity-75">
               <CardBody className="px-4 py-3">

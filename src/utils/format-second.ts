@@ -4,16 +4,14 @@ type Options = {
   h?: string
   m?: string
   s?: string
-  plural?: string
-  hideSecond?: boolean
+  p?: string
 }
 
 const defaultOptions: Options = {
   h: 'hr',
   m: 'min',
   s: 'sec',
-  plural: 's',
-  hideSecond: true,
+  p: 's',
 }
 
 export default function formatSecond(seconds: number, options: Options = defaultOptions) {
@@ -30,16 +28,15 @@ export default function formatSecond(seconds: number, options: Options = default
   let result = ''
 
   if (hours > 0) {
-    result += `${hours}${options.h}${hours > 1 ? options.plural : ''} `
+    result += `${hours}${options.h}${hours > 1 ? options.p : ''} `
   }
 
-  if (minutes > 0 || hours > 0) {
-    // Include minutes if either minutes or hours is greater than zero
-    result += `${minutes}${options.m}${minutes > 1 ? options.plural : ''} `
+  if (minutes > 0) {
+    result += `${minutes}${options.m}${minutes > 1 ? options.p : ''} `
   }
 
-  if (!result.trim() && !options.hideSecond) {
-    result += `${remainingSeconds}${options.s}${remainingSeconds > 1 ? options.plural : ''}`
+  if (remainingSeconds > 0) {
+    result += `${remainingSeconds}${options.s}${remainingSeconds > 1 ? options.p : ''} `
   }
 
   return result.trim()

@@ -1,5 +1,5 @@
 import React from 'react'
-import EpisodeItem from '../../components/EpisodeItem'
+import EpisodeItem from './EpisodeItem'
 
 const LessonEpisodes: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => {
   return (
@@ -15,6 +15,7 @@ const LessonEpisodes: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) =
           <li key={i}>
             <EpisodeItem
               index={i}
+              episodeId="Zs5WV0qBqOI"
               slug="slug"
               title="Lorem ipsum dolor sit amet consectetur adipisicing elit."
               seconds={i * 3264 + 89}

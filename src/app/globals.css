@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.chrome-scrollbar::-webkit-scrollbar {
+  @apply w-1;
+}
+
+.chrome-scrollbar::-webkit-scrollbar-thumb {
+  @apply rounded-xl bg-gray-600 dark:bg-gray-300;
+}
+
+.chrome-scrollbar::-webkit-scrollbar-track {
+  @apply rounded-xl bg-gray-600/20 dark:bg-gray-300/20;
+}
+
 .dropdown-drop {
   transition:
     opacity 250ms ease-out,

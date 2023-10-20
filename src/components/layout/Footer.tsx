@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Logo from '../svg/Logo'
-import { Facebook, GitHub, Globe, Instagram, Linkedin, Youtube } from 'react-feather'
+import { GitHub, Globe, Instagram, Linkedin } from 'react-feather'
 import { Button, Card, Divider } from '@nextui-org/react'
 import Link from 'next/link'
 

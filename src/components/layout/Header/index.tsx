@@ -7,21 +7,20 @@ import MainMenu from './MainMenu'
 import { Navbar, NavbarProps } from '@nextui-org/react'
 import ThemeToggle from './ThemeToggle'
 import classNames from 'classnames'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLayout } from '@/components/contexts/LayoutContext'
-import { useMounted } from '@/components/contexts/MountContext'
 
 type HeaderPropTypes = {
   sidebarOpen?: boolean
   noSidebar?: boolean
   hideSearch?: boolean
+  hideTheme?: boolean
   onlyBrand?: boolean
 } & NavbarProps
 
-const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, className, ...props }) => {
+const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, hideTheme, className, ...props }) => {
   const navbarRef = useRef<HTMLDivElement>(null)
   const { setHeaderPosition } = useLayout()
-  const mounted = useMounted()
 
   const getTranslateY = (element: HTMLElement): number => {
     const style = window.getComputedStyle(element)
@@ -80,7 +79,7 @@ const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, c
                 <div className="flex lg:pl-3">
                   {!hideSearch && <SearchToggle />}
                   {!noSidebar && <MenuToggle />}
-                  <ThemeToggle />
+                  {!hideTheme && <ThemeToggle />}
                 </div>
               </div>
               <div className="flex px-3 md:ml-auto">
