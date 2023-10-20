@@ -6,7 +6,7 @@ import { Check, FileText } from 'react-feather'
 
 const Success: React.FC<{ invoice?: Record<string, any>; charge?: Record<string, any> }> = ({ invoice, charge }) => {
   return (
-    <div className="background-animate flex min-h-screen items-center justify-start bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-foreground dark">
+    <div className="background-animate flex min-h-screen items-center justify-start bg-gradient-to-br from-black via-slate-950 to-black text-foreground dark">
       <div className="container max-w-[500px] px-6 py-14">
         <div className="flex items-center justify-center pb-7 pt-14">
           <span className="relative block  animate-pulse">

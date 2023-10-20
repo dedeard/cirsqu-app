@@ -20,14 +20,14 @@ export default async function Page({ params }: { params: { plan: string } }) {
 
   return (
     <>
-      <Link className="absolute block p-6 text-gray-200 focus:outline-none lg:text-slate-900" aria-label="Back toggle" href="/pro">
+      <Link className="absolute block p-6 text-gray-200 focus:outline-none lg:text-slate-950" aria-label="Back toggle" href="/pro">
         <ArrowLeftCircle />
       </Link>
       <div className="grid min-h-screen grid-cols-1 bg-gray-100 dark lg:grid-cols-2">
         <ChosenPlan
           products={products}
           currentProduct={currentProduct}
-          className="background-animate bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-6 py-20 text-gray-200 md:px-24 lg:px-12  xl:px-24"
+          className="background-animate bg-gradient-to-br from-black via-slate-950 to-black px-6 py-20 text-gray-200 md:px-24 lg:px-12  xl:px-24"
         />
         <Checkout products={products} currentProduct={currentProduct} className="px-6 py-20 md:px-24 lg:order-first lg:px-12 xl:px-24" />
       </div>
