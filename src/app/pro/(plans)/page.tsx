@@ -34,7 +34,7 @@ export default async function PlansPage() {
           ))}
         </section>
 
-        <section className="mx-auto max-w-7xl px-8 py-12 md:py-20">
+        <section className="mx-auto w-full max-w-7xl px-3 pb-6 md:px-6 lg:px-8">
           <FAQs />
         </section>
       </div>

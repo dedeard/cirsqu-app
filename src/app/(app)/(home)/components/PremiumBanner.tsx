@@ -15,7 +15,7 @@ const PremiumBanner: React.FC<CardProps> = (props) => {
             Discover Our Membership Plans
           </Button>
         </div>
-        <div className="mx-auto w-full max-w-7xl px-8 pb-6">
+        <div className="mx-auto w-full max-w-7xl pb-6 md:px-6 lg:px-8">
           <FAQs />
         </div>
       </CardBody>
