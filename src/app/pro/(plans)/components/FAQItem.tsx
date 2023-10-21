@@ -12,14 +12,14 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, defaultOpen, children, ...p
   return (
     <div className="py-6">
       <button type="button" className="flex w-full items-start justify-between text-left" onClick={() => setIsOpen(!isOpen)}>
-        <span className="text-lg text-white">{question}</span>
-        <span className="ml-6 flex items-center py-1 text-gray-400">
+        <span className="text-lg text-foreground">{question}</span>
+        <span className="ml-6 flex items-center py-1 text-foreground-600">
           {isOpen ? <ArrowUpCircle className="h-6 w-6" /> : <ArrowDownCircle className="h-6 w-6" />}
         </span>
       </button>
       {isOpen && (
         <div className="mt-2 pr-12">
-          <p className="text-gray-400" {...props}>
+          <p className="text-foreground-600" {...props}>
             {children}
           </p>
         </div>

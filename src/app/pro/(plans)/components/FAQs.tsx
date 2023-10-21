@@ -3,8 +3,8 @@ import FAQItem from './FAQItem'
 
 const FAQs: React.FC = () => {
   return (
-    <div className="mx-auto max-w-3xl divide-y divide-slate-800">
-      <h2 className="mb-8 text-center text-2xl tracking-wider text-white md:text-3xl">Frequently asked questions</h2>
+    <div className="mx-auto max-w-3xl divide-y divide-divider">
+      <h2 className="mb-8 text-center text-2xl tracking-wider md:text-3xl">Frequently asked questions</h2>
       <FAQItem defaultOpen question="What does a premium membership give me?">
         Completely unlimited access to everything! Once you're signed up, you'll be able to watch the entire library of content, and all
         future content.

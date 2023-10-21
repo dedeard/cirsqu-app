@@ -28,10 +28,10 @@ const MainMenu: React.FC = () => {
   return (
     <>
       <Button as={Link} href="/sign-in" variant="flat" className="mr-3 hidden md:flex">
-        Masuk
+        Sign In
       </Button>
       <Button as={Link} href="/sign-up" color="primary">
-        Buat Akun
+        Create Your Account
       </Button>
     </>
   )

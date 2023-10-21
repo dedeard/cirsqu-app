@@ -5,7 +5,7 @@ import Subjects from './components/Subjects'
 
 export const dynamic = 'force-static'
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <Jumbotron className="mb-20" />
