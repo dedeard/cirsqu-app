@@ -56,4 +56,33 @@ declare global {
       unit_amount_decimal: string
     }
   }
+
+  interface ISubject {
+    id: string
+    name: string
+    slug: string
+    description: string
+    lessonCount?: number
+  }
+
+  interface IAEpisode {
+    episodeId: string
+    title: string
+    index: string
+    premium: string
+    seconds: number
+  }
+
+  interface IALesson {
+    objectID: string
+    slug: string
+    title: string
+    description: string
+    seconds: number
+    subjects: {
+      name: string
+      slug: string
+    }[]
+    episodes: IAEpisode[]
+  }
 }

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Button } from '@nextui-org/react'
 import LessonList from '../../components/LessonList'
 
-const Latest: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => {
+const Latest: React.FC<React.HTMLAttributes<HTMLDivElement> & { lessons: IALesson[] }> = ({ lessons, ...props }) => {
   return (
     <div {...props}>
       <h2 className="relative mb-12 text-4xl font-bold">
@@ -14,9 +14,9 @@ const Latest: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => {
       </h2>
 
       <ul className="my-8 grid grid-cols-1 gap-3">
-        {Array.from(Array(5).keys()).map((i) => (
-          <li key={i}>
-            <LessonList />
+        {lessons.map((lesson) => (
+          <li key={lesson.slug}>
+            <LessonList lesson={lesson} />
           </li>
         ))}
       </ul>
