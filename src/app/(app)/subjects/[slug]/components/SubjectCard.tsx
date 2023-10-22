@@ -3,7 +3,7 @@ import React from 'react'
 import { Card, CardBody, CardProps, Chip } from '@nextui-org/react'
 import { BookOpen } from 'react-feather'
 
-const SubjectCard: React.FC<CardProps & { subject: ISubject }> = ({ subject, className, ...props }) => {
+const SubjectCard: React.FC<CardProps & { subject: IASubject }> = ({ subject, className, ...props }) => {
   return (
     <Card className={className + ' mb-3'} {...props}>
       <CardBody className="background-animate relative z-10 bg-gradient-to-br from-white/70 via-primary/50 to-primary dark:from-black/70 dark:via-primary/50 dark:to-black/70">

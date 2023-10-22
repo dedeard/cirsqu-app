@@ -57,8 +57,8 @@ declare global {
     }
   }
 
-  interface ISubject {
-    id: string
+  interface IASubject {
+    subjectId: string
     name: string
     slug: string
     description: string
@@ -74,7 +74,7 @@ declare global {
   }
 
   interface IALesson {
-    objectID: string
+    lessonId: string
     slug: string
     title: string
     description: string

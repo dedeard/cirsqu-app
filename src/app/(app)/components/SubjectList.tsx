@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Button, Chip } from '@nextui-org/react'
 import { Book } from 'react-feather'
 
-const SubjectList: React.FC<{ subject: ISubject }> = ({ subject }) => {
+const SubjectList: React.FC<{ subject: IASubject }> = ({ subject }) => {
   return (
     <Button
       as={Link}

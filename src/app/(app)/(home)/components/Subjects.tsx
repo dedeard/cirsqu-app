@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Button } from '@nextui-org/react'
 import SubjectList from '../../components/SubjectList'
 
-const Subjects: React.FC<React.HTMLAttributes<HTMLDivElement> & { subjects: ISubject[] }> = ({ subjects, ...props }) => {
+const Subjects: React.FC<React.HTMLAttributes<HTMLDivElement> & { subjects: IASubject[] }> = ({ subjects, ...props }) => {
   return (
     <div {...props}>
       <h2 className="relative mb-12 text-4xl font-bold">
@@ -15,7 +15,7 @@ const Subjects: React.FC<React.HTMLAttributes<HTMLDivElement> & { subjects: ISub
 
       <ul className="my-8 grid grid-cols-1 gap-3 md:grid-cols-2">
         {subjects.map((subject) => (
-          <li key={subject.id} className="flex">
+          <li key={subject.subjectId} className="flex">
             <SubjectList subject={subject} />
           </li>
         ))}

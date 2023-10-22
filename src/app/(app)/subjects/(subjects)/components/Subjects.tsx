@@ -3,7 +3,7 @@ import React from 'react'
 import { Card, CardBody } from '@nextui-org/react'
 import SubjectList from '../../../components/SubjectList'
 
-const Subjects: React.FC<{ subjects: ISubject[] }> = ({ subjects }) => {
+const Subjects: React.FC<{ subjects: IASubject[] }> = ({ subjects }) => {
   return (
     <>
       <Card className="mb-3">
@@ -20,7 +20,7 @@ const Subjects: React.FC<{ subjects: ISubject[] }> = ({ subjects }) => {
 
       <ul className="mb-3 grid grid-cols-1 gap-3 md:grid-cols-2">
         {subjects.map((subject) => (
-          <li key={subject.id} className="flex">
+          <li key={subject.subjectId} className="flex">
             <SubjectList subject={subject} />
           </li>
         ))}
