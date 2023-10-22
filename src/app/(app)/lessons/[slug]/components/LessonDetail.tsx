@@ -9,7 +9,7 @@ const LessonDetail: React.FC<React.HTMLAttributes<HTMLDivElement> & { descriptio
           About this lesson
         </span>
       </h2>
-      <div className="prose w-full max-w-full text-foreground" dangerouslySetInnerHTML={{ __html: description }} />
+      <div className="prose w-full max-w-full dark:prose-invert" dangerouslySetInnerHTML={{ __html: description }} />
     </div>
   )
 }

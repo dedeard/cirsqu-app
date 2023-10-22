@@ -68,8 +68,8 @@ declare global {
   interface IAEpisode {
     episodeId: string
     title: string
-    index: string
-    premium: string
+    index: number
+    premium: boolean
     seconds: number
   }
 
@@ -79,6 +79,7 @@ declare global {
     title: string
     description: string
     seconds: number
+    createdAt: number
     subjects: {
       name: string
       slug: string
