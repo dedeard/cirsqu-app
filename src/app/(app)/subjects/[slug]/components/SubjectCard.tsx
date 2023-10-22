@@ -3,16 +3,16 @@ import React from 'react'
 import { Card, CardBody, CardProps, Chip } from '@nextui-org/react'
 import { BookOpen } from 'react-feather'
 
-const SubjectCard: React.FC<CardProps> = ({ className, ...props }) => {
+const SubjectCard: React.FC<CardProps & { subject: ISubject }> = ({ subject, className, ...props }) => {
   return (
     <Card className={className + ' mb-3'} {...props}>
       <CardBody className="background-animate relative z-10 bg-gradient-to-br from-white/70 via-primary/50 to-primary dark:from-black/70 dark:via-primary/50 dark:to-black/70">
         <div className="flex flex-col py-6 md:py-12">
           <Chip color="primary">
-            <span className="font-semibold">19 lessons</span>
+            <span className="font-semibold">{subject.lessonCount} lessons</span>
           </Chip>
-          <h1 className="my-3 text-2xl font-bold lg:text-3xl">Livewire</h1>
-          <p className="max-w-lg text-sm md:text-base">A full-stack framework for Laravel that makes building dynamic interfaces simple.</p>
+          <h1 className="my-3 text-2xl font-bold lg:text-3xl">{subject.name}</h1>
+          <p className="max-w-lg text-sm md:text-base">{subject.description}</p>
         </div>
       </CardBody>
       <div className="absolute right-0 top-1/2 z-0 -translate-y-1/2 text-[50vw] opacity-50 md:text-[30vw]">

@@ -1,20 +1,50 @@
 'use client'
 import React from 'react'
-import { Pagination } from '@nextui-org/react'
+import { Button } from '@nextui-org/react'
 import LessonList from '../../../components/LessonList'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { ArrowLeft, ArrowRight } from 'react-feather'
 
-const Lessons = () => {
+const Lessons: React.FC<{ totalPage: number; page: number; lessons: IALesson[] }> = ({ lessons, totalPage, page }) => {
+  const pathname = usePathname()
+
   return (
     <>
       <ul className="mb-3 grid grid-cols-1 gap-3">
-        {Array.from(Array(10).keys()).map((i) => (
-          <li key={i}>
-            <LessonList />
+        {lessons.map((lesson) => (
+          <li key={lesson.objectID}>
+            <LessonList lesson={lesson} />
           </li>
         ))}
       </ul>
 
-      <Pagination total={10} initialPage={1} />
+      {totalPage > 1 && (
+        <div className="flex justify-between">
+          <Button
+            size="lg"
+            variant="flat"
+            className="uppercase"
+            as={page <= 1 ? 'span' : Link}
+            href={`${pathname}${page > 2 ? '?page=' + (page - 1) : ''}`}
+            isDisabled={page <= 1}
+            startContent={<ArrowLeft />}
+          >
+            Prev <span className="hidden md:inline">Page</span>
+          </Button>
+          <Button
+            size="lg"
+            variant="flat"
+            className="uppercase"
+            as={page >= totalPage ? 'span' : Link}
+            href={`${pathname}?page=${page + 1}`}
+            isDisabled={page >= totalPage}
+            endContent={<ArrowRight />}
+          >
+            Next <span className="hidden md:inline">Page</span>
+          </Button>
+        </div>
+      )}
     </>
   )
 }

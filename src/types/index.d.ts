@@ -62,7 +62,7 @@ declare global {
     name: string
     slug: string
     description: string
-    lessonCount?: number
+    lessonCount: number
   }
 
   interface IAEpisode {
