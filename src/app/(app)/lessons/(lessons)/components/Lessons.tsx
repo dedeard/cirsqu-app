@@ -3,7 +3,7 @@ import React from 'react'
 import { Card, CardBody, Pagination } from '@nextui-org/react'
 import LessonList from '../../../components/LessonList'
 
-const Lessons = () => {
+const Lessons: React.FC<{ totalPage: number; page: number; lessons: IALesson[] }> = ({ lessons, totalPage, page }) => {
   return (
     <>
       <Card className="mb-3">
@@ -19,9 +19,9 @@ const Lessons = () => {
       </Card>
 
       <ul className="mb-3 grid grid-cols-1 gap-3">
-        {Array.from(Array(10).keys()).map((i) => (
-          <li key={i}>
-            <LessonList />
+        {lessons.map((lesson) => (
+          <li key={lesson.objectID}>
+            <LessonList lesson={lesson} />
           </li>
         ))}
       </ul>

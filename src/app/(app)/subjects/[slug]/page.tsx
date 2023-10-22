@@ -1,9 +1,11 @@
 import SubjectCard from './components/SubjectCard'
-import Lessons from './components/Lessons'
 import { lessonIndex } from '@/utils/algolia'
 import { collection, getDocsFromServer, query, where } from 'firebase/firestore'
 import { db } from '@/utils/firebase'
 import { notFound } from 'next/navigation'
+import Pagination from '../../components/Pagination'
+import LessonList from '../../components/LessonList'
+import parsePaginationPage from '@/utils/parse-pagination-page'
 
 type PagePropTypes = {
   params: {
@@ -14,19 +16,11 @@ type PagePropTypes = {
   }
 }
 
-const parsePageFromSearchParams = (page: string = '') => {
-  let parsedPage = parseInt(page)
-  if (isNaN(parsedPage) || parsedPage < 1) {
-    parsedPage = 1
-  }
-  return parsedPage
-}
-
 export default async function Page({ params, searchParams }: PagePropTypes) {
   const snapshot = await getDocsFromServer(query(collection(db, 'subjects'), where('slug', '==', params.slug)))
   if (snapshot.empty) return notFound()
 
-  const page = parsePageFromSearchParams(searchParams.page)
+  const page = parsePaginationPage(searchParams.page)
 
   const { hits, nbPages, facets } = await lessonIndex.search<IALesson>('', {
     facets: ['subjects.slug'],
@@ -48,7 +42,16 @@ export default async function Page({ params, searchParams }: PagePropTypes) {
   return (
     <>
       <SubjectCard subject={subject} />
-      <Lessons lessons={hits} totalPage={nbPages} page={page} />
+
+      <ul className="mb-3 grid grid-cols-1 gap-3">
+        {hits.map((lesson) => (
+          <li key={lesson.objectID}>
+            <LessonList lesson={lesson} />
+          </li>
+        ))}
+      </ul>
+
+      <Pagination totalPage={nbPages} page={page} />
     </>
   )
 }
