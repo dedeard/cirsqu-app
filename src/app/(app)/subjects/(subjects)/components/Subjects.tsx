@@ -1,9 +1,9 @@
 'use client'
 import React from 'react'
-import { Card, CardBody, Pagination } from '@nextui-org/react'
+import { Card, CardBody } from '@nextui-org/react'
 import SubjectList from '../../../components/SubjectList'
 
-const Subjects = () => {
+const Subjects: React.FC<{ subjects: ISubject[] }> = ({ subjects }) => {
   return (
     <>
       <Card className="mb-3">
@@ -19,14 +19,12 @@ const Subjects = () => {
       </Card>
 
       <ul className="mb-3 grid grid-cols-1 gap-3 md:grid-cols-2">
-        {Array.from(Array(10).keys()).map((i) => (
-          <li key={i}>
-            <SubjectList />
+        {subjects.map((subject) => (
+          <li key={subject.id} className="flex">
+            <SubjectList subject={subject} />
           </li>
         ))}
       </ul>
-
-      <Pagination total={4} size="lg" initialPage={1} />
     </>
   )
 }
