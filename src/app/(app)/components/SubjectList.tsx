@@ -3,6 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import { Button, Chip } from '@nextui-org/react'
 import { Book } from 'react-feather'
+import trimTextWithEllipsis from '@/utils/trim-text-with-ellipsis'
 
 const SubjectList: React.FC<{ subject: IASubject }> = ({ subject }) => {
   return (
@@ -18,7 +19,7 @@ const SubjectList: React.FC<{ subject: IASubject }> = ({ subject }) => {
           </Chip>
         </span>
         <h3 className="text-2xl font-bold">{subject.name}</h3>
-        <p className="text-sm">{subject.description}</p>
+        <p className="text-sm">{trimTextWithEllipsis(subject.description, 200)}</p>
       </span>
 
       <div className="absolute right-0 top-1/2 z-0 -translate-y-1/2 text-[30vw] md:text-[23vw] lg:text-[15vw]">
