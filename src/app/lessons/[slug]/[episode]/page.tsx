@@ -1,26 +1,29 @@
-import TitleBar from './components/TitleBar'
 import Main from './components/Main'
-import { unified } from 'unified'
-import remarkParse from 'remark-parse'
-import remarkRehype from 'remark-rehype'
-import rehypeStringify from 'rehype-stringify'
+import { lessonIndex } from '@/utils/algolia'
+import { notFound } from 'next/navigation'
 
-const doc = `
-Volt is a functional API for Livewire that allows you to build Livewire components in a single file, alongside Blade templates. Pairing this with automatic route creation using Laravel Folio gives us a serious productivity boost.
+export default async function Page({ params }: { params: { slug: string; episode: string } }) {
+  let lesson: IALesson
+  try {
+    lesson = await lessonIndex.getObject<IALesson>(params.slug)
+  } catch (error: any) {
+    return notFound()
+  }
 
-So, let’s build a URL shortener while learning how Volt and Folio work!
-`
+  const episodes = lesson.episodes.sort((a, b) => a.index - b.index)
+  const currentEpisode = episodes.find((el) => el.episodeId === params.episode)
 
-export default async function Page({ params }: { params: { episode: string } }) {
-  const file = await unified()
-    .use(remarkParse) // Parse markdown content to a syntax tree
-    .use(remarkRehype) // Turn markdown syntax tree to HTML syntax tree, ignoring embedded HTML
-    .use(rehypeStringify) // Serialize HTML syntax tree
-    .process(doc)
+  if (!currentEpisode) return notFound()
+
+  const lessonData = {
+    title: lesson.title,
+    slug: lesson.slug,
+    subjects: lesson.subjects,
+  } as IALesson
+
   return (
     <>
-      <TitleBar title="Lorem ipsum" slug="slug" />
-      <Main episode={params.episode} about={String(file)} />
+      <Main lesson={lessonData} currentEpisode={currentEpisode} episodes={episodes} />
     </>
   )
 }

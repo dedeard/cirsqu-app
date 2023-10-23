@@ -1,6 +1,10 @@
 import { Timestamp } from 'firebase/firestore'
 
 declare global {
+  interface Window {
+    onYouTubeIframeAPIReady: (() => void) | null
+  }
+
   interface IUser {
     uid: string
     displayName: string | null
@@ -55,6 +59,18 @@ declare global {
       unit_amount: number
       unit_amount_decimal: string
     }
+  }
+
+  interface IEpisode {
+    episodeId: string
+    lessonId: string
+    title: string
+    index: number
+    premium: boolean
+    seconds: number
+    description: string
+    videoId?: string
+    downloadUrl?: string
   }
 
   interface IASubject {
