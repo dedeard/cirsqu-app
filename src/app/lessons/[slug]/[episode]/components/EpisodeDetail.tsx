@@ -28,26 +28,29 @@ const EpisodeDetail: React.FC<PropTypes> = ({ loading, episode, currentEpisode, 
           {String(currentEpisode.index + 1).padStart(2, '0')}. {currentEpisode.title}
         </h1>
       </div>
+      {(loading || episode?.description) && (
+        <>
+          <Divider />
 
-      <Divider />
-
-      <div className="container my-12 max-w-4xl px-3">
-        <h2 className="relative mb-8 text-2xl">
-          <span className="relative before:absolute before:-bottom-2 before:block before:h-1 before:w-3/4 before:rounded-full before:bg-primary before:content-[''] after:absolute after:-bottom-4 after:block after:h-1 after:w-1/2 after:rounded-full after:bg-foreground/50 after:content-['']">
-            Episode overview
-          </span>
-        </h2>
-        {loading && (
-          <div className="flex flex-col items-center justify-center gap-4">
-            {Array.from(Array(8).keys()).map((i) => (
-              <Skeleton key={i} className="block h-3 w-full rounded-full" />
-            ))}
+          <div className="container my-12 max-w-4xl px-3">
+            <h2 className="relative mb-8 text-2xl">
+              <span className="relative before:absolute before:-bottom-2 before:block before:h-1 before:w-3/4 before:rounded-full before:bg-primary before:content-[''] after:absolute after:-bottom-4 after:block after:h-1 after:w-1/2 after:rounded-full after:bg-foreground/50 after:content-['']">
+                {loading ? <Skeleton className="h-[1em] w-1/4 rounded-full" /> : 'Episode overview'}
+              </span>
+            </h2>
+            {loading && (
+              <div className="flex flex-col items-center justify-center gap-4">
+                {Array.from(Array(8).keys()).map((i) => (
+                  <Skeleton key={i} className="block h-3 w-full rounded-full" />
+                ))}
+              </div>
+            )}
+            {!loading && episode?.description && (
+              <Markdown className="prose w-full max-w-full text-foreground/80">{episode.description}</Markdown>
+            )}
           </div>
-        )}
-        {!loading && episode?.description && (
-          <Markdown className="prose w-full max-w-full text-foreground/80">{episode.description}</Markdown>
-        )}
-      </div>
+        </>
+      )}
     </>
   )
 }
