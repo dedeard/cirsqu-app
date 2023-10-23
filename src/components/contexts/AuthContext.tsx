@@ -3,7 +3,6 @@ import React from 'react'
 import { User, onAuthStateChanged } from 'firebase/auth'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { auth, db } from '@/utils/firebase'
-import isPremium from '@/utils/is-premium'
 import { useRouter } from 'next/navigation'
 
 interface AuthContextProps {
@@ -29,7 +28,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [profile, setProfile] = React.useState<IProfile | null>(null)
   const [initLoading, setInitLoading] = React.useState(true)
   const [loading, setLoading] = React.useState(true)
-  const [premium, setPremium] = React.useState(false)
 
   React.useEffect(() => {
     return onAuthStateChanged(auth, (user) => {
@@ -42,7 +40,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   React.useEffect(() => {
     if (!user) {
       setProfile(null)
-      setPremium(false)
       return
     }
 
@@ -51,17 +48,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (snapshot.exists()) {
         const profile = snapshot.data() as IProfile
         setProfile(snapshot.data() as IProfile)
-        setPremium(isPremium(profile.subscription))
       } else {
         setProfile(null)
-        setPremium(false)
       }
       setInitLoading(false)
       setLoading(false)
     })
   }, [user])
 
-  return <AuthContext.Provider value={{ user, profile, premium, initLoading, loading, setLoading }}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={{ user, profile, premium: !!profile?.premium, initLoading, loading, setLoading }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 interface UseAuthRedirectOptions {
