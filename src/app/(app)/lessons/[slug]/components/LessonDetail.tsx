@@ -1,5 +1,5 @@
-'use client'
 import React from 'react'
+import Markdown from 'react-markdown'
 
 const LessonDetail: React.FC<React.HTMLAttributes<HTMLDivElement> & { description: string }> = ({ description, ...props }) => {
   return (
@@ -9,7 +9,7 @@ const LessonDetail: React.FC<React.HTMLAttributes<HTMLDivElement> & { descriptio
           About this lesson
         </span>
       </h2>
-      <div className="prose w-full max-w-full dark:prose-invert" dangerouslySetInnerHTML={{ __html: description }} />
+      <Markdown className="prose w-full max-w-full dark:prose-invert">{description}</Markdown>
     </div>
   )
 }
