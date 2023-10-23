@@ -6,10 +6,11 @@ import Markdown from 'react-markdown'
 type PropTypes = {
   lesson: IALesson
   episode?: IEpisode
+  currentEpisode: IAEpisode
   loading: boolean
 }
 
-const EpisodeDetail: React.FC<PropTypes> = ({ loading, episode, lesson }) => {
+const EpisodeDetail: React.FC<PropTypes> = ({ loading, episode, currentEpisode, lesson }) => {
   return (
     <>
       <div className="container my-12 max-w-4xl px-3">
@@ -23,8 +24,8 @@ const EpisodeDetail: React.FC<PropTypes> = ({ loading, episode, lesson }) => {
         <div className="my-3">
           <span className="text-lg font-light text-foreground/80">{lesson.title}</span>
         </div>
-        <h1 className="text-4xl">
-          {String((episode?.index || 0) + 1).padStart(2, '0')}. {episode?.title}
+        <h1 className="text-2xl md:text-3xl lg:text-4xl">
+          {String(currentEpisode.index + 1).padStart(2, '0')}. {currentEpisode.title}
         </h1>
       </div>
 
@@ -36,9 +37,13 @@ const EpisodeDetail: React.FC<PropTypes> = ({ loading, episode, lesson }) => {
             Episode overview
           </span>
         </h2>
-        <div className="flex flex-col items-center justify-center">
-          <Skeleton className="h-4" />
-        </div>
+        {loading && (
+          <div className="flex flex-col items-center justify-center gap-4">
+            {Array.from(Array(8).keys()).map((i) => (
+              <Skeleton key={i} className="block h-3 w-full rounded-full" />
+            ))}
+          </div>
+        )}
         {!loading && episode?.description && (
           <Markdown className="prose w-full max-w-full text-foreground/80">{episode.description}</Markdown>
         )}

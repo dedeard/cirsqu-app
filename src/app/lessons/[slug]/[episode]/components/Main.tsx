@@ -21,7 +21,7 @@ const Main: React.FC<PropTypes> = ({ currentEpisode, episodes, lesson }) => {
 
       <MainPlaylist episodes={episodes} {...useEpisodeData} />
 
-      <EpisodeDetail lesson={lesson} episode={useEpisodeData.episode} loading={useEpisodeData.loading} />
+      <EpisodeDetail lesson={lesson} currentEpisode={currentEpisode} episode={useEpisodeData.episode} loading={useEpisodeData.loading} />
 
       <Comments />
     </>
