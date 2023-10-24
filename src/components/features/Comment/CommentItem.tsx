@@ -80,10 +80,14 @@ const CommentItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
                 <button disabled={isLikeActionInProgress} onClick={toggleLikeStatusForComment}>
                   {isCommentLikedByUser ? 'Unlike' : 'Like'} {comment.likes.length}
                 </button>
-                <button onClick={() => setOpenEdit(true)}>Edit</button>
-                <button className="text-danger" onClick={() => setDeleteQueue(comment)}>
-                  Delete
-                </button>
+                {author.objectID === user?.uid && (
+                  <>
+                    <button onClick={() => setOpenEdit(true)}>Edit</button>
+                    <button className="text-danger" onClick={() => setDeleteQueue(comment)}>
+                      Delete
+                    </button>
+                  </>
+                )}
               </div>
             </>
           )}
