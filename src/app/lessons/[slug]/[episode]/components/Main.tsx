@@ -4,7 +4,8 @@ import useEpisode from '../hooks/useEpisode'
 import TitleBar from './TitleBar'
 import MainPlaylist from './MainPlaylist'
 import EpisodeDetail from './EpisodeDetail'
-import Comments from './Comments'
+import Comment from '@/components/features/Comment'
+import { Divider } from '@nextui-org/react'
 
 type PropTypes = {
   currentEpisode: IAEpisode
@@ -23,7 +24,17 @@ const Main: React.FC<PropTypes> = ({ currentEpisode, episodes, lesson }) => {
 
       <EpisodeDetail lesson={lesson} currentEpisode={currentEpisode} episode={useEpisodeData.episode} loading={useEpisodeData.loading} />
 
-      <Comments />
+      <Divider />
+
+      <div className="container my-12 max-w-4xl px-3">
+        <h2 className="relative mb-8 text-2xl">
+          <span className="relative before:absolute before:-bottom-2 before:block before:h-1 before:w-3/4 before:rounded-full before:bg-primary before:content-[''] after:absolute after:-bottom-4 after:block after:h-1 after:w-1/2 after:rounded-full after:bg-foreground/50 after:content-['']">
+            Comments
+          </span>
+        </h2>
+
+        <Comment targetId={currentEpisode.episodeId} targetType="episode" />
+      </div>
     </>
   )
 }

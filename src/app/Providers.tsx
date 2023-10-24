@@ -5,6 +5,7 @@ import { AppProgressBar as ProgressBar } from 'next-nprogress-bar'
 import { LayoutProvider } from '@/components/contexts/LayoutContext'
 import { MountProvider } from '@/components/contexts/MountContext'
 import { AuthProvider } from '@/components/contexts/AuthContext'
+import { ProfilesProvider } from '@/components/contexts/ProfilesContext'
 import { Toaster } from 'react-hot-toast'
 import colors from 'tailwindcss/colors'
 
@@ -17,7 +18,9 @@ const AppProviders: React.FC<{ children: React.ReactNode }> = ({ children }) => 
         <NextThemesProvider attribute="class" defaultTheme="dark">
           <MountProvider>
             <AuthProvider>
-              <LayoutProvider>{children}</LayoutProvider>
+              <ProfilesProvider>
+                <LayoutProvider>{children}</LayoutProvider>
+              </ProfilesProvider>
             </AuthProvider>
           </MountProvider>
         </NextThemesProvider>

@@ -102,4 +102,24 @@ declare global {
     }[]
     episodes: IAEpisode[]
   }
+
+  interface IAProfile {
+    objectID: string
+    name: string
+    username: string
+    avatar: string
+    premium: boolean
+  }
+
+  interface IComment {
+    commentId: string
+    userId: string
+    targetId: string
+    targetType: string
+    body: string
+    likes: string[]
+    author: IAProfile
+    updatedAt?: Timestamp
+    createdAt: Timestamp
+  }
 }
