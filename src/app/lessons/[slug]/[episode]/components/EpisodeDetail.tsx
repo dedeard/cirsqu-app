@@ -1,7 +1,7 @@
 import React from 'react'
 import { Chip, Skeleton } from '@nextui-org/react'
 import Link from 'next/link'
-import Markdown from 'react-markdown'
+import DescriptionMarkdown from '@/components/elements/DescriptionMarkdown'
 
 type PropTypes = {
   lesson: IALesson
@@ -38,7 +38,7 @@ const EpisodeDetail: React.FC<PropTypes> = ({ loading, episode, currentEpisode, 
       )}
 
       {!loading && episode?.description && (
-        <Markdown className="prose prose-sm prose-invert w-full max-w-full">{episode.description}</Markdown>
+        <DescriptionMarkdown className="prose prose-sm prose-invert w-full max-w-full">{episode.description}</DescriptionMarkdown>
       )}
     </div>
   )

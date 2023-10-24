@@ -3,7 +3,6 @@ import { Skeleton } from '@nextui-org/react'
 import CommentForm from '@/components/features/Comment/CommentForm'
 import CommentList from '@/components/features/Comment/CommentList'
 import useComments from '@/components/features/Comment/useComments'
-import 'highlight.js/styles/github-dark.min.css'
 
 const Comments: React.FC<{ episodeId: string }> = ({ episodeId }) => {
   const { comments, total, isLoading } = useComments({ targetType: 'episode', targetId: episodeId })

@@ -1,5 +1,5 @@
 import React from 'react'
-import Markdown from 'react-markdown'
+import DescriptionMarkdown from '@/components/elements/DescriptionMarkdown'
 
 const LessonDetail: React.FC<React.HTMLAttributes<HTMLDivElement> & { description: string }> = ({ description, ...props }) => {
   return (
@@ -9,7 +9,7 @@ const LessonDetail: React.FC<React.HTMLAttributes<HTMLDivElement> & { descriptio
           About this lesson
         </span>
       </h2>
-      <Markdown className="prose w-full max-w-full dark:prose-invert">{description}</Markdown>
+      <DescriptionMarkdown className="prose w-full max-w-full dark:prose-invert">{description}</DescriptionMarkdown>
     </div>
   )
 }

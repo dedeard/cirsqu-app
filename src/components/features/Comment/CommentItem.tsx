@@ -72,9 +72,7 @@ const CommentItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
             <EditCommentForm comment={comment} onEnd={() => setOpenEdit(false)} />
           ) : (
             <>
-              <CommentMarkdown className="prose prose-sm w-full max-w-full dark:prose-invert prose-pre:my-0 prose-pre:p-0 [&_pre>code]:p-3">
-                {comment.body}
-              </CommentMarkdown>
+              <CommentMarkdown className="prose prose-sm w-full max-w-full dark:prose-invert">{comment.body}</CommentMarkdown>
 
               <div className="flex gap-4 text-xs md:text-sm">
                 <button disabled={isLikeActionInProgress} onClick={toggleLikeStatusForComment}>

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.prose pre {
+  @apply my-0 p-0 [&>code]:p-3;
+}
+
 .chrome-scrollbar::-webkit-scrollbar {
   @apply w-1;
 }
