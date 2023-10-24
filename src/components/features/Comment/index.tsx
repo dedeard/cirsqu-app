@@ -12,7 +12,7 @@ type PropTypes = {
 }
 
 const Comment: React.FC<PropTypes> = ({ targetId, targetType, onTotalChange }) => {
-  const { comments, isLoading } = useComments({ targetId, targetType, onTotalChange })
+  const { comments, total, isLoading } = useComments({ targetId, targetType, onTotalChange })
 
   return (
     <>
@@ -35,6 +35,12 @@ const Comment: React.FC<PropTypes> = ({ targetId, targetType, onTotalChange }) =
           </li>
         ))}
       </ul>
+
+      {!isLoading && total <= 0 && (
+        <p className="p-3 text-center text-lg font-light tracking-wider">
+          There are no comments for this content yet. Be the first to share your thoughts! :)
+        </p>
+      )}
     </>
   )
 }
