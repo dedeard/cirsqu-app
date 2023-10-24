@@ -26,7 +26,8 @@ export const ProfilesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         const loadedProfileIds = profiles.map((profile) => profile.objectID)
 
         // Determine which IDs need to be fetched
-        const idsToFetch = userIds.filter((id) => !loadedProfileIds.includes(id))
+        const uniqueUserIds = userIds.filter((item, index) => userIds.indexOf(item) === index)
+        const idsToFetch = uniqueUserIds.filter((id) => !loadedProfileIds.includes(id))
 
         // Fetch profiles from Algolia
         const data = await profileIndex.getObjects<IAProfile>(idsToFetch)
