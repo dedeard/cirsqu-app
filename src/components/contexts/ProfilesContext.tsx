@@ -29,22 +29,26 @@ export const ProfilesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         const uniqueUserIds = userIds.filter((item, index) => userIds.indexOf(item) === index)
         const idsToFetch = uniqueUserIds.filter((id) => !loadedProfileIds.includes(id))
 
-        // Fetch profiles from Algolia
-        const data = await profileIndex.getObjects<IAProfile>(idsToFetch)
+        let newProfiles: IAProfile[]
 
-        // Filter out any null or undefined profiles
-        const fetchedProfiles = data.results.filter(Boolean) as IAProfile[]
+        if (idsToFetch.length > 0) {
+          // Fetch profiles from Algolia
+          const data = await profileIndex.getObjects<IAProfile>(idsToFetch)
 
-        // Add new profiles to existing profiles
-        const newProfiles = [...profiles, ...fetchedProfiles]
-        setProfiles(profiles)
+          // Filter out any null or undefined profiles
+          const fetchedProfiles = data.results.filter(Boolean) as IAProfile[]
 
-        // Return all profile
+          newProfiles = [...profiles, ...fetchedProfiles]
+          setProfiles(newProfiles)
+        } else {
+          newProfiles = profiles
+        }
+
+        setLoading(false)
         return newProfiles
       } catch (err: any) {
-        throw err
-      } finally {
         setLoading(false)
+        throw err
       }
     },
     [profiles],

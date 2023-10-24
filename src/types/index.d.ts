@@ -118,7 +118,6 @@ declare global {
     targetType: string
     body: string
     likes: string[]
-    author: IAProfile
     updatedAt?: Timestamp
     createdAt: Timestamp
   }

@@ -1,21 +1,28 @@
 import { useAuth } from '@/components/contexts/AuthContext'
+import { useProfiles } from '@/components/contexts/ProfilesContext'
 import Avatar from '@/components/elements/Avatar'
 import clientFetch from '@/utils/client-fetch'
-import { db } from '@/utils/firebase'
-import { Button } from '@nextui-org/react'
-import cn from 'classnames'
-import { deleteDoc, doc } from 'firebase/firestore'
 import moment from 'moment'
 import React from 'react'
-import { Heart, Trash } from 'react-feather'
 import toast from 'react-hot-toast'
-import Markdown from 'react-markdown'
+import CommentMarkdown from './CommentMarkdown'
+import EditCommentForm from './EditCommentForm'
 
-const CommentItem: React.FC<{ comment: IComment }> = ({ comment }) => {
+type PropTypes = {
+  comment: IComment
+  setDeleteQueue: (comment: IComment) => void
+}
+
+const CommentItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
   const { user } = useAuth()
-  const isCommentLikedByUser = user && comment.likes.includes(user.uid)
+  const { profiles } = useProfiles()
+  const [openEdit, setOpenEdit] = React.useState(false)
   const [isLikeActionInProgress, setLikeActionInProgress] = React.useState(false)
-  const [isDeleteActionInProgress, setDeleteActionInProgress] = React.useState(false)
+
+  const author = profiles.find((el) => el.objectID === comment.userId)
+  if (!author) return null
+
+  const isCommentLikedByUser = user && comment.likes.includes(user.uid)
 
   const handleLikeComment = async () => {
     const response = await clientFetch(`comments/${comment.commentId}/like`, { method: 'POST' })
@@ -44,58 +51,45 @@ const CommentItem: React.FC<{ comment: IComment }> = ({ comment }) => {
     setLikeActionInProgress(false)
   }
 
-  const handleDeleteComment = async () => {
-    setDeleteActionInProgress(true)
-
-    try {
-      await deleteDoc(doc(db, 'comments', comment.commentId))
-      toast.success('Comment deleted successfully!')
-    } catch (error: any) {
-      toast.error(`Failed to delete the comment. Error message: ${error.message}`)
-    }
-    setDeleteActionInProgress(false)
-  }
-
   return (
-    <>
-      <div className="pr-5">
-        <Avatar name={comment.author.name} premium={comment.author.premium} file={comment.author.avatar} className="h-12 w-12" />
+    <li className="relative w-full">
+      <div className="absolute">
+        <Avatar name={author.name} premium={author.premium} file={author.avatar} className="h-10 w-10 md:h-12 md:w-12" />
       </div>
-      <div className="flex flex-1 flex-col justify-center">
-        <div className="h-12">
-          <span className="block">
-            {comment.author.name} <small className="text-xs text-foreground/60">@{comment.author.username}</small>
-          </span>
-          <span className="block text-xs text-foreground/60">{moment(comment.createdAt.toDate()).fromNow()}</span>
-        </div>
+      <div className="flex w-full flex-col gap-4 pl-14 md:pl-16">
+        <div className="flex w-full flex-col gap-4">
+          <div className="flex flex-col">
+            <span className="block text-sm md:text-base">
+              {author.name} <small className="text-xs opacity-80">@{author.username}</small>
+            </span>
+            <span className="block text-xs opacity-80">
+              {moment(comment.createdAt.toDate()).fromNow()}{' '}
+              {comment.updatedAt && <>| edited {moment(comment.updatedAt.toDate()).fromNow()}</>}
+            </span>
+          </div>
 
-        <Markdown className="prose mb-3 w-full max-w-full text-sm text-foreground/60">{comment.body}</Markdown>
+          {openEdit ? (
+            <EditCommentForm comment={comment} onEnd={() => setOpenEdit(false)} />
+          ) : (
+            <>
+              <CommentMarkdown className="prose prose-sm w-full max-w-full dark:prose-invert prose-pre:my-0 prose-pre:p-0 [&_pre>code]:p-3">
+                {comment.body}
+              </CommentMarkdown>
 
-        <div className="flex justify-end gap-3">
-          {user?.uid === comment.userId && (
-            <Button
-              isIconOnly
-              variant="light"
-              color="danger"
-              radius="full"
-              isLoading={isDeleteActionInProgress}
-              onClick={handleDeleteComment}
-            >
-              <Trash size={18} />
-            </Button>
+              <div className="flex gap-4 text-xs md:text-sm">
+                <button disabled={isLikeActionInProgress} onClick={toggleLikeStatusForComment}>
+                  {isCommentLikedByUser ? 'Unlike' : 'Like'} {comment.likes.length}
+                </button>
+                <button onClick={() => setOpenEdit(true)}>Edit</button>
+                <button className="text-danger" onClick={() => setDeleteQueue(comment)}>
+                  Delete
+                </button>
+              </div>
+            </>
           )}
-          <Button
-            startContent={<Heart size={18} className={cn(isCommentLikedByUser && 'fill-danger text-danger')} />}
-            variant="light"
-            radius="full"
-            isLoading={isLikeActionInProgress}
-            onClick={toggleLikeStatusForComment}
-          >
-            {comment.likes.length}
-          </Button>
         </div>
       </div>
-    </>
+    </li>
   )
 }
 

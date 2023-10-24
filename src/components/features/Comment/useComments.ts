@@ -6,16 +6,16 @@ import { useProfiles } from '@/components/contexts/ProfilesContext'
 type Options = {
   targetId: string
   targetType: string
-  onTotalChange?: (total: number) => void
 }
 
-const useComments = ({ targetId, targetType, onTotalChange }: Options) => {
+const useComments = ({ targetId, targetType }: Options) => {
   const { fetchProfiles } = useProfiles()
   const [isLoading, setIsLoading] = React.useState(true)
   const [comments, setComments] = React.useState<IComment[]>([])
 
   React.useEffect(() => {
     setIsLoading(true)
+
     const q = query(
       collection(db, 'comments'),
       orderBy('createdAt', 'desc'),
@@ -24,7 +24,7 @@ const useComments = ({ targetId, targetType, onTotalChange }: Options) => {
     )
 
     return onSnapshot(q, async (snapshots) => {
-      const rawComments = snapshots.docs
+      const comments = snapshots.docs
         .map((snapshot) => {
           if (snapshot.exists()) {
             return {
@@ -35,25 +35,14 @@ const useComments = ({ targetId, targetType, onTotalChange }: Options) => {
         })
         .filter(Boolean) as IComment[]
 
-      const profiles = await fetchProfiles(rawComments.map((el) => el.userId))
-
-      const comments = rawComments
-        .map((comment) => {
-          const author = profiles.find((profile) => profile.objectID === comment.userId)
-          if (author) {
-            return {
-              ...comment,
-              author,
-            }
-          }
-        })
-        .filter(Boolean) as IComment[]
+      await fetchProfiles(comments.map((el) => el.userId))
 
       setComments(comments)
-      onTotalChange?.(comments.length)
       setIsLoading(false)
     })
-  }, [targetType, targetId, fetchProfiles, onTotalChange])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [targetType, targetId])
 
   return { comments, isLoading, total: comments.length }
 }
