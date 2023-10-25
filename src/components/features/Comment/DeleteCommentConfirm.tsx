@@ -1,9 +1,8 @@
 import React from 'react'
-import { Modal, ModalContent, ModalBody, ModalFooter, Button, useDisclosure } from '@nextui-org/react'
-import { deleteDoc, doc } from 'firebase/firestore'
-import { db } from '@/utils/firebase'
+import { Modal, ModalContent, ModalBody, Button } from '@nextui-org/react'
 import toast from 'react-hot-toast'
 import { XCircle } from 'react-feather'
+import clientFetch from '@/utils/client-fetch'
 
 type PropTypes = {
   comment: IComment | null
@@ -18,7 +17,12 @@ const DeleteCommentConfirm: React.FC<PropTypes> = ({ comment, setDeleteQueue }) 
     setIsLoading(true)
 
     try {
-      await deleteDoc(doc(db, 'comments', comment.commentId))
+      const response = await clientFetch(`comments/${comment.commentId}`, { method: 'DELETE' })
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.message || 'An unexpected error occurred.')
+      }
+
       toast.success('The comment has been deleted successfully.')
     } catch (error: any) {
       toast.error(`Oops! The comment could not be deleted. Error: ${error.message}`)
