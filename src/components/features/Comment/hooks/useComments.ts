@@ -42,7 +42,7 @@ const useComments = ({ targetId, targetType }: Options) => {
     })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [targetType, targetId])
+  }, [])
 
   return { comments, isLoading, total: comments.length }
 }
