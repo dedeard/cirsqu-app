@@ -24,7 +24,13 @@ const CommentItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
   const { isActionInProgress, toggleLikeStatusForComment } = useCommentActions(comment.commentId, !!isCommentLikedByUser)
 
   React.useEffect(() => {
-    setOpenEdit(false)
+    if (openReplies) {
+      setOpenReplies(false)
+      setTimeout(() => {
+        setOpenReplies(true)
+      }, 100)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [author, comment])
 
   if (!author) return null
