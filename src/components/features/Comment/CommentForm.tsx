@@ -1,71 +1,55 @@
 import React from 'react'
 import { Button, Textarea } from '@nextui-org/react'
-import * as yup from 'yup'
-import { useFormik } from 'formik'
-import toast from 'react-hot-toast'
-import clientFetch from '@/utils/client-fetch'
 import { CommentFormSkeleton } from './Skeletons'
+import useCommentForm from './hooks/useCommentForm'
 
 type PropTypes = {
   targetId: string
-  targetType: 'episode'
+  targetType: 'episode' | 'reply'
+  initialBody?: string
   isLoading?: boolean
+  className?: string
+  onEnd?: () => void
+  mode?: 'edit' | 'create'
 }
 
-const CommentForm: React.FC<PropTypes> = ({ targetId, targetType, isLoading }) => {
-  const [loading, setLoading] = React.useState(false)
+const CommentForm: React.FC<PropTypes> = ({ mode = 'create', targetId, targetType, isLoading, className, initialBody, onEnd }) => {
+  const formCreate = useCommentForm(mode, { targetId, targetType, initialBody, onEnd })
 
-  const handleFormSubmit = async ({ body }: { body: string }) => {
-    setLoading(true)
+  const isReply = targetType === 'reply'
+  const placeholderText = mode === 'create' ? 'Share your thoughts or ask a question' : 'Edit your comment'
+  const buttonText = mode === 'create' ? 'Post' : 'Edit'
 
-    try {
-      const response = await clientFetch('comments', { method: 'POST', data: { body, targetId, targetType } })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.message || 'An unexpected error occurred.')
-      }
-
-      formik.resetForm()
-      toast.success('Your comment has been posted successfully!')
-    } catch (error: any) {
-      toast.error(`Failed to post your comment. Error message: ${error.message}`)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const formik = useFormik({
-    initialValues: {
-      body: '',
-    },
-    onSubmit: handleFormSubmit,
-    validationSchema: yup.object().shape({
-      body: yup.string().min(20).max(3000).required(),
-    }),
-  })
-
-  if (isLoading) return <CommentFormSkeleton />
+  if (isLoading) return <CommentFormSkeleton className={className} isReply={isReply} />
 
   return (
-    <form className="mb-10 mt-5" onSubmit={formik.handleSubmit}>
+    <form className={className} onSubmit={formCreate.handleSubmit}>
       <Textarea
-        className="mb-3"
+        className={isReply ? undefined : 'mb-3'}
         classNames={{ label: 'hidden' }}
         variant="flat"
         maxRows={120}
-        minRows={5}
+        minRows={isReply ? 2 : 5}
         name="body"
-        placeholder="Enter markdown comment"
-        value={formik.values.body}
-        errorMessage={formik.errors.body}
-        onBlur={formik.handleBlur}
-        onChange={formik.handleChange}
+        size={isReply ? 'sm' : undefined}
+        placeholder={`${placeholderText}... (Markdown supported)`}
+        value={formCreate.values.body}
+        errorMessage={formCreate.errors.body}
+        onBlur={formCreate.handleBlur}
+        onChange={formCreate.handleChange}
       />
 
-      <Button type="submit" color="primary" className="w-36" isLoading={loading}>
-        {!loading && 'Post Comment'}
-      </Button>
+      <div className={isReply ? 'flex justify-end' : undefined}>
+        <Button
+          type="submit"
+          color="primary"
+          size={isReply ? 'sm' : undefined}
+          className={isReply ? 'w-28' : 'w-36'}
+          isLoading={formCreate.isSubmitting}
+        >
+          {!formCreate.isSubmitting && (isReply ? `${buttonText} Reply` : `${buttonText} Comment`)}
+        </Button>
+      </div>
     </form>
   )
 }

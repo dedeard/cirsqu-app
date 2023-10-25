@@ -2,7 +2,7 @@ import React from 'react'
 import { Skeleton } from '@nextui-org/react'
 import CommentForm from '@/components/features/Comment/CommentForm'
 import CommentList from '@/components/features/Comment/CommentList'
-import useComments from '@/components/features/Comment/useComments'
+import useComments from '@/components/features/Comment/hooks/useComments'
 
 const Comments: React.FC<{ episodeId: string }> = ({ episodeId }) => {
   const { comments, total, isLoading } = useComments({ targetType: 'episode', targetId: episodeId })
@@ -19,7 +19,7 @@ const Comments: React.FC<{ episodeId: string }> = ({ episodeId }) => {
           <h2 className="relative text-2xl">Comments {total}</h2>
         )}
 
-        <CommentForm targetType="episode" targetId={episodeId} isLoading={isLoading} />
+        <CommentForm targetType="episode" targetId={episodeId} isLoading={isLoading} className="mb-10 mt-5" />
 
         <CommentList comments={comments} isLoading={isLoading} />
 

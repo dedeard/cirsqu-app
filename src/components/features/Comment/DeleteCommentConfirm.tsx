@@ -1,8 +1,7 @@
 import React from 'react'
 import { Modal, ModalContent, ModalBody, Button } from '@nextui-org/react'
-import toast from 'react-hot-toast'
 import { XCircle } from 'react-feather'
-import clientFetch from '@/utils/client-fetch'
+import useCommentActions from './hooks/useCommentActions'
 
 type PropTypes = {
   comment: IComment | null
@@ -10,24 +9,10 @@ type PropTypes = {
 }
 
 const DeleteCommentConfirm: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
-  const [isLoading, setIsLoading] = React.useState(false)
+  const { isActionInProgress, handleDeleteComment } = useCommentActions(comment?.commentId || '')
 
-  const handleDeleteComment = async () => {
-    if (!comment) return null
-    setIsLoading(true)
-
-    try {
-      const response = await clientFetch(`comments/${comment.commentId}`, { method: 'DELETE' })
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.message || 'An unexpected error occurred.')
-      }
-
-      toast.success('The comment has been deleted successfully.')
-    } catch (error: any) {
-      toast.error(`Oops! The comment could not be deleted. Error: ${error.message}`)
-    }
-    setIsLoading(false)
+  const handleConfirm = async () => {
+    await handleDeleteComment()
     setDeleteQueue(null)
   }
 
@@ -51,13 +36,13 @@ const DeleteCommentConfirm: React.FC<PropTypes> = ({ comment, setDeleteQueue }) 
                     variant="bordered"
                     className="w-32 font-semibold"
                     size="lg"
-                    isDisabled={isLoading}
+                    isDisabled={isActionInProgress}
                     onClick={() => setDeleteQueue(null)}
                   >
                     Cancel
                   </Button>
-                  <Button size="lg" className="w-32 font-semibold" color="danger" isLoading={isLoading} onClick={handleDeleteComment}>
-                    {!isLoading && 'Delete'}
+                  <Button size="lg" className="w-32 font-semibold" color="danger" isLoading={isActionInProgress} onClick={handleConfirm}>
+                    {!isActionInProgress && 'Delete'}
                   </Button>
                 </div>
               </div>

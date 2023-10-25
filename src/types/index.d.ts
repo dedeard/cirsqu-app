@@ -118,6 +118,7 @@ declare global {
     targetType: string
     body: string
     likes: string[]
+    replyCount?: number
     updatedAt?: Timestamp
     createdAt: Timestamp
   }
