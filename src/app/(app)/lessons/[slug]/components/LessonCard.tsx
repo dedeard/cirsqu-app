@@ -37,7 +37,13 @@ const LessonCard: React.FC<CardProps & { lesson: IALesson }> = ({ lesson, classN
           </div>
 
           <div className="flex gap-3">
-            <Button as={Link} href={`/lessons/${lesson.slug}/${lesson.episodes[0]?.episodeId}`} color="primary" className="font-bold">
+            <Button
+              as={Link}
+              href={`/lessons/${lesson.slug}/${lesson.episodes[0]?.episodeId}`}
+              color="primary"
+              className="font-bold"
+              rel="nofollow"
+            >
               Start watching
             </Button>
             <Button variant="light" startContent={<PlusCircle size={18} />} className="font-bold">

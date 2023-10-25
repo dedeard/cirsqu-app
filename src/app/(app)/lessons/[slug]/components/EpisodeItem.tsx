@@ -36,7 +36,11 @@ const EpisodeItem: React.FC<{ episode: IAEpisode }> = ({ episode }) => {
       <Content episode={episode} lock={lock} />
     </span>
   ) : (
-    <Link href={`/lessons/${params.slug}/${episode.episodeId}`} className={`${commonClassNames} bg-content1 hover:bg-content2`}>
+    <Link
+      href={`/lessons/${params.slug}/${episode.episodeId}`}
+      className={`${commonClassNames} bg-content1 hover:bg-content2`}
+      rel="nofollow"
+    >
       <Content episode={episode} lock={lock} />
     </Link>
   )

@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
               variant="flat"
               target="_blank"
               radius="full"
-              rel="noreferrer"
+              rel="noopener noreferrer nofollow"
               aria-label="GitHub"
             >
               <GitHub className="h-[1em]" />
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
               variant="flat"
               target="_blank"
               radius="full"
-              rel="noreferrer"
+              rel="noopener noreferrer nofollow"
               aria-label="Instagram"
             >
               <Instagram className="h-[1em]" />
@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
               variant="flat"
               target="_blank"
               radius="full"
-              rel="noreferrer"
+              rel="noopener noreferrer nofollow"
               aria-label="Linkedin"
             >
               <Linkedin className="h-[1em]" />
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
               variant="flat"
               target="_blank"
               radius="full"
-              rel="noreferrer"
+              rel="noopener noreferrer nofollow"
               aria-label="Website"
             >
               <Globe className="h-[1em]" />
@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
       <Divider />
       <p className="py-6 text-center text-xs">
         © {new Date().getFullYear()} CIRSQU - By{' '}
-        <a href="https://dedeard.my.id" className="underline" target="_blank" rel="noreferrer">
+        <a href="https://dedeard.my.id" className="underline" target="_blank" rel="noopener noreferrer nofollow">
           Dede ariansya
         </a>
       </p>

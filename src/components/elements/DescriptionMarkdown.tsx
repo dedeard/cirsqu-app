@@ -17,7 +17,7 @@ const baseComponents: Partial<Components> = {
   },
   a(props) {
     return (
-      <a href={props.href} title={props.title} target="_blank" rel="noopener">
+      <a href={props.href} title={props.title} target="_blank" rel="noopener noreferrer nofollow">
         {props.children}
       </a>
     )

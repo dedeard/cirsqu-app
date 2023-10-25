@@ -12,14 +12,14 @@ const baseComponents: Partial<Components> = {
   h6: 'p',
   img(props) {
     return (
-      <a href={props.src} title={props.title} target="_blank" rel="noopener">
+      <a href={props.src} title={props.title} target="_blank" rel="noopener noreferrer nofollow">
         {props.alt || props.src}
       </a>
     )
   },
   iframe(props) {
     return (
-      <a href={props.src} title={props.title} target="_blank" rel="noopener">
+      <a href={props.src} title={props.title} target="_blank" rel="noopener noreferrer nofollow">
         {props.about || props.src}
       </a>
     )
@@ -37,7 +37,7 @@ const baseComponents: Partial<Components> = {
   },
   a(props) {
     return (
-      <a href={props.href} title={props.title} target="_blank" rel="noopener">
+      <a href={props.href} title={props.title} target="_blank" rel="noopener noreferrer nofollow">
         {props.children}
       </a>
     )
