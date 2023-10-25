@@ -23,6 +23,10 @@ const CommentItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
   const isCommentLikedByUser = user && comment.likes.includes(user.uid)
   const { isActionInProgress, toggleLikeStatusForComment } = useCommentActions(comment.commentId, !!isCommentLikedByUser)
 
+  React.useEffect(() => {
+    setOpenEdit(false)
+  }, [author, comment])
+
   if (!author) return null
   return (
     <li className="relative w-full">
