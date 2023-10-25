@@ -32,7 +32,7 @@ const SidebarLinks: React.FC = () => {
         ...baseLinks,
         null,
         { href: '/histories', text: 'Histories' },
-        { href: '/watchlist', text: 'Watch List' },
+        { href: '/watchlist', text: 'Watchlist' },
         { href: '/notifications', text: 'Notifications', badge: { color: 'danger', text: 9 } },
         { href: '/account', text: 'My Account' },
       ])
@@ -45,17 +45,27 @@ const SidebarLinks: React.FC = () => {
 
   return (
     <>
-      <Listbox aria-label="Sidebar links" className="p-0 pb-5" as="nav">
+      <Listbox aria-label="Sidebar links" role="navigation" className="p-0 pb-5" as="nav">
         {links.map((link, i) => {
           const active = pathname === link?.href
           if (!link) {
-            return <ListboxItem key={i} as="span" className="pointer-events-none !bg-transparent p-2" textValue="spacer" />
+            return (
+              <ListboxItem
+                key={i}
+                as="span"
+                className="pointer-events-none !bg-transparent p-2"
+                textValue="spacer"
+                role="listitem"
+                aria-hidden="true"
+              />
+            )
           }
           return (
             <ListboxItem
               key={link.href}
               href={link.href}
               as={Link}
+              role="link"
               classNames={{ title: 'font-bold' }}
               className={cn(
                 active && '!bg-content1/75 shadow-medium',
