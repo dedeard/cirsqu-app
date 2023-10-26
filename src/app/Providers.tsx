@@ -8,6 +8,7 @@ import { AuthProvider } from '@/components/contexts/AuthContext'
 import { ProfilesProvider } from '@/components/contexts/ProfilesContext'
 import { Toaster } from 'react-hot-toast'
 import colors from 'tailwindcss/colors'
+import { CollectionsProvider } from '@/components/contexts/CollectionContext'
 
 const AppProviders: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -18,9 +19,11 @@ const AppProviders: React.FC<{ children: React.ReactNode }> = ({ children }) => 
         <NextThemesProvider attribute="class" defaultTheme="dark">
           <MountProvider>
             <AuthProvider>
-              <ProfilesProvider>
-                <LayoutProvider>{children}</LayoutProvider>
-              </ProfilesProvider>
+              <CollectionsProvider>
+                <ProfilesProvider>
+                  <LayoutProvider>{children}</LayoutProvider>
+                </ProfilesProvider>
+              </CollectionsProvider>
             </AuthProvider>
           </MountProvider>
         </NextThemesProvider>

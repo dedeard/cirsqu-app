@@ -122,4 +122,12 @@ declare global {
     updatedAt?: Timestamp
     createdAt: Timestamp
   }
+
+  interface ICollection {
+    collectionId: string
+    userId: string
+    lessonId: string
+    createdAt: Timestamp
+    lesson: IALesson | null
+  }
 }

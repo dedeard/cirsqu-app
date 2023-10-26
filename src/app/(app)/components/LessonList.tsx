@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button, Chip } from '@nextui-org/react'
 import { Clock, Code, Film } from 'react-feather'
 import formatSecond from '@/utils/format-second'
+import ToggleCollection from './ToggleCollection'
 
 const LessonList: React.FC<{ lesson: IALesson }> = ({ lesson }) => {
   return (
@@ -29,9 +30,12 @@ const LessonList: React.FC<{ lesson: IALesson }> = ({ lesson }) => {
         </span>
       </div>
 
-      <Button as={Link} href={`/lessons/${lesson.slug}`} color="primary" className="peer w-28 font-semibold uppercase">
-        Watch
-      </Button>
+      <div className="flex gap-3">
+        <Button as={Link} href={`/lessons/${lesson.slug}`} color="primary" className="peer w-28">
+          Watch
+        </Button>
+        <ToggleCollection lessonId={lesson.lessonId} />
+      </div>
 
       <div className="absolute right-0 top-1/2 z-0 -translate-y-1/2 text-[40vw] transition-transform peer-hover:scale-110 md:text-[30vw] lg:text-[20vw]">
         <div className="flex h-[1.5em] w-[1.5em] rotate-12 items-center justify-center leading-none">

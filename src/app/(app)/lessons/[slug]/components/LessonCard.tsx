@@ -2,9 +2,10 @@
 import React from 'react'
 import Link from 'next/link'
 import { Button, Card, CardBody, CardProps, Chip } from '@nextui-org/react'
-import { Clock, Film, Calendar, Code, PlusCircle } from 'react-feather'
+import { Clock, Film, Calendar, Code } from 'react-feather'
 import moment from 'moment'
 import formatSecond from '@/utils/format-second'
+import ToggleCollection from '../../../components/ToggleCollection'
 
 const LessonCard: React.FC<CardProps & { lesson: IALesson }> = ({ lesson, className, ...props }) => {
   return (
@@ -37,18 +38,10 @@ const LessonCard: React.FC<CardProps & { lesson: IALesson }> = ({ lesson, classN
           </div>
 
           <div className="flex gap-3">
-            <Button
-              as={Link}
-              href={`/lessons/${lesson.slug}/${lesson.episodes[0]?.episodeId}`}
-              color="primary"
-              className="font-bold"
-              rel="nofollow"
-            >
+            <Button as={Link} href={`/lessons/${lesson.slug}/${lesson.episodes[0]?.episodeId}`} color="primary" rel="nofollow">
               Start watching
             </Button>
-            <Button variant="light" startContent={<PlusCircle size={18} />} className="font-bold">
-              Add to watch list
-            </Button>
+            <ToggleCollection lessonId={lesson.lessonId} />
           </div>
         </div>
       </CardBody>
