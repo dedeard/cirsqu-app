@@ -20,8 +20,8 @@ const TitleBar: React.FC<PropTypes> = ({ title, titleAs, isLoading, className, c
         <div className="flex h-12 items-center justify-between">
           {isLoading ? (
             <>
-              <Skeleton className="h-8 w-1/4 rounded-medium" />
-              <Skeleton className="h-10 w-24 rounded-medium" />
+              <Skeleton className="h-8 w-1/4 rounded-medium md:w-1/2" />
+              <Skeleton className="h-8 w-24 rounded-medium" />
             </>
           ) : (
             <>
