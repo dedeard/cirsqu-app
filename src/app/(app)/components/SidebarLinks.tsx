@@ -31,7 +31,6 @@ const SidebarLinks: React.FC = () => {
       setLinks([
         ...baseLinks,
         null,
-        { href: '/histories', text: 'Histories' },
         { href: '/collections', text: 'Collections' },
         { href: '/notifications', text: 'Notifications', badge: { color: 'danger', text: 9 } },
         { href: '/account', text: 'My Account' },
