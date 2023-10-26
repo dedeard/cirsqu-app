@@ -65,15 +65,15 @@ const SidebarLinks: React.FC = () => {
               href={link.href}
               as={Link}
               role="link"
-              classNames={{ title: 'font-bold' }}
               className={cn(
-                active && '!bg-content1/75 shadow-medium',
-                'rounded-medium p-3 data-[hover=true]:bg-content2/70 dark:data-[hover=true]:bg-content1/75',
+                active && 'border-divider !bg-content1/75 dark:border-transparent',
+                !active && 'border-transparent',
+                'rounded-medium border p-3 data-[hover=true]:bg-content2/70 dark:data-[hover=true]:bg-content1/75',
               )}
               endContent={
                 link.badge && (
                   <Chip size="sm" color={link.badge.color} className="absolute right-3 h-5">
-                    <span className="text-xs font-bold">{link.badge.text}</span>
+                    <span className="text-xs font-semibold">{link.badge.text}</span>
                   </Chip>
                 )
               }

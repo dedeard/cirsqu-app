@@ -63,7 +63,7 @@ const Sidebar: React.FC = () => {
 
         <div className="chrome-scrollbar w-full flex-1 overflow-y-auto p-3 lg:mb-0 lg:overflow-visible lg:pl-0 lg:pr-3">
           {!initLoading && profile && (
-            <Card className="mb-3 bg-opacity-75">
+            <Card className="mb-3 border border-divider bg-opacity-75 dark:border-transparent" shadow="none">
               <CardBody className="px-4 py-3">
                 <div className="flex w-full items-center">
                   <Avatar name={profile.name} className="h-12 w-12" file={profile.avatar} />
@@ -77,7 +77,7 @@ const Sidebar: React.FC = () => {
           )}
 
           {initLoading && (
-            <Card className="mb-3 bg-opacity-75">
+            <Card className="mb-3 border border-divider bg-opacity-75 dark:border-transparent">
               <CardBody className="px-4 py-3">
                 <div className="flex w-full items-center">
                   <Skeleton className="block h-12 w-12 rounded-full" />
