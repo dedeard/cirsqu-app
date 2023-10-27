@@ -1,6 +1,7 @@
 'use client'
+import classNames from 'classnames'
 import React, { useState } from 'react'
-import { ArrowDownCircle, ArrowUpCircle } from 'react-feather'
+import { ChevronRight } from 'react-feather'
 
 type FAQItemProps = {
   question: string
@@ -14,7 +15,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, defaultOpen, children, ...p
       <button type="button" className="flex w-full items-start justify-between text-left" onClick={() => setIsOpen(!isOpen)}>
         <span className="text-lg text-foreground">{question}</span>
         <span className="ml-6 flex items-center py-1 text-foreground-600">
-          {isOpen ? <ArrowUpCircle className="h-6 w-6" /> : <ArrowDownCircle className="h-6 w-6" />}
+          <ChevronRight className={classNames(isOpen && 'rotate-90', 'h-6 w-6 transition-all')} />
         </span>
       </button>
       {isOpen && (
