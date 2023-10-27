@@ -14,7 +14,7 @@ type PagePropTypes = {
   }
 }
 
-export default async function Page({ params, searchParams }: PagePropTypes) {
+export default async function SubjectPage({ params, searchParams }: PagePropTypes) {
   const page = parsePaginationPage(searchParams.page)
 
   let subject: IASubject

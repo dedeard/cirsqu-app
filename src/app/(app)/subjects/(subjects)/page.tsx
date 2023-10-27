@@ -4,7 +4,7 @@ import SubjectList from '../../components/SubjectItem'
 
 export const dynamic = 'force-dynamic'
 
-export default async function Home() {
+export default async function SubjectsPage() {
   const subjects = await subjectIndex.search<IASubject>('', { hitsPerPage: 1000 })
   return (
     <>

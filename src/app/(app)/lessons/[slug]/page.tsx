@@ -4,7 +4,7 @@ import LessonEpisodes from './components/LessonEpisodes'
 import { lessonIndex } from '@/utils/algolia'
 import { notFound } from 'next/navigation'
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function LessonPage({ params }: { params: { slug: string } }) {
   let lesson: IALesson
   try {
     lesson = await lessonIndex.getObject<IALesson>(params.slug)

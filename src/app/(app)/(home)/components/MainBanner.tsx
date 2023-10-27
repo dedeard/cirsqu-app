@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Card, CardBody, CardProps } from '@nextui-org/react'
 import hero from '@/assets/keyboard.webp'
 
-const Jumbotron: React.FC<CardProps> = (props) => {
+const MainBanner: React.FC<CardProps> = (props) => {
   return (
     <Card {...props}>
       <CardBody className="background-animate relative z-10 bg-gradient-to-br from-black/60 via-primary/70 to-black/80 text-white">
@@ -20,4 +20,4 @@ const Jumbotron: React.FC<CardProps> = (props) => {
   )
 }
 
-export default Jumbotron
+export default MainBanner

@@ -6,6 +6,7 @@ import React from 'react'
 import CommentMarkdown from './CommentMarkdown'
 import useCommentActions from './hooks/useCommentActions'
 import CommentForm from './CommentForm'
+import { Skeleton } from '@nextui-org/react'
 
 type PropTypes = {
   comment: IComment
@@ -67,6 +68,35 @@ const ReplyItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
               </div>
             </>
           )}
+        </div>
+      </div>
+    </li>
+  )
+}
+
+export const ReplyItemSkeleton: React.FC = () => {
+  return (
+    <li className="relative w-full">
+      <div className="absolute">
+        <Skeleton className="h-10 w-10 rounded-full" />
+      </div>
+      <div className="flex w-full flex-col gap-4 pl-14">
+        <div className="flex w-full flex-col gap-4">
+          <div className="flex h-9 flex-col justify-center gap-1">
+            <Skeleton className="h-3 w-44 rounded-full" />
+            <Skeleton className="h-2 w-32 rounded-full" />
+          </div>
+
+          <div className="flex flex-col items-center justify-center gap-3">
+            {Array.from(Array(3).keys()).map((i) => (
+              <Skeleton key={i} className="block h-3 w-full rounded-full" />
+            ))}
+          </div>
+
+          <div className="flex gap-4">
+            <Skeleton className="block h-4 w-10 rounded-full" />
+            <Skeleton className="block h-4 w-10 rounded-full" />
+          </div>
         </div>
       </div>
     </li>

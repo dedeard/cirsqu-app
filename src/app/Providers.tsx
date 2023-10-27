@@ -10,7 +10,7 @@ import { Toaster } from 'react-hot-toast'
 import colors from 'tailwindcss/colors'
 import { CollectionsProvider } from '@/components/contexts/CollectionContext'
 
-const AppProviders: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
       <ProgressBar options={{ showSpinner: false }} color={colors.indigo[600]} shallowRouting />
@@ -32,4 +32,4 @@ const AppProviders: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   )
 }
 
-export default AppProviders
+export default Providers

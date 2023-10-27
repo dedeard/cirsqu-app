@@ -4,7 +4,7 @@ import parsePaginationPage from '@/utils/parse-pagination-page'
 import Pagination from '../../components/Pagination'
 import TitleBar from '@/components/elements/TitleBar'
 
-export default async function Page({ searchParams }: { searchParams: { page?: string } }) {
+export default async function LessonsPage({ searchParams }: { searchParams: { page?: string } }) {
   const page = parsePaginationPage(searchParams.page)
 
   const { hits, nbPages } = await lessonIndex.search<IALesson>('', {

@@ -16,7 +16,7 @@ const baseLinks: SidebarLinkPropTypes[] = [
   {},
 ]
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function AppLayout({ children }: { children: React.ReactNode }) {
   const { profile, initLoading } = useAuth()
   const [links, setLinks] = React.useState(baseLinks)
 

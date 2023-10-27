@@ -37,7 +37,7 @@ const LessonList: React.FC<PropTypes> = ({ lesson, collectionId, setDeleteQueue 
           ))}
         </div>
 
-        <span className="block text-lg">{lesson.title}</span>
+        <h3 className="block text-lg">{lesson.title}</h3>
 
         <div className="flex gap-6 text-xs">
           <span className="flex items-center justify-center gap-2">

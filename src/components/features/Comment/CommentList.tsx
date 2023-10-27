@@ -1,8 +1,7 @@
 'use client'
 import React from 'react'
-import CommentItem from './CommentItem'
+import CommentItem, { CommentItemSkeleton } from './CommentItem'
 import cn from 'classnames'
-import { CommentItemSkeleton } from './Skeletons'
 import DeleteConfirm from '@/components/elements/DeleteConfirm'
 import useCommentActions from './hooks/useCommentActions'
 

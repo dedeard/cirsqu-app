@@ -3,7 +3,7 @@ import Action from '../components/elements/Action'
 import Divider from '../components/elements/Divider'
 import Heading from '../components/elements/Heading'
 
-export default function Page() {
+export default function ResetPasswordEmailPage() {
   return (
     <>
       <Heading>Reset Your Password</Heading>

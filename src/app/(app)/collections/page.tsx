@@ -4,7 +4,7 @@ import { useAuth } from '@/components/contexts/AuthContext'
 import MainLoading from './components/MainLoading'
 import Main from './components/Main'
 
-export default function Page() {
+export default function CollectionsPage() {
   const { initLoading } = useAuth({
     whenNotAuthed: '/sign-in?next=/collections',
     whenAuthedProfileNotExists: '/complete-profile?next=/collections',

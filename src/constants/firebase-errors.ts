@@ -16,6 +16,17 @@ const FIREBASE_ERRORS: Record<string, string> = {
   'auth/invalid-action-code': 'The action code is invalid. This can happen if the code is malformed or has already been used.',
   'auth/user-token-expired': "User's token has been expired, you need to sign In again.",
   'auth/popup-closed-by-user': 'The sign-in popup was closed by the user.',
+
+  'auth/invalid-login-credentials': 'The provided login credentials are invalid. Please check your email and password.',
+  'auth/invalid-credential': 'The supplied auth credential is malformed or has expired.',
+  'auth/invalid-user-token': "The user's credential is no longer valid. The user must sign in again.",
+  'auth/null-user': 'The user is null. Please authenticate again.',
+  'auth/app-deleted': 'The instance of FirebaseApp was deleted.',
+  'auth/unauthorized-domain': 'The domain of the current site is not authorized for OAuth operations.',
+  'auth/user-mismatch': 'The supplied credentials do not correspond to the previously signed in user.',
+  'auth/invalid-provider-id': 'The supplied provider ID is not supported for this operation.',
+  'auth/invalid-verification-code': 'The SMS verification code used to create the phone auth credential is invalid.',
+  'auth/invalid-verification-id': 'The verification ID used to create the phone auth credential is invalid.',
 }
 
 export default FIREBASE_ERRORS

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button, Textarea } from '@nextui-org/react'
-import { CommentFormSkeleton } from './Skeletons'
+import { Button, Skeleton, Textarea } from '@nextui-org/react'
 import useCommentForm from './hooks/useCommentForm'
+import cn from 'classnames'
 
 type PropTypes = {
   targetId: string
@@ -51,6 +51,17 @@ const CommentForm: React.FC<PropTypes> = ({ mode = 'create', targetId, targetTyp
         </Button>
       </div>
     </form>
+  )
+}
+
+export const CommentFormSkeleton: React.FC<{ className?: string; isReply?: boolean }> = (props) => {
+  return (
+    <div className={props.className}>
+      <Skeleton className={cn(props.isReply ? ' mb-1 h-14 rounded-small' : 'mb-3 h-28 rounded-medium')} />
+      <div className={cn(props.isReply && 'flex justify-end')}>
+        <Skeleton className={cn(props.isReply ? 'h-8 w-28 rounded-small' : 'h-10 w-36 rounded-medium')} />
+      </div>
+    </div>
   )
 }
 

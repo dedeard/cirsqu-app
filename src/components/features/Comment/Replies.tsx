@@ -1,8 +1,7 @@
 'use client'
 import React from 'react'
-import { ReplyItemSkeleton } from './Skeletons'
 import useComments from './hooks/useComments'
-import ReplyItem from './ReplyItem'
+import ReplyItem, { ReplyItemSkeleton } from './ReplyItem'
 import CommentForm from './CommentForm'
 
 type PropTypes = {

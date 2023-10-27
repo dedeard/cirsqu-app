@@ -12,7 +12,7 @@ type PropTypes = {
 }
 
 const TitleBar: React.FC<PropTypes> = ({ title, titleAs, isLoading, className, children }) => {
-  const TitleAs = titleAs || 'h1'
+  const TitleAs = titleAs || 'h2'
 
   return (
     <Card className={className} forceBodyClassName="px-4 py-3">

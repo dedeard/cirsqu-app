@@ -1,7 +1,7 @@
 import Heading from '../components/elements/Heading'
 import CreateProfileForm from '../components/CreateProfileForm'
 
-export default function Page() {
+export default function CompleteProfilePage() {
   return (
     <>
       <Heading>Complete Your Profile</Heading>
