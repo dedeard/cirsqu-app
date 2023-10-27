@@ -1,0 +1,82 @@
+export interface FAQItem {
+  question: string
+  answer: string
+}
+
+const faqs: FAQItem[] = [
+  {
+    question: 'How do I register for an account?',
+    answer: 'To register an account, please go to our registration page and follow the instructions provided.',
+  },
+  {
+    question: 'I forgot my password. How can I reset it?',
+    answer:
+      "If you forgot your password, you can reset it by clicking on the 'Forgot Password' option on the login page and following the instructions sent to your email.",
+  },
+  {
+    question: 'How do I update my personal information?',
+    answer: 'You can update your personal information from your profile settings.',
+  },
+  {
+    question: 'How can I contact customer support?',
+    answer:
+      "You can contact our customer support through the 'Contact Us' page on our website or by emailing us directly at support@ourwebsite.com.",
+  },
+  {
+    question: 'How do I unsubscribe from email notifications?',
+    answer: "You can unsubscribe from email notifications from your account settings under the 'Notifications' section.",
+  },
+  {
+    question: 'How do I delete my account?',
+    answer:
+      "We're sorry, but currently we do not support the functionality to delete your account. If you have any concerns, please contact our customer support.",
+  },
+  {
+    question: 'What is your privacy policy?',
+    answer: "You can view our privacy policy on the 'Privacy Policy' page on our website.",
+  },
+  {
+    question: 'Can I change my username?',
+    answer: 'Yes, you can change your username from your profile settings.',
+  },
+  {
+    question: 'How secure is my personal information?',
+    answer:
+      "We take the security of our users' personal information very seriously. We have implemented multiple security measures to protect your personal information.",
+  },
+  {
+    question: 'How do I report a problem or bug?',
+    answer:
+      "If you encounter a problem or bug, please report it through the 'Report a Problem' option on our website or by contacting our customer support.",
+  },
+  {
+    question: 'How do I upgrade to a premium membership?',
+    answer: "To upgrade to a premium membership, please go to your account settings and click on the 'Upgrade to Premium' option.",
+  },
+  {
+    question: 'What are the benefits of a premium membership?',
+    answer:
+      'Our premium membership offers various benefits such as exclusive content, early access to new features, and priority customer support.',
+  },
+  {
+    question: 'How much does the premium membership cost?',
+    answer:
+      'We offer three plans for premium membership: Monthly plan is $12 per month, Yearly plan is $92 per year, and Lifetime plan is a one-time payment of $349.',
+  },
+  {
+    question: 'How can I cancel my premium membership?',
+    answer: 'You can cancel your premium membership at any time from your account settings.',
+  },
+  {
+    question: 'Will my premium membership automatically renew?',
+    answer:
+      'Yes, your premium membership will automatically renew at the end of your current billing cycle unless you choose to cancel it.',
+  },
+  {
+    question: 'How secure is my payment information?',
+    answer:
+      "Your payment information is secure. We use Stripe for payment processing, a service known for its high standard of security. We don't store your payment information on our servers.",
+  },
+]
+
+export default faqs

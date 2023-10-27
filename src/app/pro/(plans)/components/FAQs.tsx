@@ -1,5 +1,5 @@
+import FAQItem from '@/components/elements/FAQItem'
 import React from 'react'
-import FAQItem from './FAQItem'
 
 const FAQs: React.FC = () => {
   return (
@@ -11,6 +11,10 @@ const FAQs: React.FC = () => {
         <br />
         Oh, and you also get access to course resources, full source code, high quality episode video downloads and the ability to
         participate in course discussions.
+      </FAQItem>
+      <FAQItem question="How secure is my payment information?">
+        Your payment information is secure. We use Stripe for payment processing, a service known for its high standard of security. We
+        don't store your payment information on our servers.
       </FAQItem>
       <FAQItem question="Can I cancel?">
         Yes! If you no longer want your membership to renew, you can cancel it directly from your account area. We don't make it difficult,
