@@ -4,6 +4,8 @@ import parsePaginationPage from '@/utils/parse-pagination-page'
 import Pagination from '../../components/Pagination'
 import TitleBar from '../../components/TitleBar'
 
+export const dynamic = 'force-dynamic'
+
 export default async function LessonsPage({ searchParams }: { searchParams: { page?: string } }) {
   const page = parsePaginationPage(searchParams.page)
 
