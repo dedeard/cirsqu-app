@@ -28,8 +28,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         { href: '/notifications', text: 'Notifications', badge: { color: 'danger', text: 9 } },
         { href: '/account', text: 'My Account' },
       ])
-    } else if (!initLoading && !profile) {
-      setLinks([...baseLinks, { href: '/sign-in', text: 'Sign In' }, { href: '/sign-up', text: 'Sign Up' }])
     } else {
       setLinks(baseLinks)
     }
