@@ -2,7 +2,7 @@ import { lessonIndex } from '@/utils/algolia'
 import LessonList from '../../components/LessonItem'
 import parsePaginationPage from '@/utils/parse-pagination-page'
 import Pagination from '../../components/Pagination'
-import TitleBar from '@/components/elements/TitleBar'
+import TitleBar from '../../components/TitleBar'
 
 export default async function LessonsPage({ searchParams }: { searchParams: { page?: string } }) {
   const page = parsePaginationPage(searchParams.page)

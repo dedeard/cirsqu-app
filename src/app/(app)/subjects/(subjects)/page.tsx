@@ -1,5 +1,5 @@
 import { subjectIndex } from '@/utils/algolia'
-import TitleBar from '../../../../components/elements/TitleBar'
+import TitleBar from '../../components/TitleBar'
 import SubjectList from '../../components/SubjectItem'
 
 export const dynamic = 'force-dynamic'

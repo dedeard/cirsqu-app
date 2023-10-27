@@ -3,11 +3,17 @@ import React from 'react'
 import { useCollections } from '@/components/contexts/CollectionContext'
 import DeleteConfirm from '@/components/elements/DeleteConfirm'
 import LessonList from './LessonList'
-import CollectionEmpty from './Empty'
+import CollectionEmpty from './CollectionEmpty'
 import MainLoading from './MainLoading'
-import TitleBar from '@/components/elements/TitleBar'
+import TitleBar from '../../components/TitleBar'
+import { useAuth } from '@/components/contexts/AuthContext'
 
 const Main: React.FC = () => {
+  const { initLoading } = useAuth({
+    whenNotAuthed: '/sign-in?next=/collections',
+    whenAuthedProfileNotExists: '/complete-profile?next=/collections',
+  })
+
   const [deleteQueue, setDeleteQueue] = React.useState<string | null>(null)
   const { collections, loading, actionLoading, removeFromCollection } = useCollections()
 
@@ -17,7 +23,7 @@ const Main: React.FC = () => {
     setDeleteQueue(null)
   }
 
-  if (loading) return <MainLoading />
+  if (loading || initLoading) return <MainLoading />
 
   return (
     <>

@@ -6,7 +6,7 @@ import FAQs from '@/app/pro/(plans)/components/FAQs'
 
 const PremiumBanner: React.FC<CardProps> = (props) => {
   return (
-    <Card {...props}>
+    <Card shadow="none" {...props}>
       <CardBody className="background-animate relative z-10 bg-gradient-to-br text-foreground dark:from-black dark:via-slate-950 dark:to-black">
         <div className="flex flex-col items-center justify-center py-10 text-center md:py-12">
           <h2 className="mb-3 text-3xl lg:text-4xl">Unlimited access with a premium membership.</h2>

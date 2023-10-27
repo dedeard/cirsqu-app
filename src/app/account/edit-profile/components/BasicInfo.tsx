@@ -10,7 +10,7 @@ import clientFetch from '@/utils/client-fetch'
 import toast from 'react-hot-toast'
 import { storageUrl } from '@/utils/firebase'
 import { CardBody, CardFooter, Divider } from '@nextui-org/react'
-import Card from '../../components/Card'
+import Panel from '../../components/Panel'
 import { useAuth } from '@/components/contexts/AuthContext'
 
 const getSchema = (username: string) => ({
@@ -76,7 +76,7 @@ export default function BasicInfo() {
 
   return (
     // @ts-expect-error
-    <Card as="form" title="Basic Information" className="lg:max-w-3xl" onSubmit={formik.handleSubmit}>
+    <Panel as="form" title="Basic Information" className="lg:max-w-3xl" onSubmit={formik.handleSubmit}>
       <CardBody>
         <Input
           label="Name"
@@ -137,6 +137,6 @@ export default function BasicInfo() {
           Save
         </Button>
       </CardFooter>
-    </Card>
+    </Panel>
   )
 }

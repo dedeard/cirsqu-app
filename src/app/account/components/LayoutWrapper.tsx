@@ -18,20 +18,18 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   return (
     <>
       <Header noSidebar />
-      {(initLoading || !profile) && <AuthLoading />}
-      {!initLoading && profile && (
-        <>
-          <div className="flex min-h-layout flex-col">
-            <div className="container flex flex-col p-3 md:flex-row md:items-start">
-              <div className="md:sticky md:top-0" style={{ top: layout.headerPosition }}>
-                <Sidebar />
-              </div>
-              <main className="flex-1">{children}</main>
-            </div>
+      <div className="flex min-h-layout flex-col">
+        <div className="container flex flex-col p-3 md:flex-row md:items-start">
+          <div className="md:sticky md:top-0" style={{ top: layout.headerPosition }}>
+            <Sidebar />
           </div>
-          <Footer />
-        </>
-      )}
+          <main className="flex-1">
+            {(initLoading || !profile) && <AuthLoading />}
+            {!initLoading && profile && children}
+          </main>
+        </div>
+      </div>
+      <Footer />
     </>
   )
 }

@@ -7,7 +7,7 @@ const NotYet: React.FC = () => {
     <CardBody className="flex flex-col gap-6 py-10">
       <div className="text-center">
         <div className="mb-3">
-          <span className="font-bold uppercase tracking-widest">Subscription Status</span>
+          <span className="uppercase tracking-widest">Subscription Status</span>
         </div>
         <h1 className="text-3xl">No Active Plan Found</h1>
       </div>

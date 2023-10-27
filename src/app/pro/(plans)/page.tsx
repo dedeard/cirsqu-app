@@ -21,7 +21,7 @@ export default async function PlansPage() {
       <div className="container max-w-6xl px-3">
         <section className="flex flex-col items-center justify-center pb-12 pt-28 md:pb-28 md:pt-36">
           <div className="container flex flex-col items-center justify-center">
-            <h1 className="text-center text-4xl font-bold md:w-8/12 md:text-5xl">Unlimited access with a premium membership.</h1>
+            <h1 className="text-center text-4xl font-semibold md:w-8/12 md:text-5xl">Unlimited access with a premium membership.</h1>
             <p className="mt-4 text-center text-lg font-light md:mt-8">Join thousands of developers improving their skills every day</p>
           </div>
         </section>

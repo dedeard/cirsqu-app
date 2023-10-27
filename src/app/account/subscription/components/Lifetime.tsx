@@ -56,11 +56,11 @@ const Lifetime: React.FC<{ paymentIntent: any }> = ({ paymentIntent }) => {
     <CardBody className="flex flex-col gap-6 py-10">
       <div className="text-center">
         <div className="mb-3">
-          <span className="font-bold uppercase tracking-widest">Current Plan</span>
+          <span className="uppercase tracking-widest">Current Plan</span>
         </div>
         <h1 className="mb-3 text-3xl">Lifetime Membership</h1>
         <Chip color={statusColor(paymentIntent.status)} className="px-3">
-          <span className="font-bold uppercase tracking-widest">{paymentIntent.status}</span>
+          <span className="font-semibold uppercase tracking-widest">{paymentIntent.status}</span>
         </Chip>
       </div>
 

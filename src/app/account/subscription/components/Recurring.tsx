@@ -47,11 +47,11 @@ const Recurring: React.FC<{ subscription: any }> = ({ subscription }) => {
     <CardBody className="flex flex-col gap-6 py-10">
       <div className="text-center">
         <div className="mb-3">
-          <span className="font-bold uppercase tracking-widest">Current Plan</span>
+          <span className="uppercase tracking-widest">Current Plan</span>
         </div>
         <h1 className="mb-3 text-3xl">{subscription.plan.product.name}</h1>
         <Chip color={statusColor(subscription.status)} className="px-3">
-          <span className="font-bold uppercase tracking-widest">{subscription.status}</span>
+          <span className="font-semibold uppercase tracking-widest">{subscription.status}</span>
         </Chip>
       </div>
 

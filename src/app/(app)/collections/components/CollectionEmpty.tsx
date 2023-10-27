@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Button } from '@nextui-org/react'
 import { Inbox } from 'react-feather'
 import { useCollections } from '@/components/contexts/CollectionContext'
-import Card from '@/components/elements/Card'
+import Card from '../../components/Card'
 
 const CollectionEmpty: React.FC = () => {
   const { collections, loading } = useCollections()

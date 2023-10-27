@@ -14,7 +14,7 @@ import {
   Chip,
   Skeleton,
 } from '@nextui-org/react'
-import Card from '../../components/Card'
+import Card from '../../components/Panel'
 import formatAmount from '@/utils/format-amount'
 import moment from 'moment'
 import { ExternalLink } from 'react-feather'
@@ -108,7 +108,7 @@ const Invoices: React.FC = () => {
                 <TableCell>{formatAmount(item.amount_paid, item.currency, false)}</TableCell>
                 <TableCell className="text-center">
                   <Chip size="sm" variant="flat" radius="sm" color={statusColor(item.status)}>
-                    <span className="text-xs font-bold uppercase leading-none">{item.status}</span>
+                    <span className="text-xs font-semibold uppercase leading-none">{item.status}</span>
                   </Chip>
                 </TableCell>
                 <TableCell>{item.subscription.plan.product.name}</TableCell>

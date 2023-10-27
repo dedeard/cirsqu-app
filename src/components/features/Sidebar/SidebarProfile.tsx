@@ -3,7 +3,7 @@ import React from 'react'
 import Avatar from '@/components/elements/Avatar'
 import { useAuth } from '@/components/contexts/AuthContext'
 import { Skeleton } from '@nextui-org/react'
-import Card from '@/components/elements/Card'
+import Card from '@/app/(app)/components/Card'
 import { timestampToDate } from '@/utils/firestore'
 
 const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
@@ -17,9 +17,7 @@ const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
         {profile && (
           <>
             <div className="mb-3 flex flex-col items-center justify-center text-center">
-              <div className="mb-3 h-20 w-20">
-                <Avatar name={profile.name} file={profile.avatar} size="lg" isBordered className="block h-full w-full rounded-full" />
-              </div>
+              <Avatar name={profile.name} file={profile.avatar} size="lg" isBordered className="mb-3 block h-20 w-20 rounded-full" />
               <h3 className="mb-1 w-full truncate text-xl font-semibold capitalize leading-none">{profile.name}</h3>
               <p className="w-full truncate leading-none opacity-80">@{profile.username}</p>
             </div>
@@ -29,9 +27,7 @@ const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
         {initLoading && (
           <>
             <div className="mb-3 flex flex-col items-center justify-center text-center">
-              <div className="mb-3 h-20 w-20">
-                <Skeleton className=" h-full w-full rounded-full" />
-              </div>
+              <Skeleton className="mb-3 h-20 w-20 rounded-full" />
               <Skeleton className="mb-1 h-5 w-3/4 rounded-medium" />
               <Skeleton className="h-4 w-1/2 rounded-medium" />
             </div>

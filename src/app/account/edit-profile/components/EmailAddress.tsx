@@ -6,7 +6,7 @@ import Button from '../../components/Button'
 import { useFormik } from 'formik'
 import toast from 'react-hot-toast'
 import { CardBody, CardFooter, Divider } from '@nextui-org/react'
-import Card from '../../components/Card'
+import Panel from '../../components/Panel'
 import { useAuth } from '@/components/contexts/AuthContext'
 import { auth } from '@/utils/firebase'
 import { signInWithEmailAndPassword, updateEmail } from 'firebase/auth'
@@ -49,7 +49,7 @@ export default function EmailAddress() {
 
   return (
     // @ts-expect-error
-    <Card as="form" title="Email Address" className="lg:max-w-3xl" onSubmit={formik.handleSubmit}>
+    <Panel as="form" title="Email Address" className="lg:max-w-3xl" onSubmit={formik.handleSubmit}>
       <CardBody>
         <Input
           label="Email Address"
@@ -94,6 +94,6 @@ export default function EmailAddress() {
           Save
         </Button>
       </CardFooter>
-    </Card>
+    </Panel>
   )
 }

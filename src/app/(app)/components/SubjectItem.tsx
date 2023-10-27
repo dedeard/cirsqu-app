@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { CardProps, Chip } from '@nextui-org/react'
 import { Book } from 'react-feather'
 import trimTextWithEllipsis from '@/utils/trim-text-with-ellipsis'
-import Card from '@/components/elements/Card'
+import Card from './Card'
 
 const SubjectItem: React.FC<{ subject: IASubject } & CardProps> = ({ subject, classNames, ...props }) => {
   return (

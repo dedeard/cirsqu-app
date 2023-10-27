@@ -45,7 +45,7 @@ const Checkout: React.FC<PropsType> = ({ products, currentProduct, className, ..
   return (
     <>
       <div className={classNames(className, 'light')} {...props}>
-        <div className="mb-10 text-2xl font-bold tracking-wide text-slate-900">Checkout</div>
+        <div className="mb-10 text-2xl font-semibold tracking-wide text-slate-900">Checkout</div>
         <Card className="mb-8 shadow" shadow="none">
           <CardBody className="h-[236px] items-center justify-center py-0">
             <div className="pb-7">
@@ -53,7 +53,7 @@ const Checkout: React.FC<PropsType> = ({ products, currentProduct, className, ..
                 <span className="text-xl opacity-70">{currentProduct.price.lookup_key}</span>
               </div>
               <div className="flex items-center justify-center">
-                <span className="block text-5xl font-bold ">
+                <span className="block text-5xl font-semibold ">
                   {formatAmount(currentProduct.price.unit_amount, currentProduct.price.currency)}
                 </span>
                 {currentProduct.price.recurring && (
@@ -68,13 +68,13 @@ const Checkout: React.FC<PropsType> = ({ products, currentProduct, className, ..
               <Button
                 isLoading={loading}
                 color="primary"
-                className="font-bold uppercase tracking-widest"
+                className="font-semibold uppercase tracking-widest"
                 fullWidth
                 onClick={handleCheckout}
               >
                 {!loading && (
                   <Chip color="warning" variant="solid" className="absolute right-0 top-0 h-5 rounded-none rounded-bl-medium">
-                    <span className="text-xs font-bold capitalize tracking-normal">TEST MODE</span>
+                    <span className="text-xs font-semibold capitalize tracking-normal">TEST MODE</span>
                   </Chip>
                 )}
                 {!loading && (currentProduct.price.recurring ? 'Subscribe Now' : 'Purchase Now')}

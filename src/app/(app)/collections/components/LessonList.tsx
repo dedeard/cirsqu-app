@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Button, Chip, Skeleton } from '@nextui-org/react'
 import { Clock, Film, X } from 'react-feather'
 import formatSecond from '@/utils/format-second'
-import Card from '@/components/elements/Card'
+import Card from '../../components/Card'
 
 type PropTypes = {
   collectionId: string

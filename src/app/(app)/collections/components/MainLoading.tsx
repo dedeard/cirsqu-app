@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { LessonListSkeleton } from './LessonList'
-import TitleBar from '@/components/elements/TitleBar'
+import TitleBar from '../../components/TitleBar'
 
 const MainLoading: React.FC = () => {
   return (

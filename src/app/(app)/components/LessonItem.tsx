@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import { Button, CardProps, Chip } from '@nextui-org/react'
 import { Clock, Code, Film } from 'react-feather'
-import Card from '@/components/elements/Card'
+import Card from './Card'
 import formatSecond from '@/utils/format-second'
 import ToggleCollection from './ToggleCollection'
 

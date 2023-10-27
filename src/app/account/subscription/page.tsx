@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import toast from 'react-hot-toast'
-import Card from '../components/Card'
+import Panel from '../components/Panel'
 import Loading from './components/Loading'
 import NotYet from './components/NotYet'
 import Recurring from './components/Recurring'
@@ -30,12 +30,12 @@ export default function SubscriptionPage() {
 
   return (
     <div className="grid grid-cols-1 gap-3 lg:max-w-[750px]">
-      <Card title="Subscription">
+      <Panel title="Subscription">
         {loading && <Loading />}
         {!loading && !subscription && <NotYet />}
         {!loading && subscription?.object === 'subscription' && <Recurring subscription={subscription} />}
         {!loading && subscription?.object === 'payment_intent' && <Lifetime paymentIntent={subscription} />}
-      </Card>
+      </Panel>
 
       <Invoices />
     </div>

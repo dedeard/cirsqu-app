@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import Card from '../../components/Card'
+import Panel from '../../components/Panel'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, CardBody } from '@nextui-org/react'
 import Google from '@/components/svg/Google'
 import Facebook from '@/components/svg/Facebook'
@@ -24,7 +24,7 @@ export default function LinkedAccounts() {
   ]
 
   return (
-    <Card title="Linked Accounts" className="lg:max-w-3xl">
+    <Panel title="Linked Accounts" className="lg:max-w-3xl">
       <CardBody>
         <Table removeWrapper hideHeader>
           <TableHeader>
@@ -45,6 +45,6 @@ export default function LinkedAccounts() {
           </TableBody>
         </Table>
       </CardBody>
-    </Card>
+    </Panel>
   )
 }

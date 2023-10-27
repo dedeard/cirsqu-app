@@ -6,7 +6,7 @@ import { Badge, Button, Chip } from '@nextui-org/react'
 const NotificationToggle: React.FC = () => {
   const count = 0
   return (
-    <Badge disableOutline isInvisible={count <= 0} content={count} size="sm" color="danger" className="font-bold">
+    <Badge disableOutline isInvisible={count <= 0} content={count} size="sm" color="danger" className="font-semibold">
       <Button aria-label="Notifications" href="/notifications" isIconOnly className="relative" variant="flat" radius="full" as={Link}>
         <Bell size="1em" />
       </Button>
