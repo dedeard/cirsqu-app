@@ -1,6 +1,6 @@
-import Header from '@/components/layout/Header'
-import NotFound from '@/components/layout/NotFound'
-import SimpleFooter from '@/components/layout/SimpleFooter'
+import Header from '@/components/features/Header'
+import NotFound from '@/components/elements/NotFound'
+import SimpleFooter from '@/components/elements/SimpleFooter'
 
 export const dynamic = 'force-static'
 

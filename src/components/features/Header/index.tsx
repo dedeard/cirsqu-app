@@ -6,7 +6,7 @@ import MenuToggle from './MenuToggle'
 import MainMenu from './MainMenu'
 import { Navbar, NavbarProps } from '@nextui-org/react'
 import ThemeToggle from './ThemeToggle'
-import classNames from 'classnames'
+import cn from 'classnames'
 import { useEffect, useRef } from 'react'
 import { useLayout } from '@/components/contexts/LayoutContext'
 
@@ -51,7 +51,7 @@ const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, h
   }, [setHeaderPosition])
 
   return (
-    <Navbar ref={navbarRef} maxWidth="full" shouldHideOnScroll isBordered className={classNames(className, '[&>header]:px-0')} {...props}>
+    <Navbar ref={navbarRef} maxWidth="full" shouldHideOnScroll isBordered className={cn(className, '[&>header]:px-0')} {...props}>
       <div className="container flex h-full w-full items-center">
         {onlyBrand ? (
           <>

@@ -30,29 +30,26 @@ export const CollectionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [lessons, setLessons] = useState<IALesson[]>([])
   const [collections, setCollections] = useState<ICollection[]>([])
 
-  const fetchLessons = useCallback(
-    async (lessonIds: string[]) => {
-      const loadedLessonIds = lessons.map((lesson) => lesson.lessonId)
+  const fetchLessons = async (lessonIds: string[]) => {
+    const loadedLessonIds = lessons.map((lesson) => lesson.lessonId)
 
-      const idsToFetch = lessonIds.filter((id) => !loadedLessonIds.includes(id))
+    const idsToFetch = lessonIds.filter((id) => !loadedLessonIds.includes(id))
 
-      let newLessons: IALesson[]
+    let newLessons: IALesson[]
 
-      if (idsToFetch.length > 0) {
-        const promises = idsToFetch.map((lessonId) => lessonIndex.findObject<IALesson>((hit) => hit.lessonId == lessonId))
-        const data = await Promise.all(promises)
-        const results = data.map(({ object }) => object)
+    if (idsToFetch.length > 0) {
+      const promises = idsToFetch.map((lessonId) => lessonIndex.findObject<IALesson>((hit) => hit.lessonId == lessonId))
+      const data = await Promise.all(promises)
+      const results = data.map(({ object }) => object)
 
-        newLessons = [...lessons, ...results]
-        setLessons(newLessons)
-      } else {
-        newLessons = lessons
-      }
+      newLessons = [...lessons, ...results]
+      setLessons(newLessons)
+    } else {
+      newLessons = lessons
+    }
 
-      return newLessons
-    },
-    [lessons],
-  )
+    return newLessons
+  }
 
   const removeFromCollection = async (collectionId: string) => {
     setActionLoading(true)
@@ -106,7 +103,8 @@ export const CollectionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
       setCollections(rawCollections)
       setLoading(false)
     })
-  }, [user?.uid, fetchLessons])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.uid])
 
   return (
     <CollectionsContext.Provider value={{ collections, loading, actionLoading, removeFromCollection, addToCollection }}>

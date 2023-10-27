@@ -1,4 +1,4 @@
-import Header from '@/components/layout/Header'
+import Header from '@/components/features/Header'
 import Script from 'next/script'
 
 export default function Layout({ children }: { children: React.ReactNode }) {

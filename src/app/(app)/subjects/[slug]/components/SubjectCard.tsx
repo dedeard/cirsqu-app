@@ -5,13 +5,11 @@ import { BookOpen } from 'react-feather'
 
 const SubjectCard: React.FC<CardProps & { subject: IASubject }> = ({ subject, className, ...props }) => {
   return (
-    <Card className={className + ' mb-3'} {...props}>
+    <Card className={className + ' mb-3'} shadow="none" {...props}>
       <CardBody className="background-animate relative z-10 bg-gradient-to-br from-white/70 via-primary/50 to-primary dark:from-black/70 dark:via-primary/50 dark:to-black/70">
         <div className="flex flex-col py-6 md:py-12">
-          <Chip color="primary">
-            <span className="font-semibold">{subject.lessonCount} lessons</span>
-          </Chip>
-          <h1 className="my-3 text-2xl font-bold lg:text-3xl">{subject.name}</h1>
+          <Chip color="primary">{subject.lessonCount} lessons</Chip>
+          <h1 className="my-3 text-2xl font-semibold lg:text-3xl">{subject.name}</h1>
           <p className="max-w-lg text-sm md:text-base">{subject.description}</p>
         </div>
       </CardBody>

@@ -1,6 +1,6 @@
 'use client'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import Header from '@/components/features/Header'
+import Footer from '@/components/elements/Footer'
 import Sidebar from './Sidebar'
 import { useAuth } from '@/components/contexts/AuthContext'
 import AuthLoading from './AuthLoading'

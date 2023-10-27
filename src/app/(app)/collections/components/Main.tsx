@@ -2,10 +2,10 @@
 import React from 'react'
 import { useCollections } from '@/components/contexts/CollectionContext'
 import DeleteConfirm from '@/components/elements/DeleteConfirm'
-import TitleBar from '../../components/TitleBar'
 import LessonList from './LessonList'
 import CollectionEmpty from './Empty'
 import MainLoading from './MainLoading'
+import TitleBar from '@/components/elements/TitleBar'
 
 const Main: React.FC = () => {
   const [deleteQueue, setDeleteQueue] = React.useState<string | null>(null)

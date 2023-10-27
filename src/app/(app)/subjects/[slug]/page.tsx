@@ -2,7 +2,7 @@ import SubjectCard from './components/SubjectCard'
 import { lessonIndex, subjectIndex } from '@/utils/algolia'
 import { notFound } from 'next/navigation'
 import Pagination from '../../components/Pagination'
-import LessonList from '../../components/LessonList'
+import LessonList from '../../components/LessonItem'
 import parsePaginationPage from '@/utils/parse-pagination-page'
 
 type PagePropTypes = {

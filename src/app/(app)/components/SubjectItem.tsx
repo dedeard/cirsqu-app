@@ -1,24 +1,19 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { Button, Chip } from '@nextui-org/react'
+import { CardProps, Chip } from '@nextui-org/react'
 import { Book } from 'react-feather'
 import trimTextWithEllipsis from '@/utils/trim-text-with-ellipsis'
+import Card from '@/components/elements/Card'
 
-const SubjectList: React.FC<{ subject: IASubject }> = ({ subject }) => {
+const SubjectItem: React.FC<{ subject: IASubject } & CardProps> = ({ subject, classNames, ...props }) => {
   return (
-    <Button
-      as={Link}
-      href={`/subjects/${subject.slug}`}
-      className="group h-auto w-full flex-1 flex-col items-start justify-start bg-content2 p-3 hover:bg-content3 dark:bg-content1 dark:hover:bg-content2 md:p-6"
-    >
+    <Card as={Link} href={`/subjects/${subject.slug}`} classNames={{ ...classNames, body: 'flex flex-col gap-3' }} {...props}>
       <span className="grid w-full grid-cols-1 gap-3 whitespace-normal text-left text-base">
         <span className="block">
-          <Chip color="primary">
-            <span className="font-semibold">{subject.lessonCount} lessons</span>
-          </Chip>
+          <Chip color="primary">{subject.lessonCount} lessons</Chip>
         </span>
-        <h3 className="text-2xl font-bold">{subject.name}</h3>
+        <h3 className="text-2xl font-semibold">{subject.name}</h3>
         <p className="text-sm">{trimTextWithEllipsis(subject.description, 200)}</p>
       </span>
 
@@ -27,8 +22,8 @@ const SubjectList: React.FC<{ subject: IASubject }> = ({ subject }) => {
           <Book className="block h-3/4 w-3/4 opacity-10" />
         </div>
       </div>
-    </Button>
+    </Card>
   )
 }
 
-export default SubjectList
+export default SubjectItem

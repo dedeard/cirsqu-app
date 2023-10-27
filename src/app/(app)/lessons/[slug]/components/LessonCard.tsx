@@ -9,18 +9,18 @@ import ToggleCollection from '../../../components/ToggleCollection'
 
 const LessonCard: React.FC<CardProps & { lesson: IALesson }> = ({ lesson, className, ...props }) => {
   return (
-    <Card className={className + ' mb-3'} {...props}>
+    <Card className={className + ' mb-3'} shadow="none" {...props}>
       <CardBody className="background-animate relative z-10 bg-gradient-to-br from-white/70 via-primary/50 to-primary dark:from-black/70 dark:via-primary/50 dark:to-black/70">
         <div className="flex flex-col py-6 md:py-12">
           <div className="flex gap-3">
             {lesson.subjects.map((subject) => (
               <Chip key={subject.slug} as={Link} variant="flat" href={`/subjects/${subject.slug}`}>
-                <span className="font-semibold">{subject.name}</span>
+                {subject.name}
               </Chip>
             ))}
           </div>
 
-          <h1 className="my-3 text-2xl font-bold lg:text-3xl">{lesson.title}</h1>
+          <h1 className="my-3 text-2xl font-semibold lg:text-3xl">{lesson.title}</h1>
 
           <div className="mb-6">
             <span className="mr-6 inline-flex  items-center justify-center gap-2 text-sm">
