@@ -12,6 +12,7 @@ import Button from './elements/Button'
 import { Input } from '@nextui-org/react'
 import { Eye, EyeOff } from 'react-feather'
 import { useAuth } from '@/components/contexts/AuthContext'
+import Link from 'next/link'
 
 const schemas = {
   'sign-in': {
@@ -103,13 +104,13 @@ export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }
         <div className="my-6 text-center text-xs leading-5 opacity-75">
           <span>
             By clicking '{actionText}', you agree to our{' '}
-            <a href="#" className="text-primary-600">
-              Terms of Use
-            </a>{' '}
+            <Link href="/terms-of-service" className="text-primary-600">
+              Terms of Service
+            </Link>{' '}
             and our{' '}
-            <a href="#" className="text-primary-600">
+            <Link href="/privacy-policy" className="text-primary-600">
               Privacy Policy
-            </a>
+            </Link>
             .
           </span>
         </div>

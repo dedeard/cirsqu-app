@@ -10,8 +10,12 @@
     "format": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@mdx-js/loader": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "@next/mdx": "^14.0.0",
     "@nextui-org/react": "^2.1.13",
     "@react-stately/data": "^3.10.3",
+    "@types/mdx": "^2.0.9",
     "algoliasearch": "^4.20.0",
     "classnames": "^2.3.2",
     "currency-symbol-map": "^5.1.0",
