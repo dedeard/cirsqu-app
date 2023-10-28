@@ -52,7 +52,7 @@ const Results: React.FC = () => {
               {el.name} {el.count}
             </Chip>
           ))}
-        {initLoading && Array.from(Array(3).keys()).map((i) => <Skeleton key={i} className="h-7 w-20 rounded-medium" />)}
+        {initLoading && Array.from(Array(3).keys()).map((i) => <Skeleton key={i} className="h-6 w-20 rounded-medium" />)}
       </div>
       <ul className="flex flex-col gap-3 px-3">
         {!loading &&

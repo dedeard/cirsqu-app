@@ -19,7 +19,7 @@ const SearchInput: React.FC = () => {
         <input
           type="text"
           className={cn(loading && 'pr-8', ' block h-full w-full flex-1 bg-transparent pl-10 leading-normal !outline-none')}
-          placeholder="Start typing..."
+          placeholder="Enter your keywords here"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onFocus={() => setFocus(true)}
@@ -33,7 +33,7 @@ const SearchInput: React.FC = () => {
         )}
       </div>
       <div className="flex items-center justify-start p-2">
-        <Button isIconOnly color="danger" variant="ghost" className="border-divider" onClick={() => toggleSearchModal(false)}>
+        <Button isIconOnly color="danger" variant="ghost" radius="full" className="border-divider" onClick={() => toggleSearchModal(false)}>
           <X size={18} />
         </Button>
       </div>
