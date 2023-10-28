@@ -1,5 +1,6 @@
 'use client'
 import React, { useContext, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 interface LayoutContextProps {
   sidebarOpen: boolean
@@ -20,6 +21,7 @@ const LayoutContext = React.createContext<LayoutContextProps>({
 })
 
 export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const pathname = usePathname()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [searchModalOpen, setSearchModalOpen] = useState(false)
   const [headerPosition, setHeaderPosition] = useState(0)
@@ -39,6 +41,11 @@ export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       setSearchModalOpen(!sidebarOpen)
     }
   }
+
+  React.useEffect(() => {
+    setSearchModalOpen(false)
+    setSidebarOpen(false)
+  }, [pathname])
 
   React.useEffect(() => {
     if (searchModalOpen) {
