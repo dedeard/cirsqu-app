@@ -27,10 +27,10 @@ const DeleteConfirm: React.FC<PropTypes> = ({ isOpen, isLoading, title, message,
               <p className="mb-6 text-sm">{message || 'Are you sure you want to delete this item? This action cannot be undone.'}</p>
 
               <div className="flex justify-center gap-4">
-                <Button variant="bordered" className="w-32" isDisabled={isLoading} onPress={onCancel}>
+                <Button variant="bordered" className="w-32" isDisabled={isLoading} onClick={onCancel}>
                   Cancel
                 </Button>
-                <Button className="w-32" color="danger" isLoading={isLoading} onPress={onConfirm}>
+                <Button className="w-32" color="danger" isLoading={isLoading} onClick={onConfirm}>
                   {!isLoading && 'Delete'}
                 </Button>
               </div>

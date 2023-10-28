@@ -34,7 +34,7 @@ const SearchInput: React.FC = () => {
         )}
       </div>
       <div className="flex items-center justify-start p-2">
-        <Button isIconOnly color="danger" variant="ghost" className="border-divider" onPress={() => toggleSearchModal(false)}>
+        <Button isIconOnly color="danger" variant="ghost" className="border-divider" onClick={() => toggleSearchModal(false)}>
           <X size={18} />
         </Button>
       </div>

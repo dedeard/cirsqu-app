@@ -10,7 +10,7 @@ const SearchToggle: React.FC = () => {
       variant="flat"
       isIconOnly
       className="rounded-full md:flex md:w-64 md:items-center md:justify-between md:rounded-medium md:px-4"
-      onPress={() => toggleSearchModal(true)}
+      onClick={() => toggleSearchModal(true)}
     >
       <div className="hidden uppercase tracking-widest md:block">Search...</div>
       <Search size="1em" />

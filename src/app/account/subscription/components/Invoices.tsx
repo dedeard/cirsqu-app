@@ -64,7 +64,7 @@ const Invoices: React.FC = () => {
           bottomContent={
             hasMore && !isLoading ? (
               <div className="flex w-full justify-center">
-                <Button isDisabled={list.isLoading} color="primary" className="w-32" onPress={list.loadMore}>
+                <Button isDisabled={list.isLoading} color="primary" className="w-32" onClick={list.loadMore}>
                   {list.isLoading && <Spinner color="white" size="sm" />}
                   {!list.isLoading && 'Load More'}
                 </Button>
