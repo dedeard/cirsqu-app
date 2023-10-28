@@ -2,13 +2,14 @@
 import { NextUIProvider } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar'
+import colors from 'tailwindcss/colors'
+import { Toaster } from 'react-hot-toast'
 import { LayoutProvider } from '@/components/contexts/LayoutContext'
 import { MountProvider } from '@/components/contexts/MountContext'
 import { AuthProvider } from '@/components/contexts/AuthContext'
 import { ProfilesProvider } from '@/components/contexts/ProfilesContext'
-import { Toaster } from 'react-hot-toast'
-import colors from 'tailwindcss/colors'
 import { CollectionsProvider } from '@/components/contexts/CollectionContext'
+import { SearchProvider } from '@/components/contexts/SearchContext'
 
 const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -21,7 +22,9 @@ const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <AuthProvider>
               <CollectionsProvider>
                 <ProfilesProvider>
-                  <LayoutProvider>{children}</LayoutProvider>
+                  <LayoutProvider>
+                    <SearchProvider>{children}</SearchProvider>
+                  </LayoutProvider>
                 </ProfilesProvider>
               </CollectionsProvider>
             </AuthProvider>
