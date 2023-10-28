@@ -9,6 +9,7 @@ import ThemeToggle from './ThemeToggle'
 import cn from 'classnames'
 import { useEffect, useRef } from 'react'
 import { useLayout } from '@/components/contexts/LayoutContext'
+import SearchModal from '../SearchModal'
 
 type HeaderPropTypes = {
   sidebarOpen?: boolean
@@ -51,45 +52,48 @@ const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, h
   }, [setHeaderPosition])
 
   return (
-    <Navbar ref={navbarRef} maxWidth="full" shouldHideOnScroll isBordered className={cn(className, '[&>header]:px-0')} {...props}>
-      <div className="container flex h-full w-full items-center">
-        {onlyBrand ? (
-          <>
-            <Link aria-label="CirSqu" href="/" className="mr-auto flex items-center justify-center px-3 focus:outline-none">
-              <Logo className="block h-10 w-10 text-primary" />
-              <span className="ml-4 block text-xl uppercase tracking-widest">CirSqu</span>
-            </Link>
-            <div className="px-3">
-              <ThemeToggle />
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="hidden lg:flex lg:w-64">
-              <Link aria-label="CirSqu" href="/" className="flex items-center justify-center px-3 focus:outline-none">
+    <>
+      <SearchModal />
+      <Navbar ref={navbarRef} maxWidth="full" shouldHideOnScroll isBordered className={cn(className, '[&>header]:px-0')} {...props}>
+        <div className="container flex h-full w-full items-center">
+          {onlyBrand ? (
+            <>
+              <Link aria-label="CirSqu" href="/" className="mr-auto flex items-center justify-center px-3 focus:outline-none">
                 <Logo className="block h-10 w-10 text-primary" />
                 <span className="ml-4 block text-xl uppercase tracking-widest">CirSqu</span>
               </Link>
-            </div>
-            <div className="flex flex-1">
-              <Link aria-label="CirSqu" href="/" className="flex items-center justify-center px-3 focus:outline-none lg:hidden">
-                <Logo className="block h-10 w-10 text-primary" />
-              </Link>
-              <div className="flex flex-1 items-center justify-end md:justify-start">
-                <div className="flex lg:pl-3">
-                  {!hideSearch && <SearchToggle />}
-                  {!noSidebar && <MenuToggle />}
-                  {!hideTheme && <ThemeToggle />}
+              <div className="px-3">
+                <ThemeToggle />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="hidden lg:flex lg:w-64">
+                <Link aria-label="CirSqu" href="/" className="flex items-center justify-center px-3 focus:outline-none">
+                  <Logo className="block h-10 w-10 text-primary" />
+                  <span className="ml-4 block text-xl uppercase tracking-widest">CirSqu</span>
+                </Link>
+              </div>
+              <div className="flex flex-1">
+                <Link aria-label="CirSqu" href="/" className="flex items-center justify-center px-3 focus:outline-none lg:hidden">
+                  <Logo className="block h-10 w-10 text-primary" />
+                </Link>
+                <div className="flex flex-1 items-center justify-end md:justify-start">
+                  <div className="flex lg:pl-3">
+                    {!hideSearch && <SearchToggle />}
+                    {!noSidebar && <MenuToggle />}
+                    {!hideTheme && <ThemeToggle />}
+                  </div>
+                </div>
+                <div className="flex px-3 md:ml-auto">
+                  <MainMenu />
                 </div>
               </div>
-              <div className="flex px-3 md:ml-auto">
-                <MainMenu />
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-    </Navbar>
+            </>
+          )}
+        </div>
+      </Navbar>
+    </>
   )
 }
 
