@@ -15,7 +15,10 @@ const ResultItem: React.FC<{ lesson: Hit<IALesson> }> = ({ lesson }) => {
           </Chip>
         ))}
       </span>
-      <span className="block text-sm [&>em]:text-primary" dangerouslySetInnerHTML={{ __html: lesson._highlightResult.title.value }} />
+      <span
+        className="block text-sm [&>em]:not-italic [&>em]:text-primary"
+        dangerouslySetInnerHTML={{ __html: lesson._highlightResult.title.value }}
+      />
       <span className="flex gap-6 text-xs">
         <span className="flex items-center justify-center gap-2">
           <Film className="block h-[1em] w-[1em] opacity-60" />
