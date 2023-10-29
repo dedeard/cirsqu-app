@@ -66,7 +66,7 @@ const Recurring: React.FC<{ subscription: any }> = ({ subscription }) => {
             Latest Invoice
           </Button>
         )}
-        <Button as="a" href="/pro" color="primary" fullWidth isLoading={loading} onClick={openPortal}>
+        <Button color="primary" fullWidth isLoading={loading} onClick={openPortal}>
           {!loading && 'Billing Portal'}
         </Button>
       </div>
