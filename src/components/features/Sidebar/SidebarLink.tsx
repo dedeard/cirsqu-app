@@ -9,11 +9,11 @@ export type SidebarLinkPropTypes = {
   text?: string
   badge?: {
     color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | undefined
-    text: number
+    text: number | string
   }
 }
 
-const SidebarLink: React.FC<SidebarLinkPropTypes> = ({ text, href, badge, ...props }) => {
+const SidebarLink: React.FC<SidebarLinkPropTypes> = ({ text, href, badge }) => {
   const pathname = usePathname()
   const active = pathname === href
 
@@ -31,7 +31,7 @@ const SidebarLink: React.FC<SidebarLinkPropTypes> = ({ text, href, badge, ...pro
       )}
     >
       <span className="block flex-1">{text}</span>
-      {badge && (
+      {badge && !!badge.text && (
         <Chip size="sm" color={badge.color} className="h-5">
           <span className="text-xs font-semibold">{badge.text}</span>
         </Chip>

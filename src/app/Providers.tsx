@@ -10,6 +10,7 @@ import { AuthProvider } from '@/components/contexts/AuthContext'
 import { ProfilesProvider } from '@/components/contexts/ProfilesContext'
 import { CollectionsProvider } from '@/components/contexts/CollectionContext'
 import { SearchProvider } from '@/components/contexts/SearchContext'
+import { NotificationProvider } from '@/components/contexts/NotificationContext'
 
 const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -22,9 +23,11 @@ const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <AuthProvider>
               <CollectionsProvider>
                 <ProfilesProvider>
-                  <LayoutProvider>
-                    <SearchProvider>{children}</SearchProvider>
-                  </LayoutProvider>
+                  <NotificationProvider>
+                    <LayoutProvider>
+                      <SearchProvider>{children}</SearchProvider>
+                    </LayoutProvider>
+                  </NotificationProvider>
                 </ProfilesProvider>
               </CollectionsProvider>
             </AuthProvider>

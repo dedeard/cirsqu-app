@@ -12,6 +12,16 @@ declare global {
     emailVerified: boolean
   }
 
+  interface INotification {
+    notificationId: string
+    userId: string
+    type: 'reply' | 'like' | 'subscription.recurring' | 'subscription.lifetime'
+    data?: Record<string, any>
+    user?: IAProfile
+    readAt?: Timestamp | null
+    createdAt: Timestamp
+  }
+
   interface ISubscription {
     customerId: string
     recurring?: {

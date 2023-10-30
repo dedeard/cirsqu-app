@@ -7,6 +7,7 @@ import { SidebarLinkPropTypes } from '@/components/features/Sidebar/SidebarLink'
 import SidebarWrapper from '@/components/features/Sidebar/SidebarWrapper'
 import SidebarProfile from '@/components/features/Sidebar/SidebarProfile'
 import SidebarLinks from '@/components/features/Sidebar/SidebarLinks'
+import { useNotification } from '@/components/contexts/NotificationContext'
 
 const baseLinks: SidebarLinkPropTypes[] = [
   { href: '/', text: 'Home' },
@@ -19,19 +20,20 @@ const baseLinks: SidebarLinkPropTypes[] = [
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const { profile, initLoading } = useAuth()
   const [links, setLinks] = React.useState(baseLinks)
+  const { unreadCount } = useNotification()
 
   React.useEffect(() => {
     if (!initLoading && profile) {
       setLinks([
         ...baseLinks,
         { href: '/collections', text: 'Collections' },
-        { href: '/notifications', text: 'Notifications', badge: { color: 'danger', text: 9 } },
+        { href: '/notifications', text: 'Notifications', badge: { color: 'danger', text: unreadCount } },
         { href: '/account', text: 'My Account' },
       ])
     } else {
       setLinks(baseLinks)
     }
-  }, [initLoading, profile])
+  }, [initLoading, profile, unreadCount])
 
   return (
     <>
