@@ -90,7 +90,7 @@ const useNotificationItem = (notification: INotification) => {
       case 'like':
         setReadLoading(true)
         await updateDoc(notificationRef, { readAt: serverTimestamp() })
-        path = notification.data?.path
+        path = notification.data?.path + '/#comment-section'
         break
       case 'subscription.recurring':
       case 'subscription.lifetime':
