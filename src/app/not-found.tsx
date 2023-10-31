@@ -1,8 +1,13 @@
 import Header from '@/components/features/Header'
 import NotFound from '@/components/elements/NotFound'
 import SimpleFooter from '@/components/elements/SimpleFooter'
+import { Metadata } from 'next'
 
 export const dynamic = 'force-static'
+
+export const metadata: Metadata = {
+  title: 'Page Not Found',
+}
 
 export default function Page() {
   return (
