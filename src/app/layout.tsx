@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/react'
 import Providers from './Providers'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://cirsqu.dedeard.my.id'),
   title: 'CIRSQU',
   description:
     'Immerse yourself in CIRSQU’s comprehensive screencasts, tailored for developers at all stages. Delve into our diverse coding tutorials and take your programming prowess to new heights!',
@@ -17,6 +18,9 @@ export const metadata: Metadata = {
   ],
   creator: 'Dede Ariansya',
   publisher: 'Dede Ariansya',
+  openGraph: {
+    images: '/images/main-og',
+  },
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
