@@ -86,6 +86,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
       setLoading(false)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   return (
