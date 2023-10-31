@@ -1,8 +1,15 @@
+import type { Metadata } from 'next'
 import serverFetch from '@/utils/server-fetch'
 import { redirect } from 'next/navigation'
 import Success from './components/Success'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'CIRSQU Subscription Success - Welcome to Advanced Learning',
+  description:
+    "Congratulations! You've successfully subscribed to CIRSQU Pro. Prepare to delve into advanced courses, personalized learning paths, and premium support. Thank you for choosing CIRSQU. Your advanced coding journey begins now!",
+}
 
 export default async function Page({ searchParams }: { searchParams: { session_id?: string } }) {
   const { session_id } = searchParams

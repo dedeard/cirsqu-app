@@ -1,7 +1,14 @@
+import type { Metadata } from 'next'
 import AuthForm from '../components/AuthForm'
 import Action from '../components/elements/Action'
 import Divider from '../components/elements/Divider'
 import Heading from '../components/elements/Heading'
+
+export const metadata: Metadata = {
+  title: 'Sign In to CIRSQU - Your Gateway to Coding Mastery',
+  description:
+    'Unlock a world of coding wisdom with CIRSQU! Sign in to access a trove of comprehensive screencasts and lessons, meticulously crafted for developers of all skill levels. Your coding journey begins here!',
+}
 
 export default function SignInPage() {
   return (

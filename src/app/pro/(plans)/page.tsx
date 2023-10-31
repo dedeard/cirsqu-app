@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import PlanItem from './components/PlanItem'
 import serverFetch from '@/utils/server-fetch'
 import Link from 'next/link'
@@ -5,6 +6,12 @@ import { ArrowLeftCircle } from 'react-feather'
 import FAQs from './components/FAQs'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'Pro - CIRSQU',
+  description:
+    'Upgrade to CIRSQU Pro and take your learning to the next level! Gain access to advanced courses, personalized learning paths, and premium support. Make the most of your coding journey with CIRSQU Pro.',
+}
 
 export default async function PlansPage() {
   const response = await serverFetch('products', { cache: 'no-cache' })

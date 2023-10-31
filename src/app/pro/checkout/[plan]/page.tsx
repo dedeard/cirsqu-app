@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import serverFetch from '@/utils/server-fetch'
 import { notFound } from 'next/navigation'
 import ChosenPlan from './components/ChosenPlan'
@@ -6,6 +7,12 @@ import Link from 'next/link'
 import Checkout from './components/Checkout'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'Checkout - CIRSQU',
+  description:
+    "You're one step away from embarking on an exciting learning journey with CIRSQU. Review your order, complete the secure payment process, and get ready to dive into the world of coding. Your future starts here!",
+}
 
 export default async function Page({ params }: { params: { plan: string } }) {
   const res = await serverFetch(`products`, { cache: 'no-cache' })

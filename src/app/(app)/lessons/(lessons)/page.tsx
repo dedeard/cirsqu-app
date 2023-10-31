@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { lessonIndex } from '@/utils/algolia'
 import LessonList from '../../components/LessonItem'
 import parsePaginationPage from '@/utils/parse-pagination-page'
@@ -5,6 +6,12 @@ import Pagination from '../../components/Pagination'
 import TitleBar from '../../components/TitleBar'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'Lessons - CIRSQU',
+  description:
+    'Embark on a transformative coding journey with CIRSQU’s comprehensive lessons. Explore a wide array of screencasts, designed to enhance your programming skills, regardless of your experience level.',
+}
 
 export default async function LessonsPage({ searchParams }: { searchParams: { page?: string } }) {
   const page = parsePaginationPage(searchParams.page)

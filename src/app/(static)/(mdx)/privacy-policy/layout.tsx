@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import Wrapper from '../../components/Wrapper'
+export const metadata: Metadata = {
+  title: 'CIRSQU Privacy Policy - Your Privacy is Our Priority',
+  description:
+    'At CIRSQU, we deeply respect your privacy. Our Privacy Policy outlines how we collect, use, and protect your personal information. We are committed to maintaining the highest levels of privacy and security. Read our policy to understand your rights and our responsibilities.',
+}
 
 export default function PrivacyPolicyLayout({ children }: { children: React.ReactNode }) {
   return (
