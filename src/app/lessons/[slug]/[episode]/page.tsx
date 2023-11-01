@@ -40,8 +40,14 @@ export async function generateMetadata(pageProps: PropTypes): Promise<Metadata> 
     title: `${currentEpisode.title} - ${lesson.title}`,
     description: markdownToDescription(lesson.description),
     openGraph: {
-      images: `/images/dynamic-og?title=${lesson.title}`,
+      images: `/images/dynamic-og?title=${currentEpisode.title}`,
+      title: `${currentEpisode.title} - ${lesson.title}`,
+      description: markdownToDescription(lesson.description),
     },
+    alternates: {
+      canonical: `/lessons/${lesson.slug}/${currentEpisode.episodeId}`,
+    },
+    robots: 'noindex',
   }
 }
 

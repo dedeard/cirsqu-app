@@ -6,6 +6,14 @@ export const metadata: Metadata = {
   title: 'Join CIRSQU - Embark on Your Coding Adventure',
   description:
     'Start your journey to coding mastery with CIRSQU! Register to access a vast array of screencasts and lessons, designed to equip developers of all proficiency levels. Your path to becoming a coding expert starts here!',
+  openGraph: {
+    title: 'Join CIRSQU - Embark on Your Coding Adventure',
+    description:
+      'Start your journey to coding mastery with CIRSQU! Register to access a vast array of screencasts and lessons, designed to equip developers of all proficiency levels. Your path to becoming a coding expert starts here!',
+  },
+  alternates: {
+    canonical: '/sign-up',
+  },
 }
 
 export default function SignUpPage() {

@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   title: 'Sign In to CIRSQU - Your Gateway to Coding Mastery',
   description:
     'Unlock a world of coding wisdom with CIRSQU! Sign in to access a trove of comprehensive screencasts and lessons, meticulously crafted for developers of all skill levels. Your coding journey begins here!',
+  openGraph: {
+    title: 'Sign In to CIRSQU - Your Gateway to Coding Mastery',
+    description:
+      'Unlock a world of coding wisdom with CIRSQU! Sign in to access a trove of comprehensive screencasts and lessons, meticulously crafted for developers of all skill levels. Your coding journey begins here!',
+  },
+  alternates: {
+    canonical: '/sign-in',
+  },
 }
 
 export default function SignInPage() {

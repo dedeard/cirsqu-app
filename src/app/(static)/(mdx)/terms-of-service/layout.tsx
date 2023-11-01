@@ -5,6 +5,14 @@ export const metadata: Metadata = {
   title: 'CIRSQU Terms of Service - Know Your Rights and Responsibilities',
   description:
     "Our Terms of Service govern the use of CIRSQU's services and products. We encourage you to read them carefully to understand your rights and responsibilities as a user of our platform. Your use of our services indicates your acceptance of these terms.",
+  openGraph: {
+    title: 'CIRSQU Terms of Service - Know Your Rights and Responsibilities',
+    description:
+      "Our Terms of Service govern the use of CIRSQU's services and products. We encourage you to read them carefully to understand your rights and responsibilities as a user of our platform. Your use of our services indicates your acceptance of these terms.",
+  },
+  alternates: {
+    canonical: '/terms-of-service',
+  },
 }
 
 export default function TermsOfServiceLayout({ children }: { children: React.ReactNode }) {

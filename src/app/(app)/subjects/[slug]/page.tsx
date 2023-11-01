@@ -28,12 +28,17 @@ async function getSubject(props: PropTypes) {
 }
 
 export async function generateMetadata(pageProps: PropTypes): Promise<Metadata> {
-  const { name, description } = await getSubject(pageProps)
+  const { name, description, slug } = await getSubject(pageProps)
   return {
     title: name,
     description: markdownToDescription(description),
     openGraph: {
       images: `/images/dynamic-og?title=${name}`,
+      title: name,
+      description: markdownToDescription(description),
+    },
+    alternates: {
+      canonical: `/subjects/${slug}`,
     },
   }
 }

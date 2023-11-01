@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: 'CIRSQU Subscription Success - Welcome to Advanced Learning',
   description:
     "Congratulations! You've successfully subscribed to CIRSQU Pro. Prepare to delve into advanced courses, personalized learning paths, and premium support. Thank you for choosing CIRSQU. Your advanced coding journey begins now!",
+  robots: 'noindex',
 }
 
 export default async function Page({ searchParams }: { searchParams: { session_id?: string } }) {

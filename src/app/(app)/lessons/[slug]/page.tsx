@@ -31,6 +31,11 @@ export async function generateMetadata(pageProps: PropTypes): Promise<Metadata> 
     description: markdownToDescription(lesson.description),
     openGraph: {
       images: `/images/dynamic-og?title=${lesson.title}`,
+      title: lesson.title,
+      description: markdownToDescription(lesson.description),
+    },
+    alternates: {
+      canonical: `/lessons/${lesson.slug}`,
     },
   }
 }

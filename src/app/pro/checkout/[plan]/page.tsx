@@ -6,15 +6,13 @@ import { ArrowLeftCircle } from 'react-feather'
 import Link from 'next/link'
 import Checkout from './components/Checkout'
 
-export const dynamic = 'force-dynamic'
-
-export const metadata: Metadata = {
-  title: 'Checkout - CIRSQU',
-  description:
-    "You're one step away from embarking on an exciting learning journey with CIRSQU. Review your order, complete the secure payment process, and get ready to dive into the world of coding. Your future starts here!",
+type PropTypes = {
+  params: { plan: string }
 }
 
-export default async function Page({ params }: { params: { plan: string } }) {
+export const dynamic = 'force-dynamic'
+
+async function getPageData({ params }: PropTypes) {
   const res = await serverFetch(`products`, { cache: 'no-cache' })
 
   const products = (await res.json()) as IProduct[]
@@ -24,6 +22,32 @@ export default async function Page({ params }: { params: { plan: string } }) {
   if (!currentProduct) {
     return notFound()
   }
+
+  return {
+    products,
+    currentProduct,
+  }
+}
+
+export async function generateMetadata(props: PropTypes): Promise<Metadata> {
+  const { currentProduct } = await getPageData(props)
+  return {
+    title: `Checkout ${currentProduct.name} - CIRSQU`,
+    description:
+      "You're one step away from embarking on an exciting learning journey with CIRSQU. Review your order, complete the secure payment process, and get ready to dive into the world of coding. Your future starts here!",
+    openGraph: {
+      title: `Checkout ${currentProduct.name} - CIRSQU`,
+      description:
+        "You're one step away from embarking on an exciting learning journey with CIRSQU. Review your order, complete the secure payment process, and get ready to dive into the world of coding. Your future starts here!",
+    },
+    alternates: {
+      canonical: `/pro/checkout/${currentProduct.price.lookup_key}`,
+    },
+  }
+}
+
+export default async function Page(props: PropTypes) {
+  const { products, currentProduct } = await getPageData(props)
 
   return (
     <>
