@@ -7,16 +7,20 @@ import { useAuth } from '@/components/contexts/AuthContext'
 
 const ToggleCollection: React.FC<{ lessonId: string }> = ({ lessonId }) => {
   const auth = useAuth()
-  const { collections, actionLoading, addToCollection, removeFromCollection } = useCollections()
+  const { collections, addToCollection, removeFromCollection } = useCollections()
+  const [loading, setLoading] = React.useState(false)
   const collection = collections.find((el) => el.lessonId === lessonId)
-  const toggleCollection = () => {
-    collection ? removeFromCollection(collection.collectionId) : addToCollection(lessonId)
+
+  const toggleCollection = async () => {
+    setLoading(true)
+    collection ? await removeFromCollection(collection.collectionId) : await addToCollection(lessonId)
+    setLoading(false)
   }
 
   if (!auth.profile) return null
 
   return (
-    <Button variant="light" isDisabled={actionLoading} onClick={toggleCollection}>
+    <Button variant="light" isDisabled={loading} onClick={toggleCollection}>
       {collection ? (
         <>
           <MinusCircle className="text-danger" size={18} />
