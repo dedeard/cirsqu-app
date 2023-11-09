@@ -37,7 +37,7 @@ const SidebarLink: React.FC<SidebarLinkPropTypes> = ({ text, href, badge }) => {
 }
 
 export const SidebarLinkSkeleton: React.FC = () => (
-  <div className="flex h-10 w-full items-center rounded-lg bg-content2/50 px-3 dark:bg-content1/50">
+  <div className="flex h-10 w-full items-center rounded-lg border border-neutral-200 bg-neutral-200/30 px-3 dark:border-neutral-800 dark:bg-neutral-800/30">
     <span className="skeleton h-4 flex-1 rounded-lg" />
     <span className="skeleton ml-2 h-4 w-8 rounded-lg" />
   </div>
