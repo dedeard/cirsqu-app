@@ -15,7 +15,12 @@ const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
         {profile && (
           <>
             <div className="mb-3 flex flex-col items-center justify-center text-center">
-              <Avatar name={profile.name} file={profile.avatar} size={80} className="mb-3 rounded-full" />
+              <Avatar
+                name={profile.name}
+                file={profile.avatar}
+                size={80}
+                className="mb-3 rounded-full bg-neutral-200 dark:bg-neutral-800"
+              />
               <h3 className="mb-1 w-full truncate text-xl font-semibold capitalize leading-none">{profile.name}</h3>
               <p className="w-full truncate leading-none opacity-80">@{profile.username}</p>
             </div>
@@ -40,7 +45,7 @@ const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
     <div className="mb-3 rounded-lg border border-neutral-200 bg-neutral-200/30 p-3 dark:border-neutral-800 dark:bg-neutral-800/30">
       {profile && (
         <div className="flex w-full items-center">
-          <Avatar name={profile.name} file={profile.avatar} size={48} className="rounded-full" />
+          <Avatar name={profile.name} file={profile.avatar} size={48} className="rounded-full bg-neutral-200 dark:bg-neutral-800" />
           <div className="flex-1 overflow-hidden pl-2">
             <h3 className="mb-1 truncate font-semibold capitalize leading-none">{profile.name}</h3>
             <span className="block truncate text-tiny leading-none">@{profile.username}</span>
