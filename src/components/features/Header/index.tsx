@@ -31,7 +31,7 @@ const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, h
           {onlyBrand ? (
             <>
               <Link aria-label="CirSqu" href="/" className="mr-auto flex items-center justify-center px-3 focus:outline-none">
-                <Logo className="block h-10 w-10 text-blue-500" />
+                <Logo className="block h-10 w-10 text-blue-600" />
                 <span className="ml-4 block text-xl uppercase tracking-widest">CirSqu</span>
               </Link>
               <div className="px-3">
@@ -42,13 +42,13 @@ const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, h
             <>
               <div className="hidden lg:flex lg:w-64">
                 <Link aria-label="CirSqu" href="/" className="flex items-center justify-center px-3 focus:outline-none">
-                  <Logo className="block h-10 w-10 text-blue-500" />
+                  <Logo className="block h-10 w-10 text-blue-600" />
                   <span className="ml-4 block text-xl uppercase tracking-widest">CirSqu</span>
                 </Link>
               </div>
               <div className="flex flex-1">
                 <Link aria-label="CirSqu" href="/" className="flex items-center justify-center px-3 focus:outline-none lg:hidden">
-                  <Logo className="block h-10 w-10 text-blue-500" />
+                  <Logo className="block h-10 w-10 text-blue-600" />
                 </Link>
                 <div className="flex flex-1 items-center justify-end md:justify-start">
                   <div className="flex lg:pl-3">
