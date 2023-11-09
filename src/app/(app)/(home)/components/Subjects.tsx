@@ -1,13 +1,11 @@
-'use client'
 import React from 'react'
 import Link from 'next/link'
-import { Button } from '@nextui-org/react'
-import SubjectList from '../../components/SubjectItem'
 import SectionHeading from './SectionHeading'
+import SubjectList from '../../components/SubjectItem'
 
 const Subjects: React.FC<React.HTMLAttributes<HTMLDivElement> & { subjects: IASubject[] }> = ({ subjects, ...props }) => {
   return (
-    <div {...props}>
+    <section {...props}>
       <SectionHeading text="Pick a Subject" />
 
       <ul className="my-8 grid grid-cols-1 gap-3 md:grid-cols-2">
@@ -19,11 +17,11 @@ const Subjects: React.FC<React.HTMLAttributes<HTMLDivElement> & { subjects: IASu
       </ul>
 
       <div className="text-center">
-        <Button as={Link} href="/subjects" color="primary" size="lg">
+        <Link href="/subjects" className="hoverable-blue inline-flex h-12 items-center rounded-lg px-8">
           Browse all subjects
-        </Button>
+        </Link>
       </div>
-    </div>
+    </section>
   )
 }
 

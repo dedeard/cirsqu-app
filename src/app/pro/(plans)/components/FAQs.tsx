@@ -1,9 +1,9 @@
-import FAQItem from '@/components/elements/FAQItem'
 import React from 'react'
+import FAQItem from '@/components/elements/FAQItem'
 
 const FAQs: React.FC = () => {
   return (
-    <div className="mx-auto max-w-3xl divide-y divide-divider">
+    <div className="mx-auto max-w-3xl divide-y divide-neutral-200 dark:divide-neutral-800">
       <h2 className="mb-8 text-center text-2xl tracking-wider md:text-3xl">Frequently asked questions</h2>
       <FAQItem defaultOpen question="What does a premium membership give me?">
         Completely unlimited access to everything! Once you're signed up, you'll be able to watch the entire library of content, and all
