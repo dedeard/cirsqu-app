@@ -1,16 +1,12 @@
 import React from 'react'
 import cn from 'classnames'
-import { Chip, Skeleton } from '@nextui-org/react'
-import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export type SidebarLinkPropTypes = {
   href?: string
   text?: string
-  badge?: {
-    color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | undefined
-    text: number | string
-  }
+  badge?: number
 }
 
 const SidebarLink: React.FC<SidebarLinkPropTypes> = ({ text, href, badge }) => {
@@ -25,25 +21,25 @@ const SidebarLink: React.FC<SidebarLinkPropTypes> = ({ text, href, badge }) => {
     <Link
       href={href}
       className={cn(
-        active && 'border-divider !bg-content1/75 dark:border-transparent',
-        !active && 'border-transparent',
-        'flex h-10 w-full items-center rounded-medium border px-3 hover:bg-content2/75 dark:hover:bg-content1/75',
+        active && 'border-neutral-200 bg-neutral-200/30 dark:border-neutral-800 dark:bg-neutral-800/30',
+        !active && 'hover:border-neutral-200 dark:hover:border-neutral-800',
+        'flex h-10 w-full items-center rounded-lg border border-transparent px-3',
       )}
     >
-      <span className="block flex-1">{text}</span>
-      {badge && !!badge.text && (
-        <Chip size="sm" color={badge.color} className="h-5">
-          <span className="text-xs font-semibold">{badge.text}</span>
-        </Chip>
+      <span className="block flex-1 text-sm">{text}</span>
+      {!!badge && (
+        <span className="block min-w-[1rem] rounded-lg bg-red-600 px-2 text-center text-xs font-semibold leading-5 text-white">
+          {badge}
+        </span>
       )}
     </Link>
   )
 }
 
 export const SidebarLinkSkeleton: React.FC = () => (
-  <div className="flex h-10 w-full items-center rounded-medium bg-content2/50 px-3 dark:bg-content1/50">
-    <Skeleton className="h-4 flex-1 rounded-medium" />
-    <Skeleton className="ml-2 h-4 w-8 rounded-medium" />
+  <div className="flex h-10 w-full items-center rounded-lg bg-content2/50 px-3 dark:bg-content1/50">
+    <span className="skeleton h-4 flex-1 rounded-lg" />
+    <span className="skeleton ml-2 h-4 w-8 rounded-lg" />
   </div>
 )
 

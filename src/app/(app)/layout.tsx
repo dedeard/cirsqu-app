@@ -27,7 +27,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       setLinks([
         ...baseLinks,
         { href: '/collections', text: 'Collections' },
-        { href: '/notifications', text: 'Notifications', badge: { color: 'danger', text: unreadCount } },
+        { href: '/notifications', text: 'Notifications', badge: unreadCount },
         { href: '/account', text: 'My Account' },
       ])
     } else {

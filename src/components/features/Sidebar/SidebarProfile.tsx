@@ -2,8 +2,6 @@
 import React from 'react'
 import Avatar from '@/components/elements/Avatar'
 import { useAuth } from '@/components/contexts/AuthContext'
-import { Skeleton } from '@nextui-org/react'
-import Card from '@/app/(app)/components/Card'
 import { timestampToDate } from '@/utils/firestore'
 
 const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
@@ -27,11 +25,11 @@ const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
         {initLoading && (
           <>
             <div className="mb-3 flex flex-col items-center justify-center text-center">
-              <Skeleton className="mb-3 h-20 w-20 rounded-full" />
-              <Skeleton className="mb-1 h-5 w-3/4 rounded-medium" />
-              <Skeleton className="h-4 w-1/2 rounded-medium" />
+              <span className="skeleton mb-3 h-20 w-20 rounded-full" />
+              <span className="skeleton mb-1 h-5 w-3/4 rounded-medium" />
+              <span className="skeleton h-4 w-1/2 rounded-medium" />
             </div>
-            <Skeleton className="mx-auto h-4 w-3/4 rounded-medium" />
+            <span className="skeleton mx-auto h-4 w-3/4 rounded-medium" />
           </>
         )}
       </div>
@@ -39,7 +37,7 @@ const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
   }
 
   return (
-    <Card className="mb-3" forceBodyClassName="px-4 py-3">
+    <div className="mb-3 rounded-lg border border-neutral-200 bg-neutral-200/30 p-3 dark:border-neutral-800 dark:bg-neutral-800/30">
       {profile && (
         <div className="flex w-full items-center">
           <Avatar name={profile.name} file={profile.avatar} size={48} className="rounded-full" />
@@ -52,14 +50,14 @@ const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
 
       {initLoading && (
         <div className="flex w-full items-center">
-          <Skeleton className="block h-12 w-12 rounded-full" />
+          <span className="skeleton h-12 w-12 rounded-full" />
           <div className="flex-1 pl-2">
-            <Skeleton className="mb-1 block h-4 w-full rounded-full" />
-            <Skeleton className="block h-3 w-3/4 rounded-full" />
+            <span className="skeleton mb-1 block h-4 w-full rounded-full" />
+            <span className="skeleton block h-3 w-3/4 rounded-full" />
           </div>
         </div>
       )}
-    </Card>
+    </div>
   )
 }
 
