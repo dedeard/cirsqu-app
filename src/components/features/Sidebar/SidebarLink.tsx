@@ -22,8 +22,8 @@ const SidebarLink: React.FC<SidebarLinkPropTypes> = ({ text, href, badge }) => {
       href={href}
       className={cn(
         active && 'border-neutral-200 bg-neutral-200/30 dark:border-neutral-800 dark:bg-neutral-800/30',
-        !active && 'hover:border-neutral-200 dark:hover:border-neutral-800',
-        'flex h-10 w-full items-center rounded-lg border border-transparent px-3',
+        !active && 'border-transparent hover:border-neutral-200 dark:hover:border-neutral-800',
+        'flex h-10 w-full items-center rounded-lg border px-3',
       )}
     >
       <span className="block flex-1 text-sm">{text}</span>
