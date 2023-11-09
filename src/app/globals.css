@@ -2,92 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-white text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300;
-}
-
-.skeleton {
-  @apply flex overflow-hidden bg-neutral-500/30;
-}
-
-.skeleton::after {
-  @apply block flex-1 animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-neutral-500/30 to-transparent content-['\00a0'];
-}
-
-.hoverable-default {
-  @apply border-neutral-200 bg-neutral-200/30 text-neutral-800 dark:border-neutral-800 dark:bg-neutral-800/30 dark:text-neutral-100 hover:[&:not(:disabled)]:border-neutral-300 hover:[&:not(:disabled)]:bg-neutral-200 dark:hover:[&:not(:disabled)]:border-neutral-600 dark:hover:[&:not(:disabled)]:bg-neutral-800;
-}
-
-.hoverable-blue {
-  @apply bg-blue-600 text-white hover:[&:not(:disabled)]:bg-blue-700 dark:hover:[&:not(:disabled)]:bg-blue-500;
-}
-
-.hoverable-red {
-  @apply bg-red-600 text-white hover:[&:not(:disabled)]:bg-red-700 dark:hover:[&:not(:disabled)]:bg-red-500;
-}
-
-.hoverable-green {
-  @apply bg-green-600 text-neutral-900 hover:[&:not(:disabled)]:bg-green-700 dark:hover:[&:not(:disabled)]:bg-green-500;
-}
-
-.prose pre {
-  @apply my-0 p-0 [&>code]:p-3;
-}
-
-.prose strong {
-  @apply font-semibold text-current;
-}
-
-.prose hr {
-  @apply border-neutral-200 dark:border-neutral-800;
-}
-
-.chrome-scrollbar::-webkit-scrollbar {
-  @apply w-1;
-}
-
-.chrome-scrollbar::-webkit-scrollbar-thumb {
-  @apply rounded-xl bg-gray-600 dark:bg-gray-300;
-}
-
-.chrome-scrollbar::-webkit-scrollbar-track {
-  @apply rounded-xl bg-gray-600/20 dark:bg-gray-300/20;
-}
-
-.dropdown-drop {
-  transition:
-    opacity 250ms ease-out,
-    visibility 250ms ease-out;
-  @apply invisible opacity-0;
-}
-
-.dropdown-wrapper:hover .dropdown-drop {
-  @apply visible opacity-100;
-}
-
-.StripeElement {
-  @apply cursor-text border p-3 transition-all;
-}
-
-.StripeElement.StripeElement--focus {
-  @apply rounded ring-2 ring-primary-600;
-}
-
-.StripeElement.StripeElement--invalid {
-  @apply rounded ring-2 ring-red-600;
-}
-
-.background-animate {
-  background-size: 400%;
-  animation: AnimatedBgColor 20s ease infinite;
-}
-
-@keyframes AnimatedBgColor {
-  0%,
-  100% {
-    background-position: 0% 50%;
+@layer base {
+  body {
+    @apply bg-white text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300;
   }
-  50% {
-    background-position: 100% 50%;
+
+  .prose pre {
+    @apply my-0 p-0 [&>code]:p-3;
+  }
+
+  .prose strong {
+    @apply font-semibold text-current;
+  }
+
+  .prose hr {
+    @apply border-neutral-200 dark:border-neutral-800;
+  }
+}
+
+@layer components {
+  .skeleton {
+    @apply flex overflow-hidden bg-neutral-500/30;
+  }
+
+  .skeleton::after {
+    @apply block flex-1 animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-neutral-500/30 to-transparent content-['\00a0'];
+  }
+
+  .hoverable-default {
+    @apply border-neutral-200 bg-neutral-200/30 text-neutral-800 dark:border-neutral-800 dark:bg-neutral-800/30 dark:text-neutral-100 hover:[&:not(:disabled)]:border-neutral-300 hover:[&:not(:disabled)]:bg-neutral-200 dark:hover:[&:not(:disabled)]:border-neutral-600 dark:hover:[&:not(:disabled)]:bg-neutral-800;
+  }
+
+  .hoverable-blue {
+    @apply bg-blue-600 text-white hover:[&:not(:disabled)]:bg-blue-700 dark:hover:[&:not(:disabled)]:bg-blue-500;
+  }
+
+  .hoverable-red {
+    @apply bg-red-600 text-white hover:[&:not(:disabled)]:bg-red-700 dark:hover:[&:not(:disabled)]:bg-red-500;
+  }
+
+  .hoverable-green {
+    @apply bg-green-600 text-neutral-900 hover:[&:not(:disabled)]:bg-green-700 dark:hover:[&:not(:disabled)]:bg-green-500;
+  }
+
+  .chrome-scrollbar::-webkit-scrollbar {
+    @apply w-1;
+  }
+
+  .chrome-scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-xl bg-neutral-500/70;
+  }
+
+  .chrome-scrollbar::-webkit-scrollbar-track {
+    @apply rounded-xl bg-neutral-500/30;
+  }
+
+  .dropdown-drop {
+    transition:
+      opacity 250ms ease-out,
+      visibility 250ms ease-out;
+    @apply invisible opacity-0;
+  }
+
+  .dropdown-wrapper:hover .dropdown-drop {
+    @apply visible opacity-100;
+  }
+
+  .background-animate {
+    @apply animate-[position_20s_infinite] bg-[length:400%];
   }
 }

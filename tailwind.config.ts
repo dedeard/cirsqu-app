@@ -1,5 +1,4 @@
 import type { Config } from 'tailwindcss'
-import { nextui } from '@nextui-org/react'
 import typography from '@tailwindcss/typography'
 
 const config: Config = {
@@ -9,19 +8,24 @@ const config: Config = {
       center: true,
     },
     extend: {
-      minHeight: {
-        layout: 'calc(100vh - 65px)',
-      },
       keyframes: {
         shimmer: {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(100%)' },
         },
+        position: {
+          '0%, 100%': {
+            backgroundPosition: '0% 50%',
+          },
+          '50%': {
+            backgroundPosition: '100% 50%',
+          },
+        },
       },
     },
   },
   darkMode: 'class',
-  plugins: [nextui(), typography],
+  plugins: [typography],
 }
 
 export default config
