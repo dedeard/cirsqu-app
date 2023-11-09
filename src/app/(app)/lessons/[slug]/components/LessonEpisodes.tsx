@@ -3,7 +3,7 @@ import EpisodeItem from './EpisodeItem'
 
 const LessonEpisodes: React.FC<React.HTMLAttributes<HTMLDivElement> & { episodes: IAEpisode[] }> = ({ episodes, ...props }) => {
   return (
-    <div {...props}>
+    <section {...props}>
       <h2 className="relative mb-8 text-2xl">
         <span className="relative before:absolute before:-bottom-2 before:block before:h-1 before:w-3/4 before:rounded-full before:bg-primary before:content-[''] after:absolute after:-bottom-4 after:block after:h-1 after:w-1/2 after:rounded-full after:bg-foreground/50 after:content-['']">
           Lesson episodes ({episodes.length})
@@ -17,7 +17,7 @@ const LessonEpisodes: React.FC<React.HTMLAttributes<HTMLDivElement> & { episodes
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   )
 }
 

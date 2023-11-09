@@ -30,6 +30,14 @@ body {
   @apply my-0 p-0 [&>code]:p-3;
 }
 
+.prose strong {
+  @apply font-semibold text-current;
+}
+
+.prose hr {
+  @apply border-neutral-200 dark:border-neutral-800;
+}
+
 .chrome-scrollbar::-webkit-scrollbar {
   @apply w-1;
 }
