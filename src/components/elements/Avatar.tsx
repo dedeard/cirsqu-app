@@ -36,7 +36,7 @@ const Avatar: React.FC<PropTypes> = ({ name, src, file, premium, size = 40, clas
     >
       {srcUrl ? <Image alt={name} height={size} width={size} src={srcUrl} className="block h-full w-full rounded-full" /> : nickname}
       {premium && (
-        <span className="absolute bottom-0 left-1/2 z-10 block min-w-[1rem] -translate-x-1/2 whitespace-nowrap rounded-full bg-blue-600 px-1 py-0 text-center text-[0.625rem] font-semibold leading-4 text-white">
+        <span className="absolute bottom-0 left-1/2 z-10 block min-w-[1rem] -translate-x-1/2 whitespace-nowrap rounded-full bg-blue-600 px-1 py-0 text-center text-[0.5rem] font-semibold leading-3 text-white">
           PRO
         </span>
       )}
