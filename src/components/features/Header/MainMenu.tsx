@@ -28,11 +28,11 @@ const MainMenu: React.FC = () => {
     <>
       <Link
         href="/sign-in"
-        className="mr-3 hidden h-10 items-center justify-center rounded-lg bg-neutral-200 px-4 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100 md:flex"
+        className="hoverable-default mr-3 hidden h-10 items-center justify-center rounded-lg border px-4 text-sm md:flex"
       >
         Sign In
       </Link>
-      <Link href="/sign-up" className="flex h-10 items-center justify-center rounded-lg bg-blue-600 px-4 text-sm text-white">
+      <Link href="/sign-up" className="hoverable-blue flex h-10 items-center justify-center rounded-lg px-4 text-sm">
         Create Your Account
       </Link>
     </>

@@ -34,21 +34,15 @@ const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
             </div>
           </div>
           <div className="flex flex-col gap-3 p-3">
-            <Link
-              href="/account/edit-profile"
-              className="block rounded-lg bg-neutral-200 p-2 text-center text-sm font-semibold text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100"
-            >
+            <Link href="/account/edit-profile" className="hoverable-default block rounded-lg border p-2 text-center text-sm font-semibold">
               Edit Profile
             </Link>
-            <Link
-              href="/account/subscription"
-              className="block rounded-lg bg-neutral-200 p-2 text-center text-sm font-semibold text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100"
-            >
+            <Link href="/account/subscription" className="hoverable-default block rounded-lg border p-2 text-center text-sm font-semibold">
               Subscription
             </Link>
           </div>
-          <div className="bg-neutral-200/50 p-3 dark:bg-neutral-800/50">
-            <button className="flex h-10 items-center rounded-lg bg-red-600 px-4 text-sm font-semibold text-white" onClick={logout}>
+          <div className="bg-neutral-200/30 p-3 dark:bg-neutral-800/30">
+            <button className="hoverable-red flex h-10 items-center rounded-lg px-4 text-sm font-semibold" onClick={logout}>
               Sign Out
             </button>
           </div>

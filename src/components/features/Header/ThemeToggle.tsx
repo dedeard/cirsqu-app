@@ -10,7 +10,7 @@ const ThemeToggle: React.FC = () => {
   return (
     <button
       aria-label="Theme toggle"
-      className="ml-3 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-200 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100"
+      className="hoverable-default ml-3 flex h-10 w-10 items-center justify-center rounded-full border text-sm"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       {theme === 'dark' ? <Moon size="1em" /> : <Sun size="1em" />}
