@@ -1,13 +1,13 @@
 'use client'
 import React from 'react'
-import NotificationEmpty from './NotificationEmpty'
-import MainLoading from './MainLoading'
-import TitleBar from '../../components/TitleBar'
 import { useAuth } from '@/components/contexts/AuthContext'
 import { useNotification } from '@/components/contexts/NotificationContext'
-import { Button } from '@nextui-org/react'
-import NotificationItem from './NotificationItem'
 import DeleteConfirm from '@/components/elements/DeleteConfirm'
+import Spinner from '@/components/svg/Spinner'
+import TitleBar from '../../components/TitleBar'
+import NotificationItem from './NotificationItem'
+import NotificationEmpty from './NotificationEmpty'
+import MainLoading from './MainLoading'
 
 const Main: React.FC = () => {
   const { initLoading } = useAuth({
@@ -38,9 +38,17 @@ const Main: React.FC = () => {
 
       <TitleBar title={`Notifications (${notifications.length})`} className="mb-3">
         {unreadCount > 0 && (
-          <Button color="success" size="sm" isLoading={markAllLoading} onClick={markAllAsRead}>
+          <button
+            type="button"
+            disabled={markAllLoading}
+            className="hoverable-green relative h-8 rounded-lg px-3 text-xs disabled:text-transparent"
+            onClick={markAllAsRead}
+          >
             Mark all as read
-          </Button>
+            {markAllLoading && (
+              <Spinner height={16} width={16} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 stroke-neutral-900" />
+            )}
+          </button>
         )}
       </TitleBar>
 

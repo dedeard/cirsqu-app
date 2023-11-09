@@ -15,15 +15,19 @@ body {
 }
 
 .hoverable-default {
-  @apply border-neutral-200 bg-neutral-200/30 text-neutral-800 hover:border-neutral-300 hover:bg-neutral-200 dark:border-neutral-800 dark:bg-neutral-800/30 dark:text-neutral-100 dark:hover:border-neutral-600 dark:hover:bg-neutral-800;
+  @apply border-neutral-200 bg-neutral-200/30 text-neutral-800 dark:border-neutral-800 dark:bg-neutral-800/30 dark:text-neutral-100 hover:[&:not(:disabled)]:border-neutral-300 hover:[&:not(:disabled)]:bg-neutral-200 dark:hover:[&:not(:disabled)]:border-neutral-600 dark:hover:[&:not(:disabled)]:bg-neutral-800;
 }
 
 .hoverable-blue {
-  @apply bg-blue-600 text-white hover:bg-blue-700 dark:hover:bg-blue-500;
+  @apply bg-blue-600 text-white hover:[&:not(:disabled)]:bg-blue-700 dark:hover:[&:not(:disabled)]:bg-blue-500;
 }
 
 .hoverable-red {
-  @apply bg-red-600 text-white hover:bg-red-700 dark:hover:bg-red-500;
+  @apply bg-red-600 text-white hover:[&:not(:disabled)]:bg-red-700 dark:hover:[&:not(:disabled)]:bg-red-500;
+}
+
+.hoverable-green {
+  @apply bg-green-600 text-neutral-900 hover:[&:not(:disabled)]:bg-green-700 dark:hover:[&:not(:disabled)]:bg-green-500;
 }
 
 .prose pre {
