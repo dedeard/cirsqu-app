@@ -47,12 +47,13 @@ const LessonItem: React.FC<{ lesson: IALesson }> = ({ lesson }) => {
         >
           Watch
         </Link>
-        <div className="absolute right-0 top-1/2 z-0 -translate-y-1/2 text-[40vw] transition-transform peer-hover:scale-110 md:text-[30vw] lg:text-[20vw]">
-          <div className="flex h-[1.5em] w-[1.5em] rotate-12 items-center justify-center leading-none">
-            <Code className="block h-3/4 w-3/4 opacity-10" />
-          </div>
-        </div>
         <ToggleCollection lessonId={lesson.lessonId} />
+      </div>
+
+      <div className="absolute right-0 top-1/2 z-0 -translate-y-1/2 text-[40vw] transition-transform peer-hover:scale-110 md:text-[30vw] lg:text-[20vw]">
+        <div className="flex h-[1.5em] w-[1.5em] rotate-12 items-center justify-center leading-none">
+          <Code className="block h-3/4 w-3/4 opacity-10" />
+        </div>
       </div>
     </div>
   )
