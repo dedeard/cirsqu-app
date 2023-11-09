@@ -1,7 +1,5 @@
-'use client'
 import React from 'react'
-import { Skeleton } from '@nextui-org/react'
-import Card from './Card'
+import cn from 'classnames'
 
 type PropTypes = {
   title?: string
@@ -15,12 +13,17 @@ const TitleBar: React.FC<PropTypes> = ({ title, titleAs, isLoading, className, c
   const TitleAs = titleAs || 'h2'
 
   return (
-    <Card className={className} forceBodyClassName="px-4 py-3">
+    <div
+      className={cn(
+        className,
+        'rounded-lg border border-neutral-200 bg-neutral-200/30 px-4 py-3 dark:border-neutral-800 dark:bg-neutral-800/30',
+      )}
+    >
       <div className="flex h-12 items-center justify-between">
         {isLoading ? (
           <>
-            <Skeleton className="h-8 w-1/4 rounded-medium md:w-1/2" />
-            <Skeleton className="h-8 w-24 rounded-medium" />
+            <span className="skeleton h-8 w-1/4 rounded-lg md:w-1/2" />
+            <span className="skeleton h-8 w-24 rounded-lg" />
           </>
         ) : (
           <>
@@ -29,7 +32,7 @@ const TitleBar: React.FC<PropTypes> = ({ title, titleAs, isLoading, className, c
           </>
         )}
       </div>
-    </Card>
+    </div>
   )
 }
 
