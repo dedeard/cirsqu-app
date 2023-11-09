@@ -1,10 +1,8 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import { Button, Chip, Skeleton } from '@nextui-org/react'
 import { Clock, Film, X } from 'react-feather'
 import formatSecond from '@/utils/format-second'
-import Card from '../../components/Card'
 
 type PropTypes = {
   collectionId: string
@@ -14,26 +12,24 @@ type PropTypes = {
 
 const LessonList: React.FC<PropTypes> = ({ lesson, collectionId, setDeleteQueue }) => {
   return (
-    <li className="relative" role="listitem">
-      <Button
+    <>
+      <button
         type="button"
-        aria-label="Delete button"
-        isIconOnly
-        color="danger"
-        size="sm"
-        radius="full"
-        variant="faded"
-        className="absolute right-3 top-3 z-20"
+        title="Remove lesson from collection"
+        className="hoverable-default absolute right-3 top-3 z-20 flex h-8 w-8 rounded-full border"
         onClick={() => setDeleteQueue(collectionId)}
       >
-        <X className="h-[1.3em] w-[1.3em]" />
-      </Button>
-      <Card as={Link} href={`/lessons/${lesson.slug}`} isHoverable isPressable forceBodyClassName="flex flex-col gap-2 p-4">
+        <X className="m-auto block h-4 w-4 text-red-600" />
+      </button>
+      <Link href={`/lessons/${lesson.slug}`} className="hoverable-default group flex flex-col gap-2 rounded-lg border p-4">
         <div className="flex gap-3">
           {lesson.subjects.map((subject) => (
-            <Chip key={subject.slug} size="sm" radius="sm" variant="flat" classNames={{ content: 'text-xs' }}>
+            <span
+              key={subject.slug}
+              className="flex h-6 items-center rounded-full border border-neutral-200 px-3 text-xs group-hover:border-neutral-300 dark:border-neutral-800 dark:group-hover:border-neutral-600"
+            >
               {subject.name}
-            </Chip>
+            </span>
           ))}
         </div>
 
@@ -49,29 +45,29 @@ const LessonList: React.FC<PropTypes> = ({ lesson, collectionId, setDeleteQueue 
             <span className="block leading-none">{formatSecond(lesson.seconds)}</span>
           </span>
         </div>
-      </Card>
-    </li>
+      </Link>
+    </>
   )
 }
 
 export const LessonListSkeleton: React.FC = () => {
   return (
-    <li className="relative" role="listitem">
-      <Skeleton className="absolute right-3 top-3 z-20 h-8 w-8 rounded-full" />
-      <Card forceBodyClassName="flex flex-col gap-2 p-4">
+    <>
+      <span className="skeleton absolute right-3 top-3 z-20 h-8 w-8 rounded-full" />
+      <div className="flex flex-col gap-2 rounded-lg border border-neutral-200 bg-neutral-200/30 p-4 dark:border-neutral-800 dark:bg-neutral-800/30">
         <div className="flex gap-3">
-          <Skeleton className="h-6 w-16 rounded-medium" />
-          <Skeleton className="h-6 w-16 rounded-medium" />
+          <span className="skeleton h-6 w-16 rounded-lg" />
+          <span className="skeleton h-6 w-16 rounded-lg" />
         </div>
 
-        <Skeleton className="h-7 w-2/3 rounded-medium md:w-1/2" />
+        <span className="skeleton h-7 w-2/3 rounded-lg md:w-1/2" />
 
         <div className="flex gap-2">
-          <Skeleton className="h-3 w-24 rounded-medium " />
-          <Skeleton className="h-3 w-24 rounded-medium " />
+          <span className="skeleton h-3 w-24 rounded-lg " />
+          <span className="skeleton h-3 w-24 rounded-lg " />
         </div>
-      </Card>
-    </li>
+      </div>
+    </>
   )
 }
 

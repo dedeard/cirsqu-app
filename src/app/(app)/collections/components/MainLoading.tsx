@@ -8,9 +8,11 @@ const MainLoading: React.FC = () => {
     <>
       <TitleBar isLoading className="mb-3" />
 
-      <ul className="grid grid-cols-1 gap-3" role="list">
+      <ul className="grid grid-cols-1 gap-3">
         {Array.from(Array(4).keys()).map((i) => (
-          <LessonListSkeleton key={i} />
+          <li key={i} className="relative">
+            <LessonListSkeleton key={i} />
+          </li>
         ))}
       </ul>
     </>

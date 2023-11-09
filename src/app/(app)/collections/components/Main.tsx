@@ -2,11 +2,11 @@
 import React from 'react'
 import { useCollections } from '@/components/contexts/CollectionContext'
 import DeleteConfirm from '@/components/elements/DeleteConfirm'
+import { useAuth } from '@/components/contexts/AuthContext'
 import LessonList from './LessonList'
 import CollectionEmpty from './CollectionEmpty'
 import MainLoading from './MainLoading'
 import TitleBar from '../../components/TitleBar'
-import { useAuth } from '@/components/contexts/AuthContext'
 
 const Main: React.FC = () => {
   const { initLoading } = useAuth({
@@ -39,10 +39,14 @@ const Main: React.FC = () => {
 
       <CollectionEmpty />
 
-      <ul className="grid grid-cols-1 gap-3" role="list">
+      <ul className="grid grid-cols-1 gap-3">
         {collections.map(({ collectionId, lesson }) => (
           <React.Fragment key={collectionId}>
-            {lesson && <LessonList lesson={lesson} collectionId={collectionId} setDeleteQueue={setDeleteQueue} />}
+            {lesson && (
+              <li className="relative">
+                <LessonList lesson={lesson} collectionId={collectionId} setDeleteQueue={setDeleteQueue} />
+              </li>
+            )}
           </React.Fragment>
         ))}
       </ul>
