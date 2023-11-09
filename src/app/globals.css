@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-white text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300;
+}
+
+.skeleton {
+  @apply flex overflow-hidden bg-neutral-500/30;
+}
+
+.skeleton::after {
+  @apply block flex-1 animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-neutral-500/30 to-transparent content-['\00a0'];
+}
+
 .prose pre {
   @apply my-0 p-0 [&>code]:p-3;
 }

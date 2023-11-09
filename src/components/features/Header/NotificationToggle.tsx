@@ -1,17 +1,21 @@
 import React from 'react'
 import Link from 'next/link'
 import { Bell } from 'react-feather'
-import { Badge, Button } from '@nextui-org/react'
 import { useNotification } from '@/components/contexts/NotificationContext'
 
 const NotificationToggle: React.FC = () => {
   const { unreadCount } = useNotification()
   return (
-    <Badge disableOutline isInvisible={unreadCount <= 0} content={unreadCount} size="sm" color="danger" className="font-semibold">
-      <Button aria-label="Notifications" href="/notifications" isIconOnly className="relative" variant="flat" radius="full" as={Link}>
-        <Bell size="1em" />
-      </Button>
-    </Badge>
+    <Link
+      aria-label="Notifications"
+      href="/notifications"
+      className="relative flex h-10 w-10 items-center justify-center rounded-full bg-neutral-200 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100"
+    >
+      <Bell size="1em" />
+      <span className="absolute right-0 top-0 z-10 block min-w-[1rem] whitespace-nowrap rounded-full bg-red-600 px-1 py-0 text-center text-[0.625rem] font-semibold leading-4 text-white empty:hidden">
+        {unreadCount || ''}
+      </span>
+    </Link>
   )
 }
 

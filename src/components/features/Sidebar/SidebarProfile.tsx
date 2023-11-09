@@ -17,7 +17,7 @@ const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
         {profile && (
           <>
             <div className="mb-3 flex flex-col items-center justify-center text-center">
-              <Avatar name={profile.name} file={profile.avatar} size="lg" isBordered className="mb-3 block h-20 w-20 rounded-full" />
+              <Avatar name={profile.name} file={profile.avatar} size={80} className="mb-3 rounded-full" />
               <h3 className="mb-1 w-full truncate text-xl font-semibold capitalize leading-none">{profile.name}</h3>
               <p className="w-full truncate leading-none opacity-80">@{profile.username}</p>
             </div>
@@ -42,7 +42,7 @@ const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
     <Card className="mb-3" forceBodyClassName="px-4 py-3">
       {profile && (
         <div className="flex w-full items-center">
-          <Avatar name={profile.name} className="h-12 w-12" file={profile.avatar} />
+          <Avatar name={profile.name} file={profile.avatar} size={48} className="rounded-full" />
           <div className="flex-1 overflow-hidden pl-2">
             <h3 className="mb-1 truncate font-semibold capitalize leading-none">{profile.name}</h3>
             <span className="block truncate text-tiny leading-none">@{profile.username}</span>

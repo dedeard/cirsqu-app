@@ -38,7 +38,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <main className="flex min-h-layout flex-col">
+      <main className="flex min-h-screen flex-col pt-16">
         <div className="container flex flex-col px-3 lg:flex-row lg:items-start">
           <SidebarWrapper>
             <SidebarProfile />

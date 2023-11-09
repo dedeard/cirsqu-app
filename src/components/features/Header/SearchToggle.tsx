@@ -1,20 +1,17 @@
 import { Search } from 'react-feather'
-import { Button } from '@nextui-org/react'
 import { useLayout } from '@/components/contexts/LayoutContext'
 
 const SearchToggle: React.FC = () => {
   const { toggleSearchModal } = useLayout()
   return (
-    <Button
+    <button
       aria-label="Search toggle"
-      variant="flat"
-      isIconOnly
-      className="rounded-full md:flex md:w-64 md:items-center md:justify-between md:rounded-medium md:px-4"
+      className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-200 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100 md:w-64 md:justify-between md:rounded-lg md:px-4"
       onClick={() => toggleSearchModal(true)}
     >
       <div className="hidden uppercase tracking-widest md:block">Search...</div>
       <Search size="1em" />
-    </Button>
+    </button>
   )
 }
 

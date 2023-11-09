@@ -1,20 +1,16 @@
-import { useLayout } from '@/components/contexts/LayoutContext'
-import { Button } from '@nextui-org/react'
 import { Menu, X } from 'react-feather'
+import { useLayout } from '@/components/contexts/LayoutContext'
 
 const MenuToggle: React.FC = () => {
   const layout = useLayout()
   return (
-    <Button
+    <button
       aria-label="Menu toggle"
-      isIconOnly
-      className="ml-3 lg:hidden"
-      variant="flat"
-      radius="full"
+      className="ml-3 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-200 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100 lg:hidden"
       onClick={() => layout.toggleSidebar()}
     >
       {layout.sidebarOpen ? <X size="1em" /> : <Menu size="1em" />}
-    </Button>
+    </button>
   )
 }
 

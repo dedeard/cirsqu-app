@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import NotificationToggle from './NotificationToggle'
 import ProfileDropdown from './ProfileDropdown'
-import { Button, Skeleton } from '@nextui-org/react'
 import { useAuth } from '@/components/contexts/AuthContext'
 
 const MainMenu: React.FC = () => {
@@ -10,8 +9,8 @@ const MainMenu: React.FC = () => {
   if (initLoading) {
     return (
       <>
-        <Skeleton className="flex h-10 w-10 rounded-full" />
-        <Skeleton className="ml-3 flex h-10 w-10 rounded-full" />
+        <span className="skeleton h-10 w-10 rounded-full" />
+        <span className="skeleton ml-3 h-10 w-10 rounded-full" />
       </>
     )
   }
@@ -27,12 +26,15 @@ const MainMenu: React.FC = () => {
 
   return (
     <>
-      <Button as={Link} href="/sign-in" variant="flat" className="mr-3 hidden md:flex">
+      <Link
+        href="/sign-in"
+        className="mr-3 hidden h-10 items-center justify-center rounded-lg bg-neutral-200 px-4 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100 md:flex"
+      >
         Sign In
-      </Button>
-      <Button as={Link} href="/sign-up" color="primary">
+      </Link>
+      <Link href="/sign-up" className="flex h-10 items-center justify-center rounded-lg bg-blue-600 px-4 text-sm text-white">
         Create Your Account
-      </Button>
+      </Link>
     </>
   )
 }

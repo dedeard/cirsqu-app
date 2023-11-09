@@ -28,7 +28,6 @@ export const getProviderById = (method: 'facebook.com' | 'github.com' | 'google.
   }
 }
 
-export const storageUrl = (name?: string) => {
-  if (!name) return undefined
-  return `https://storage.googleapis.com/${firebaseConfig.storageBucket}/${name}`
+export const storageUrl = (path?: string) => {
+  return `https://storage.googleapis.com/${firebaseConfig.storageBucket}/${path}`
 }

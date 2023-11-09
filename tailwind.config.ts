@@ -12,6 +12,12 @@ const config: Config = {
       minHeight: {
         layout: 'calc(100vh - 65px)',
       },
+      keyframes: {
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
     },
   },
   darkMode: 'class',

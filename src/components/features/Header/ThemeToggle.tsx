@@ -8,16 +8,13 @@ const ThemeToggle: React.FC = () => {
   const mounted = useMounted()
   if (!mounted) return null
   return (
-    <Button
+    <button
       aria-label="Theme toggle"
-      isIconOnly
-      className="ml-3"
-      variant="flat"
-      radius="full"
+      className="ml-3 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-200 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       {theme === 'dark' ? <Moon size="1em" /> : <Sun size="1em" />}
-    </Button>
+    </button>
   )
 }
 
