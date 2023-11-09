@@ -19,7 +19,7 @@ const SearchModal: React.FC = () => {
       placement="top"
       onClose={() => toggleSearchModal(false)}
     >
-      <ModalContent className="m-0 flex h-screen flex-col rounded-none p-0 sm:m-0 md:my-16 md:h-auto md:max-h-[calc(100vh-8rem)] md:rounded-medium">
+      <ModalContent className="md:rounded-medium m-0 flex h-screen flex-col rounded-none p-0 sm:m-0 md:my-16 md:h-auto md:max-h-[calc(100vh-8rem)]">
         <SearchInput />
         <Logger />
         <Results />

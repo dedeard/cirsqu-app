@@ -73,7 +73,7 @@ const Checkout: React.FC<PropsType> = ({ products, currentProduct, className, ..
                 onClick={handleCheckout}
               >
                 {!loading && (
-                  <Chip color="warning" variant="solid" className="absolute right-0 top-0 h-5 rounded-none rounded-bl-medium">
+                  <Chip color="warning" variant="solid" className="rounded-bl-medium absolute right-0 top-0 h-5 rounded-none">
                     <span className="text-xs font-semibold capitalize tracking-normal">TEST MODE</span>
                   </Chip>
                 )}
@@ -83,7 +83,7 @@ const Checkout: React.FC<PropsType> = ({ products, currentProduct, className, ..
             <p className="text-center text-sm font-light">You will be redirected to Stripe for payment processing.</p>
           </CardBody>
         </Card>
-        <p className="font-light text-slate-900 light">
+        <p className="light font-light text-slate-900">
           For testing purposes, you may utilize the following card number:{' '}
           <span className="font-normal">4242&nbsp;4242&nbsp;4242&nbsp;4242</span>. For additional details and other test card numbers,
           please{' '}

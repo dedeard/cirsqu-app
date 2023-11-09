@@ -87,7 +87,7 @@ const Invoices: React.FC = () => {
               <div className="grid w-full grid-cols-1 gap-3">
                 {Array.from(Array(5), (_, i) => (
                   <div key={i} className="h-10 py-1">
-                    <Skeleton className="flex h-full w-full rounded-medium" />
+                    <Skeleton className="rounded-medium flex h-full w-full" />
                   </div>
                 ))}
               </div>

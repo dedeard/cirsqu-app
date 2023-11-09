@@ -11,7 +11,7 @@ const LessonCard: React.FC<{ lesson: IALesson; className?: string }> = ({ lesson
     <section
       className={cn(
         className,
-        'background-animate relative mb-3 overflow-hidden rounded-lg bg-gradient-to-br from-white/70 via-primary/50 to-primary p-3 text-neutral-800 dark:from-black/70 dark:via-blue-600/50 dark:to-black/70 dark:text-neutral-200 md:p-6',
+        'background-animate via-primary/50 to-primary relative mb-3 overflow-hidden rounded-lg bg-gradient-to-br from-white/70 p-3 text-neutral-800 dark:from-black/70 dark:via-blue-600/50 dark:to-black/70 dark:text-neutral-200 md:p-6',
       )}
     >
       <div className="flex flex-col py-6">

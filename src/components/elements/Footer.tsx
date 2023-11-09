@@ -7,12 +7,12 @@ import Link from 'next/link'
 
 const Footer: React.FC = () => {
   return (
-    <Card className="mt-auto bg-content2 dark:bg-content1" radius="none" as="footer" shadow="none">
+    <Card className="bg-content2 dark:bg-content1 mt-auto" radius="none" as="footer" shadow="none">
       <div className="container max-w-[1140px]">
         <div className="grid grid-cols-1 gap-3 py-14 md:grid-cols-3">
           <div className="flex flex-col p-3 text-center md:text-left">
             <div className="flex flex-col items-center md:flex-row">
-              <Logo className="mb-6 block h-16 w-16 text-primary md:mb-0 md:h-10 md:w-10" />
+              <Logo className="text-primary mb-6 block h-16 w-16 md:mb-0 md:h-10 md:w-10" />
               <span className="block text-3xl uppercase tracking-widest md:ml-3">CirSqu</span>
             </div>
             <p className="py-3 text-sm  leading-none tracking-wider">Practical screencasts for developers</p>
@@ -20,32 +20,32 @@ const Footer: React.FC = () => {
 
           <div className="grid grid-cols-2 gap-1 p-3 px-[20%] text-center md:px-0 md:text-left">
             <div>
-              <Link href="/lessons" className="text-sm hover:text-primary">
+              <Link href="/lessons" className="hover:text-primary text-sm">
                 Lessons
               </Link>
             </div>
             <div>
-              <Link href="/faq" className="text-sm hover:text-primary">
+              <Link href="/faq" className="hover:text-primary text-sm">
                 F . A . Q
               </Link>
             </div>
             <div>
-              <Link href="/subjects" className="text-sm hover:text-primary">
+              <Link href="/subjects" className="hover:text-primary text-sm">
                 Subjects
               </Link>
             </div>
             <div>
-              <Link href="/terms-of-service" className="text-sm hover:text-primary">
+              <Link href="/terms-of-service" className="hover:text-primary text-sm">
                 Terms of Service
               </Link>
             </div>
             <div>
-              <Link href="/pro" className="text-sm hover:text-primary">
+              <Link href="/pro" className="hover:text-primary text-sm">
                 Premium
               </Link>
             </div>
             <div>
-              <Link href="/privacy-policy" className="text-sm hover:text-primary">
+              <Link href="/privacy-policy" className="hover:text-primary text-sm">
                 Privacy Policy
               </Link>
             </div>

@@ -8,7 +8,7 @@ type PanelPropTypes = {
 
 const Panel: React.FC<PanelPropTypes> = ({ title, className, children, ...props }) => {
   return (
-    <Card shadow="none" className={cn(className, 'border border-divider dark:border-transparent')} {...props}>
+    <Card shadow="none" className={cn(className, 'border-divider border dark:border-transparent')} {...props}>
       <CardHeader className="bg-content2/50 px-5">
         <h1 className="text-lg md:text-xl">
           <span className="uppercase leading-loose md:tracking-widest">{title}</span>

@@ -4,7 +4,7 @@ import { BookOpen } from 'react-feather'
 
 const SubjectCard: React.FC<{ subject: IASubject }> = ({ subject }) => {
   return (
-    <div className="background-animate relative mb-3 overflow-hidden rounded-lg bg-gradient-to-br from-white/70 via-primary/50 to-primary p-3 text-neutral-800 dark:from-black/70 dark:via-blue-600/50 dark:to-black/70 dark:text-neutral-200 md:p-6">
+    <div className="background-animate via-primary/50 to-primary relative mb-3 overflow-hidden rounded-lg bg-gradient-to-br from-white/70 p-3 text-neutral-800 dark:from-black/70 dark:via-blue-600/50 dark:to-black/70 dark:text-neutral-200 md:p-6">
       <div className="relative z-10 flex flex-col py-3">
         <span className="flex">
           <span className="block rounded-full bg-blue-600 px-3 py-1 text-sm font-semibold text-white">{subject.lessonCount} lessons</span>

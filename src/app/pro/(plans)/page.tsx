@@ -29,7 +29,7 @@ export default async function PlansPage() {
   }
   const products: IProduct[] = await response.json()
   return (
-    <div className="background-animate min-h-screen bg-gradient-to-br from-black via-slate-950 to-black text-foreground dark">
+    <div className="background-animate text-foreground dark min-h-screen bg-gradient-to-br from-black via-slate-950 to-black">
       <Link className="absolute block p-6 focus:outline-none" aria-label="Back toggle" href="/">
         <ArrowLeftCircle />
       </Link>

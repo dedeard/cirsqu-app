@@ -19,7 +19,7 @@ const DeleteConfirm: React.FC<PropTypes> = ({ isOpen, isLoading, title, message,
         <ModalContent>
           <ModalBody className="p-0">
             <div className="flex pt-14">
-              <XCircle strokeWidth={0.5} className="m-auto h-28 w-28 text-danger" />
+              <XCircle strokeWidth={0.5} className="text-danger m-auto h-28 w-28" />
             </div>
 
             <div className="p-5 text-center">

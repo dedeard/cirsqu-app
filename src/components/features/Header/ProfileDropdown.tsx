@@ -19,7 +19,7 @@ const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
         />
       </button>
       <div className="dropdown-drop absolute right-0 top-full mt-3 w-60">
-        <span className="absolute -top-1 right-2 h-6 w-6 rotate-45 transform rounded bg-primary" />
+        <span className="bg-primary absolute -top-1 right-2 h-6 w-6 rotate-45 transform rounded" />
         <div className="relative z-10 overflow-hidden rounded-lg bg-white shadow-xl dark:bg-neutral-900">
           <div className="pb-0 pt-6">
             <div className="flex flex-1 flex-col items-center justify-center">

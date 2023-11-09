@@ -12,7 +12,7 @@ const PlanItem: React.FC<{ product: IProduct }> = ({ product }) => {
       className={cn(
         light && 'text-gray-200 backdrop-brightness-90',
         !light && 'bg-white text-gray-800',
-        'relative w-full max-w-md rounded-medium px-8 py-6 shadow-xl dark',
+        'rounded-medium dark relative w-full max-w-md px-8 py-6 shadow-xl',
       )}
     >
       <div className="flex justify-between">
@@ -29,7 +29,7 @@ const PlanItem: React.FC<{ product: IProduct }> = ({ product }) => {
       <ul className="mb-10">
         {product.features.map((feature) => (
           <li key={feature.name} className="text-dark-blue mb-4 flex items-center text-sm font-medium">
-            <span className="mr-4 flex h-5 w-5 rounded-full bg-primary">
+            <span className="bg-primary mr-4 flex h-5 w-5 rounded-full">
               <Check strokeWidth="4" className=" m-auto block h-3 w-3 text-white" />
             </span>
             <span className="block flex-1">{feature.name}</span>

@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 const ResultItem: React.FC<{ lesson: Hit<IALesson> }> = ({ lesson }) => {
   return (
-    <Link href={`/lessons/${lesson.objectID}`} className="flex flex-col gap-3 rounded-medium border border-divider bg-content1 p-3">
+    <Link href={`/lessons/${lesson.objectID}`} className="rounded-medium border-divider bg-content1 flex flex-col gap-3 border p-3">
       <span className="flex gap-3">
         {lesson.subjects.map((el) => (
           <Chip key={el.slug} size="sm" className="h-auto" classNames={{ content: 'text-[11px]' }}>
@@ -16,7 +16,7 @@ const ResultItem: React.FC<{ lesson: Hit<IALesson> }> = ({ lesson }) => {
         ))}
       </span>
       <span
-        className="block text-sm [&>em]:not-italic [&>em]:text-primary"
+        className="[&>em]:text-primary block text-sm [&>em]:not-italic"
         dangerouslySetInnerHTML={{ __html: lesson._highlightResult.title.value }}
       />
       <span className="flex gap-6 text-xs">
@@ -35,18 +35,18 @@ const ResultItem: React.FC<{ lesson: Hit<IALesson> }> = ({ lesson }) => {
 
 export const ResultItemSkeleton: React.FC = () => {
   return (
-    <div className="flex flex-col gap-3 rounded-medium border border-divider bg-content1 p-3">
+    <div className="rounded-medium border-divider bg-content1 flex flex-col gap-3 border p-3">
       <div className="flex gap-3">
-        <Skeleton className="h-5 w-14 rounded-medium" />
-        <Skeleton className="h-5 w-14 rounded-medium" />
+        <Skeleton className="rounded-medium h-5 w-14" />
+        <Skeleton className="rounded-medium h-5 w-14" />
       </div>
       <div className="flex flex-col gap-2">
-        <Skeleton className="h-3 w-full rounded-medium" />
-        <Skeleton className="h-3 w-1/2 rounded-medium" />
+        <Skeleton className="rounded-medium h-3 w-full" />
+        <Skeleton className="rounded-medium h-3 w-1/2" />
       </div>
       <div className="flex gap-6 text-xs">
-        <Skeleton className="h-3 w-24 rounded-medium" />
-        <Skeleton className="h-3 w-20 rounded-medium" />
+        <Skeleton className="rounded-medium h-3 w-24" />
+        <Skeleton className="rounded-medium h-3 w-20" />
       </div>
     </div>
   )

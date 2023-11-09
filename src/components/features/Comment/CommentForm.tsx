@@ -57,9 +57,9 @@ const CommentForm: React.FC<PropTypes> = ({ mode = 'create', targetId, targetTyp
 export const CommentFormSkeleton: React.FC<{ className?: string; isReply?: boolean }> = (props) => {
   return (
     <div className={props.className}>
-      <Skeleton className={cn(props.isReply ? ' mb-1 h-14 rounded-small' : 'mb-3 h-28 rounded-medium')} />
+      <Skeleton className={cn(props.isReply ? ' rounded-small mb-1 h-14' : 'rounded-medium mb-3 h-28')} />
       <div className={cn(props.isReply && 'flex justify-end')}>
-        <Skeleton className={cn(props.isReply ? 'h-8 w-28 rounded-small' : 'h-10 w-36 rounded-medium')} />
+        <Skeleton className={cn(props.isReply ? 'rounded-small h-8 w-28' : 'rounded-medium h-10 w-36')} />
       </div>
     </div>
   )

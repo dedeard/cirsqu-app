@@ -66,9 +66,9 @@ export default function Password() {
               onClick={() => setIsVisible({ ...isVisible, new_password: !isVisible.new_password })}
             >
               {isVisible.new_password ? (
-                <Eye className="pointer-events-none  h-4 text-default-400" />
+                <Eye className="text-default-400  pointer-events-none h-4" />
               ) : (
-                <EyeOff className="pointer-events-none  h-4 text-default-400" />
+                <EyeOff className="text-default-400  pointer-events-none h-4" />
               )}
             </button>
           }
@@ -91,9 +91,9 @@ export default function Password() {
               onClick={() => setIsVisible({ ...isVisible, password: !isVisible.password })}
             >
               {isVisible.password ? (
-                <Eye className="pointer-events-none  h-4 text-default-400" />
+                <Eye className="text-default-400  pointer-events-none h-4" />
               ) : (
-                <EyeOff className="pointer-events-none  h-4 text-default-400" />
+                <EyeOff className="text-default-400  pointer-events-none h-4" />
               )}
             </button>
           }

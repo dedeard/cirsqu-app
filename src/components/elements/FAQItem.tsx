@@ -13,8 +13,8 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, defaultOpen, children, ...p
   return (
     <div className="py-6">
       <button type="button" className="flex w-full items-start justify-between text-left" onClick={() => setIsOpen(!isOpen)}>
-        <span className="text-lg text-foreground">{question}</span>
-        <span className="ml-6 flex items-center py-1 text-foreground-600">
+        <span className="text-foreground text-lg">{question}</span>
+        <span className="text-foreground-600 ml-6 flex items-center py-1">
           <ChevronRight className={classNames(isOpen && 'rotate-90', 'h-6 w-6 transition-all')} />
         </span>
       </button>

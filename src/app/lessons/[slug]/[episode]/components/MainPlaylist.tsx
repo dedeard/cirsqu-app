@@ -85,10 +85,10 @@ const MainPlaylist: React.FC<PropTypes> = ({ episodes, episode, loading, error, 
   }
 
   return (
-    <div className="border-b border-divider lg:flex">
-      <div className="flex-1 border-b border-divider  lg:border-b-0 lg:border-r">
+    <div className="border-divider border-b lg:flex">
+      <div className="border-divider flex-1 border-b  lg:border-b-0 lg:border-r">
         <div className="aspect-video w-full">{renderContent()}</div>
-        <Controller className="border-t border-divider" episode={episode} episodes={episodes} />
+        <Controller className="border-divider border-t" episode={episode} episodes={episodes} />
       </div>
       <div className="relative w-full lg:w-[500px]">
         <EpisodeList episodes={episodes} />

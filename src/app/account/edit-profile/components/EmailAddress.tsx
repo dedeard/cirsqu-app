@@ -78,9 +78,9 @@ export default function EmailAddress() {
               onClick={() => setIsVisible(!isVisible)}
             >
               {isVisible ? (
-                <Eye className="pointer-events-none  h-4 text-default-400" />
+                <Eye className="text-default-400  pointer-events-none h-4" />
               ) : (
-                <EyeOff className="pointer-events-none  h-4 text-default-400" />
+                <EyeOff className="text-default-400  pointer-events-none h-4" />
               )}
             </button>
           }

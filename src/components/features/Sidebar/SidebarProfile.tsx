@@ -31,10 +31,10 @@ const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
           <>
             <div className="mb-3 flex flex-col items-center justify-center text-center">
               <span className="skeleton mb-3 h-20 w-20 rounded-full" />
-              <span className="skeleton mb-1 h-5 w-3/4 rounded-medium" />
-              <span className="skeleton h-4 w-1/2 rounded-medium" />
+              <span className="skeleton rounded-medium mb-1 h-5 w-3/4" />
+              <span className="skeleton rounded-medium h-4 w-1/2" />
             </div>
-            <span className="skeleton mx-auto h-4 w-3/4 rounded-medium" />
+            <span className="skeleton rounded-medium mx-auto h-4 w-3/4" />
           </>
         )}
       </div>
@@ -48,7 +48,7 @@ const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
           <Avatar name={profile.name} file={profile.avatar} size={48} className="rounded-full bg-neutral-200 dark:bg-neutral-800" />
           <div className="flex-1 overflow-hidden pl-2">
             <h3 className="mb-1 truncate font-semibold capitalize leading-none">{profile.name}</h3>
-            <span className="block truncate text-tiny leading-none">@{profile.username}</span>
+            <span className="text-tiny block truncate leading-none">@{profile.username}</span>
           </div>
         </div>
       )}

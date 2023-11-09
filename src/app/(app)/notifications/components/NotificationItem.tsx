@@ -18,7 +18,7 @@ const NotificationItem: React.FC<PropTypes> = ({ notification, setDeleteQueue })
   return (
     <li className="relative">
       {readLoading && (
-        <div className="absolute bottom-0 left-0 right-0 top-0 z-30 flex items-center justify-center rounded-lg bg-background/20 backdrop-blur">
+        <div className="bg-background/20 absolute bottom-0 left-0 right-0 top-0 z-30 flex items-center justify-center rounded-lg backdrop-blur">
           <Spinner className="m-auto block h-8 w-8" />
         </div>
       )}
@@ -68,7 +68,7 @@ const NotificationItem: React.FC<PropTypes> = ({ notification, setDeleteQueue })
           )}
 
           {!user && (
-            <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-divider">
+            <span className="border-divider flex h-10 w-10 items-center justify-center rounded-full border-2">
               <Bell size={18} />
             </span>
           )}
@@ -76,7 +76,7 @@ const NotificationItem: React.FC<PropTypes> = ({ notification, setDeleteQueue })
         <div className="flex flex-col gap-1">
           <div className="flex h-10 flex-col justify-center">
             <span className="block text-sm">
-              {user?.name || 'System Notification'} {user && <span className="text-xs text-primary">@{user.username}</span>}
+              {user?.name || 'System Notification'} {user && <span className="text-primary text-xs">@{user.username}</span>}
             </span>
             <span className="block text-xs opacity-75">{moment(notification.createdAt.toDate()).fromNow()}</span>
           </div>

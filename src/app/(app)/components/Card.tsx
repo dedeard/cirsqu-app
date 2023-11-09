@@ -10,7 +10,7 @@ type PropTypes = {
 
 const Card: React.FC<PropTypes> = ({ children, className, forceBodyClassName, ...props }) => {
   return (
-    <BaseCard className={cn(className, 'group border border-divider bg-opacity-75 dark:border-transparent')} shadow="none" {...props}>
+    <BaseCard className={cn(className, 'border-divider group border bg-opacity-75 dark:border-transparent')} shadow="none" {...props}>
       <CardBody className={cn(forceBodyClassName || 'overflow-hidden p-3 md:p-6')}>{children}</CardBody>
     </BaseCard>
   )

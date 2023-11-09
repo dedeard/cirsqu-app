@@ -20,7 +20,7 @@ const EpisodeItem = React.forwardRef<HTMLAnchorElement, { episode: IAEpisode }>(
       href={`/lessons/${params.slug}/${episode.episodeId}`}
       className={cn(
         active && 'bg-white/10',
-        'relative flex h-16 w-full items-center justify-between overflow-hidden rounded-medium px-4 hover:bg-white/10',
+        'rounded-medium relative flex h-16 w-full items-center justify-between overflow-hidden px-4 hover:bg-white/10',
       )}
     >
       {lock ? <Lock className="block h-6 w-6 opacity-50" /> : <PlayCircle className="block h-6 w-6 opacity-50" />}

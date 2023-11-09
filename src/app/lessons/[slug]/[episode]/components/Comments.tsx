@@ -8,12 +8,12 @@ const Comments: React.FC<{ episodeId: string }> = ({ episodeId }) => {
   const { comments, total, isLoading } = useComments({ targetType: 'episode', targetId: episodeId })
 
   return (
-    <div className="border-t border-divider" id="comment-section">
+    <div className="border-divider border-t" id="comment-section">
       <div className="container my-12 max-w-4xl px-3">
         {isLoading ? (
           <div className="flex h-[32px] items-center gap-1">
-            <Skeleton className="block h-[28px] w-[120px] rounded-medium" />
-            <Skeleton className="block h-[28px] w-[32px] rounded-medium" />
+            <Skeleton className="rounded-medium block h-[28px] w-[120px]" />
+            <Skeleton className="rounded-medium block h-[28px] w-[32px]" />
           </div>
         ) : (
           <h2 className="relative text-2xl">Comments {total}</h2>

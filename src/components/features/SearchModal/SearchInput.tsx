@@ -10,7 +10,7 @@ const SearchInput: React.FC = () => {
   const { focus, input, loading, setFocus, setInput } = useSearch()
 
   return (
-    <div className="flex h-14 items-center border-b border-divider bg-content2 dark:border-transparent">
+    <div className="border-divider bg-content2 flex h-14 items-center border-b dark:border-transparent">
       <div className="relative flex h-full flex-1">
         <span className="pointer-events-none absolute flex h-full items-center px-3">
           <Search size={18} className={cn(focus ? 'text-primary' : ' text-content1-foreground/50')} />

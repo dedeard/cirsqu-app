@@ -6,12 +6,12 @@ import { Check, FileText } from 'react-feather'
 
 const Success: React.FC<{ invoice?: Record<string, any>; charge?: Record<string, any> }> = ({ invoice, charge }) => {
   return (
-    <div className="background-animate flex min-h-screen items-center justify-start bg-gradient-to-br from-black via-slate-950 to-black text-foreground dark">
+    <div className="background-animate text-foreground dark flex min-h-screen items-center justify-start bg-gradient-to-br from-black via-slate-950 to-black">
       <div className="container max-w-[500px] px-6 py-14">
         <div className="flex items-center justify-center pb-7 pt-14">
           <span className="relative block  animate-pulse">
             <FileText strokeWidth={1} className="block h-36 w-36" />
-            <span className="absolute -bottom-2 right-1 flex h-8 w-8 items-center justify-center rounded-full bg-success text-white">
+            <span className="bg-success absolute -bottom-2 right-1 flex h-8 w-8 items-center justify-center rounded-full text-white">
               <Check className="h-5 w-5" />
             </span>
           </span>

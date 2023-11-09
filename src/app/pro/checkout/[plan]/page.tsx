@@ -54,7 +54,7 @@ export default async function Page(props: PropTypes) {
       <Link className="absolute block p-6 text-gray-200 focus:outline-none lg:text-slate-950" aria-label="Back toggle" href="/pro">
         <ArrowLeftCircle />
       </Link>
-      <div className="grid min-h-screen grid-cols-1 bg-gray-100 dark lg:grid-cols-2">
+      <div className="dark grid min-h-screen grid-cols-1 bg-gray-100 lg:grid-cols-2">
         <ChosenPlan
           products={products}
           currentProduct={currentProduct}

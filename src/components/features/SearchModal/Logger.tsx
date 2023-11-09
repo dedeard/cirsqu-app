@@ -25,7 +25,7 @@ const Logger: React.FC = () => {
   }
 
   return (
-    <div className="flex items-center justify-between border-b border-divider bg-content2 px-3 dark:border-transparent dark:bg-content3">
+    <div className="border-divider bg-content2 dark:bg-content3 flex items-center justify-between border-b px-3 dark:border-transparent">
       <span className="flex h-7 items-center pr-3 text-xs leading-none">{message}</span>
       {(input || filters.length > 0) && (
         <Chip

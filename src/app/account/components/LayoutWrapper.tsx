@@ -18,7 +18,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   return (
     <>
       <Header noSidebar />
-      <div className="flex min-h-layout flex-col">
+      <div className="min-h-layout flex flex-col">
         <div className="container flex flex-col p-3 md:flex-row md:items-start">
           <div className="md:sticky md:top-0" style={{ top: layout.headerPosition }}>
             <Sidebar />
