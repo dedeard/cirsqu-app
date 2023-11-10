@@ -1,18 +1,17 @@
 'use client'
 import React from 'react'
 import * as yup from 'yup'
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { useFormik } from 'formik'
 import { AuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, UserCredential } from 'firebase/auth'
-import SocialAuthProviders from './SocialAuthProviders'
+import { useAuth } from '@/components/contexts/AuthContext'
 import { auth } from '@/utils/firebase'
-import { useSearchParams } from 'next/navigation'
 import FIREBASE_ERRORS from '@/constants/firebase-errors'
+import SocialAuthProviders from './SocialAuthProviders'
 import Alert from './elements/Alert'
 import Button from './elements/Button'
-import { Input } from '@nextui-org/react'
-import { Eye, EyeOff } from 'react-feather'
-import { useAuth } from '@/components/contexts/AuthContext'
-import Link from 'next/link'
+import Input from './Input'
 
 const schemas = {
   'sign-in': {
@@ -40,9 +39,6 @@ export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }
   })
 
   const [authError, setAuthError] = React.useState('')
-  const [isVisible, setIsVisible] = React.useState(false)
-
-  const toggleVisibility = () => setIsVisible(!isVisible)
 
   const executeAuthAction = async (authAction: () => Promise<UserCredential>) => {
     try {
@@ -77,38 +73,31 @@ export const AuthForm: React.FC<{ action: 'sign-in' | 'sign-up' }> = ({ action }
           type="text"
           label="Email address"
           name="email"
-          errorMessage={formik.errors.email}
+          placeholder="you@example.com"
+          error={formik.errors.email}
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
         <Input
-          type={isVisible ? 'text' : 'password'}
+          type="password"
           label="Password"
           name="password"
-          errorMessage={formik.errors.password}
+          placeholder="••••••••"
+          error={formik.errors.password}
           value={formik.values.password}
-          endContent={
-            <button aria-label="Visible password toggle" className="focus:outline-none" type="button" onClick={toggleVisibility}>
-              {isVisible ? (
-                <EyeOff className="text-default-400 pointer-events-none h-5" />
-              ) : (
-                <Eye className="text-default-400 pointer-events-none h-5" />
-              )}
-            </button>
-          }
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
 
-        <div className="my-6 text-center text-xs leading-5 opacity-75">
+        <div className="my-6 text-center text-xs leading-5 text-neutral-600 dark:text-neutral-400">
           <span>
             By clicking '{actionText}', you agree to our{' '}
-            <Link href="/terms-of-service" className="text-primary-600">
+            <Link href="/terms-of-service" className="text-blue-600 hover:text-blue-700 dark:hover:text-blue-500">
               Terms of Service
             </Link>{' '}
             and our{' '}
-            <Link href="/privacy-policy" className="text-primary-600">
+            <Link href="/privacy-policy" className="text-blue-600 hover:text-blue-700 dark:hover:text-blue-500">
               Privacy Policy
             </Link>
             .

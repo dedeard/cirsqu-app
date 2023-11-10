@@ -8,6 +8,9 @@ const config: Config = {
       center: true,
     },
     extend: {
+      transitionProperty: {
+        spacing: 'margin, padding',
+      },
       keyframes: {
         shimmer: {
           '0%': { transform: 'translateX(-100%)' },

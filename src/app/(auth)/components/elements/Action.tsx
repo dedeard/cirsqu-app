@@ -1,13 +1,13 @@
-'use client'
-import { Link } from '@nextui-org/react'
-import NextLink from 'next/link'
+import Link from 'next/link'
 
-const Action: React.FC<{
+type PropTypes = {
   href: string
   children?: React.ReactNode
-}> = ({ href, children }) => (
+}
+
+const Action: React.FC<PropTypes> = ({ href, children }) => (
   <div className="text-center">
-    <Link href={href} color="primary" size="lg" as={NextLink}>
+    <Link href={href} className="text-blue-600 hover:text-blue-700 dark:hover:text-blue-500">
       {children}
     </Link>
   </div>

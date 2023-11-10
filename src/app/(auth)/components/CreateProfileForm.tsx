@@ -1,14 +1,14 @@
 'use client'
 import React from 'react'
 import * as yup from 'yup'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { useFormik } from 'formik'
 import Alert from './elements/Alert'
 import UsernamePicker from './UsernamePicker'
 import Button from './elements/Button'
 import clientFetch from '@/utils/client-fetch'
-import { Input } from '@nextui-org/react'
 import { useAuth } from '@/components/contexts/AuthContext'
+import Input from './Input'
 
 const schema = {
   name: yup.string().min(3).max(20).required().label('Name'),
@@ -55,15 +55,13 @@ export const CreateProfileForm: React.FC = () => {
         <UsernamePicker onPicked={setUsername} />
       ) : (
         <>
-          <h2 className="mb-3 text-center text-lg uppercase" onClick={() => setUsername('')}>
-            Set Your Name
-          </h2>
+          <h2 className="mb-3 text-center text-lg uppercase">Set Your Name</h2>
           <form onSubmit={formik.handleSubmit}>
             <Input
               type="text"
               label="Name"
               name="name"
-              errorMessage={formik.errors.name}
+              error={formik.errors.name}
               value={formik.values.name}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}

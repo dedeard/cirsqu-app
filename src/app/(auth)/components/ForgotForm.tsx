@@ -1,14 +1,15 @@
 'use client'
 import React from 'react'
 import * as yup from 'yup'
-import { auth } from '@/utils/firebase'
-import { sendPasswordResetEmail } from 'firebase/auth'
-import FIREBASE_ERRORS from '@/constants/firebase-errors'
-import { useFormik } from 'formik'
-import Alert from './elements/Alert'
-import { Input, Button } from '@nextui-org/react'
-import { useAuth } from '@/components/contexts/AuthContext'
 import { useSearchParams } from 'next/navigation'
+import { useFormik } from 'formik'
+import { sendPasswordResetEmail } from 'firebase/auth'
+import { auth } from '@/utils/firebase'
+import FIREBASE_ERRORS from '@/constants/firebase-errors'
+import Alert from './elements/Alert'
+import { useAuth } from '@/components/contexts/AuthContext'
+import Input from './Input'
+import Button from './elements/Button'
 
 const schema = {
   email: yup.string().email().required().label('Email address'),
@@ -63,21 +64,14 @@ export const ForgotForm: React.FC = () => {
           type="text"
           label="Email address"
           name="email"
-          errorMessage={formik.errors.email}
+          placeholder="you@example.com"
+          error={formik.errors.email}
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
 
-        <Button
-          type="submit"
-          size="lg"
-          color="primary"
-          disabled={!!authSuccess}
-          style={{ cursor: !!authSuccess ? 'not-allowed' : 'pointer' }}
-        >
-          Send email
-        </Button>
+        <Button type="submit">Send email</Button>
       </form>
     </>
   )

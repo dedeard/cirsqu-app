@@ -1,6 +1,5 @@
 import React from 'react'
 import { AuthProvider } from 'firebase/auth'
-import { Button } from '@nextui-org/react'
 import Google from '@/components/svg/Google'
 import Github from '@/components/svg/Github'
 import Facebook from '@/components/svg/Facebook'
@@ -37,9 +36,14 @@ export const SocialAuthProviders: React.FC<PropTypes> = ({ onClick }) => {
     <>
       <div className="grid grid-cols-3 gap-4 pt-6">
         {providers.map((item, index) => (
-          <Button key={index} aria-label={item.provider.providerId} variant="flat" size="lg" onClick={() => handleOnClick(item.provider)}>
+          <button
+            key={index}
+            aria-label={item.provider.providerId}
+            className="hoverable-default flex h-12 items-center justify-center rounded-lg border"
+            onClick={() => handleOnClick(item.provider)}
+          >
             {item.icon}
-          </Button>
+          </button>
         ))}
       </div>
 

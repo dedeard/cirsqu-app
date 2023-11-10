@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { usernameNotExist } from '@/utils/firestore'
 import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
+import { usernameNotExist } from '@/utils/firestore'
 import Button from './elements/Button'
-import { Input, Spinner } from '@nextui-org/react'
+import Input from './Input'
 
 const schema = yup
   .string()
@@ -77,8 +77,8 @@ export const UsernamePicker: React.FC<PropTypes> = ({ onPicked }) => {
         label="Username"
         type="text"
         value={username}
-        endContent={isStart && (isLoading || isTyping) ? <Spinner size="sm" className="pointer-event-none" /> : <></>}
-        errorMessage={error}
+        loading={isStart && (isLoading || isTyping)}
+        error={error}
         onChange={(e) => setUsername(e.target.value)}
       />
 

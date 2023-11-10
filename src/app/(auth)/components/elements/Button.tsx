@@ -1,18 +1,21 @@
-import { ButtonProps, Button as NButton } from '@nextui-org/react'
+import React from 'react'
+import cn from 'classnames'
 import { ArrowRight } from 'react-feather'
 
-const Button: React.FC<ButtonProps> = ({ children, disabled, ...props }) => (
-  <NButton
+const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ className, children, ...props }) => (
+  <button
+    type="submit"
+    className={cn(
+      className,
+      'hoverable-blue mx-auto flex h-14 w-full max-w-xs items-center justify-center rounded-lg px-6 text-lg font-semibold leading-none',
+    )}
     {...props}
-    disabled={disabled}
-    color="primary"
-    className="mx-auto flex h-14 w-full max-w-xs items-center justify-center px-6 text-lg font-semibold leading-none"
   >
     {children}
     <span className="ml-auto text-2xl">
       <ArrowRight />
     </span>
-  </NButton>
+  </button>
 )
 
 export default Button
