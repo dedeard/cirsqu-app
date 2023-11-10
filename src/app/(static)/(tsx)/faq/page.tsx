@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function FAQPage() {
   return (
-    <div className="divide-divider divide-y">
+    <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
       {faqs.map(({ question, answer }) => (
         <FAQItem key={question} question={question}>
           {answer}
