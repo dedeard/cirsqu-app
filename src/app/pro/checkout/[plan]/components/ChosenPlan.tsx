@@ -18,12 +18,12 @@ const ChosenPlan: React.FC<PropTypes> = ({ products, currentProduct, ...props })
         ))}
       </ul>
 
-      <p className="mb-6 font-light text-gray-400">
+      <p className="mb-6 font-light text-neutral-400">
         Explore the benefits of each plan and choose the one that best suits your needs. Upgrade or downgrade at any time.
       </p>
 
-      <p className="flex font-light text-gray-400">
-        <span className="mr-3 block py-1 text-gray-600">
+      <p className="flex font-light text-neutral-400">
+        <span className="mr-3 block py-1 text-neutral-600">
           <Lock className="h-4 w-4" />
         </span>
         <span className="block">Your security is our priority. All transactions are encrypted and securely processed.</span>

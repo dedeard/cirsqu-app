@@ -13,7 +13,7 @@ type PropTypes = {
 export const dynamic = 'force-dynamic'
 
 async function getPageData({ params }: PropTypes) {
-  const res = await serverFetch(`products`, { cache: 'no-cache' })
+  const res = await serverFetch(`products`, { next: { revalidate: 3600 } })
 
   const products = (await res.json()) as IProduct[]
 
@@ -51,14 +51,14 @@ export default async function Page(props: PropTypes) {
 
   return (
     <>
-      <Link className="absolute block p-6 text-gray-200 focus:outline-none lg:text-slate-950" aria-label="Back toggle" href="/pro">
+      <Link title="Back to home" href="/pro" className="absolute block p-6 text-neutral-200 focus:outline-none lg:text-neutral-800">
         <ArrowLeftCircle />
       </Link>
-      <div className="dark grid min-h-screen grid-cols-1 bg-gray-100 lg:grid-cols-2">
+      <div className="dark grid min-h-screen grid-cols-1 bg-neutral-100 lg:grid-cols-2">
         <ChosenPlan
           products={products}
           currentProduct={currentProduct}
-          className="background-animate bg-gradient-to-br from-black via-slate-950 to-black px-6 py-20 text-gray-200 md:px-24 lg:px-12  xl:px-24"
+          className="background-animate bg-gradient-to-br from-black via-slate-950 to-black px-6 py-20 text-neutral-200 md:px-24 lg:px-12  xl:px-24"
         />
         <Checkout products={products} currentProduct={currentProduct} className="px-6 py-20 md:px-24 lg:order-first lg:px-12 xl:px-24" />
       </div>

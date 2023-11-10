@@ -11,11 +11,8 @@ type PropTypes = {
 const PlanItem: React.FC<PropTypes> = ({ product, active }) => {
   return (
     <li>
-      <Link
-        className="rounded-medium flex items-center bg-white px-6 py-5 text-slate-800"
-        href={`/pro/checkout/${product.price.lookup_key}`}
-      >
-        <span className={cn(active ? 'bg-primary' : 'border bg-gray-200', 'mr-3 flex h-5 w-5 rounded-full')}>
+      <Link className="flex items-center rounded-lg bg-white px-6 py-5 text-slate-800" href={`/pro/checkout/${product.price.lookup_key}`}>
+        <span className={cn(active ? 'bg-blue-600' : 'border bg-gray-200', 'mr-3 flex h-5 w-5 rounded-full')}>
           {active && <Check strokeWidth="4" className="m-auto block h-3 w-3 text-white" />}
         </span>
         <span className="block flex-1 text-lg first-letter:uppercase">{product.price.lookup_key}</span>

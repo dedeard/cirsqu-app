@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import PlanItem from './components/PlanItem'
-import serverFetch from '@/utils/server-fetch'
 import Link from 'next/link'
 import { ArrowLeftCircle } from 'react-feather'
+import serverFetch from '@/utils/server-fetch'
+import PlanItem from './components/PlanItem'
 import FAQs from './components/FAQs'
 
 export const dynamic = 'force-dynamic'
@@ -36,12 +36,12 @@ export default async function PlansPage() {
       <div className="container max-w-6xl px-3">
         <section className="flex flex-col items-center justify-center pb-12 pt-28 md:pb-28 md:pt-36">
           <div className="container flex flex-col items-center justify-center">
-            <h1 className="text-center text-4xl font-semibold md:w-8/12 md:text-5xl">Unlimited access with a premium membership.</h1>
+            <h1 className="text-center text-4xl md:w-8/12 md:text-5xl">Unlimited access with a premium membership.</h1>
             <p className="mt-4 text-center text-lg font-light md:mt-8">Join thousands of developers improving their skills every day</p>
           </div>
         </section>
 
-        <section className="grid grid-cols-1 gap-8 py-12 md:py-16 lg:grid-cols-3">
+        <section className="mb-12 grid grid-cols-1 gap-8 py-12 md:py-16 lg:grid-cols-3">
           {products.map((product) => (
             <div key={product.id} className="flex items-center justify-center">
               <PlanItem product={product} />
@@ -49,7 +49,7 @@ export default async function PlansPage() {
           ))}
         </section>
 
-        <section className="mx-auto w-full max-w-7xl px-3 pb-6 md:px-6 lg:px-8">
+        <section className="mx-auto w-full max-w-7xl px-3 pb-12 md:px-6 lg:px-8">
           <FAQs />
         </section>
       </div>
