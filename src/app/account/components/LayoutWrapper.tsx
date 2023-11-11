@@ -1,35 +1,34 @@
 'use client'
-import Header from '@/components/features/Header'
-import Footer from '@/components/elements/Footer'
 import Sidebar from './Sidebar'
 import { useAuth } from '@/components/contexts/AuthContext'
-import AuthLoading from './AuthLoading'
 import { usePathname } from 'next/navigation'
-import { useLayout } from '@/components/contexts/LayoutContext'
 
-export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
+const LayoutWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname()
   const { initLoading, profile } = useAuth({
     whenNotAuthed: '/sign-in?next=' + pathname,
     whenAuthedProfileNotExists: '/complete-profile?next=' + pathname,
   })
-  const layout = useLayout()
 
-  return (
-    <>
-      <Header noSidebar />
-      <div className="min-h-layout flex flex-col">
-        <div className="container flex flex-col p-3 md:flex-row md:items-start">
-          <div className="md:sticky md:top-0" style={{ top: layout.headerPosition }}>
-            <Sidebar />
-          </div>
-          <main className="flex-1">
-            {(initLoading || !profile) && <AuthLoading />}
-            {!initLoading && profile && children}
-          </main>
+  if (initLoading || !profile) {
+    return (
+      <div className="m-auto flex w-full p-3">
+        <div className="relative m-auto flex h-[280px] w-full overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800 md:max-w-[420px]">
+          <span className="skeleton absolute bottom-0 left-0 right-0 top-0 opacity-10" />
+          <div className="m-auto h-16 w-16 animate-spin rounded-full border-2 border-neutral-200 !border-t-blue-600 dark:border-neutral-800" />
         </div>
       </div>
-      <Footer />
-    </>
+    )
+  }
+
+  return (
+    <div className="container flex flex-col px-3 md:flex-row md:items-start">
+      <div className="py-3 md:sticky md:top-16">
+        <Sidebar />
+      </div>
+      <main className="flex-1 pb-3 md:pt-3 lg:max-w-3xl">{children}</main>
+    </div>
   )
 }
+
+export default LayoutWrapper

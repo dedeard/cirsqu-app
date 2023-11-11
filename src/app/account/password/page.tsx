@@ -1,16 +1,15 @@
 import type { Metadata } from 'next'
-import Password from './components/Password'
+import Panel from '../components/Panel'
+import PasswordForm from './components/PasswordForm'
 
 export const metadata: Metadata = {
   title: 'Change Your Password - CIRSQU',
-  description:
-    'Security is paramount. Update your password to ensure your CIRSQU account remains secure. Remember, a strong password is your first line of defense!',
 }
 
-export default function Page() {
+export default function PasswordPage() {
   return (
-    <div className="grid grid-cols-1 gap-3">
-      <Password />
-    </div>
+    <Panel title="Change Password">
+      <PasswordForm />
+    </Panel>
   )
 }

@@ -1,18 +1,21 @@
 import type { Metadata } from 'next'
-import BasicInfo from './components/BasicInfo'
-import EmailAddress from './components/EmailAddress'
+import Panel from '../components/Panel'
+import BasicInfoForm from './components/BasicInfoForm'
+import EmailAddressForm from './components/EmailAddressForm'
 
 export const metadata: Metadata = {
   title: 'Edit Your Profile - CIRSQU',
-  description:
-    'Personalize your CIRSQU account! Update your profile information, adjust your preferences, and make your learning experience truly your own. Your journey, your way!',
 }
 
-export default function Page() {
+export default function EditProfilePage() {
   return (
     <div className="grid grid-cols-1 gap-3">
-      <BasicInfo />
-      <EmailAddress />
+      <Panel title="Basic Information">
+        <BasicInfoForm />
+      </Panel>
+      <Panel title="Email Address">
+        <EmailAddressForm />
+      </Panel>
     </div>
   )
 }

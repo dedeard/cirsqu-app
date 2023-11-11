@@ -1,5 +1,3 @@
-'use client'
-import React from 'react'
 import SidebarProfile from '@/components/features/Sidebar/SidebarProfile'
 import SidebarLinks from '@/components/features/Sidebar/SidebarLinks'
 
@@ -13,7 +11,7 @@ const links = [
 
 const Sidebar: React.FC = () => {
   return (
-    <aside className="mb-3 w-full md:mb-0 md:w-64 md:pr-3">
+    <aside className="w-full md:mb-0 md:w-64 md:pr-3">
       <SidebarProfile isFlat />
       <SidebarLinks links={links} />
     </aside>

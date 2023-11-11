@@ -1,14 +1,14 @@
-import React, { useRef } from 'react'
+import { useRef, useState } from 'react'
 import cn from 'classnames'
-import Label from './Label'
+import { AlertCircle } from 'react-feather'
 import Avatar from '@/components/elements/Avatar'
 import fileValidation from '@/utils/file-validator'
-import { Button } from '@nextui-org/react'
+import Label from './Label'
 
 type InputAvatarProps = React.InputHTMLAttributes<HTMLInputElement> & {
   file?: File | null
   label: string
-  errorMessage?: string
+  error?: string
   avatar?: string
   nickname: string
   onFileChange?: (file: File | null) => void
@@ -17,7 +17,7 @@ type InputAvatarProps = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export const InputAvatar: React.FC<InputAvatarProps> = ({
   file,
-  errorMessage,
+  error,
   label,
   avatar,
   type,
@@ -26,7 +26,7 @@ export const InputAvatar: React.FC<InputAvatarProps> = ({
   ...props
 }) => {
   const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
-  const [previewImage, setPreviewImage] = React.useState('')
+  const [previewImage, setPreviewImage] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,28 +57,47 @@ export const InputAvatar: React.FC<InputAvatarProps> = ({
 
   return (
     <Label htmlFor={props.name} text={label}>
-      <div className={cn(errorMessage && 'mb-2', 'transition-spacing mt-2 flex items-center lg:mt-0')}>
-        <Avatar name={props.nickname} src={previewImage || avatar} className="mr-3 block h-12 w-12" />
-        <Button type="button" variant="flat" onClick={() => inputRef.current?.click()}>
-          Change
-        </Button>
-        <input
-          id={props.name}
-          ref={inputRef}
-          type="file"
-          aria-hidden="true"
-          className="hidden"
-          accept={allowedMimeTypes.join(', ')}
-          onChange={handleFileChange}
-          {...props}
-        />
-        {!!file && (
-          <Button variant="flat" type="button" color="danger" className="ml-2" onClick={handleReset}>
-            Reset
-          </Button>
+      <div className="w-full lg:w-2/3">
+        <div className={cn(error && 'mb-2', 'mt-2 flex items-center transition-spacing lg:mt-0')}>
+          <Avatar name={props.nickname} src={previewImage || avatar} size={48} className="mr-3 block h-12 w-12" />
+
+          <button
+            type="button"
+            className="hoverable-default h-9 items-center justify-center rounded-lg border px-4 text-sm"
+            onClick={() => inputRef.current?.click()}
+          >
+            Change
+          </button>
+
+          <input
+            id={props.name}
+            ref={inputRef}
+            type="file"
+            aria-hidden="true"
+            className="hidden"
+            accept={allowedMimeTypes.join(', ')}
+            onChange={handleFileChange}
+            {...props}
+          />
+
+          {!!file && (
+            <button
+              type="button"
+              className="hoverable-red ml-3 h-9 items-center justify-center rounded-lg px-4 text-sm"
+              onClick={handleReset}
+            >
+              Reset
+            </button>
+          )}
+        </div>
+
+        {error && (
+          <div className="flex items-center rounded-lg bg-red-100 p-2 text-sm">
+            <AlertCircle className="block h-6 w-6 text-red-600" />
+            <span className="ml-2 block text-neutral-800">{error}</span>
+          </div>
         )}
       </div>
-      <div className="text-tiny text-danger">{errorMessage}</div>
     </Label>
   )
 }

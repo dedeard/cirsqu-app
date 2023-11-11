@@ -1,19 +1,19 @@
 'use client'
-import React from 'react'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import clientFetch from '@/utils/client-fetch'
 import Panel from '../../components/Panel'
 import Loading from './Loading'
 import NotYet from './NotYet'
 import Recurring from './Recurring'
 import Lifetime from './Lifetime'
 import Invoices from './Invoices'
-import clientFetch from '@/utils/client-fetch'
 
-export default function Main() {
-  const [loading, setLoading] = React.useState(true)
-  const [subscription, setSubscription] = React.useState<any>()
+const Main: React.FC = () => {
+  const [loading, setLoading] = useState(true)
+  const [subscription, setSubscription] = useState<any>()
 
-  React.useEffect(() => {
+  useEffect(() => {
     const loadSubscription = async () => {
       try {
         const response = await clientFetch('subscriptions')
@@ -29,7 +29,7 @@ export default function Main() {
   }, [])
 
   return (
-    <div className="grid grid-cols-1 gap-3 lg:max-w-[750px]">
+    <div className="grid grid-cols-1 gap-3">
       <Panel title="Subscription">
         {loading && <Loading />}
         {!loading && !subscription && <NotYet />}
@@ -41,3 +41,5 @@ export default function Main() {
     </div>
   )
 }
+
+export default Main

@@ -1,21 +1,20 @@
-'use client'
-import { Card, CardProps, CardHeader } from '@nextui-org/react'
 import cn from 'classnames'
 
-type PanelPropTypes = {
+type PropTypes = {
   title: string
-} & CardProps
+} & React.HTMLAttributes<HTMLDivElement>
 
-const Panel: React.FC<PanelPropTypes> = ({ title, className, children, ...props }) => {
+const Panel: React.FC<PropTypes> = ({ title, className, children, ...props }) => {
   return (
-    <Card shadow="none" className={cn(className, 'border-divider border dark:border-transparent')} {...props}>
-      <CardHeader className="bg-content2/50 px-5">
-        <h1 className="text-lg md:text-xl">
-          <span className="uppercase leading-loose md:tracking-widest">{title}</span>
-        </h1>
-      </CardHeader>
+    <div
+      className={cn(className, 'rounded-lg border border-neutral-200 bg-neutral-200/30 dark:border-neutral-800 dark:bg-neutral-800/30')}
+      {...props}
+    >
+      <h1 className="border-b border-neutral-200 px-3 py-5 text-lg uppercase dark:border-neutral-800 md:px-5 md:text-xl md:tracking-widest">
+        {title}
+      </h1>
       {children}
-    </Card>
+    </div>
   )
 }
 

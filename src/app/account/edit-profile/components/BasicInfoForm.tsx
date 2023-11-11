@@ -1,17 +1,16 @@
 'use client'
-import React from 'react'
+import { useState } from 'react'
 import * as yup from 'yup'
-import { Input, Textarea } from '../../components/Input'
-import Button from '../../components/Button'
-import { usernameNotExist } from '@/utils/firestore'
 import { useFormik } from 'formik'
-import { InputAvatar } from '../../components/InputAvatar'
-import clientFetch from '@/utils/client-fetch'
 import toast from 'react-hot-toast'
+import clientFetch from '@/utils/client-fetch'
+import { usernameNotExist } from '@/utils/firestore'
 import { storageUrl } from '@/utils/firebase'
-import { CardBody, CardFooter, Divider } from '@nextui-org/react'
-import Panel from '../../components/Panel'
 import { useAuth } from '@/components/contexts/AuthContext'
+import Button from '../../components/Button'
+import { Input, Textarea } from '../../components/Input'
+import { InputAvatar } from '../../components/InputAvatar'
+import HR from '../../components/HR'
 
 const getSchema = (username: string) => ({
   name: yup.string().min(3).max(20).required(),
@@ -29,11 +28,11 @@ const getSchema = (username: string) => ({
     }),
 })
 
-export default function BasicInfo() {
+const BasicInfoForm: React.FC = () => {
   const { profile } = useAuth()
-  const [isLoading, setIsLoading] = React.useState(false)
-  const [avatar, setAvatar] = React.useState<File | null>(null)
-  const [avatarError, setAvatarError] = React.useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [avatar, setAvatar] = useState<File | null>(null)
+  const [avatarError, setAvatarError] = useState('')
 
   const handleFormSubmit = async (data: any) => {
     setIsLoading(true)
@@ -75,68 +74,69 @@ export default function BasicInfo() {
   })
 
   return (
-    // @ts-expect-error
-    <Panel as="form" title="Basic Information" className="lg:max-w-3xl" onSubmit={formik.handleSubmit}>
-      <CardBody>
+    <form onSubmit={formik.handleSubmit}>
+      <div className="px-3 md:px-5">
         <Input
           label="Name"
           name="name"
           placeholder="Enter your name"
           required
           value={formik.values.name}
-          errorMessage={formik.errors.name}
+          error={formik.errors.name}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
         />
-        <Divider className="hidden lg:block" />
+        <HR className="hidden lg:block" />
         <Input
           label="Username"
           name="username"
           placeholder="Enter your username"
           required
           value={formik.values.username}
-          errorMessage={formik.errors.username}
+          error={formik.errors.username}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
         />
-        <Divider className="hidden lg:block" />
+        <HR className="hidden lg:block" />
         <InputAvatar
           label="Avatar"
           name="avatar"
           file={avatar}
-          errorMessage={avatarError}
+          error={avatarError}
           nickname={profile?.name || ''}
           avatar={storageUrl(profile?.avatar)}
           onFileChange={setAvatar}
           onValidationError={setAvatarError}
         />
-        <Divider className="hidden lg:block" />
+        <HR className="hidden lg:block" />
         <Input
           label="Website"
           name="website"
           placeholder="Ex: https://dedeard.my.id"
           value={formik.values.website}
-          errorMessage={formik.errors.website}
+          error={formik.errors.website}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
         />
-        <Divider className="hidden lg:block" />
+        <HR className="hidden lg:block" />
         <Textarea
           label="Bio"
           name="bio"
           placeholder="Tell us about yourself..."
           value={formik.values.bio}
-          errorMessage={formik.errors.bio}
+          error={formik.errors.bio}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
         />
-      </CardBody>
-      <Divider />
-      <CardFooter>
+      </div>
+      <HR />
+      <div className="px-3 md:px-5">
         <Button type="submit" disabled={isLoading || !!avatarError || Object.keys(formik.errors).length > 0} isLoading={isLoading}>
           Save
         </Button>
-      </CardFooter>
-    </Panel>
+      </div>
+    </form>
   )
 }
+
+export default BasicInfoForm

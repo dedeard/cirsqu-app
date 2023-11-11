@@ -1,10 +1,8 @@
-import React from 'react'
 import Link from 'next/link'
-import { Button, CardBody } from '@nextui-org/react'
 
 const NotYet: React.FC = () => {
   return (
-    <CardBody className="flex flex-col gap-6 py-10">
+    <div className="flex flex-col gap-6 px-3 py-10 md:px-5">
       <div className="text-center">
         <div className="mb-3">
           <span className="uppercase tracking-widest">Subscription Status</span>
@@ -18,11 +16,11 @@ const NotYet: React.FC = () => {
       </p>
 
       <div className="mx-auto flex w-full max-w-xs flex-row justify-center gap-3">
-        <Button as={Link} href="/pro" color="primary" fullWidth>
+        <Link href="/pro" className="hoverable-blue flex h-10 w-full items-center justify-center rounded-lg px-4 text-sm">
           Discover Our Membership Plans
-        </Button>
+        </Link>
       </div>
-    </CardBody>
+    </div>
   )
 }
 

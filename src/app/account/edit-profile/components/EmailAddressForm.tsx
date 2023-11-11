@@ -1,27 +1,24 @@
 'use client'
-import React from 'react'
+import { useState } from 'react'
 import * as yup from 'yup'
+import toast from 'react-hot-toast'
+import { useFormik } from 'formik'
+import { auth } from '@/utils/firebase'
+import { useAuth } from '@/components/contexts/AuthContext'
+import FIREBASE_ERRORS from '@/constants/firebase-errors'
 import { Input } from '../../components/Input'
 import Button from '../../components/Button'
-import { useFormik } from 'formik'
-import toast from 'react-hot-toast'
-import { CardBody, CardFooter, Divider } from '@nextui-org/react'
-import Panel from '../../components/Panel'
-import { useAuth } from '@/components/contexts/AuthContext'
-import { auth } from '@/utils/firebase'
 import { signInWithEmailAndPassword, updateEmail } from 'firebase/auth'
-import FIREBASE_ERRORS from '@/constants/firebase-errors'
-import { Eye, EyeOff } from 'react-feather'
+import HR from '../../components/HR'
 
 const schema = {
   email: yup.string().email().required().label('Email address'),
   password: yup.string().required().label('Current Password'),
 }
 
-export default function EmailAddress() {
+const EmailAddressForm: React.FC = () => {
   const { user } = useAuth()
-  const [isLoading, setIsLoading] = React.useState(false)
-  const [isVisible, setIsVisible] = React.useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleFormSubmit = async (data: { email: string; password: string }) => {
     setIsLoading(true)
@@ -48,52 +45,39 @@ export default function EmailAddress() {
   })
 
   return (
-    // @ts-expect-error
-    <Panel as="form" title="Email Address" className="lg:max-w-3xl" onSubmit={formik.handleSubmit}>
-      <CardBody>
+    <form onSubmit={formik.handleSubmit}>
+      <div className="px-3 md:px-5">
         <Input
           label="Email Address"
           name="email"
           placeholder="Enter your email"
           required
           value={formik.values.email}
-          errorMessage={formik.errors.email}
+          error={formik.errors.email}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
         />
-        <Divider className="hidden lg:block" />
+        <HR className="hidden lg:block" />
         <Input
           label="Current Password"
           name="password"
-          type={isVisible ? 'text' : 'password'}
+          type="password"
           placeholder="Current password"
           required
           value={formik.values.password}
-          errorMessage={formik.errors.password}
-          endContent={
-            <button
-              aria-label="Visible password toggle"
-              className="focus:outline-none"
-              type="button"
-              onClick={() => setIsVisible(!isVisible)}
-            >
-              {isVisible ? (
-                <Eye className="text-default-400  pointer-events-none h-4" />
-              ) : (
-                <EyeOff className="text-default-400  pointer-events-none h-4" />
-              )}
-            </button>
-          }
+          error={formik.errors.password}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
         />
-      </CardBody>
-      <Divider />
-      <CardFooter>
+      </div>
+      <HR />
+      <div className="px-3 md:px-5">
         <Button type="submit" disabled={isLoading || Object.keys(formik.errors).length > 0} isLoading={isLoading}>
           Save
         </Button>
-      </CardFooter>
-    </Panel>
+      </div>
+    </form>
   )
 }
+
+export default EmailAddressForm
