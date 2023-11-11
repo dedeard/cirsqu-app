@@ -31,10 +31,10 @@ const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
           <>
             <div className="mb-3 flex flex-col items-center justify-center text-center">
               <span className="skeleton mb-3 h-20 w-20 rounded-full" />
-              <span className="skeleton rounded-medium mb-1 h-5 w-3/4" />
-              <span className="skeleton rounded-medium h-4 w-1/2" />
+              <span className="skeleton mb-1 h-5 w-3/4 rounded-full" />
+              <span className="skeleton h-4 w-1/2 rounded-full" />
             </div>
-            <span className="skeleton rounded-medium mx-auto h-4 w-3/4" />
+            <span className="skeleton mx-auto h-4 w-3/4 rounded-full" />
           </>
         )}
       </div>
