@@ -1,11 +1,11 @@
-import React from 'react'
+import { useRef, useEffect } from 'react'
 import EpisodeItem from './EpisodeItem'
 
 const EpisodeList: React.FC<{ episodes: IAEpisode[] }> = ({ episodes }) => {
-  const activeRef = React.useRef<HTMLAnchorElement>(null)
-  const scrollRef = React.useRef<HTMLDivElement>(null)
+  const activeRef = useRef<HTMLAnchorElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (activeRef.current && scrollRef.current) {
       const offset = activeRef.current.offsetTop
       scrollRef.current.scrollTop = offset - 64

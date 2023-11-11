@@ -7,7 +7,6 @@ import CommentMarkdown from './CommentMarkdown'
 import Replies from './Replies'
 import useCommentActions from './hooks/useCommentActions'
 import CommentForm from './CommentForm'
-import { Skeleton } from '@nextui-org/react'
 
 type PropTypes = {
   comment: IComment
@@ -39,7 +38,13 @@ const CommentItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
   return (
     <li className="relative w-full">
       <div className="absolute">
-        <Avatar name={author.name} premium={author.premium} file={author.avatar} className="h-10 w-10 md:h-12 md:w-12" />
+        <Avatar
+          name={author.name}
+          premium={author.premium}
+          file={author.avatar}
+          size={40}
+          className="h-10 w-10 bg-neutral-300 dark:bg-neutral-700 md:h-12 md:w-12"
+        />
       </div>
       <div className="flex w-full flex-col gap-4 pl-14 md:pl-16">
         <div className="flex w-full flex-col gap-4">
@@ -96,24 +101,24 @@ export const CommentItemSkeleton: React.FC = () => {
   return (
     <li className="relative w-full">
       <div className="absolute">
-        <Skeleton className="h-10 w-10 rounded-full md:h-12 md:w-12" />
+        <span className="skeleton h-10 w-10 rounded-full md:h-12 md:w-12" />
       </div>
       <div className="flex w-full flex-col gap-4 pl-14 md:pl-16">
         <div className="flex w-full flex-col gap-4">
           <div className="flex h-9 flex-col justify-center gap-1 md:h-10">
-            <Skeleton className="h-3 w-44 rounded-full" />
-            <Skeleton className="h-2 w-32 rounded-full" />
+            <span className="skeleton h-3 w-44 rounded-full" />
+            <span className="skeleton h-2 w-32 rounded-full" />
           </div>
 
           <div className="flex flex-col items-center justify-center gap-3">
             {Array.from(Array(3).keys()).map((i) => (
-              <Skeleton key={i} className="block h-3 w-full rounded-full" />
+              <span key={i} className="skeleton h-3 w-full rounded-full" />
             ))}
           </div>
 
           <div className="flex gap-4">
-            <Skeleton className="block h-4 w-10 rounded-full md:h-5" />
-            <Skeleton className="block h-4 w-10 rounded-full md:h-5" />
+            <span className="skeleton h-4 w-10 rounded-full md:h-5" />
+            <span className="skeleton h-4 w-10 rounded-full md:h-5" />
           </div>
         </div>
       </div>

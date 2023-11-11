@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import { Lock, PlayCircle } from 'react-feather'
-import formatSecond from '@/utils/format-second'
 import { useParams } from 'next/navigation'
 import cn from 'classnames'
+import formatSecond from '@/utils/format-second'
 import { useAuth } from '@/components/contexts/AuthContext'
 
 const EpisodeItem = React.forwardRef<HTMLAnchorElement, { episode: IAEpisode }>(({ episode }, ref) => {
@@ -19,8 +19,8 @@ const EpisodeItem = React.forwardRef<HTMLAnchorElement, { episode: IAEpisode }>(
       ref={active ? ref : undefined}
       href={`/lessons/${params.slug}/${episode.episodeId}`}
       className={cn(
-        active && 'bg-white/10',
-        'rounded-medium relative flex h-16 w-full items-center justify-between overflow-hidden px-4 hover:bg-white/10',
+        active && 'bg-neutral-800',
+        'relative flex h-16 w-full items-center justify-between overflow-hidden rounded-lg px-4 hover:bg-neutral-800',
       )}
     >
       {lock ? <Lock className="block h-6 w-6 opacity-50" /> : <PlayCircle className="block h-6 w-6 opacity-50" />}

@@ -1,7 +1,8 @@
 import React from 'react'
-import { Button, Skeleton, Textarea } from '@nextui-org/react'
-import useCommentForm from './hooks/useCommentForm'
 import cn from 'classnames'
+import useCommentForm from './hooks/useCommentForm'
+import { Textarea } from './Teaxtarea'
+import Spinner from '@/components/svg/Spinner'
 
 type PropTypes = {
   targetId: string
@@ -25,30 +26,42 @@ const CommentForm: React.FC<PropTypes> = ({ mode = 'create', targetId, targetTyp
   return (
     <form className={className} onSubmit={formCreate.handleSubmit}>
       <Textarea
-        className={isReply ? undefined : 'mb-3'}
-        classNames={{ label: 'hidden' }}
-        variant="flat"
-        maxRows={120}
-        minRows={isReply ? 2 : 5}
+        rows={isReply ? 2 : 5}
         name="body"
-        size={isReply ? 'sm' : undefined}
+        small={isReply}
         placeholder={`${placeholderText}... (Markdown supported)`}
         value={formCreate.values.body}
-        errorMessage={formCreate.errors.body}
+        error={formCreate.errors.body}
         onBlur={formCreate.handleBlur}
         onChange={formCreate.handleChange}
       />
 
-      <div className={isReply ? 'flex justify-end' : undefined}>
-        <Button
+      <div className={cn(isReply && 'flex-row-reverse', 'flex gap-3 pt-3')}>
+        <button
           type="submit"
-          color="primary"
-          size={isReply ? 'sm' : undefined}
-          className={isReply ? 'w-28' : 'w-36'}
-          isLoading={formCreate.isSubmitting}
+          className={cn(
+            isReply ? 'h-9 w-28 text-xs' : 'h-10 w-36 text-sm',
+            'hoverable-blue flex items-center justify-center rounded-lg disabled:opacity-75',
+          )}
+          disabled={formCreate.isSubmitting}
         >
           {!formCreate.isSubmitting && (isReply ? `${buttonText} Reply` : `${buttonText} Comment`)}
-        </Button>
+          {formCreate.isSubmitting && <Spinner className="h-4 w-4" />}
+        </button>
+
+        {mode === 'edit' && (
+          <button
+            type="button"
+            className={cn(
+              isReply ? 'h-9 w-28 text-xs' : 'h-10 w-36 text-sm',
+              'hoverable-default flex items-center justify-center rounded-lg border disabled:opacity-75',
+            )}
+            disabled={formCreate.isSubmitting}
+            onClick={onEnd}
+          >
+            Cancel
+          </button>
+        )}
       </div>
     </form>
   )
@@ -57,9 +70,9 @@ const CommentForm: React.FC<PropTypes> = ({ mode = 'create', targetId, targetTyp
 export const CommentFormSkeleton: React.FC<{ className?: string; isReply?: boolean }> = (props) => {
   return (
     <div className={props.className}>
-      <Skeleton className={cn(props.isReply ? ' rounded-small mb-1 h-14' : 'rounded-medium mb-3 h-28')} />
+      <span className={cn(props.isReply ? ' mb-1 h-14' : 'mb-3 h-28', 'skeleton rounded-lg')} />
       <div className={cn(props.isReply && 'flex justify-end')}>
-        <Skeleton className={cn(props.isReply ? 'rounded-small h-8 w-28' : 'rounded-medium h-10 w-36')} />
+        <span className={cn(props.isReply ? 'h-8 w-28' : 'h-10 w-36', 'skeleton rounded-lg')} />
       </div>
     </div>
   )

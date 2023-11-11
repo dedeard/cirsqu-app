@@ -1,6 +1,5 @@
-import React from 'react'
+import { useCallback } from 'react'
 import { useParams, usePathname, useRouter } from 'next/navigation'
-import { Button, Spinner } from '@nextui-org/react'
 import Link from 'next/link'
 import YouTubePlayer from './YoutubePlayer'
 import Controller from './Controller'
@@ -20,7 +19,7 @@ const MainPlaylist: React.FC<PropTypes> = ({ episodes, episode, loading, error, 
   const params = useParams()
   const pathname = usePathname()
 
-  const onEnded = React.useCallback(() => {
+  const onEnded = useCallback(() => {
     if (window.localStorage.getItem('autoplay') === 'true') {
       const index = episodes.findIndex((el) => el.episodeId === params.episode)
       const next = episodes[index + 1]
@@ -34,7 +33,7 @@ const MainPlaylist: React.FC<PropTypes> = ({ episodes, episode, loading, error, 
     if (loading) {
       return (
         <div className="flex h-full w-full items-center justify-center">
-          <Spinner size="lg" />
+          <div className="m-auto h-16 w-16 animate-spin rounded-full border-2 border-neutral-200 !border-t-blue-600 dark:border-neutral-800" />
         </div>
       )
     }
@@ -45,9 +44,9 @@ const MainPlaylist: React.FC<PropTypes> = ({ episodes, episode, loading, error, 
           <h3 className="text-3xl md:text-4xl">Authentication Required</h3>
           <p className="text-sm md:text-base">Please sign in to watch this episode.</p>
           <div>
-            <Button color="primary" className="w-32" as={Link} href={`/sign-in?next=${pathname}`}>
+            <Link href={`/sign-in?next=${pathname}`} className="hoverable-blue flex h-10 items-center rounded-lg px-6 text-sm">
               Sign In
-            </Button>
+            </Link>
           </div>
         </div>
       )
@@ -59,9 +58,9 @@ const MainPlaylist: React.FC<PropTypes> = ({ episodes, episode, loading, error, 
           <h3 className="text-3xl md:text-4xl">Unlock Premium Content</h3>
           <p className="text-sm md:text-base">Join our premium membership to access this exclusive episode and more!</p>
           <div>
-            <Button color="primary" as={Link} href="/pro">
+            <Link href="/pro" className="hoverable-blue flex h-10 items-center rounded-lg px-6 text-sm">
               Discover Our Membership Plans
-            </Button>
+            </Link>
           </div>
         </div>
       )
@@ -71,11 +70,15 @@ const MainPlaylist: React.FC<PropTypes> = ({ episodes, episode, loading, error, 
       return (
         <div className="relative flex h-full w-full flex-col items-center justify-center gap-6 p-3">
           <h3 className="text-3xl md:text-4xl">Oops, something went wrong!</h3>
-          <p className="text-sm md:text-base">{error ? `Error: ${error}` : 'The requested episode could not be found.'}</p>
+          <p className="text-sm md:text-base">{error ? error : 'The requested episode could not be found.'}</p>
           <div>
-            <Button color="primary" onClick={() => window.location.reload()}>
+            <button
+              type="button"
+              className="hoverable-blue flex h-10 items-center rounded-lg px-6 text-sm"
+              onClick={() => window.location.reload()}
+            >
               Try reloading the page
-            </Button>
+            </button>
           </div>
         </div>
       )
@@ -85,10 +88,10 @@ const MainPlaylist: React.FC<PropTypes> = ({ episodes, episode, loading, error, 
   }
 
   return (
-    <div className="border-divider border-b lg:flex">
-      <div className="border-divider flex-1 border-b  lg:border-b-0 lg:border-r">
+    <div className="border-b border-neutral-800 lg:flex">
+      <div className="flex-1 border-b border-neutral-800  lg:border-b-0 lg:border-r">
         <div className="aspect-video w-full">{renderContent()}</div>
-        <Controller className="border-divider border-t" episode={episode} episodes={episodes} />
+        <Controller className="border-t border-neutral-800" episode={episode} episodes={episodes} />
       </div>
       <div className="relative w-full lg:w-[500px]">
         <EpisodeList episodes={episodes} />

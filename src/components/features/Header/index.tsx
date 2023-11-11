@@ -10,20 +10,22 @@ import SearchModal from '../SearchModal'
 
 type HeaderPropTypes = {
   sidebarOpen?: boolean
+  isStatic?: boolean
   noSidebar?: boolean
   hideSearch?: boolean
   hideTheme?: boolean
   onlyBrand?: boolean
 } & React.HTMLAttributes<HTMLDivElement>
 
-const Header: React.FC<HeaderPropTypes> = ({ noSidebar, hideSearch, onlyBrand, hideTheme, className, ...props }) => {
+const Header: React.FC<HeaderPropTypes> = ({ isStatic, noSidebar, hideSearch, onlyBrand, hideTheme, className, ...props }) => {
   return (
     <>
       <SearchModal />
       <nav
         className={cn(
           className,
-          'fixed left-0 right-0 top-0 z-50 h-16 bg-white/80 ring-[1px] ring-neutral-200 backdrop-blur dark:bg-neutral-900/80 dark:ring-neutral-800',
+          isStatic ? 'relative' : 'fixed left-0 right-0 top-0',
+          'z-40 h-16 w-full bg-white/80 ring-[1px] ring-neutral-200 backdrop-blur dark:bg-neutral-900/80 dark:ring-neutral-800',
         )}
         {...props}
       >

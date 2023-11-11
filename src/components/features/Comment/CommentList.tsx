@@ -30,7 +30,7 @@ const CommentList: React.FC<PropTypes> = ({ comments, className, isLoading, ...p
         onCancel={() => setDeleteQueue(null)}
       />
 
-      <ul className={cn(className, 'flex flex-col gap-16 py-10')} {...props}>
+      <ul className={cn(className, 'flex flex-col gap-16 py-10 empty:hidden')} {...props}>
         {isLoading
           ? Array.from(Array(3).keys()).map((i) => <CommentItemSkeleton key={i} />)
           : comments.map((comment) => <CommentItem key={comment.commentId} comment={comment} setDeleteQueue={setDeleteQueue} />)}

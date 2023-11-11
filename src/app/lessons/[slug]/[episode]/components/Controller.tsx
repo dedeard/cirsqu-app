@@ -1,7 +1,6 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import cn from 'classnames'
 import { useParams, useRouter } from 'next/navigation'
-import { Button, Spacer, Switch } from '@nextui-org/react'
 import { ArrowLeftCircle, ArrowRightCircle, Download } from 'react-feather'
 
 type PropTypes = {
@@ -12,7 +11,7 @@ type PropTypes = {
 const Controller: React.FC<PropTypes> = ({ episode, episodes, className, ...props }) => {
   const router = useRouter()
   const params = useParams()
-  const [isAutoplay, setIsAutoplay] = React.useState(false)
+  const [isAutoplay, setIsAutoplay] = useState(false)
 
   const currentEpisodeIndex = episodes.findIndex((el) => el.episodeId === params.episode)
   const nextEpisode = episodes[currentEpisodeIndex + 1]
@@ -42,27 +41,43 @@ const Controller: React.FC<PropTypes> = ({ episode, episodes, className, ...prop
     window.localStorage.setItem('autoplay', String(value))
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsAutoplay(window.localStorage.getItem('autoplay') === 'true')
   }, [])
 
   return (
     <div className={cn(className, 'flex items-center justify-between px-3 py-1')} {...props}>
       <div className="flex">
-        <Button isIconOnly variant="light" radius="full" isDisabled={!episode?.downloadUrl} onClick={handleDownload}>
-          <Download size={18} />
-        </Button>
-        <Spacer x={3} />
-        <Button isIconOnly variant="light" radius="full" isDisabled={!prevEpisode} onClick={handlePrev}>
-          <ArrowLeftCircle size={18} />
-        </Button>
-        <Button isIconOnly variant="light" radius="full" isDisabled={!nextEpisode} onClick={handleNext}>
-          <ArrowRightCircle size={18} />
-        </Button>
+        <button
+          type="button"
+          disabled={!episode?.downloadUrl}
+          className="block rounded-full p-2 hover:enabled:bg-neutral-800 disabled:opacity-50"
+          onClick={handleDownload}
+        >
+          <Download className="m-auto h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          disabled={!prevEpisode}
+          className="ml-4 block rounded-full p-2 hover:enabled:bg-neutral-800 disabled:opacity-50"
+          onClick={handlePrev}
+        >
+          <ArrowLeftCircle className="m-auto h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          disabled={!nextEpisode}
+          className="block rounded-full p-2 hover:enabled:bg-neutral-800 disabled:opacity-50"
+          onClick={handleNext}
+        >
+          <ArrowRightCircle className="m-auto h-5 w-5" />
+        </button>
       </div>
-      <Switch size="sm" isSelected={isAutoplay} onValueChange={toggleAutoPlay}>
-        Autoplay
-      </Switch>
+      <label className="relative flex cursor-pointer items-center">
+        <input type="checkbox" className="peer sr-only" checked={isAutoplay} onChange={() => toggleAutoPlay(!isAutoplay)} />
+        <div className="peer h-6 w-11 rounded-full bg-neutral-700 transition-colors after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:bg-neutral-300 after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-focus:outline-none" />
+        <span className="ms-3 text-sm">Autoplay</span>
+      </label>
     </div>
   )
 }
