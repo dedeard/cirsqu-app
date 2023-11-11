@@ -1,5 +1,4 @@
 import { useTheme } from 'next-themes'
-import { Button } from '@nextui-org/react'
 import { Moon, Sun } from 'react-feather'
 import { useMounted } from '@/components/contexts/MountContext'
 
