@@ -16,7 +16,7 @@ const EpisodeItem: React.FC<{ episode: IAEpisode }> = ({ episode }) => {
       className="hoverable-default flex items-center justify-between overflow-hidden rounded-lg border p-5"
       rel="nofollow"
     >
-      {!(profile?.premium || episode.premium) ? (
+      {!(profile?.premium || episode.premium) || profile?.premium ? (
         <PlayCircle className="block h-6 w-6 opacity-40" />
       ) : (
         <Lock className="block h-6 w-6 opacity-40" />
