@@ -21,7 +21,7 @@ const links = [
 
 const Footer: React.FC = () => {
   return (
-    <footer className="mt-10 border-t border-neutral-200 bg-neutral-50/30 pb-10 dark:border-neutral-800 dark:bg-neutral-950/30">
+    <footer className="border-t border-neutral-200 bg-neutral-50/30 pb-10 dark:border-neutral-800 dark:bg-neutral-950/30">
       <div className="container max-w-[1140px]">
         <div className="grid grid-cols-1 gap-3 py-14 md:grid-cols-3">
           <div className="flex flex-col p-3 text-center md:text-left">
