@@ -14,7 +14,7 @@ export const Input = React.forwardRef<HTMLInputElement, PropTypes>(({ label, err
 
   return (
     <div className="mb-4">
-      <div className={cn(error ? 'mb-2' : 'mb-0', 'transition-spacing relative ease-in-out')}>
+      <div className={cn(error ? 'mb-2' : 'mb-0', 'relative transition-spacing ease-in-out')}>
         <label htmlFor={props.name} className="pointer-events-none absolute left-px top-px block pl-3 pt-2 text-xs font-medium">
           {label}
         </label>
