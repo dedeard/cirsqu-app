@@ -3,7 +3,7 @@ import React from 'react'
 import { User, onAuthStateChanged } from 'firebase/auth'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { auth, db } from '@/utils/firebase'
-import { useRouter } from 'next/navigation'
+import { useRouter } from './ProgressBarContext'
 
 interface AuthContextProps {
   user: User | null

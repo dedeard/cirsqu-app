@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
-import { useParams, usePathname, useRouter } from 'next/navigation'
+import { useParams, usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { useRouter } from '@/components/contexts/ProgressBarContext'
 import YouTubePlayer from './YoutubePlayer'
 import Controller from './Controller'
 import EpisodeList from './EpisodeList'

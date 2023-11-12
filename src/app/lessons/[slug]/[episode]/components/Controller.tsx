@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import cn from 'classnames'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { ArrowLeftCircle, ArrowRightCircle, Download } from 'react-feather'
+import { useRouter } from '@/components/contexts/ProgressBarContext'
 
 type PropTypes = {
   episode?: IEpisode
