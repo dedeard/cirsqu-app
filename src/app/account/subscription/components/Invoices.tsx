@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 import cn from 'classnames'
 import { ExternalLink } from 'react-feather'
-import { useAsyncList } from '@react-stately/data'
 import clientFetch from '@/utils/client-fetch'
 import formatAmount from '@/utils/format-amount'
 import Spinner from '@/components/svg/Spinner'
@@ -23,33 +22,38 @@ const statusColor = (status?: string) => {
 }
 
 const Invoices: React.FC = () => {
-  const [hasMore, setHasMore] = React.useState(true)
-  const [isLoading, setIsLoading] = React.useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const [initLoading, setInitLoading] = React.useState(true)
+  const [hasMore, setHasMore] = useState(true)
+  const [items, setItems] = useState<any[]>([])
+  const [cursor, setCursor] = useState<string>()
 
-  const list = useAsyncList({
-    async load({ signal, cursor }) {
-      const resp = await clientFetch(`invoices${cursor ? '?starting_after=' + cursor : ''}`, { signal })
+  const loadMore = async () => {
+    setIsLoading(true)
+    const resp = await clientFetch(`invoices?limit=5${cursor ? '&starting_after=' + cursor : ''}`)
+    if (resp.ok) {
       const { data, has_more } = await resp.json()
-
       setHasMore(has_more)
-      setIsLoading(false)
       setInitLoading(false)
+      setItems([...items, ...data])
+      setCursor(data?.pop()?.id || undefined)
+    }
+    setIsLoading(false)
+  }
 
-      return {
-        items: data,
-        cursor: has_more ? data.pop().id : undefined,
-      }
-    },
-  })
+  useEffect(() => {
+    loadMore()
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Panel title="Invoice History">
       <div className="relative overflow-x-auto">
-        {list.items.length > 0 && (
+        {items.length > 0 && (
           <table className="w-full text-sm">
             <tbody>
-              {list.items.map((item: any) => (
+              {items.map((item: any) => (
                 <tr
                   key={item.id}
                   className="whitespace-nowrap border-b border-neutral-200 px-3 last:border-b-0 even:bg-neutral-200/30 dark:border-neutral-800 even:dark:bg-neutral-800/30 md:px-5"
@@ -91,15 +95,15 @@ const Invoices: React.FC = () => {
           ))}
       </div>
 
-      {hasMore && !isLoading && (
+      {hasMore && !initLoading && (
         <div className="flex w-full justify-center border-t border-neutral-200 p-3 dark:border-neutral-800 md:px-5">
           <button
-            disabled={list.isLoading}
+            disabled={isLoading}
             className="hoverable-blue flex h-10 w-32 items-center justify-center rounded-lg text-sm"
-            onClick={list.loadMore}
+            onClick={loadMore}
           >
-            {!list.isLoading && 'Load More'}
-            {list.isLoading && <Spinner className="h-5 w-5" />}
+            {!isLoading && 'Load More'}
+            {isLoading && <Spinner className="h-5 w-5" />}
           </button>
         </div>
       )}

@@ -13,7 +13,6 @@
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^14.0.0",
-    "@react-stately/data": "^3.10.3",
     "@vercel/analytics": "^1.1.1",
     "algoliasearch": "^4.20.0",
     "classnames": "^2.3.2",
