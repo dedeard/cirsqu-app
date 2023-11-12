@@ -1,5 +1,4 @@
 'use client'
-import { NextUIProvider } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar'
 import colors from 'tailwindcss/colors'
@@ -17,23 +16,21 @@ const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <>
       <ProgressBar options={{ showSpinner: false }} color={colors.indigo[600]} shallowRouting />
       <Toaster position="top-right" toastOptions={{ className: '!rounded !shadow-xl !p-4 border border-gray-50' }} />
-      <NextUIProvider>
-        <NextThemesProvider attribute="class" defaultTheme="dark">
-          <MountProvider>
-            <AuthProvider>
-              <CollectionsProvider>
-                <ProfilesProvider>
-                  <NotificationProvider>
-                    <LayoutProvider>
-                      <SearchProvider>{children}</SearchProvider>
-                    </LayoutProvider>
-                  </NotificationProvider>
-                </ProfilesProvider>
-              </CollectionsProvider>
-            </AuthProvider>
-          </MountProvider>
-        </NextThemesProvider>
-      </NextUIProvider>
+      <NextThemesProvider attribute="class" defaultTheme="dark">
+        <MountProvider>
+          <AuthProvider>
+            <CollectionsProvider>
+              <ProfilesProvider>
+                <NotificationProvider>
+                  <LayoutProvider>
+                    <SearchProvider>{children}</SearchProvider>
+                  </LayoutProvider>
+                </NotificationProvider>
+              </ProfilesProvider>
+            </CollectionsProvider>
+          </AuthProvider>
+        </MountProvider>
+      </NextThemesProvider>
     </>
   )
 }
