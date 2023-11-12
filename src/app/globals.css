@@ -46,15 +46,15 @@
   }
 
   .chrome-scrollbar::-webkit-scrollbar {
-    @apply w-1;
+    @apply md:w-1;
   }
 
   .chrome-scrollbar::-webkit-scrollbar-thumb {
-    @apply rounded-xl bg-neutral-500/70;
+    @apply md:rounded-xl md:bg-neutral-500/70;
   }
 
   .chrome-scrollbar::-webkit-scrollbar-track {
-    @apply rounded-xl bg-neutral-500/30;
+    @apply md:rounded-xl md:bg-neutral-500/30;
   }
 
   .dropdown-drop {

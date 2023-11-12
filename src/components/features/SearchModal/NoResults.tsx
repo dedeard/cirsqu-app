@@ -1,4 +1,3 @@
-import React from 'react'
 import { Inbox } from 'react-feather'
 
 const NoResults: React.FC<{ query: string }> = ({ query }) => {
@@ -8,7 +7,7 @@ const NoResults: React.FC<{ query: string }> = ({ query }) => {
         <Inbox strokeWidth={0.5} className="m-auto block h-32 w-32 " />
       </div>
       <p className="font-light uppercase tracking-widest">No results for</p>
-      <h3 className="text-2xl">"{query}"</h3>
+      <h3 className="mx-3 overflow-hidden text-2xl">"{query}"</h3>
     </div>
   )
 }

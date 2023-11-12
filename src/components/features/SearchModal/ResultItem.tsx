@@ -1,18 +1,19 @@
-import React from 'react'
-import { Chip, Skeleton } from '@nextui-org/react'
+import type { Hit } from '@/types/algolia'
+import Link from 'next/link'
 import { Clock, Film } from 'react-feather'
 import formatSecond from '@/utils/format-second'
-import { Hit } from '@/types/algolia'
-import Link from 'next/link'
 
 const ResultItem: React.FC<{ lesson: Hit<IALesson> }> = ({ lesson }) => {
   return (
-    <Link href={`/lessons/${lesson.objectID}`} className="rounded-medium border-divider bg-content1 flex flex-col gap-3 border p-3">
+    <Link href={`/lessons/${lesson.objectID}`} className="hoverable-default group flex flex-col gap-3 rounded-lg border p-3">
       <span className="flex gap-3">
         {lesson.subjects.map((el) => (
-          <Chip key={el.slug} size="sm" className="h-auto" classNames={{ content: 'text-[11px]' }}>
+          <span
+            key={el.slug}
+            className="flex rounded-lg border border-neutral-200 px-2 text-[11px] group-hover:border-neutral-300 dark:border-neutral-800 dark:group-hover:border-neutral-600"
+          >
             {el.name}
-          </Chip>
+          </span>
         ))}
       </span>
       <span
@@ -35,18 +36,18 @@ const ResultItem: React.FC<{ lesson: Hit<IALesson> }> = ({ lesson }) => {
 
 export const ResultItemSkeleton: React.FC = () => {
   return (
-    <div className="rounded-medium border-divider bg-content1 flex flex-col gap-3 border p-3">
+    <div className="flex flex-col gap-3 rounded-lg border border-neutral-200 bg-neutral-200/30 p-3 dark:border-neutral-800 dark:bg-neutral-800/30">
       <div className="flex gap-3">
-        <Skeleton className="rounded-medium h-5 w-14" />
-        <Skeleton className="rounded-medium h-5 w-14" />
+        <span className="skeleton h-5 w-14 rounded-lg" />
+        <span className="skeleton h-5 w-14 rounded-lg" />
       </div>
       <div className="flex flex-col gap-2">
-        <Skeleton className="rounded-medium h-3 w-full" />
-        <Skeleton className="rounded-medium h-3 w-1/2" />
+        <span className="skeleton h-3 w-full rounded-lg" />
+        <span className="skeleton h-3 w-1/2 rounded-lg" />
       </div>
       <div className="flex gap-6 text-xs">
-        <Skeleton className="rounded-medium h-3 w-24" />
-        <Skeleton className="rounded-medium h-3 w-20" />
+        <span className="skeleton h-3 w-24 rounded-lg" />
+        <span className="skeleton h-3 w-20 rounded-lg" />
       </div>
     </div>
   )

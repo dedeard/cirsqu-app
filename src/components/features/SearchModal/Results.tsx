@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react'
-import { Chip, Skeleton } from '@nextui-org/react'
-import ResultItem, { ResultItemSkeleton } from './ResultItem'
+import { useMemo } from 'react'
+import cn from 'classnames'
 import { useSearch } from '@/components/contexts/SearchContext'
+import ResultItem, { ResultItemSkeleton } from './ResultItem'
 import NoResults from './NoResults'
 
 const Results: React.FC = () => {
@@ -36,23 +36,24 @@ const Results: React.FC = () => {
   )
 
   return (
-    <div className="flex flex-1 flex-col gap-3 overflow-y-auto py-3">
+    <div className="chrome-scrollbar flex flex-1 flex-col gap-3 overflow-y-auto py-3">
       <div className="flex flex-wrap gap-2 px-3">
         {!initLoading &&
           formatedSubjects.map((el) => (
-            <Chip
+            <button
               key={el.slug}
-              variant={el.active ? 'solid' : 'bordered'}
-              color={el.active ? 'primary' : 'default'}
-              size="sm"
-              className="cursor-pointer"
-              classNames={{ content: 'text-xs' }}
+              type="button"
+              className={cn(
+                el.active && 'hoverable-blue border-transparent',
+                !el.active && 'hoverable-default',
+                'flex rounded-lg border px-2 py-1 text-xs',
+              )}
               onClick={() => (el.active ? removeFilter(el.slug) : addFilter(el.slug))}
             >
               {el.name} {el.count}
-            </Chip>
+            </button>
           ))}
-        {initLoading && Array.from(Array(3).keys()).map((i) => <Skeleton key={i} className="rounded-medium h-6 w-20" />)}
+        {initLoading && Array.from(Array(3).keys()).map((i) => <span key={i} className="skeleton h-6 w-20 rounded-lg" />)}
       </div>
       <ul className="flex flex-col gap-3 px-3">
         {!loading &&
