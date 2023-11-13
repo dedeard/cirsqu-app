@@ -1,4 +1,5 @@
-import { Timestamp } from 'firebase/firestore'
+import type { Timestamp } from 'firebase/firestore'
+import type { ObjectWithObjectID } from './algolia'
 
 declare global {
   interface Window {
@@ -83,44 +84,6 @@ declare global {
     downloadUrl?: string
   }
 
-  interface IASubject {
-    subjectId: string
-    name: string
-    slug: string
-    description: string
-    lessonCount: number
-  }
-
-  interface IAEpisode {
-    episodeId: string
-    title: string
-    index: number
-    premium: boolean
-    seconds: number
-  }
-
-  interface IALesson {
-    lessonId: string
-    slug: string
-    title: string
-    description: string
-    seconds: number
-    createdAt: number
-    subjects: {
-      name: string
-      slug: string
-    }[]
-    episodes: IAEpisode[]
-  }
-
-  interface IAProfile {
-    objectID: string
-    name: string
-    username: string
-    avatar: string
-    premium: boolean
-  }
-
   interface IComment {
     commentId: string
     userId: string
@@ -139,5 +102,42 @@ declare global {
     lessonId: string
     createdAt: Timestamp
     lesson: IALesson | null
+  }
+
+  interface IASubject extends ObjectWithObjectID {
+    subjectId: string
+    name: string
+    slug: string
+    description: string
+    lessonCount: number
+  }
+
+  interface IAEpisode extends ObjectWithObjectID {
+    episodeId: string
+    title: string
+    index: number
+    premium: boolean
+    seconds: number
+  }
+
+  interface IALesson extends ObjectWithObjectID {
+    lessonId: string
+    slug: string
+    title: string
+    description: string
+    seconds: number
+    createdAt: number
+    subjects: {
+      name: string
+      slug: string
+    }[]
+    episodes: IAEpisode[]
+  }
+
+  interface IAProfile extends ObjectWithObjectID {
+    name: string
+    username: string
+    avatar: string
+    premium: boolean
   }
 }

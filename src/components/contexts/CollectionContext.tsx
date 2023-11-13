@@ -1,11 +1,11 @@
 'use client'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
-import { useAuth } from './AuthContext'
+import { createContext, useContext, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import { collection, deleteDoc, doc, onSnapshot, orderBy, query, where } from 'firebase/firestore'
 import { db } from '@/utils/firebase'
-import { lessonIndex } from '@/utils/algolia'
-import toast from 'react-hot-toast'
 import clientFetch from '@/utils/client-fetch'
+import search from '@/utils/algolia/search'
+import { useAuth } from './AuthContext'
 
 interface CollectionsContextProps {
   loading: boolean
@@ -15,7 +15,7 @@ interface CollectionsContextProps {
   addToCollection: (lessonId: string) => Promise<void>
 }
 
-const CollectionsContext = React.createContext<CollectionsContextProps>({
+const CollectionsContext = createContext<CollectionsContextProps>({
   loading: true,
   collections: [],
   actionLoading: false,
@@ -38,9 +38,17 @@ export const CollectionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
     let newLessons: IALesson[]
 
     if (idsToFetch.length > 0) {
-      const promises = idsToFetch.map((lessonId) => lessonIndex.findObject<IALesson>((hit) => hit.lessonId == lessonId))
-      const data = await Promise.all(promises)
-      const results = data.map(({ object }) => object)
+      const promises = idsToFetch.map(async (lessonId) => {
+        const { hits } = await search<IALesson>({
+          query: lessonId,
+          typoTolerance: false,
+          index: 'lessons',
+          hitsPerPage: 1,
+          restrictSearchableAttributes: ['lessonId'],
+        })
+        return hits[0]
+      })
+      const results = await Promise.all(promises)
 
       newLessons = [...lessons, ...results]
       setLessons(newLessons)

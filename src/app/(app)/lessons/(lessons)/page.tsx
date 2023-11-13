@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import { lessonIndex } from '@/utils/algolia'
-import LessonList from '../../components/LessonItem'
+import search from '@/utils/algolia/search'
 import parsePaginationPage from '@/utils/parse-pagination-page'
+import LessonList from '../../components/LessonItem'
 import Pagination from '../../components/Pagination'
 import TitleBar from '../../components/TitleBar'
 
@@ -16,7 +16,8 @@ export const metadata: Metadata = {
 export default async function LessonsPage({ searchParams }: { searchParams: { page?: string } }) {
   const page = parsePaginationPage(searchParams.page)
 
-  const { hits, nbPages } = await lessonIndex.search<IALesson>('', {
+  const { hits, nbPages } = await search<IALesson>({
+    index: 'lessons',
     hitsPerPage: 10,
     page: page - 1,
   })

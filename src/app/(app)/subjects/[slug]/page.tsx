@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import SubjectCard from './components/SubjectCard'
-import { lessonIndex, subjectIndex } from '@/utils/algolia'
 import { notFound } from 'next/navigation'
 import Pagination from '../../components/Pagination'
 import LessonList from '../../components/LessonItem'
 import parsePaginationPage from '@/utils/parse-pagination-page'
 import markdownToDescription from '@/utils/markdown-to-description'
+import getObject from '@/utils/algolia/getObject'
+import search from '@/utils/algolia/search'
 
 type PropTypes = {
   params: {
@@ -19,7 +20,7 @@ type PropTypes = {
 async function getSubject(props: PropTypes) {
   let subject: IASubject
   try {
-    subject = await subjectIndex.getObject<IASubject>(props.params.slug)
+    subject = await getObject<IASubject>({ index: 'subjects', objectID: props.params.slug })
   } catch (error: any) {
     return notFound()
   }
@@ -47,7 +48,8 @@ export default async function SubjectPage(props: PropTypes) {
   const page = parsePaginationPage(props.searchParams.page)
   const subject = await getSubject(props)
 
-  const lessons = await lessonIndex.search<IALesson>('', {
+  const lessons = await search<IALesson>({
+    index: 'lessons',
     hitsPerPage: 10,
     page: page - 1,
     facetFilters: [['subjects.slug:' + props.params.slug]],

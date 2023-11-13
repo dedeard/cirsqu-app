@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { subjectIndex } from '@/utils/algolia'
+import search from '@/utils/algolia/search'
 import TitleBar from '../../components/TitleBar'
 import SubjectList from '../../components/SubjectItem'
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 }
 
 export default async function SubjectsPage() {
-  const subjects = await subjectIndex.search<IASubject>('', { hitsPerPage: 1000 })
+  const subjects = await search<IASubject>({ index: 'subjects', hitsPerPage: 1000 })
   return (
     <>
       <TitleBar title="List of Subjects" className="mb-3" />

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { lessonIndex, subjectIndex } from '@/utils/algolia'
 import MainBanner from './components/MainBanner'
 import Latest from './components/Latest'
 import PremiumBanner from './components/PremiumBanner'
 import Subjects from './components/Subjects'
+import search from '@/utils/algolia/search'
 
 export const dynamic = 'force-dynamic'
 
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const lessons = await lessonIndex.search<IALesson>('', { hitsPerPage: 5 })
-  const subjects = await subjectIndex.search<IASubject>('', { hitsPerPage: 6 })
+  const lessons = await search<IALesson>({ index: 'lessons', hitsPerPage: 5 })
+  const subjects = await search<IASubject>({ index: 'subjects', hitsPerPage: 6 })
 
   return (
     <>

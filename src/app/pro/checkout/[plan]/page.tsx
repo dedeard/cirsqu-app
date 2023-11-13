@@ -13,7 +13,7 @@ type PropTypes = {
 export const dynamic = 'force-dynamic'
 
 async function getPageData({ params }: PropTypes) {
-  const res = await serverFetch(`products`, { next: { revalidate: 3600 } })
+  const res = await serverFetch('products')
 
   const products = (await res.json()) as IProduct[]
 

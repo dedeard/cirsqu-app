@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
+import { useContext, useState, useEffect, createContext } from 'react'
 import { Hit } from '@/types/algolia'
-import { lessonIndex, subjectIndex } from '@/utils/algolia'
-import React, { useContext, useState, useEffect } from 'react'
+import search from '@/utils/algolia/search'
 import { useLayout } from './LayoutContext'
 
 interface Results {
@@ -25,7 +25,7 @@ interface SearchContextProps {
   setFilters: React.Dispatch<React.SetStateAction<string[]>>
 }
 
-const SearchContext = React.createContext<SearchContextProps>({
+const SearchContext = createContext<SearchContextProps>({
   results: {
     facets: {},
     hits: [],
@@ -58,8 +58,14 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
+    setTyping(true)
+    if (typingTimeout) clearTimeout(typingTimeout)
+    setTypingTimeout(setTimeout(() => setTyping(false), 1000))
+  }, [input])
+
+  useEffect(() => {
     const loadSubjects = async () => {
-      const { hits } = await subjectIndex.search<IASubject>('', { hitsPerPage: 100, attributesToRetrieve: ['slug', 'name'] })
+      const { hits } = await search<IASubject>({ index: 'subjects', hitsPerPage: 100, attributesToRetrieve: ['slug', 'name'] })
       setSubjects(hits.map(({ slug, name }) => ({ slug, name })))
       setInitLoading(false)
       setSubjectLoaded(true)
@@ -68,26 +74,26 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, [searchModalOpen, subjectLoaded])
 
   useEffect(() => {
-    setTyping(true)
-    if (typingTimeout) clearTimeout(typingTimeout)
-    setTypingTimeout(setTimeout(() => setTyping(false), 1000))
-  }, [input])
-
-  useEffect(() => {
-    if (initLoading) return
-
     const handleSearch = async (value: string) => {
-      setLoading(true)
-      const { hits, facets, query } = await lessonIndex.search<IALesson>(value, {
+      const { hits, facets, query } = await search<IALesson>({
+        index: 'lessons',
+        query: value,
         facets: ['subjects.slug'],
         facetFilters: filters.map((el) => `subjects.slug:${el}`),
       })
       setResults({ hits, facets: facets?.['subjects.slug'] || {}, query })
-      setLoading(false)
-      if (input !== query) handleSearch(input)
+      if (input !== query) {
+        handleSearch(input)
+      } else {
+        setLoading(false)
+      }
     }
-    if (!typing && !loading) handleSearch(input)
-  }, [typing, loading, initLoading, filters])
+
+    if (!initLoading && !typing) {
+      setLoading(true)
+      handleSearch(input)
+    }
+  }, [typing, initLoading, filters])
 
   return (
     <SearchContext.Provider

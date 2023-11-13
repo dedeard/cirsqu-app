@@ -1,6 +1,6 @@
 'use client'
-import { profileIndex } from '@/utils/algolia'
 import React, { useCallback, useContext, useState } from 'react'
+import getObjects from '@/utils/algolia/getObjects'
 
 interface ProfilesContextProps {
   loading: boolean
@@ -33,7 +33,7 @@ export const ProfilesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
         if (idsToFetch.length > 0) {
           // Fetch profiles from Algolia
-          const data = await profileIndex.getObjects<IAProfile>(idsToFetch)
+          const data = await getObjects<IAProfile>({ index: 'profiles', objectIDs: idsToFetch })
 
           // Filter out any null or undefined profiles
           const fetchedProfiles = data.results.filter(Boolean) as IAProfile[]

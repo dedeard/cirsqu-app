@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import Main from './components/Main'
-import { lessonIndex } from '@/utils/algolia'
 import { notFound } from 'next/navigation'
 import markdownToDescription from '@/utils/markdown-to-description'
+import getObject from '@/utils/algolia/getObject'
+import Main from './components/Main'
 
 type PropTypes = {
   params: {
@@ -14,7 +14,7 @@ type PropTypes = {
 async function getPageData({ params }: PropTypes) {
   let lesson: IALesson
   try {
-    lesson = await lessonIndex.getObject<IALesson>(params.slug)
+    lesson = await getObject<IALesson>({ index: 'lessons', objectID: params.slug })
   } catch (error: any) {
     return notFound()
   }
