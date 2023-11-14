@@ -9,7 +9,7 @@ interface Options extends GetObjectsOptions {
 }
 
 const getObjects: <T>(options: Options) => Promise<GetObjectsResponse<T>> = async ({ index, objectIDs, cache, next, ...options }) => {
-  const request = objectIDs.map((objectID) => ({ indexName: index, objectID }))
+  const requests = objectIDs.map((objectID) => ({ indexName: index, objectID }))
 
   const response = await fetch(`https://${ALGOLIA_APP_ID}-dsn.algolia.net/1/indexes/*/objects`, {
     method: 'POST',
@@ -17,7 +17,7 @@ const getObjects: <T>(options: Options) => Promise<GetObjectsResponse<T>> = asyn
       'X-Algolia-API-Key': ALGOLIA_SEARCH_ONLY_API_KEY,
       'X-Algolia-Application-Id': ALGOLIA_APP_ID,
     },
-    body: JSON.stringify({ request, ...options }),
+    body: JSON.stringify({ requests, ...options }),
     cache,
     next,
   })
