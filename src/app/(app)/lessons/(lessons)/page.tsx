@@ -5,7 +5,7 @@ import LessonList from '../../components/LessonItem'
 import Pagination from '../../components/Pagination'
 import TitleBar from '../../components/TitleBar'
 
-export const revalidate = 3600
+export const runtime = 'edge'
 
 export const metadata: Metadata = {
   title: 'Lessons - CIRSQU',
@@ -20,6 +20,7 @@ export default async function LessonsPage({ searchParams }: { searchParams: { pa
     index: 'lessons',
     hitsPerPage: 10,
     page: page - 1,
+    next: { revalidate: 3600, tags: [`lessons-page-${page}`] },
   })
 
   return (
