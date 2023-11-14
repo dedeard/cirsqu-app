@@ -3,12 +3,10 @@ import DescriptionMarkdown from '@/components/elements/DescriptionMarkdown'
 
 type PropTypes = {
   lesson: IALesson
-  episode?: IEpisode
-  currentEpisode: IAEpisode
-  loading: boolean
+  episode: IEpisode
 }
 
-const EpisodeDetail: React.FC<PropTypes> = ({ loading, episode, currentEpisode, lesson }) => {
+const EpisodeDetail: React.FC<PropTypes> = ({ episode, lesson }) => {
   return (
     <div className="container max-w-4xl px-3 py-12">
       <div className="flex gap-3">
@@ -28,20 +26,10 @@ const EpisodeDetail: React.FC<PropTypes> = ({ loading, episode, currentEpisode, 
       </div>
 
       <h1 className="text-2xl md:text-3xl lg:text-4xl [&:not(:last-child)]:mb-8">
-        {String(currentEpisode.index + 1).padStart(2, '0')}. {currentEpisode.title}
+        {String(episode.index + 1).padStart(2, '0')}. {episode.title}
       </h1>
 
-      {loading && (
-        <div className="flex flex-col gap-5">
-          {Array.from(Array(8).keys()).map((i) => (
-            <span key={i} className="skeleton h-3 w-full rounded-full" />
-          ))}
-        </div>
-      )}
-
-      {!loading && episode?.description && (
-        <DescriptionMarkdown className="prose prose-sm prose-invert w-full max-w-full">{episode.description}</DescriptionMarkdown>
-      )}
+      <DescriptionMarkdown className="prose prose-sm prose-invert w-full max-w-full">{episode.description}</DescriptionMarkdown>
     </div>
   )
 }

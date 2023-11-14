@@ -7,7 +7,7 @@ import EpisodeDetail from './EpisodeDetail'
 import Comments from './Comments'
 
 type PropTypes = {
-  currentEpisode: IAEpisode
+  currentEpisode: IEpisode
   episodes: IAEpisode[]
   lesson: IALesson
 }
@@ -21,7 +21,7 @@ const Main: React.FC<PropTypes> = ({ currentEpisode, episodes, lesson }) => {
 
       <MainPlaylist episodes={episodes} {...useEpisodeData} />
 
-      <EpisodeDetail lesson={lesson} currentEpisode={currentEpisode} episode={useEpisodeData.episode} loading={useEpisodeData.loading} />
+      <EpisodeDetail lesson={lesson} episode={useEpisodeData.episode} />
 
       <Comments episodeId={currentEpisode.episodeId} />
     </>

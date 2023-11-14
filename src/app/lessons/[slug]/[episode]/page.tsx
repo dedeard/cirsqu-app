@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import markdownToDescription from '@/utils/markdown-to-description'
 import getObject from '@/utils/algolia/getObject'
 import Main from './components/Main'
+import serverFetch from '@/utils/server-fetch'
 
 type PropTypes = {
   params: {
@@ -24,6 +25,12 @@ async function getPageData({ params }: PropTypes) {
 
   if (!currentEpisode) return notFound()
 
+  const episodeResponse = await serverFetch(`episodes/${currentEpisode.episodeId}`)
+
+  if (!episodeResponse.ok) return notFound()
+
+  const episode = await episodeResponse.json<IEpisode>()
+
   const lessonData = {
     title: lesson.title,
     slug: lesson.slug,
@@ -31,7 +38,7 @@ async function getPageData({ params }: PropTypes) {
     description: lesson.description,
   } as IALesson
 
-  return { lesson: lessonData, episodes, currentEpisode }
+  return { lesson: lessonData, episodes, currentEpisode: episode }
 }
 
 export async function generateMetadata(pageProps: PropTypes): Promise<Metadata> {

@@ -1,16 +1,18 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import { useAuth } from '@/components/contexts/AuthContext'
 import clientFetch from '@/utils/client-fetch'
 
-const useEpisode = (currentEpisode: IAEpisode) => {
+const useEpisode = (currentEpisode: IEpisode) => {
   const auth = useAuth()
-  const [episode, setEpisode] = React.useState<IEpisode>()
-  const [premiumRequired, setPremiumRequired] = React.useState(currentEpisode.premium)
-  const [authRequired, setAuthRequired] = React.useState(!auth.profile)
-  const [loading, setLoading] = React.useState(true)
-  const [error, setError] = React.useState('')
+  const [episode, setEpisode] = useState<IEpisode>(currentEpisode)
+  const [premiumRequired, setPremiumRequired] = useState(currentEpisode.premium)
+  const [authRequired, setAuthRequired] = useState(!auth.profile)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (auth.initLoading) return
+
     const fetchEpisode = async () => {
       try {
         const response = await clientFetch(`episodes/${currentEpisode.episodeId}`)
@@ -21,33 +23,32 @@ const useEpisode = (currentEpisode: IAEpisode) => {
         setEpisode(episode)
       } catch (error: any) {
         setError(error.message)
+      } finally {
+        setLoading(false)
       }
-
-      setLoading(false)
     }
 
     setLoading(true)
     setAuthRequired(false)
     setPremiumRequired(false)
 
-    if (auth.initLoading) return
-
-    if (!auth.profile) {
+    if (currentEpisode.premium) {
+      if (!auth.profile) {
+        setAuthRequired(true)
+        setLoading(false)
+        return
+      } else if (!auth.profile.premium) {
+        setPremiumRequired(true)
+        setLoading(false)
+        return
+      }
+      fetchEpisode()
+    } else {
       setLoading(false)
-      setAuthRequired(true)
-      return
     }
-
-    if (currentEpisode.premium && !auth.profile.premium) {
-      setLoading(false)
-      setPremiumRequired(true)
-      return
-    }
-
-    fetchEpisode()
   }, [currentEpisode, auth.initLoading, auth.profile, setEpisode])
 
-  return { episode, loading: loading || auth.initLoading, error, premiumRequired, authRequired }
+  return { episode, loading, error, premiumRequired, authRequired }
 }
 
 export default useEpisode

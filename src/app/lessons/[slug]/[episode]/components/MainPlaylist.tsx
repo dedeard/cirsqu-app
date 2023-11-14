@@ -8,7 +8,7 @@ import EpisodeList from './EpisodeList'
 
 type PropTypes = {
   episodes: IAEpisode[]
-  episode?: IEpisode
+  episode: IEpisode
   loading: boolean
   error: string
   premiumRequired: boolean

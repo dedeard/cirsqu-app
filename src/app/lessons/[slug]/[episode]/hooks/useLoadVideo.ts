@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const useLoadVideo = (episode: IEpisode, iframeId: string, onEnded?: () => void) => {
   const playerRef = React.useRef<YT.Player | null>(null)
+  const [start, setStart] = useState(false)
 
   React.useEffect(() => {
+    if (!start) return
+
     const loadVideo = () => {
       playerRef.current = new window.YT.Player(iframeId, {
         events: {
@@ -29,7 +32,17 @@ const useLoadVideo = (episode: IEpisode, iframeId: string, onEnded?: () => void)
         window.onYouTubeIframeAPIReady = null
       }
     }
-  }, [episode, onEnded, iframeId])
+  }, [start, episode, onEnded, iframeId])
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setStart(true)
+    }, 3000)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [])
 }
 
 export default useLoadVideo
