@@ -1,4 +1,4 @@
-import React from 'react'
+'use client'
 import CommentForm from '@/components/features/Comment/CommentForm'
 import CommentList from '@/components/features/Comment/CommentList'
 import useComments from '@/components/features/Comment/hooks/useComments'

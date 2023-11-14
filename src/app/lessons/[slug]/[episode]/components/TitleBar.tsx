@@ -1,6 +1,5 @@
-import React from 'react'
-import { ArrowLeft } from 'react-feather'
 import Link from 'next/link'
+import { ArrowLeft } from 'react-feather'
 
 const TitleBar: React.FC<{ title: string; slug: string }> = ({ title, slug }) => {
   return (

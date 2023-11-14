@@ -2,8 +2,11 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import markdownToDescription from '@/utils/markdown-to-description'
 import getObject from '@/utils/algolia/getObject'
-import Main from './components/Main'
 import serverFetch from '@/utils/server-fetch'
+import TitleBar from './components/TitleBar'
+import MainPlaylist from './components/MainPlaylist'
+import EpisodeDetail from './components/EpisodeDetail'
+import Comments from './components/Comments'
 
 type PropTypes = {
   params: {
@@ -38,28 +41,36 @@ async function getPageData({ params }: PropTypes) {
     description: lesson.description,
   } as IALesson
 
-  return { lesson: lessonData, episodes, currentEpisode: episode }
+  return { lesson: lessonData, episodes, episode }
 }
 
 export async function generateMetadata(pageProps: PropTypes): Promise<Metadata> {
-  const { lesson, currentEpisode } = await getPageData(pageProps)
+  const { lesson, episode } = await getPageData(pageProps)
   return {
-    title: `${currentEpisode.title} - ${lesson.title}`,
-    description: markdownToDescription(lesson.description),
+    title: `${episode.title} - ${lesson.title}`,
+    description: markdownToDescription(episode.description),
     openGraph: {
-      images: `/images/dynamic-og?title=${currentEpisode.title}`,
-      title: `${currentEpisode.title} - ${lesson.title}`,
-      description: markdownToDescription(lesson.description),
+      images: `/images/dynamic-og?title=${episode.title}`,
+      title: `${episode.title} - ${lesson.title}`,
+      description: markdownToDescription(episode.description),
     },
     alternates: {
-      canonical: `/lessons/${lesson.slug}/${currentEpisode.episodeId}`,
+      canonical: `/lessons/${lesson.slug}/${episode.episodeId}`,
     },
-    robots: 'noindex',
   }
 }
 
 export default async function Page(props: PropTypes) {
-  const data = await getPageData(props)
+  const { lesson, episode, episodes } = await getPageData(props)
+  return (
+    <>
+      <TitleBar title={lesson.title} slug={lesson.slug} />
 
-  return <Main {...data} />
+      <MainPlaylist episodes={episodes} episode={episode} />
+
+      <EpisodeDetail lesson={lesson} episode={episode} />
+
+      <Comments episodeId={episode.episodeId} />
+    </>
+  )
 }

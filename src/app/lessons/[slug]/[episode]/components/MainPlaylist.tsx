@@ -1,3 +1,4 @@
+'use client'
 import { useCallback } from 'react'
 import { useParams, usePathname } from 'next/navigation'
 import Link from 'next/link'
@@ -5,20 +6,19 @@ import { useRouter } from '@/components/contexts/ProgressBarContext'
 import YouTubePlayer from './YoutubePlayer'
 import Controller from './Controller'
 import EpisodeList from './EpisodeList'
+import useEpisode from '../hooks/useEpisode'
 
 type PropTypes = {
   episodes: IAEpisode[]
   episode: IEpisode
-  loading: boolean
-  error: string
-  premiumRequired: boolean
-  authRequired: boolean
 }
 
-const MainPlaylist: React.FC<PropTypes> = ({ episodes, episode, loading, error, authRequired, premiumRequired }) => {
+const MainPlaylist: React.FC<PropTypes> = ({ episodes, episode: currentEpisode }) => {
   const router = useRouter()
   const params = useParams()
   const pathname = usePathname()
+
+  const { loading, episode, authRequired, premiumRequired, error } = useEpisode(currentEpisode)
 
   const onEnded = useCallback(() => {
     if (window.localStorage.getItem('autoplay') === 'true') {
