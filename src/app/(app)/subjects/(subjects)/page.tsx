@@ -3,7 +3,7 @@ import search from '@/utils/algolia/search'
 import TitleBar from '../../components/TitleBar'
 import SubjectList from '../../components/SubjectItem'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'Subjects - CIRSQU',

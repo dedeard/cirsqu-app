@@ -5,7 +5,7 @@ import serverFetch from '@/utils/server-fetch'
 import PlanItem from './components/PlanItem'
 import FAQs from './components/FAQs'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 7200
 
 export const metadata: Metadata = {
   title: 'Pro - CIRSQU',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 }
 
 export default async function PlansPage() {
-  const response = await serverFetch('products', { cache: 'no-cache' })
+  const response = await serverFetch('products')
   if (!response.ok) {
     const data = await response.json()
     throw new Error(data.message)

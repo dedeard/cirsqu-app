@@ -8,6 +8,8 @@ import getObject from '@/utils/algolia/getObject'
 
 type PropTypes = { params: { slug: string } }
 
+export const revalidate = 3600
+
 async function getPageData(props: PropTypes) {
   let lesson: IALesson
   try {

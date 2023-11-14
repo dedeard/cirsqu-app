@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Check, FileText } from 'react-feather'
 import serverFetch from '@/utils/server-fetch'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 7200
 
 export const metadata: Metadata = {
   title: 'CIRSQU Subscription Success - Welcome to Advanced Learning',

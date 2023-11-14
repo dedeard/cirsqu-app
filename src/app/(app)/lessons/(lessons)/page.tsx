@@ -5,7 +5,7 @@ import LessonList from '../../components/LessonItem'
 import Pagination from '../../components/Pagination'
 import TitleBar from '../../components/TitleBar'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'Lessons - CIRSQU',

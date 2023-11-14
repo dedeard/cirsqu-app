@@ -5,9 +5,7 @@ import PremiumBanner from './components/PremiumBanner'
 import Subjects from './components/Subjects'
 import search from '@/utils/algolia/search'
 
-export const dynamic = 'force-dynamic'
-
-export const revalidate = 60 * 5
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'Home - CIRSQU',

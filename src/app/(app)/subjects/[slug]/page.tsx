@@ -17,6 +17,8 @@ type PropTypes = {
   }
 }
 
+export const revalidate = 3600
+
 async function getSubject(props: PropTypes) {
   let subject: IASubject
   try {

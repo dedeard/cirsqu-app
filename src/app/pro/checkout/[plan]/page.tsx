@@ -10,7 +10,7 @@ type PropTypes = {
   params: { plan: string }
 }
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 7200
 
 async function getPageData({ params }: PropTypes) {
   const res = await serverFetch('products')

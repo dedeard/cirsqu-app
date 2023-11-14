@@ -15,6 +15,8 @@ type PropTypes = {
   }
 }
 
+export const revalidate = 3600
+
 async function getPageData({ params }: PropTypes) {
   let lesson: IALesson
   try {
