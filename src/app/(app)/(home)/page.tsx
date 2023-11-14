@@ -7,6 +7,8 @@ import search from '@/utils/algolia/search'
 
 export const dynamic = 'force-dynamic'
 
+export const revalidate = 60 * 5
+
 export const metadata: Metadata = {
   title: 'Home - CIRSQU',
   description:
