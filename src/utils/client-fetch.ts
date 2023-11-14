@@ -1,11 +1,7 @@
 import { BASE_API_URL } from '@/constants/config'
 import { auth } from './firebase'
 
-interface IRequestInit extends RequestInit {
-  data?: Record<string, unknown>
-}
-
-export default async function clientFetch(path: string, { data, ...init }: IRequestInit = {}) {
+const clientFetch: Fetch = async (path, { data, ...init } = {}) => {
   let headers: HeadersInit = {}
   if (data) {
     headers['Content-Type'] = 'application/json'
@@ -20,3 +16,5 @@ export default async function clientFetch(path: string, { data, ...init }: IRequ
 
   return fetch(`${BASE_API_URL}/${path}`, { ...init, headers })
 }
+
+export default clientFetch

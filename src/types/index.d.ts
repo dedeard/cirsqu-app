@@ -6,6 +6,12 @@ declare global {
     onYouTubeIframeAPIReady: (() => void) | null
   }
 
+  interface IRequestInit extends RequestInit {
+    data?: Record<string, unknown>
+  }
+
+  type Fetch = (path: string, init?: IRequestInit) => Promise<Response & { json<T>(): Promise<T> }>
+
   interface IUser {
     uid: string
     displayName: string | null
