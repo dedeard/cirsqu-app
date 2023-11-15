@@ -16,6 +16,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    webpackBuildWorker: true,
+  },
 }
 
 const withMDX = createMDX({
