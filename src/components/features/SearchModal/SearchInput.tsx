@@ -37,7 +37,11 @@ const SearchInput: React.FC = () => {
         )}
       </div>
       <div className="flex items-center justify-start px-2">
-        <button className=" hoverable-default flex h-10 w-10 items-center rounded-full border" onClick={() => toggleSearchModal(false)}>
+        <button
+          title="Close modal"
+          className=" hoverable-default flex h-10 w-10 items-center rounded-full border"
+          onClick={() => toggleSearchModal(false)}
+        >
           <X size={18} className="m-auto text-red-600" />
         </button>
       </div>

@@ -11,6 +11,7 @@ const SearchModal: React.FC = () => {
 
   return (
     <div
+      aria-hidden={true}
       className={cn(
         isOpen && 'opacity-100',
         !isOpen && 'pointer-events-none opacity-0',
