@@ -22,17 +22,23 @@ const CommentItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
   const author = profiles.find((el) => el.objectID === comment.userId)
   const isCommentLikedByUser = user && comment.likes.includes(user.uid)
   const [liked, setLiked] = React.useState(isCommentLikedByUser)
+  const [likeCount, setLikeCount] = React.useState(comment.likes.length)
 
   const { isActionInProgress, toggleLikeStatusForComment } = useCommentActions(comment.commentId, !!isCommentLikedByUser)
 
   const toggleLike = async () => {
     setLiked(!liked)
+    setLikeCount(liked ? likeCount - 1 : likeCount + 1)
     await toggleLikeStatusForComment()
   }
 
   React.useEffect(() => {
     setLiked(isCommentLikedByUser)
   }, [isCommentLikedByUser])
+
+  React.useEffect(() => {
+    setLikeCount(comment.likes.length)
+  }, [comment.likes.length])
 
   if (!author) return null
   return (
@@ -76,7 +82,7 @@ const CommentItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
                   {!openReplies && `Replies ${comment.replyCount || 0}`}
                 </button>
                 <button disabled={isActionInProgress || user?.uid === comment.userId} onClick={toggleLike}>
-                  {liked ? 'Unlike' : 'Like'} {comment.likes.length}
+                  {liked ? 'Unlike' : 'Like'} {likeCount}
                 </button>
                 {author.objectID === user?.uid && (
                   <>

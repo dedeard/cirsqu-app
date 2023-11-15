@@ -20,17 +20,23 @@ const ReplyItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
   const author = profiles.find((el) => el.objectID === comment.userId)
   const isCommentLikedByUser = user && comment.likes.includes(user.uid)
   const [liked, setLiked] = React.useState(isCommentLikedByUser)
+  const [likeCount, setLikeCount] = React.useState(comment.likes.length)
 
   const { isActionInProgress, toggleLikeStatusForComment } = useCommentActions(comment.commentId, !!isCommentLikedByUser)
 
   const toggleLike = async () => {
     setLiked(!liked)
+    setLikeCount(liked ? likeCount - 1 : likeCount + 1)
     await toggleLikeStatusForComment()
   }
 
   React.useEffect(() => {
     setLiked(isCommentLikedByUser)
   }, [isCommentLikedByUser])
+
+  React.useEffect(() => {
+    setLikeCount(comment.likes.length)
+  }, [comment.likes.length])
 
   if (!author) return null
   return (
@@ -64,7 +70,7 @@ const ReplyItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
 
               <div className="flex gap-4 text-xs md:text-sm">
                 <button disabled={isActionInProgress || user?.uid === comment.userId} onClick={toggleLike}>
-                  {liked ? 'Unlike' : 'Like'} {comment.likes.length}
+                  {liked ? 'Unlike' : 'Like'} {likeCount}
                 </button>
                 {author.objectID === user?.uid && (
                   <>
