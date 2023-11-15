@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import { useEffect, useState, createContext, useContext } from 'react'
+import { useEffect, useState, createContext, useContext, useCallback } from 'react'
 import { usePathname, useSearchParams, useRouter as useNextRouter } from 'next/navigation'
 import { AppRouterInstance, NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 
@@ -99,26 +99,27 @@ export const ProgressBarProvider: React.FC<{ children: React.ReactNode }> = ({ c
     }
   }, [])
 
-  function push(href: string, options?: NavigateOptions, disableProgress?: boolean) {
-    if (disableProgress) return router.push(href, options)
+  const push = useCallback(
+    (href: string, options?: NavigateOptions, disableProgress?: boolean) => {
+      if (disableProgress) return router.push(href, options)
 
-    const currentUrl = new URL(pathname, location.href)
-    const targetUrl = new URL(href, location.href)
+      const currentUrl = new URL(pathname, location.href)
+      const targetUrl = new URL(href, location.href)
 
-    if (isSameURL(targetUrl, currentUrl) || href === pathname) return router.push(href, options)
+      if (isSameURL(targetUrl, currentUrl) || href === pathname) return router.push(href, options)
 
-    start()
+      start()
 
-    return router.push(href, options)
-  }
+      return router.push(href, options)
+    },
+    [pathname],
+  )
 
-  function back(disableProgress?: boolean) {
+  const back = useCallback((disableProgress?: boolean) => {
     if (disableProgress) return router.back()
-
     start()
-
     return router.back()
-  }
+  }, [])
 
   return (
     <ProgressBarContext.Provider value={{ ...router, push, back }}>

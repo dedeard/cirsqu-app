@@ -46,7 +46,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const profileRef = doc(db, 'profiles', user.uid)
     return onSnapshot(profileRef, (snapshot) => {
       if (snapshot.exists()) {
-        const profile = snapshot.data() as IProfile
         setProfile(snapshot.data() as IProfile)
       } else {
         setProfile(null)
@@ -72,21 +71,21 @@ interface UseAuthRedirectOptions {
 
 export const useAuth = (redirectOptions?: UseAuthRedirectOptions) => {
   const { user, profile, premium, initLoading, loading, setLoading } = React.useContext(AuthContext)
-  const router = useRouter()
+  const { push } = useRouter()
 
   React.useEffect(() => {
-    if (loading || initLoading || !router) return
-
+    if (loading || initLoading) return
     if (!user && redirectOptions?.whenNotAuthed) {
-      router.push(redirectOptions?.whenNotAuthed)
+      push(redirectOptions.whenNotAuthed)
     } else if (user && !profile && redirectOptions?.whenAuthedProfileNotExists) {
-      router.push(redirectOptions?.whenAuthedProfileNotExists)
+      push(redirectOptions.whenAuthedProfileNotExists)
     } else if (user && profile && redirectOptions?.whenAuthedProfileExists) {
-      router.push(redirectOptions?.whenAuthedProfileExists)
+      push(redirectOptions.whenAuthedProfileExists)
     } else if (user && redirectOptions?.whenAuthed) {
-      router.push(redirectOptions?.whenAuthed)
+      push(redirectOptions.whenAuthed)
     }
-  }, [user, profile, premium, initLoading, loading, router, redirectOptions])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, profile, initLoading, loading])
 
   return { user, profile, premium, initLoading, loading, setLoading }
 }
