@@ -27,8 +27,8 @@ export const ProgressBarProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const router = useNextRouter()
 
   const isSameURL = (target: URL, current: URL) => {
-    const cleanTarget = target.protocol + '//' + target.host + target.pathname
-    const cleanCurrent = current.protocol + '//' + current.host + current.pathname
+    const cleanTarget = target.protocol + '//' + target.host + target.pathname + target.search
+    const cleanCurrent = current.protocol + '//' + current.host + current.pathname + current.search
 
     return cleanTarget === cleanCurrent
   }
