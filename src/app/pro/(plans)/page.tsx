@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     title: 'Pro - CIRSQU',
     description:
       'Upgrade to CIRSQU Pro and take your learning to the next level! Gain access to advanced courses, personalized learning paths, and premium support. Make the most of your coding journey with CIRSQU Pro.',
+    url: '/pro',
   },
   alternates: {
     canonical: '/pro',

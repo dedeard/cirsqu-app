@@ -44,6 +44,7 @@ export async function generateMetadata(props: PropTypes): Promise<Metadata> {
       title: `Checkout ${currentProduct.name} - CIRSQU`,
       description:
         "You're one step away from embarking on an exciting learning journey with CIRSQU. Review your order, complete the secure payment process, and get ready to dive into the world of coding. Your future starts here!",
+      url: `/pro/checkout/${currentProduct.price.lookup_key}`,
     },
     alternates: {
       canonical: `/pro/checkout/${currentProduct.price.lookup_key}`,

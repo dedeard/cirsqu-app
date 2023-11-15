@@ -6,10 +6,22 @@ import TitleBar from '../../components/TitleBar'
 
 export const runtime = 'edge'
 
-export const metadata: Metadata = {
-  title: 'Lessons - CIRSQU',
-  description:
-    'Embark on a transformative coding journey with CIRSQU’s comprehensive lessons. Explore a wide array of screencasts, designed to enhance your programming skills, regardless of your experience level.',
+export function generateMetadata({ searchParams }: { searchParams: { page?: string } }): Metadata {
+  let page = parseInt(String(searchParams.page))
+  if (isNaN(page) || page < 1) {
+    page = 1
+  }
+  return {
+    title: 'Lessons - CIRSQU',
+    description:
+      'Embark on a transformative coding journey with CIRSQU’s comprehensive lessons. Explore a wide array of screencasts, designed to enhance your programming skills, regardless of your experience level.',
+    alternates: {
+      canonical: '/lessons?page=' + page,
+    },
+    openGraph: {
+      url: '/lessons?page=' + page,
+    },
+  }
 }
 
 export default async function LessonsPage({ searchParams }: { searchParams: { page?: string } }) {

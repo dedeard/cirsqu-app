@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: '/images/main-og',
     title: 'CIRSQU',
+    url: '/',
     description:
       'Immerse yourself in CIRSQU’s comprehensive screencasts, tailored for developers at all stages. Delve into our diverse coding tutorials and take your programming prowess to new heights!',
   },

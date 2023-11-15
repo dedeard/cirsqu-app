@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     title: 'Sign In to CIRSQU - Your Gateway to Coding Mastery',
     description:
       'Unlock a world of coding wisdom with CIRSQU! Sign in to access a trove of comprehensive screencasts and lessons, meticulously crafted for developers of all skill levels. Your coding journey begins here!',
+    url: '/sign-in',
   },
   alternates: {
     canonical: '/sign-in',

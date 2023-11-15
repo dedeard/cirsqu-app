@@ -64,6 +64,7 @@ export async function generateMetadata(pageProps: PropTypes): Promise<Metadata> 
       images: `/images/dynamic-og?title=${episode.title}`,
       title: `${episode.title} - ${lesson.title}`,
       description: mdToDescription(episode.description),
+      url: `/lessons/${lesson.slug}/${episode.episodeId}`,
     },
     alternates: {
       canonical: `/lessons/${lesson.slug}/${episode.episodeId}`,

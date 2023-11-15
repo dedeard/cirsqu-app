@@ -14,7 +14,6 @@ const EpisodeItem: React.FC<{ episode: IAEpisode }> = ({ episode }) => {
     <Link
       href={`/lessons/${params.slug}/${episode.episodeId}`}
       className="hoverable-default flex items-center justify-between overflow-hidden rounded-lg border p-5"
-      rel="nofollow"
     >
       {!(profile?.premium || episode.premium) || profile?.premium ? (
         <PlayCircle className="block h-6 w-6 opacity-40" />

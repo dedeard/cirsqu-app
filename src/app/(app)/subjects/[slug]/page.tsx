@@ -38,6 +38,10 @@ async function getSubject(props: PropTypes) {
 
 export async function generateMetadata(pageProps: PropTypes): Promise<Metadata> {
   const { name, description, slug } = await getSubject(pageProps)
+  let page = parseInt(String(pageProps.searchParams.page))
+  if (isNaN(page) || page < 1) {
+    page = 1
+  }
   return {
     title: name,
     description: mdToDescription(description),
@@ -45,9 +49,10 @@ export async function generateMetadata(pageProps: PropTypes): Promise<Metadata> 
       images: `/images/dynamic-og?title=${name}`,
       title: name,
       description: mdToDescription(description),
+      url: `/subjects/${slug}?page=${page}`,
     },
     alternates: {
-      canonical: `/subjects/${slug}`,
+      canonical: `/subjects/${slug}?page=${page}`,
     },
   }
 }

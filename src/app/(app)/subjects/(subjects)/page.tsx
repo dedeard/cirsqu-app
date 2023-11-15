@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   title: 'Subjects - CIRSQU',
   description:
     'Discover a world of coding subjects with CIRSQU! Our diverse and comprehensive subject list is designed to help you master every aspect of coding. Start exploring and expand your coding repertoire today!',
+  alternates: {
+    canonical: '/subjects',
+  },
+  openGraph: {
+    url: '/subjects',
+  },
 }
 
 export default async function SubjectsPage() {

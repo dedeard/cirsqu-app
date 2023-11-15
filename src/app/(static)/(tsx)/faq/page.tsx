@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: 'CIRSQU FAQs - Find Your Answers',
     description:
       'Got questions about CIRSQU? Our FAQ page provides answers to commonly asked questions about our platform, courses, and services. Explore to find the information you need, and embark on your coding journey with confidence!',
+    url: '/faq',
   },
   alternates: {
     canonical: '/faq',

@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     title: 'CIRSQU Terms of Service - Know Your Rights and Responsibilities',
     description:
       "Our Terms of Service govern the use of CIRSQU's services and products. We encourage you to read them carefully to understand your rights and responsibilities as a user of our platform. Your use of our services indicates your acceptance of these terms.",
+    url: '/terms-of-service',
   },
   alternates: {
     canonical: '/terms-of-service',
