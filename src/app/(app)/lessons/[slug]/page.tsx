@@ -8,12 +8,16 @@ import getObject from '@/utils/algolia/getObject'
 
 type PropTypes = { params: { slug: string } }
 
-export const revalidate = 3600
+export const runtime = 'edge'
 
 async function getPageData(props: PropTypes) {
   let lesson: IALesson
   try {
-    lesson = await getObject<IALesson>({ index: 'lessons', objectID: props.params.slug })
+    lesson = await getObject<IALesson>({
+      index: 'lessons',
+      objectID: props.params.slug,
+      next: { revalidate: 3600, tags: [`lesson-${props.params.slug}`] },
+    })
   } catch (error: any) {
     return notFound()
   }

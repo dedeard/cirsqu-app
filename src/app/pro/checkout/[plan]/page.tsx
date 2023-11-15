@@ -10,10 +10,15 @@ type PropTypes = {
   params: { plan: string }
 }
 
-export const revalidate = 7200
+export const runtime = 'edge'
 
 async function getPageData({ params }: PropTypes) {
-  const res = await serverFetch('products')
+  const res = await serverFetch('products', {
+    next: {
+      revalidate: 7200,
+      tags: ['products'],
+    },
+  })
 
   const products = (await res.json()) as IProduct[]
 

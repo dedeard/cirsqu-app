@@ -22,7 +22,12 @@ export const metadata: Metadata = {
 }
 
 export default async function PlansPage() {
-  const response = await serverFetch('products')
+  const response = await serverFetch('products', {
+    next: {
+      revalidate: 7200,
+      tags: ['products'],
+    },
+  })
   if (!response.ok) {
     const data = await response.json()
     throw new Error(data.message)

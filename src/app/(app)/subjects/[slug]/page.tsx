@@ -16,12 +16,19 @@ type PropTypes = {
   }
 }
 
-export const revalidate = 3600
+export const runtime = 'edge'
 
 async function getSubject(props: PropTypes) {
   let subject: IASubject
   try {
-    subject = await getObject<IASubject>({ index: 'subjects', objectID: props.params.slug })
+    subject = await getObject<IASubject>({
+      index: 'subjects',
+      objectID: props.params.slug,
+      next: {
+        revalidate: 3600,
+        tags: [`subject-${props.params.slug}`],
+      },
+    })
   } catch (error: any) {
     return notFound()
   }
@@ -58,6 +65,10 @@ export default async function SubjectPage(props: PropTypes) {
     hitsPerPage: 10,
     page: page - 1,
     facetFilters: [['subjects.slug:' + props.params.slug]],
+    next: {
+      revalidate: 3600,
+      tags: [`subject-lessons-${props.params.slug}-${page}`],
+    },
   })
 
   return (

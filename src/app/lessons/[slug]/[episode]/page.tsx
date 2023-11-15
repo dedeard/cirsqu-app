@@ -15,12 +15,16 @@ type PropTypes = {
   }
 }
 
-export const revalidate = 3600
+export const runtime = 'edge'
 
 async function getPageData({ params }: PropTypes) {
   let lesson: IALesson
   try {
-    lesson = await getObject<IALesson>({ index: 'lessons', objectID: params.slug })
+    lesson = await getObject<IALesson>({
+      index: 'lessons',
+      objectID: params.slug,
+      next: { revalidate: 3600, tags: [`lesson-${params.slug}`] },
+    })
   } catch (error: any) {
     return notFound()
   }
@@ -30,7 +34,12 @@ async function getPageData({ params }: PropTypes) {
 
   if (!currentEpisode) return notFound()
 
-  const episodeResponse = await serverFetch(`episodes/${currentEpisode.episodeId}`)
+  const episodeResponse = await serverFetch(`episodes/${currentEpisode.episodeId}`, {
+    next: {
+      revalidate: 3600,
+      tags: [`episode-${currentEpisode.episodeId}`],
+    },
+  })
 
   if (!episodeResponse.ok) return notFound()
 

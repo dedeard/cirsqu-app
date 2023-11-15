@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Check, FileText } from 'react-feather'
 import serverFetch from '@/utils/fetch/server-fetch'
 
-export const revalidate = 7200
+export const runtime = 'edge'
 
 export const metadata: Metadata = {
   title: 'CIRSQU Subscription Success - Welcome to Advanced Learning',
@@ -17,7 +17,12 @@ export default async function Page({ searchParams }: { searchParams: { session_i
   const { session_id } = searchParams
   if (!session_id) return redirect('/pro')
 
-  let res = await serverFetch(`checkout-sessions/${session_id}`)
+  let res = await serverFetch(`checkout-sessions/${session_id}`, {
+    next: {
+      revalidate: 7200,
+      tags: [`checkout-session-${session_id}`],
+    },
+  })
 
   if (!res.ok) {
     const error = await res.json()
