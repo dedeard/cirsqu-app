@@ -3,7 +3,7 @@ import LessonCard from './components/LessonCard'
 import LessonDetail from './components/LessonDetail'
 import LessonEpisodes from './components/LessonEpisodes'
 import { notFound } from 'next/navigation'
-import markdownToDescription from '@/utils/markdown-to-description'
+import mdToDescription from '@/utils/transforms/md-to-description'
 import getObject from '@/utils/algolia/getObject'
 
 type PropTypes = { params: { slug: string } }
@@ -30,11 +30,11 @@ export async function generateMetadata(pageProps: PropTypes): Promise<Metadata> 
   const { lesson } = await getPageData(pageProps)
   return {
     title: lesson.title,
-    description: markdownToDescription(lesson.description),
+    description: mdToDescription(lesson.description),
     openGraph: {
       images: `/images/dynamic-og?title=${lesson.title}`,
       title: lesson.title,
-      description: markdownToDescription(lesson.description),
+      description: mdToDescription(lesson.description),
     },
     alternates: {
       canonical: `/lessons/${lesson.slug}`,

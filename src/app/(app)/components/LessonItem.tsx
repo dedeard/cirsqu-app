@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Clock, Code, Film } from 'react-feather'
-import formatSecond from '@/utils/format-second'
+import formatSecond from '@/utils/transforms/format-second'
 import ToggleCollection from './ToggleCollection'
 
 const LessonItem: React.FC<{ lesson: IALesson }> = ({ lesson }) => {

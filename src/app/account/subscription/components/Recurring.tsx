@@ -2,7 +2,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import cn from 'classnames'
 import { useRouter } from 'next/navigation'
-import clientFetch from '@/utils/client-fetch'
+import clientFetch from '@/utils/fetch/client-fetch'
 import Spinner from '@/components/svg/Spinner'
 
 const statusColor = (status: string) => {

@@ -1,5 +1,5 @@
 import { BASE_API_URL } from '@/constants/config'
-import { auth } from './firebase'
+import { auth } from '../firebase/firebase'
 
 const clientFetch: Fetch = async (path, { data, ...init } = {}) => {
   let headers: HeadersInit = {}

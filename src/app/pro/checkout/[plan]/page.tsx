@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import serverFetch from '@/utils/server-fetch'
+import serverFetch from '@/utils/fetch/server-fetch'
 import { notFound } from 'next/navigation'
 import ChosenPlan from './components/ChosenPlan'
 import { ArrowLeftCircle } from 'react-feather'

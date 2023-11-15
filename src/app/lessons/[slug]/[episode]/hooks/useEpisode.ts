@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '@/components/contexts/AuthContext'
-import clientFetch from '@/utils/client-fetch'
+import clientFetch from '@/utils/fetch/client-fetch'
 
 const useEpisode = (currentEpisode: IEpisode) => {
   const auth = useAuth()

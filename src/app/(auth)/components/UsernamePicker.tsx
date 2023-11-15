@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
-import { usernameNotExist } from '@/utils/firestore'
+import { usernameNotExist } from '@/utils/firebase/firestore'
 import Button from './elements/Button'
 import Input from './Input'
 

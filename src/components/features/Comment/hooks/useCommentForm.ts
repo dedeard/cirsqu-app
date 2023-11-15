@@ -2,7 +2,7 @@ import React from 'react'
 import { useFormik, FormikHelpers } from 'formik'
 import toast from 'react-hot-toast'
 import * as yup from 'yup'
-import clientFetch from '@/utils/client-fetch'
+import clientFetch from '@/utils/fetch/client-fetch'
 
 type Mode = 'create' | 'edit'
 type Options = {

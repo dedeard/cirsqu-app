@@ -2,7 +2,7 @@
 import React from 'react'
 import Avatar from '@/components/elements/Avatar'
 import { useAuth } from '@/components/contexts/AuthContext'
-import { timestampToDate } from '@/utils/firestore'
+import { timestampToDate } from '@/utils/firebase/firestore'
 
 const SidebarProfile: React.FC<{ isFlat?: boolean }> = ({ isFlat }) => {
   const { profile, initLoading } = useAuth()

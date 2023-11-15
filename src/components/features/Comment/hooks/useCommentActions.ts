@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import clientFetch from '@/utils/client-fetch'
+import clientFetch from '@/utils/fetch/client-fetch'
 
 interface CommentActions {
   isActionInProgress: boolean

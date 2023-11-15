@@ -6,7 +6,7 @@ import { useFormik } from 'formik'
 import Alert from './elements/Alert'
 import UsernamePicker from './UsernamePicker'
 import Button from './elements/Button'
-import clientFetch from '@/utils/client-fetch'
+import clientFetch from '@/utils/fetch/client-fetch'
 import { useAuth } from '@/components/contexts/AuthContext'
 import Input from './Input'
 

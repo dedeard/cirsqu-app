@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import cn from 'classnames'
 import { Check } from 'react-feather'
-import formatAmount from '@/utils/format-amount'
+import formatAmount from '@/utils/transforms/format-amount'
 
 const PlanItem: React.FC<{ product: IProduct }> = ({ product }) => {
   const light = product.price.lookup_key === 'monthly'

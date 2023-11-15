@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Lock, PlayCircle } from 'react-feather'
 import { useParams } from 'next/navigation'
 import cn from 'classnames'
-import formatSecond from '@/utils/format-second'
+import formatSecond from '@/utils/transforms/format-second'
 import { useAuth } from '@/components/contexts/AuthContext'
 
 const EpisodeItem = React.forwardRef<HTMLAnchorElement, { episode: IAEpisode }>(({ episode }, ref) => {

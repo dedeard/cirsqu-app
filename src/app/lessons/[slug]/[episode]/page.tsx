@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import markdownToDescription from '@/utils/markdown-to-description'
+import mdToDescription from '@/utils/transforms/md-to-description'
 import getObject from '@/utils/algolia/getObject'
-import serverFetch from '@/utils/server-fetch'
+import serverFetch from '@/utils/fetch/server-fetch'
 import TitleBar from './components/TitleBar'
 import MainPlaylist from './components/MainPlaylist'
 import EpisodeDetail from './components/EpisodeDetail'
@@ -50,11 +50,11 @@ export async function generateMetadata(pageProps: PropTypes): Promise<Metadata> 
   const { lesson, episode } = await getPageData(pageProps)
   return {
     title: `${episode.title} - ${lesson.title}`,
-    description: markdownToDescription(episode.description),
+    description: mdToDescription(episode.description),
     openGraph: {
       images: `/images/dynamic-og?title=${episode.title}`,
       title: `${episode.title} - ${lesson.title}`,
-      description: markdownToDescription(episode.description),
+      description: mdToDescription(episode.description),
     },
     alternates: {
       canonical: `/lessons/${lesson.slug}/${episode.episodeId}`,

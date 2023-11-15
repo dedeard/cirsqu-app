@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Check, FileText } from 'react-feather'
-import serverFetch from '@/utils/server-fetch'
+import serverFetch from '@/utils/fetch/server-fetch'
 
 export const revalidate = 7200
 

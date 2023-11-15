@@ -2,7 +2,6 @@ import { useRef, useState } from 'react'
 import cn from 'classnames'
 import { AlertCircle } from 'react-feather'
 import Avatar from '@/components/elements/Avatar'
-import fileValidation from '@/utils/file-validator'
 import Label from './Label'
 
 type InputAvatarProps = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -15,44 +14,48 @@ type InputAvatarProps = React.InputHTMLAttributes<HTMLInputElement> & {
   onValidationError?: (errorMessage: string) => void
 }
 
-export const InputAvatar: React.FC<InputAvatarProps> = ({
-  file,
-  error,
-  label,
-  avatar,
-  type,
-  onFileChange,
-  onValidationError,
-  ...props
-}) => {
-  const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
+const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif']
+const MAX_SIZE = 3 // MB
+
+const validateFile = (file?: File) => {
+  if (!file) return false
+  const { size, type } = file
+  const fileSizeInKB = size / 1024
+
+  if (fileSizeInKB > MAX_SIZE * 1024) {
+    return `File size should be within ${MAX_SIZE}MB`
+  }
+
+  if (!ALLOWED_MIME_TYPES.includes(type)) {
+    return `Invalid file type. Please choose one of the following types: ${ALLOWED_MIME_TYPES.join(', ')}`
+  }
+
+  return true
+}
+
+const InputAvatar: React.FC<InputAvatarProps> = ({ file, error, label, avatar, type, onFileChange, onValidationError, ...props }) => {
   const [previewImage, setPreviewImage] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let file = e.target.files?.[0]
-    let isValidFile = fileValidation(file, {
-      setError: onValidationError,
-      allowedMimeTypes,
-      maxSize: 3,
-    })
-    if (file && isValidFile) {
+    const file = e.target.files?.[0]
+    const result = validateFile(file)
+    if (result === true) {
       const reader = new FileReader()
       reader.onload = (event) => setPreviewImage(event.target?.result as string)
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(file!)
       onValidationError?.('')
-      onFileChange?.(file)
+      onFileChange?.(file || null)
     } else {
-      setPreviewImage('')
-      onFileChange?.(null)
+      onValidationError?.(result || '')
+      resetFile()
     }
   }
 
-  const handleReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault()
+  const resetFile = () => {
+    setPreviewImage('')
     onValidationError?.('')
     onFileChange?.(null)
-    setPreviewImage('')
   }
 
   return (
@@ -75,7 +78,7 @@ export const InputAvatar: React.FC<InputAvatarProps> = ({
             type="file"
             aria-hidden="true"
             className="hidden"
-            accept={allowedMimeTypes.join(', ')}
+            accept={ALLOWED_MIME_TYPES.join(', ')}
             onChange={handleFileChange}
             {...props}
           />
@@ -84,7 +87,7 @@ export const InputAvatar: React.FC<InputAvatarProps> = ({
             <button
               type="button"
               className="hoverable-red ml-3 h-9 items-center justify-center rounded-lg px-4 text-sm"
-              onClick={handleReset}
+              onClick={resetFile}
             >
               Reset
             </button>
@@ -101,3 +104,5 @@ export const InputAvatar: React.FC<InputAvatarProps> = ({
     </Label>
   )
 }
+
+export default InputAvatar

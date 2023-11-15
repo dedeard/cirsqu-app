@@ -4,7 +4,7 @@ import cn from 'classnames'
 import toast from 'react-hot-toast'
 import { linkWithPopup, unlink } from 'firebase/auth'
 import { useAuth } from '@/components/contexts/AuthContext'
-import { getProviderById } from '@/utils/firebase'
+import { getProviderById } from '@/utils/firebase/firebase'
 import FIREBASE_ERRORS from '@/constants/firebase-errors'
 import Spinner from '@/components/svg/Spinner'
 

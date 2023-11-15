@@ -3,8 +3,7 @@ import SubjectCard from './components/SubjectCard'
 import { notFound } from 'next/navigation'
 import Pagination from '../../components/Pagination'
 import LessonList from '../../components/LessonItem'
-import parsePaginationPage from '@/utils/parse-pagination-page'
-import markdownToDescription from '@/utils/markdown-to-description'
+import mdToDescription from '@/utils/transforms/md-to-description'
 import getObject from '@/utils/algolia/getObject'
 import search from '@/utils/algolia/search'
 
@@ -34,11 +33,11 @@ export async function generateMetadata(pageProps: PropTypes): Promise<Metadata> 
   const { name, description, slug } = await getSubject(pageProps)
   return {
     title: name,
-    description: markdownToDescription(description),
+    description: mdToDescription(description),
     openGraph: {
       images: `/images/dynamic-og?title=${name}`,
       title: name,
-      description: markdownToDescription(description),
+      description: mdToDescription(description),
     },
     alternates: {
       canonical: `/subjects/${slug}`,
@@ -47,7 +46,11 @@ export async function generateMetadata(pageProps: PropTypes): Promise<Metadata> 
 }
 
 export default async function SubjectPage(props: PropTypes) {
-  const page = parsePaginationPage(props.searchParams.page)
+  let page = parseInt(String(props.searchParams.page))
+  if (isNaN(page) || page < 1) {
+    page = 1
+  }
+
   const subject = await getSubject(props)
 
   const lessons = await search<IALesson>({

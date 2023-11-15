@@ -1,6 +1,6 @@
 import React from 'react'
 import { collection, query, orderBy, where, onSnapshot } from 'firebase/firestore'
-import { db } from '@/utils/firebase'
+import { db } from '@/utils/firebase/firebase'
 import { useProfiles } from '@/components/contexts/ProfilesContext'
 
 type Options = {

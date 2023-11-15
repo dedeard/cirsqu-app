@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import cn from 'classnames'
 import { Check } from 'react-feather'
-import formatAmount from '@/utils/format-amount'
+import formatAmount from '@/utils/transforms/format-amount'
 
 type PropTypes = {
   product: IProduct

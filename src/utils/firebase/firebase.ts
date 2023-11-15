@@ -1,14 +1,15 @@
 import { initializeApp, getApps, getApp } from 'firebase/app'
 import { getAuth, FacebookAuthProvider, GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
+import { FB_API_KEY, FB_APP_ID, FB_AUTH_DOMAIN, FB_MESSAGING_SENDER_ID, FB_PROJECT_ID, FB_STORAGE_BUCKET } from '@/constants/config'
 
 export const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FB_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FB_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FB_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FB_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FB_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FB_APP_ID,
+  apiKey: FB_API_KEY,
+  authDomain: FB_AUTH_DOMAIN,
+  projectId: FB_PROJECT_ID,
+  storageBucket: FB_STORAGE_BUCKET,
+  messagingSenderId: FB_MESSAGING_SENDER_ID,
+  appId: FB_APP_ID,
 }
 
 export const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig)
@@ -29,5 +30,5 @@ export const getProviderById = (method: 'facebook.com' | 'github.com' | 'google.
 }
 
 export const storageUrl = (path?: string) => {
-  return `https://storage.googleapis.com/${firebaseConfig.storageBucket}/${path}`
+  return `https://storage.googleapis.com/${FB_STORAGE_BUCKET}/${path}`
 }

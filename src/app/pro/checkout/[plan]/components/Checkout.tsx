@@ -3,9 +3,9 @@ import React from 'react'
 import toast from 'react-hot-toast'
 import cn from 'classnames'
 import { useRouter } from '@/components/contexts/ProgressBarContext'
-import clientFetch from '@/utils/client-fetch'
+import clientFetch from '@/utils/fetch/client-fetch'
 import { useAuth } from '@/components/contexts/AuthContext'
-import formatAmount from '@/utils/format-amount'
+import formatAmount from '@/utils/transforms/format-amount'
 import Spinner from '@/components/svg/Spinner'
 
 type PropsType = {

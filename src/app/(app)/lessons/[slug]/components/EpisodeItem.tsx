@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import { Clock, Lock, PlayCircle } from 'react-feather'
 import { useParams } from 'next/navigation'
-import formatSecond from '@/utils/format-second'
+import formatSecond from '@/utils/transforms/format-second'
 import { useAuth } from '@/components/contexts/AuthContext'
 
 const EpisodeItem: React.FC<{ episode: IAEpisode }> = ({ episode }) => {

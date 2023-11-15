@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Avatar from '@/components/elements/Avatar'
-import { auth } from '@/utils/firebase'
+import { auth } from '@/utils/firebase/firebase'
 
 const ProfileDropdown: React.FC<{ profile: IProfile }> = ({ profile }) => {
   const logout = () => {

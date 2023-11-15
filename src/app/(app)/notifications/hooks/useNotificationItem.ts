@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { doc, updateDoc, serverTimestamp } from 'firebase/firestore'
-import { db } from '@/utils/firebase'
+import { db } from '@/utils/firebase/firebase'
 import { useRouter } from '@/components/contexts/ProgressBarContext'
 
 const getRecurringMessage = (status: string, plan: string) => {

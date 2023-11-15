@@ -1,7 +1,7 @@
 import type { Hit } from '@/types/algolia'
 import Link from 'next/link'
 import { Clock, Film } from 'react-feather'
-import formatSecond from '@/utils/format-second'
+import formatSecond from '@/utils/transforms/format-second'
 
 const ResultItem: React.FC<{ lesson: Hit<IALesson> }> = ({ lesson }) => {
   return (

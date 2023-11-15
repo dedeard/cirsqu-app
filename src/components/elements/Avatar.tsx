@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import cn from 'classnames'
-import { storageUrl } from '@/utils/firebase'
+import { storageUrl } from '@/utils/firebase/firebase'
 
 type PropTypes = {
   name: string

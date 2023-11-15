@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeftCircle } from 'react-feather'
-import serverFetch from '@/utils/server-fetch'
+import serverFetch from '@/utils/fetch/server-fetch'
 import PlanItem from './components/PlanItem'
 import FAQs from './components/FAQs'
 

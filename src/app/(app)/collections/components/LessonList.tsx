@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Clock, Film, X } from 'react-feather'
-import formatSecond from '@/utils/format-second'
+import formatSecond from '@/utils/transforms/format-second'
 
 type PropTypes = {
   collectionId: string

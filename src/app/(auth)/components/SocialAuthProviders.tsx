@@ -3,7 +3,7 @@ import { AuthProvider } from 'firebase/auth'
 import Google from '@/components/svg/Google'
 import Github from '@/components/svg/Github'
 import Facebook from '@/components/svg/Facebook'
-import { getProviderById } from '@/utils/firebase'
+import { getProviderById } from '@/utils/firebase/firebase'
 import Divider from './elements/Divider'
 
 type PropTypes = {

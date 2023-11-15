@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Book } from 'react-feather'
-import trimTextWithEllipsis from '@/utils/trim-text-with-ellipsis'
+import trimTextWithEllipsis from '@/utils/transforms/trim-text-with-ellipsis'
 
 const SubjectItem: React.FC<{ subject: IASubject }> = ({ subject }) => {
   return (

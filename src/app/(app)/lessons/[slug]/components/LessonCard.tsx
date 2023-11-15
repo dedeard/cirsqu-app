@@ -3,7 +3,7 @@ import Link from 'next/link'
 import cn from 'classnames'
 import moment from 'moment'
 import { Clock, Film, Calendar, Code } from 'react-feather'
-import formatSecond from '@/utils/format-second'
+import formatSecond from '@/utils/transforms/format-second'
 import ToggleCollection from '../../../components/ToggleCollection'
 
 const LessonCard: React.FC<{ lesson: IALesson; className?: string }> = ({ lesson, className }) => {

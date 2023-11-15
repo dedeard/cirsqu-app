@@ -2,7 +2,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { useAuth } from './AuthContext'
 import { collection, deleteDoc, doc, onSnapshot, orderBy, query, runTransaction, serverTimestamp, where } from 'firebase/firestore'
-import { db } from '@/utils/firebase'
+import { db } from '@/utils/firebase/firebase'
 import { useProfiles } from './ProfilesContext'
 import toast from 'react-hot-toast'
 

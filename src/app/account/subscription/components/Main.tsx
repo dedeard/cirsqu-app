@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import clientFetch from '@/utils/client-fetch'
+import clientFetch from '@/utils/fetch/client-fetch'
 import Panel from '../../components/Panel'
 import Loading from './Loading'
 import NotYet from './NotYet'

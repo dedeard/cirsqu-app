@@ -2,8 +2,8 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { collection, deleteDoc, doc, onSnapshot, orderBy, query, where } from 'firebase/firestore'
-import { db } from '@/utils/firebase'
-import clientFetch from '@/utils/client-fetch'
+import { db } from '@/utils/firebase/firebase'
+import clientFetch from '@/utils/fetch/client-fetch'
 import search from '@/utils/algolia/search'
 import { useAuth } from './AuthContext'
 
