@@ -44,10 +44,10 @@ const LessonCard: React.FC<{ lesson: IALesson; className?: string }> = ({ lesson
           </span>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <Link
             href={`/lessons/${lesson.slug}/${lesson.episodes[0]?.episodeId}`}
-            className="hoverable-blue peer flex h-10 items-center rounded-lg px-6 text-sm"
+            className="hoverable-blue peer flex h-10 items-center whitespace-nowrap rounded-lg px-6 text-sm"
             rel="nofollow"
           >
             Start watching
