@@ -1,7 +1,9 @@
 import './globals.css'
 import 'highlight.js/styles/github-dark.min.css'
 import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import { Analytics } from '@vercel/analytics/react'
+import cn from 'classnames'
 import Providers from './Providers'
 
 export const metadata: Metadata = {
@@ -31,10 +33,16 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const darkModeStore = cookies().get('darkMode')
+  let darkMode = true
+  if (darkModeStore) {
+    darkMode = darkModeStore.value === 'true'
+  }
+
   return (
-    <html lang="en" className="dark" style={{ colorScheme: 'dark' }}>
+    <html lang="en" className={cn(darkMode && 'dark')} style={{ colorScheme: darkMode ? 'dark' : 'light' }}>
       <body className="overflow-x-hidden overflow-y-scroll antialiased">
-        <Providers>{children}</Providers>
+        <Providers darkMode={darkMode}>{children}</Providers>
         <Analytics />
       </body>
     </html>
