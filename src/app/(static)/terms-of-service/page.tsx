@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
-import Wrapper from '../../components/Wrapper'
+import fs from 'fs/promises'
+import Markdown from 'react-markdown'
+import Wrapper from '../components/Wrapper'
 
 export const metadata: Metadata = {
   title: 'CIRSQU Terms of Service - Know Your Rights and Responsibilities',
@@ -16,13 +18,14 @@ export const metadata: Metadata = {
   },
 }
 
-export default function TermsOfServiceLayout({ children }: { children: React.ReactNode }) {
+export default async function TermsOfServicePage() {
+  const content = await fs.readFile('content/markdown/terms-of-service.md')
   return (
     <Wrapper
       title="Terms of Service"
       content="Welcome to CIRSQU. By using our services, you agree to these terms. Please read them carefully."
     >
-      {children}
+      <Markdown>{content.toString()}</Markdown>
     </Wrapper>
   )
 }
