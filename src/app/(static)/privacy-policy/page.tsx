@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
-import Wrapper from '../../components/Wrapper'
+import fs from 'fs/promises'
+import Markdown from 'react-markdown'
+import Wrapper from '../components/Wrapper'
 
 export const metadata: Metadata = {
   title: 'CIRSQU Privacy Policy - Your Privacy is Our Priority',
@@ -16,7 +18,9 @@ export const metadata: Metadata = {
   },
 }
 
-export default function PrivacyPolicyLayout({ children }: { children: React.ReactNode }) {
+export default async function PrivacyPolicyPage() {
+  const content = await fs.readFile('content/markdown/privacy-policy.md')
+
   return (
     <Wrapper
       title="Privacy Policy"
@@ -27,7 +31,7 @@ export default function PrivacyPolicyLayout({ children }: { children: React.Reac
         </>
       }
     >
-      {children}
+      <Markdown>{content.toString()}</Markdown>
     </Wrapper>
   )
 }
