@@ -81,7 +81,7 @@ const CommentItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
                   {openReplies && 'Close replies'}
                   {!openReplies && `Replies ${comment.replyCount || 0}`}
                 </button>
-                <button disabled={isActionInProgress || user?.uid === comment.userId} onClick={toggleLike}>
+                <button disabled={isActionInProgress || !user || user?.uid === comment.userId} onClick={toggleLike}>
                   {liked ? 'Unlike' : 'Like'} {likeCount}
                 </button>
                 {author.objectID === user?.uid && (

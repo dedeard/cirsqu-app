@@ -69,7 +69,7 @@ const ReplyItem: React.FC<PropTypes> = ({ comment, setDeleteQueue }) => {
               <CommentMarkdown className="prose prose-sm w-full max-w-full dark:prose-invert">{comment.body}</CommentMarkdown>
 
               <div className="flex gap-4 text-xs md:text-sm">
-                <button disabled={isActionInProgress || user?.uid === comment.userId} onClick={toggleLike}>
+                <button disabled={isActionInProgress || !user || user?.uid === comment.userId} onClick={toggleLike}>
                   {liked ? 'Unlike' : 'Like'} {likeCount}
                 </button>
                 {author.objectID === user?.uid && (
