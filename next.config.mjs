@@ -1,7 +1,3 @@
-import remarkGfm from 'remark-gfm'
-import rehypeHighlight from 'rehype-highlight'
-import createMDX from '@next/mdx'
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -16,16 +12,6 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    webpackBuildWorker: true,
-  },
 }
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeHighlight],
-  },
-})
-
-export default withMDX(nextConfig)
+export default nextConfig
