@@ -32,7 +32,6 @@ const CommentForm: React.FC<PropTypes> = ({ mode = 'create', targetId, targetTyp
         placeholder={`${placeholderText}... (Markdown supported)`}
         value={formCreate.values.body}
         error={formCreate.errors.body}
-        onBlur={formCreate.handleBlur}
         onChange={formCreate.handleChange}
       />
 
