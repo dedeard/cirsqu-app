@@ -1,7 +1,9 @@
 import React from 'react'
 import Markdown, { Components, Options } from 'react-markdown'
+import Link from 'next/link'
 import gfm from 'remark-gfm'
-import rehypeHighlight from 'rehype-highlight'
+import mentions from 'remark-mentions'
+import highlight from 'rehype-highlight'
 
 const baseComponents: Partial<Components> = {
   h1: 'p',
@@ -35,10 +37,18 @@ const baseComponents: Partial<Components> = {
       </pre>
     )
   },
-  a(props) {
+  a({ href, children }) {
+    if (href?.startsWith('/')) {
+      return <Link href={href}>{children}</Link>
+    }
+
+    if (href?.startsWith('#')) {
+      return <a href={href}>{children}</a>
+    }
+
     return (
-      <a href={props.href} title={props.title} target="_blank" rel="noopener noreferrer nofollow">
-        {props.children}
+      <a target="_blank" rel="noopener noreferrer nofollow" href={href}>
+        {children}
       </a>
     )
   },
@@ -52,8 +62,9 @@ const CommentMarkdown: React.FC<Readonly<Options>> = ({ components, children, ..
         ...components,
         ...baseComponents,
       }}
-      remarkPlugins={[gfm]}
-      rehypePlugins={[rehypeHighlight]}
+      // @ts-ignore
+      remarkPlugins={[gfm, [mentions, { usernameLink: (username) => `/@${username}` }]]}
+      rehypePlugins={[highlight]}
     >
       {children}
     </Markdown>
