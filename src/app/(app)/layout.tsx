@@ -13,6 +13,7 @@ const baseLinks: SidebarLinkPropTypes[] = [
   { href: '/', text: 'Home' },
   { href: '/lessons', text: 'Lessons' },
   { href: '/subjects', text: 'Subjects' },
+  { href: '/forum', text: 'Forum' },
   { href: '/pro', text: 'Premium' },
   {},
 ]
