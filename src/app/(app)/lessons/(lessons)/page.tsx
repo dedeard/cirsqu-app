@@ -38,7 +38,7 @@ export default async function LessonsPage({ searchParams }: { searchParams: { pa
   })
 
   return (
-    <>
+    <div className="py-3">
       <TitleBar title="List of Lessons" className="mb-3" />
 
       <ul className="mb-3 grid grid-cols-1 gap-3">
@@ -50,6 +50,6 @@ export default async function LessonsPage({ searchParams }: { searchParams: { pa
       </ul>
 
       <Pagination totalPage={nbPages} page={page} />
-    </>
+    </div>
   )
 }

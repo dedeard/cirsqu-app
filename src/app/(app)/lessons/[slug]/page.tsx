@@ -51,10 +51,10 @@ export default async function LessonPage(props: PropTypes) {
   const { lesson, episodes } = await getPageData(props)
 
   return (
-    <>
+    <div className="py-3">
       <LessonCard className="mb-16" lesson={lesson} />
       <LessonDetail className="my-16" description={lesson.description} />
       <LessonEpisodes className="mb-5 mt-16" episodes={episodes} />
-    </>
+    </div>
   )
 }

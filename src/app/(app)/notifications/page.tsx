@@ -10,5 +10,9 @@ export const metadata: Metadata = {
 }
 
 export default function NotificationsPage() {
-  return <Main />
+  return (
+    <div className="py-3">
+      <Main />
+    </div>
+  )
 }
