@@ -105,8 +105,8 @@ const rawTags = [
 
 export default function ForumLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col gap-3 md:flex-row">
-      <div className="md:flex-1">{children}</div>
+    <div className="flex flex-col gap-3 xl:flex-row">
+      <div className="pt-3 xl:flex-1 xl:py-3">{children}</div>
       <Tags tags={rawTags} />
     </div>
   )
