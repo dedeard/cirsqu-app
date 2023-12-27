@@ -19,7 +19,7 @@ const Tab: React.FC = () => {
 
   return (
     <div className="flex w-full justify-between gap-3 rounded-lg border border-neutral-200 bg-neutral-200/30 p-3 dark:border-neutral-800 dark:bg-neutral-800/30">
-      <Link href="/forum" className={!tag ? 'active' : ''}>
+      <Link href="/forum" className={!tag && pathname === '/forum' ? 'active' : ''}>
         Globals
       </Link>
       {tag && (

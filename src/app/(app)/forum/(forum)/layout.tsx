@@ -1,3 +1,4 @@
+import Tab from './components/Tab'
 import Tags from './components/Tags'
 
 const rawTags = [
@@ -106,7 +107,10 @@ const rawTags = [
 export default function ForumLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-3 xl:flex-row">
-      <div className="pt-3 xl:flex-1 xl:py-3">{children}</div>
+      <div className="pt-3 xl:flex-1 xl:py-3">
+        <Tab />
+        <>{children}</>
+      </div>
       <Tags tags={rawTags} />
     </div>
   )
