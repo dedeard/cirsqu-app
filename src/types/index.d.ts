@@ -146,4 +146,16 @@ declare global {
     avatar: string
     premium: boolean
   }
+
+  interface IAQuestion extends ObjectWithObjectID {
+    userId: string
+    title: string
+    content: string
+    answered: boolean
+    _tags: string[]
+    answer_count?: number
+    createdAt: number
+    updatedAt: number
+    user: IAProfile
+  }
 }
