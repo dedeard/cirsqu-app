@@ -2,6 +2,7 @@ import { RAW_TAGS } from '@/constants/raw-tags'
 import OtherQuestions from './components/OtherQuestions'
 import QuestionPanel from './components/QuestionPanel'
 import AuthorCard from './components/AuthorCard'
+import Comments from './components/Comments'
 
 const dummyProfile: IAProfile = {
   objectID: '123',
@@ -55,7 +56,10 @@ export default function ForumPage() {
   return (
     <div className="flex flex-col gap-3 xl:flex-row">
       <div className="pt-3 xl:flex-1">
-        <QuestionPanel question={dummyQuestion} className="md:mb-3" />
+        <div className="rounded-lg border border-neutral-200 bg-neutral-200/30 dark:border-neutral-800 dark:bg-neutral-800/30 md:mb-3">
+          <QuestionPanel question={dummyQuestion} />
+          <Comments questionId={dummyQuestion.objectID} />
+        </div>
       </div>
       <div className="xl:w-72">
         <div className="sticky top-16 w-full pb-3 xl:py-3">
