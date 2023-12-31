@@ -1,6 +1,7 @@
 import { RAW_TAGS } from '@/constants/raw-tags'
 import OtherQuestions from './components/OtherQuestions'
 import QuestionPanel from './components/QuestionPanel'
+import AuthorCard from './components/AuthorCard'
 
 const dummyProfile: IAProfile = {
   objectID: '123',
@@ -56,7 +57,12 @@ export default function ForumPage() {
       <div className="pt-3 xl:flex-1">
         <QuestionPanel question={dummyQuestion} className="md:mb-3" />
       </div>
-      <OtherQuestions tags={RAW_TAGS} />
+      <div className="xl:w-72">
+        <div className="sticky top-16 w-full pb-3 xl:py-3">
+          <AuthorCard name="Dede ariansya" username="dedeard" />
+          <OtherQuestions tags={RAW_TAGS} />
+        </div>
+      </div>
     </div>
   )
 }
