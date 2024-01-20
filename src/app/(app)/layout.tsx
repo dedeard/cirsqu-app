@@ -13,6 +13,7 @@ const baseLinks: SidebarLinkPropTypes[] = [
   { href: '/', text: 'Home' },
   { href: '/lessons', text: 'Lessons' },
   { href: '/subjects', text: 'Subjects' },
+  { href: '/forum', text: 'Forum' },
   { href: '/pro', text: 'Premium' },
   {},
 ]
@@ -44,7 +45,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             <SidebarProfile />
             <SidebarLinks links={links} skeletonCount={initLoading ? 3 : undefined} />
           </SidebarWrapper>
-          <div className="flex-1 py-3">{children}</div>
+          <div className="flex-1">{children}</div>
         </div>
       </main>
       <Footer />

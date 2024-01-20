@@ -8,7 +8,7 @@ type Mode = 'create' | 'edit'
 type Options = {
   initialBody?: string
   targetId?: string
-  targetType?: 'episode' | 'reply'
+  targetType?: 'question' | 'episode' | 'reply'
   bodyMin?: number
   bodyMax?: number
   successMessage?: string

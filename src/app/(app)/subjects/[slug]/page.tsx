@@ -77,7 +77,7 @@ export default async function SubjectPage(props: PropTypes) {
   })
 
   return (
-    <>
+    <div className="py-3">
       <SubjectCard subject={subject} />
 
       <ul className="mb-3 grid grid-cols-1 gap-3">
@@ -89,6 +89,6 @@ export default async function SubjectPage(props: PropTypes) {
       </ul>
 
       <Pagination totalPage={lessons.nbPages} page={page} />
-    </>
+    </div>
   )
 }

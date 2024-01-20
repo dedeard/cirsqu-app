@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default async function SubjectsPage() {
   const subjects = await search<IASubject>({ index: 'subjects', hitsPerPage: 1000 })
   return (
-    <>
+    <div className="py-3">
       <TitleBar title="List of Subjects" className="mb-3" />
 
       <ul className="mb-3 grid grid-cols-1 gap-3 md:grid-cols-2">
@@ -30,6 +30,6 @@ export default async function SubjectsPage() {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   )
 }

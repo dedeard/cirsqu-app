@@ -6,7 +6,7 @@ import Spinner from '@/components/svg/Spinner'
 
 type PropTypes = {
   targetId: string
-  targetType: 'episode' | 'reply'
+  targetType: 'question' | 'episode' | 'reply'
   initialBody?: string
   isLoading?: boolean
   className?: string

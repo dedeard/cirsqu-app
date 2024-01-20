@@ -33,6 +33,10 @@
     @apply border-neutral-200 bg-neutral-200/30 text-neutral-800 dark:border-neutral-800 dark:bg-neutral-800/30 dark:text-neutral-100 hover:[&:not(:disabled)]:border-neutral-300 hover:[&:not(:disabled)]:bg-neutral-200 dark:hover:[&:not(:disabled)]:border-neutral-600 dark:hover:[&:not(:disabled)]:bg-neutral-800;
   }
 
+  .hoverable-default.active {
+    @apply !border-neutral-300 !bg-neutral-200 dark:!border-neutral-600 dark:!bg-neutral-800;
+  }
+
   .hoverable-blue {
     @apply bg-blue-600 text-white hover:[&:not(:disabled)]:bg-blue-700 dark:hover:[&:not(:disabled)]:bg-blue-500;
   }

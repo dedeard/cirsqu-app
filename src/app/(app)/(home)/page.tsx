@@ -18,11 +18,11 @@ export default async function HomePage() {
   const subjects = await search<IASubject>({ index: 'subjects', hitsPerPage: 6 })
 
   return (
-    <>
+    <div className="py-3">
       <MainBanner className="mb-20" />
       <Latest className="my-20" lessons={lessons.hits} />
       <Subjects className="my-20" subjects={subjects.hits} />
       <PremiumBanner className="mt-20" />
-    </>
+    </div>
   )
 }
